@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Patient:
+  = @patient.patient_id
+p
+  strong Name:
+  = @patient.name
+p
+  strong Ssn:
+  = @patient.ssn
+p
+  strong Dob:
+  = @patient.dob
+
+= link_to 'Edit', edit_patient_path(@patient)
+'|
+= link_to 'Back', patients_path

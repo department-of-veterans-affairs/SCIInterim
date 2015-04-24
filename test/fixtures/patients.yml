@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient_id: 1
+  name: MyString
+  ssn: MyString
+  dob: 2015-04-24
+
+two:
+  patient_id: 1
+  name: MyString
+  ssn: MyString
+  dob: 2015-04-24
