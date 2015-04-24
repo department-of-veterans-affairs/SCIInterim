@@ -1,6 +1,6 @@
-h1 Listing patients
+h1 SCI Patient Registry
 
-table
+table class='table'
   thead
     tr
       th Patient
@@ -24,4 +24,6 @@ table
 
 br
 
-= link_to 'New Patient', new_patient_path
+= link_to new_patient_path, class: 'btn btn-success' do
+  i class='glyphicon glyphicon-plus'
+  |  New Patient
