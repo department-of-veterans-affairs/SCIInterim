@@ -1,12 +1,48 @@
 p#notice = notice
 
-table class="table"
-  - for field_info in Patient.fields do
-    tr
-      td
-        strong
-        = Patient.to_display_name(field_info[0])
-      td
-        = @patient.send(field_info[0])
+div class="span4 collapse-group" 
+  a class="detail-btn" href="#"
+    h4 class="inline-block"
+      | Basic Paitent Info
+      span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
+  div class="collapse"
+    table class="table"
+      - for field_info in Patient.basic_fields do
+        tr
+          td
+            strong
+            = Patient.to_display_name(field_info[0])
+          td
+            = @patient.send(field_info[0])
+
+div class="span4 collapse-group" 
+  a class="detail-btn" href="#"
+    h4 class="inline-block"
+      | Assessment Info
+      span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
+  div class="collapse"
+    table class="table"
+      - for field_info in Patient.assessment_fields do
+        tr
+          td
+            strong
+            = Patient.to_display_name(field_info[0])
+          td
+            = @patient.send(field_info[0])
+
+div class="span4 collapse-group" 
+  a class="detail-btn" href="#"
+    h4 class="inline-block"
+      | Detailed Paitent Info
+      span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
+  div class="collapse"
+    table class="table"
+      - for field_info in Patient.detailed_fields do
+        tr
+          td
+            strong
+            = Patient.to_display_name(field_info[0])
+          td
+            = @patient.send(field_info[0])
 
 = link_to 'Edit', edit_patient_path(@patient)
