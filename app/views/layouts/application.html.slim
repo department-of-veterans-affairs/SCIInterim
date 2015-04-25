@@ -72,5 +72,12 @@ html
           e.preventDefault();
           var $this = $(this);
           var $collapse = $this.closest('.collapse-group').find('.collapse');
+          $(this).
           $collapse.collapse('toggle');
+      });
+
+      jQuery(document).ready(function($) {
+          $(".clickable-row").click(function() {
+              window.document.location = $(this).data("href");
+          });
       });

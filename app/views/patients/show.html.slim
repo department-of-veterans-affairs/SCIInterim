@@ -5,7 +5,7 @@ div class="span4 collapse-group"
     h4 class="inline-block"
       | Basic Paitent Info
       span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
-  div class="collapse"
+  div class="collapse in"
     table class="table"
       - for field_info in Patient.basic_fields do
         tr
@@ -45,4 +45,4 @@ div class="span4 collapse-group"
           td
             = @patient.send(field_info[0])
 
-= link_to 'Edit', edit_patient_path(@patient)
+= link_to 'Edit', edit_patient_path(@patient), { class: "btn btn-success" }
