@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title SCIDemo
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    div id="main-container" class="container"
+      div class="row"
+        div class="col-xs-3"
+          div class="well"
+            h3 SCI Interim Hack
+            table
+              tr
+              = link_to 'View Registry', patients_path, class: 'btn btn-success'
+              tr
+              = link_to new_patient_path, class: 'btn btn-success' do
+                i class='glyphicon glyphicon-plus'
+                |  New Patient
+        div class="col-xs-9 well"
+          = yield

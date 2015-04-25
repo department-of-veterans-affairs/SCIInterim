@@ -21,9 +21,3 @@ table class='table'
         td = link_to 'Show', patient
         td = link_to 'Edit', edit_patient_path(patient)
         td = link_to 'Destroy', patient, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to new_patient_path, class: 'btn btn-success' do
-  i class='glyphicon glyphicon-plus'
-  |  New Patient

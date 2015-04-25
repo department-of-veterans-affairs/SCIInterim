@@ -1,21 +1,18 @@
-= form_for @patient do |f|
+= form_for @patient, html: { class: 'form' } do |f|
   - if @patient.errors.any?
     #error_explanation
       h2 = "#{pluralize(@patient.errors.count, "error")} prohibited this patient from being saved:"
       ul
         - @patient.errors.full_messages.each do |message|
           li = message
-
-  .field
-    = f.label :patient_id
-    = f.number_field :patient_id
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :ssn
-    = f.text_field :ssn
-  .field
-    = f.label :dob
-    = f.date_select :dob
+  - for field_info in Patient.fields do
+    div class="form-group"
+      = f.label Patient.to_display_name(field_info[0])
+      - case field_info[1]
+        - when :string
+          = f.text_field field_info[0]
+        - when :integer
+          = f.number_field field_info[0]
+        - when :datetime
+          = f.date_field field_info[0]
   .actions = f.submit 'Save'
