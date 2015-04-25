@@ -8,6 +8,7 @@
   - for field_info in Patient.fields do
     div class="form-group"
       = f.label Patient.to_display_name(field_info[0])
+      | &nbsp;
       - case field_info[1]
         - when :string
           = f.text_field field_info[0]

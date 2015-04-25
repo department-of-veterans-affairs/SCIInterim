@@ -5,6 +5,27 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    javascript:
+      function show_unicorn() {
+        var unicorn = document.createElement('img');
+        unicorn.id="unicorn";
+        unicorn.src = "/obama-unicorn.jpg";
+        unicorn.style.position="absolute";
+        unicorn.top = (window.innerHeight-253)/2;
+        unicorn.style.top = unicorn.top + "px";
+        unicorn.left = -200;
+        unicorn.style.left = unicorn.left + "px";
+        document.body.appendChild(unicorn);
+        var fun = {}
+        fun['interval'] = setInterval(
+          function() {
+            unicorn.left = unicorn.left + 1;
+            unicorn.style.left = unicorn.left + "px";
+            if (unicorn.left > window.innerWidth) {
+              clearInterval(fun['interval']);
+            }
+          }, 1);
+      }
   body
     div id="main-container" class="container" style="background-color: #9b9b9b;"
       div class="row"
@@ -27,12 +48,12 @@ html
               - if user_signed_in?
                 li role="presentation" class="login-req"
                   = link_to 'Logout', destroy_user_session_path, :method => :delete
-          div
+          div class="text-center"
             - if user_signed_in?
               p class="text-center"
                 = "Signed in #{current_user.email}"
-            - if current_user.email.downcase.include?('sophia')
-                Rainbows and Unicorns
+            - if user_signed_in? and current_user.email.downcase.include?('sophia')
+                button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
         div class="col-xs-9"
           div class="well"
             = yield
