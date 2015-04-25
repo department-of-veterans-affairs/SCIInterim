@@ -43,6 +43,21 @@ class PatientsController < ApplicationController
     end
 
     def patient_params
-      params.require(:patient).permit(:patient_id, :name, :ssn, :dob)
+      params.require(:patient).permit(
+        :patient_id, :name, :ssn, :dob,
+        :asia_level, :asia_impairment,
+        :bladder_drainage, :employment_status,
+        :highest_level_of_education,
+        :registration_status, :sci_network,
+        :sci_network_date_changed,
+        :type_of_etiology, :etiology,
+        :other_etiology, :date_of_onset,
+        :brain_injury, :other_injury,
+        :annual_eval_vamc, :primary_care_vamc,
+        :additional_care_vamc, :primary_care_provider,
+        :annual_eval_received, :annual_eval_next_due,
+        :initial_rehab_site, :initial_rehab_discharge,
+        :data_first_seen_in_va_sci, :occupation_at_time_of_injury,
+        :service_connected, :date_of_death, :outcome_coordinator)
     end
 end
