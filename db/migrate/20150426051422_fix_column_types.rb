@@ -1,4 +1,4 @@
-class MakeEnumFields < ActiveRecord::Migration
+class FixColumnTypes < ActiveRecord::Migration
   def change
     change_column :patients, :employment_status, :integer
     change_column :patients, :highest_level_of_education, :integer
