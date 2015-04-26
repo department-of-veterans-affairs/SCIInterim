@@ -1,8 +1,9 @@
 class Patient < ActiveRecord::Base
-  validates_format_of :patiend_id, :with => /\d+/, message: "Must be a number"
+  validates_format_of :patient_id, :with => /\d+/, message: "Must be a number"
   validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "No numbers of special chars"
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{3}/, message: "Expect format 111-22-3333"
 
+  enum asia_level: (2..8).map { |level| "C#{level}" } + (1..12).map {|level| "T#{level}"} + (1..5).map {|level| "L#{level}"} + (1..3).map {|level| "S#{level}"} + [ :"S4-5" ]
   enum employment_status: [ :Employed, :Unemployed ]
   enum highest_level_of_education: [ :"No Diploma", :"High School", :"Some College", :"Graduate School" ]
   enum registration_status: [ :"Currently Served", :"Not Served" ]
@@ -32,7 +33,7 @@ class Patient < ActiveRecord::Base
 
   def self.assessment_fields
     [
-      [ :asia_level, :string ],
+      [ :asia_level, :enum ],
       [ :asia_impairment, :string ],
       [ :bladder_drainage, :string ],
       [ :type_of_etiology, :string ],
@@ -55,7 +56,7 @@ class Patient < ActiveRecord::Base
       [ :annual_eval_next_due, :date ],
       [ :initial_rehab_site, :string ],
       [ :initial_rehab_discharge, :date ],
-      [ :data_first_seen_in_va_sci, :string ],
+      [ :date_first_seen_in_va_sci, :date ],
       [ :occupation_at_time_of_injury, :string ],
       [ :service_connected, :string ],
     ]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426051422) do
+ActiveRecord::Schema.define(version: 20150426055957) do
 
   create_table "patients", force: true do |t|
     t.integer  "patient_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150426051422) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sci_region"
-    t.string   "asia_level"
+    t.integer  "asia_level",                   limit: 255
     t.string   "asia_impairment"
     t.string   "bladder_drainage"
     t.integer  "employment_status",            limit: 255
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150426051422) do
     t.date     "annual_eval_next_due"
     t.string   "initial_rehab_site"
     t.date     "initial_rehab_discharge"
-    t.date     "data_first_seen_in_va_sci",    limit: 255
+    t.date     "date_first_seen_in_va_sci",    limit: 255
     t.string   "occupation_at_time_of_injury"
     t.boolean  "service_connected",            limit: 255
     t.date     "date_of_death"
