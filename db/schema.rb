@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425031317) do
+ActiveRecord::Schema.define(version: 20150426051422) do
 
   create_table "patients", force: true do |t|
     t.integer  "patient_id"
@@ -24,29 +24,29 @@ ActiveRecord::Schema.define(version: 20150425031317) do
     t.string   "asia_level"
     t.string   "asia_impairment"
     t.string   "bladder_drainage"
-    t.string   "employment_status"
-    t.string   "highest_level_of_education"
-    t.string   "registration_status"
-    t.string   "sci_network"
-    t.datetime "sci_network_date_changed"
+    t.integer  "employment_status",            limit: 255
+    t.integer  "highest_level_of_education",   limit: 255
+    t.integer  "registration_status",          limit: 255
+    t.boolean  "sci_network",                  limit: 255
+    t.date     "sci_network_date_changed"
     t.string   "type_of_etiology"
     t.string   "etiology"
     t.string   "other_etiology"
-    t.datetime "date_of_onset"
+    t.date     "date_of_onset"
     t.string   "brain_injury"
     t.string   "other_injury"
     t.string   "annual_eval_vamc"
     t.string   "primary_care_vamc"
     t.string   "additional_care_vamc"
     t.string   "primary_care_provider"
-    t.datetime "annual_eval_received"
-    t.datetime "annual_eval_next_due"
+    t.date     "annual_eval_received"
+    t.date     "annual_eval_next_due"
     t.string   "initial_rehab_site"
-    t.datetime "initial_rehab_discharge"
-    t.string   "data_first_seen_in_va_sci"
+    t.date     "initial_rehab_discharge"
+    t.date     "data_first_seen_in_va_sci",    limit: 255
     t.string   "occupation_at_time_of_injury"
-    t.string   "service_connected"
-    t.datetime "date_of_death"
+    t.boolean  "service_connected",            limit: 255
+    t.date     "date_of_death"
     t.string   "outcome_coordinator"
   end
 

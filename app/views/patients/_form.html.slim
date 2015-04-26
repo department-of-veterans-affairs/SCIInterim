@@ -14,8 +14,10 @@
               = f.input_field field_info[0], as: :string, class: "form-control"
             - when :integer
               = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :datetime
+            - when :date
               = f.date_field field_info[0], class: "form-control"
+            - when :enum
+              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
 
   div class="form-inputs span4 collapse-group"
     a class="detail-btn" href="#"
@@ -30,8 +32,10 @@
               = f.input_field field_info[0], as: :string, class: "form-control"
             - when :integer
               = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :datetime
+            - when :date
               = f.date_field field_info[0], class: "form-control"
+            - when :enum
+              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
 
   div class="form-inputs span4 collapse-group"
     a class="detail-btn" href="#"
@@ -46,7 +50,9 @@
               = f.input_field field_info[0], as: :string, class: "form-control"
             - when :integer
               = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :datetime
+            - when :date
               = f.date_field field_info[0], class: "form-control"
+            - when :enum
+              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
 
     = f.submit class:"btn btn-success"
