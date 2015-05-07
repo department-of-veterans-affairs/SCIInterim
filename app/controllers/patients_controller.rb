@@ -33,8 +33,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    @patient.destroy
-    respond_with(@patient)
+    render :nothing => true, :status => 400
   end
 
   private

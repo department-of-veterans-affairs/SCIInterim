@@ -7,9 +7,6 @@ table class='table table-striped table-hover'
       th Name
       th Ssn
       th Dob
-      th
-      th
-      th
 
   tbody
     - @patients.each do |patient|
@@ -18,4 +15,3 @@ table class='table table-striped table-hover'
           td = patient.name
           td = patient.ssn
           td = patient.dob
-          td = link_to 'Remove', patient, data: {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn btn-xs btn-danger "
