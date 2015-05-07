@@ -1,5 +1,11 @@
 p#notice = notice
 
+div class="span12"
+  = link_to 'Edit', edit_patient_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add Annual Eval', edit_patient_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add Outpatient Episode', edit_patient_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add Accute Rehab', edit_patient_path(@patient), { class: "btn btn-success" }
+
 div class="span4 collapse-group" 
   a class="detail-btn" href="#"
     h4 class="inline-block"
@@ -44,5 +50,3 @@ div class="span4 collapse-group"
             = Patient.to_display_name(field_info[0])
           td
             = @patient.send(field_info[0])
-
-= link_to 'Edit', edit_patient_path(@patient), { class: "btn btn-success" }
