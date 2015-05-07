@@ -52,20 +52,24 @@ html
               = alert
       div class="row"
         div class="col-xs-3"
-          div class="well"
-            ul  role="navigation" class="nav nav-pills nav-stacked"
-              li role="presentation" class="login-req"
-                = link_to 'View Registry', patients_path
-              li role="presentation"
-                = link_to "Add Patient", new_patient_path
-              - if user_signed_in?
-                li role="presentation" class="login-req"
-                  = link_to 'Logout', destroy_user_session_path, :method => :delete
-          div class="text-center"
-            - if user_signed_in?
-              p class="text-center"
-                = "Signed in #{current_user.email}"
-              button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
+          div class="row"
+            div class="col-xs-12"
+              div class="well"
+                ul  role="navigation" class="nav nav-pills nav-stacked"
+                  li role="presentation" class="login-req"
+                    = link_to 'View Registry', patients_path
+                  li role="presentation"
+                    = link_to "Add Patient", new_patient_path
+                  - if user_signed_in?
+                    li role="presentation" class="login-req"
+                      = link_to 'Logout', destroy_user_session_path, :method => :delete
+          div class="row"
+            div class="col-xs-12"
+              div class="text-center"
+                - if user_signed_in?
+                  p class="text-center"
+                    = "Signed in #{current_user.email}"
+                  button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
         div class="col-xs-9"
           div class="well"
             = yield

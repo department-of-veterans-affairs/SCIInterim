@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426055957) do
+ActiveRecord::Schema.define(version: 20150507062834) do
+
+  create_table "accute_rehabilitations", force: true do |t|
+    t.integer  "actable_id"
+    t.string   "actable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "annual_evaluations", force: true do |t|
+    t.integer  "actable_id"
+    t.string   "actable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "episode_of_cares", force: true do |t|
+    t.date     "care_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "outpatient_episodes", force: true do |t|
+    t.integer  "actable_id"
+    t.string   "actable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "patients", force: true do |t|
     t.integer  "patient_id"

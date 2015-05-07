@@ -1,4 +1,6 @@
 class Patient < ActiveRecord::Base
+  has_many :episode_of_cares
+
   validates_format_of :patient_id, :with => /\d+/, message: "Must be a number"
   validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "No numbers of special chars"
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{3}/, message: "Expect format 111-22-3333"
