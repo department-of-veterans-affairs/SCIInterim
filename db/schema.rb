@@ -13,9 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20150507062834) do
 
-  create_table "accute_rehabilitations", force: true do |t|
+  create_table "acute_rehabilitations", force: true do |t|
     t.integer  "actable_id"
     t.string   "actable_type"
+    t.integer  "fake_sadness"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -23,12 +24,13 @@ ActiveRecord::Schema.define(version: 20150507062834) do
   create_table "annual_evaluations", force: true do |t|
     t.integer  "actable_id"
     t.string   "actable_type"
+    t.integer  "asia_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "episode_of_cares", force: true do |t|
-    t.date     "care_date"
+    t.date     "episode_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150507062834) do
   create_table "outpatient_episodes", force: true do |t|
     t.integer  "actable_id"
     t.string   "actable_type"
+    t.integer  "fake_happiness"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,3 +1,3 @@
 class OutpatientEpisode < EpisodeOfCare
-  acts_as :episode_of_cares
+  acts_as :episode_of_care
 end

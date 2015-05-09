@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  resources :patients
-  resources :episode_of_cares
+
+  resources :annual_evaluations
+  resources :outpatient_episodes
+  resources :acute_rehabilitations
+
+  resources :patients do
+      resources :annual_evaluations
+      resources :outpatient_episodes
+      resources :acute_rehabilitations
+  end
 
   root to: redirect('/patients')
 end

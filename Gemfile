@@ -16,4 +16,8 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'spring',        group: :development
+gem 'better_errors',     group: :development
+gem 'byebug',            group: :development
+gem 'pry-byebug',        group: :development
+gem 'spring',            group: :development
+gem 'binding_of_caller', group: :development

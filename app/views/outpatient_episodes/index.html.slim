@@ -1,0 +1,19 @@
+h1 Listing outpatient_episodes
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @outpatient_episodes.each do |outpatient_episode|
+      tr
+        td = link_to 'Show', outpatient_episode
+        td = link_to 'Edit', edit_outpatient_episode_path(outpatient_episode)
+        td = link_to 'Destroy', outpatient_episode, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Outpatient episode', new_outpatient_episode_path
