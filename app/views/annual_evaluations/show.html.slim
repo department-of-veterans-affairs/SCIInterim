@@ -1,6 +1,22 @@
 p#notice = notice
 
+h2 
+  | Annual Eval #
+  = @annual_evaluation.id 
 
-= link_to 'Edit', edit_episode_of_care_path(@episode_of_care)
+table class="table"
+  tr
+    td
+      strong Episode Date
+    td
+      = @annual_evaluation.episode_date
+  tr
+    td
+      strong Asia Level
+    td
+      = @annual_evaluation.asia_level
+
+
+= link_to 'Edit', edit_annual_evaluation_path(@annual_evaluation)
 '|
-= link_to 'Back', episode_of_cares_path
+= link_to 'Back', annual_evaluations_path

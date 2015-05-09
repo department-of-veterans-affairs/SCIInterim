@@ -1,5 +1,20 @@
 p#notice = notice
 
+h2 
+  | Outpatient Epsisode #
+  = @outpatient_episode.id 
+
+table class="table"
+  tr
+    td
+      strong Episode Date
+    td
+      = @outpatient_episode.episode_date
+  tr
+    td
+      strong Fake Hapiness
+    td
+      = @outpatient_episode.fake_happiness
 
 = link_to 'Edit', edit_outpatient_episode_path(@outpatient_episode)
 '|

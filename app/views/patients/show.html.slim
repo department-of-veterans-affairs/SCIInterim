@@ -50,3 +50,18 @@ div class="span4 collapse-group"
             = Patient.to_display_name(field_info[0])
           td
             = @patient.send(field_info[0])
+
+div class="span4 collapse-group" 
+  a class="detail-btn" href="#"
+    h4 class="inline-block"
+      | Episodes of Care
+      span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
+  div class="collapse"
+    table class="table table-striped table-hover"
+      - for episode in @patient.episode_of_cares do
+        tr class="clickable-row" data-href=polymorphic_path(episode.specific)
+          td
+            strong
+            = episode.episode_date
+          td
+            = episode.specific.class.name

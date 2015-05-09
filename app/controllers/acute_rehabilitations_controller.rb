@@ -1,4 +1,6 @@
 class AcuteRehabilitationsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_patient, only: [:new, :create]
   before_action :set_acute_rehabilitation, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -23,6 +25,8 @@ class AcuteRehabilitationsController < ApplicationController
   def create
     @acute_rehabilitation = AcuteRehabilitation.new(acute_rehabilitation_params)
     @acute_rehabilitation.save
+    @patient.episode_of_cares << @acute_rehabilitation
+    @patient.save
     respond_with(@acute_rehabilitation)
   end
 
@@ -41,7 +45,15 @@ class AcuteRehabilitationsController < ApplicationController
       @acute_rehabilitation = AcuteRehabilitation.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     def acute_rehabilitation_params
-      params[:acute_rehabilitation]
+      params.require(:acute_rehabilitation).permit(
+        :patient_id,
+        :episode_date,
+        :fake_sadness
+      )
     end
 end

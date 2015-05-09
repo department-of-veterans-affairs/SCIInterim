@@ -1,7 +1,11 @@
-= simple_form_for(@outpatient_episode) do |f|
+= simple_form_for([@patient, @outpatient_episode]) do |f|
   = f.error_notification
 
   .form-inputs
+    = f.input :episode_date, label: "Episode Date", wrapper: :horizontal_input_group
+      = f.date_field :episode_date, class: "form-control"
+    = f.input :fake_happiness, label: "Fake Happiness", wrapper: :horizontal_input_group do
+      = f.input_field :fake_happiness, as: :integer, class: "form-control"
 
   .form-actions
     = f.button :submit

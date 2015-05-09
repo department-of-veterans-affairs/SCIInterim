@@ -1,4 +1,4 @@
-json.array!(@episode_of_cares) do |episode_of_care|
-  json.extract! episode_of_care, :id
-  json.url episode_of_care_url(episode_of_care, format: :json)
+json.array!(@annual_evaluations) do |annual_evaluation|
+  json.extract! annual_evaluation, :id
+  json.url annual_evaluation_url(annual_evaluation, format: :json)
 end

@@ -1,4 +1,6 @@
 class OutpatientEpisodesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_patient, only: [:new, :create]
   before_action :set_outpatient_episode, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -23,6 +25,8 @@ class OutpatientEpisodesController < ApplicationController
   def create
     @outpatient_episode = OutpatientEpisode.new(outpatient_episode_params)
     @outpatient_episode.save
+    @patient.episode_of_cares << @outpatient_episode
+    @patient.save
     respond_with(@outpatient_episode)
   end
 
@@ -41,7 +45,15 @@ class OutpatientEpisodesController < ApplicationController
       @outpatient_episode = OutpatientEpisode.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     def outpatient_episode_params
-      params[:outpatient_episode]
+      params.require(:outpatient_episode).permit(
+        :patient_id,
+        :episode_date,
+        :fake_happiness
+      )
     end
 end
