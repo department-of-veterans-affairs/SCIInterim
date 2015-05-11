@@ -48,36 +48,32 @@ html
             p.navbar-text.navbar-right.login-req role="presentation"
               = "Signed in #{current_user.email}"
               = link_to 'Logout', destroy_user_session_path, :method => :delete
+              button.btn.btn-success onclick="show_unicorn();" Rainbows and Unicorns
 
       .container
-        ol class="breadcrumb"
-          li
-            a href="../" Home
-          li
-            a href="#" last page
-          li class="active" this page 
-        div class="row"
-          div class="col-xs-12"
-            div class="col-xs-3"
-              p class="text-warning text-right"
+        ul.nav.nav-tabs.right
+          li role="presentation"
+            = link_to "Add new Patient", new_patient_path
+          li.active role="presentation" 
+            = link_to 'SCI Patient Registry', patients_path
+          / li role="presentation"
+          /   a href="#" Analytics View
+          .row
+            .col-xs-3
+              p.text-warning.text-right
                 = notice
-              p class="text-error text-right"
+              p.text-error.text-right
                 = alert
-        div class="row"
-          div class="col-xs-3"
-            div class="row"
-              div class="col-xs-12"
-                div class="well"
-                  ul  role="navigation" class="nav nav-pills nav-stacked"
-                    li role="presentation" class="login-req"
-                      = link_to 'View Registry', patients_path
-                    li role="presentation"
-                      = link_to "Add Patient", new_patient_path
-                    li
-                      button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
-          div class="col-xs-9"
-            div class="well"
-              = yield
+          .row
+            div.col-xs-9
+                = yield
+
+            / Move this panel to patient view
+            .col-xs-3
+              ul.nav.nav-pills.nav-stacked  role="navigation"
+                li.login-req role="presentation" thing 1
+                li.login-req role="presentation" thing 2
+                li role="presentation" 
 
     javascript:
       var url = window.location;
