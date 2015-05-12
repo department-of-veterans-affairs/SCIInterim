@@ -65,8 +65,12 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.5.2)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
     hike (1.2.3)
     i18n (0.7.0)
+    immigrant (0.3.1)
+      activerecord (>= 3.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -164,6 +168,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.0.0)
   devise
+  foreigner
+  immigrant
   jbuilder (~> 2.0)
   jquery-rails
   pry-byebug
