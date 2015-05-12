@@ -40,39 +40,44 @@ html
           }, 1);
       }
   body
-    div id="main-container" class="container" style="background-color: #9b9b9b;"
-      div class="row"
-        div class="col-xs-12"
-          div class="col-xs-9"
-            h3 SCI Interim Hack
+    .main-container
+      .navbar.navbar-default
+        .container
+          a.navbar-brand SCI Interim Hack
+          - if user_signed_in?
+            p.navbar-text.navbar-right.login-req role="presentation"
+              = "Signed in #{current_user.email}"
+              = link_to 'Logout', destroy_user_session_path, :method => :delete
+
+      .container
+        ol class="breadcrumb"
+          li
+            a href="../" Home
+          li
+            a href="#" last page
+          li class="active" this page 
+        div class="row"
+          div class="col-xs-12"
+            div class="col-xs-3"
+              p class="text-warning text-right"
+                = notice
+              p class="text-error text-right"
+                = alert
+        div class="row"
           div class="col-xs-3"
-            p class="text-warning text-right"
-              = notice
-            p class="text-error text-right"
-              = alert
-      div class="row"
-        div class="col-xs-3"
-          div class="row"
-            div class="col-xs-12"
-              div class="well"
-                ul  role="navigation" class="nav nav-pills nav-stacked"
-                  li role="presentation" class="login-req"
-                    = link_to 'View Registry', patients_path
-                  li role="presentation"
-                    = link_to "Add Patient", new_patient_path
-                  - if user_signed_in?
+            div class="row"
+              div class="col-xs-12"
+                div class="well"
+                  ul  role="navigation" class="nav nav-pills nav-stacked"
                     li role="presentation" class="login-req"
-                      = link_to 'Logout', destroy_user_session_path, :method => :delete
-          div class="row"
-            div class="col-xs-12"
-              div class="text-center"
-                - if user_signed_in?
-                  p class="text-center"
-                    = "Signed in #{current_user.email}"
-                  button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
-        div class="col-xs-9"
-          div class="well"
-            = yield
+                      = link_to 'View Registry', patients_path
+                    li role="presentation"
+                      = link_to "Add Patient", new_patient_path
+                    li
+                      button class="btn btn-success" onclick="show_unicorn();" Rainbows and Unicorns
+          div class="col-xs-9"
+            div class="well"
+              = yield
 
     javascript:
       var url = window.location;
