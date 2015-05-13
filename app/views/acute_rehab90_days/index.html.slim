@@ -1,0 +1,19 @@
+h1 Listing acute_rehab90_days
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @acute_rehab90_days.each do |acute_rehab90_day|
+      tr
+        td = link_to 'Show', acute_rehab90_day
+        td = link_to 'Edit', edit_acute_rehab90_day_path(acute_rehab90_day)
+        td = link_to 'Destroy', acute_rehab90_day, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Acute rehab90 day', new_acute_rehab90_day_path
