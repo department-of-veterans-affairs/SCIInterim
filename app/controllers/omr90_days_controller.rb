@@ -1,4 +1,6 @@
 class Omr90DaysController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_patient, only: [:new, :create]
   before_action :set_omr90_day, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -23,6 +25,8 @@ class Omr90DaysController < ApplicationController
   def create
     @omr90_day = Omr90Day.new(omr90_day_params)
     @omr90_day.save
+    @patient.episode_of_cares << @omr90_day
+    @patient.save
     respond_with(@omr90_day)
   end
 
@@ -41,7 +45,20 @@ class Omr90DaysController < ApplicationController
       @omr90_day = Omr90Day.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     def omr90_day_params
-      params[:omr90_day]
+      params.require(:omr90_day).permit(
+        :patient_id, # TODO(awong.dev): Required?
+        :episode_date, # TODO(awong.dev): Dedup.
+        :followup_date, 
+        :fim, 
+        :fam, 
+        :swls, 
+        :chart_sf, 
+        :sf_8, 
+        :place_of_residence)
     end
 end

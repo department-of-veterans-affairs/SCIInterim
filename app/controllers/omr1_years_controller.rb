@@ -1,4 +1,6 @@
 class Omr1YearsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_patient, only: [:new, :create]
   before_action :set_omr1_year, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -23,6 +25,8 @@ class Omr1YearsController < ApplicationController
   def create
     @omr1_year = Omr1Year.new(omr1_year_params)
     @omr1_year.save
+    @patient.episode_of_cares << @omr1_year
+    @patient.save
     respond_with(@omr1_year)
   end
 
@@ -41,7 +45,21 @@ class Omr1YearsController < ApplicationController
       @omr1_year = Omr1Year.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     def omr1_year_params
-      params[:omr1_year]
+      params.require(:omr1_year).permit(
+        :patient_id, # TODO(awong.dev): Required?
+        :episode_date, # TODO(awong.dev): Dedup.
+        :followup_date, 
+        :fim, 
+        :fam, 
+        :swls, 
+        :chart_sf, 
+        :sf_8, 
+        :place_of_residence, 
+      )
     end
 end

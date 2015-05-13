@@ -3,7 +3,9 @@ p#notice = notice
 div class="span12"
   = link_to 'Edit', edit_patient_path(@patient), { class: "btn btn-success" }
   = link_to 'Add Annual Eval', new_patient_annual_evaluation_path(@patient), { class: "btn btn-success" }
-  = link_to 'Add Outpatient Episode', new_patient_outpatient_episode_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add OMR', new_patient_omr_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add OMR 90day', new_patient_omr90_day_path(@patient), { class: "btn btn-success" }
+  = link_to 'Add OMR 1year', new_patient_omr1_year_path(@patient), { class: "btn btn-success" }
   = link_to 'Add Accute Rehab', new_patient_acute_rehabilitation_path(@patient), { class: "btn btn-success" }
 
 div class="span4 collapse-group" 

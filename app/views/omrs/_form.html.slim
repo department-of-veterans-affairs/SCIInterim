@@ -1,7 +1,51 @@
-= simple_form_for(@omr) do |f|
+= simple_form_for [@patient, @omr], html: { class: 'form-horizontal' }, wrapper: :horizontal_input_group, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
   = f.error_notification
 
   .form-inputs
+    = f.input :episode_date, wrapper: :horizontal_input_group
+      = f.date_field :episode_date, class: "form-control"
+    = f.input :admission_date, wrapper: :horizontal_input_group
+      = f.date_field :admission_date, class: "form-control"
+    = f.input :start_asia, wrapper: :horizontal_input_group
+      = f.input_field :start_asia, class: "form-control"
+    = f.input :start_fim, wrapper: :horizontal_input_group
+      = f.input_field :start_fim, class: "form-control"
+    = f.input :start_fam, wrapper: :horizontal_input_group
+      = f.input_field :start_fam, class: "form-control"
+    = f.input :start_swls, wrapper: :horizontal_input_group
+      = f.input_field :start_swls, class: "form-control"
+    = f.input :start_chart_sf, wrapper: :horizontal_input_group
+      = f.input_field :start_chart_sf, class: "form-control"
+    = f.input :start_sf_8, wrapper: :horizontal_input_group
+      = f.input_field :start_sf_8, class: "form-control"
+    = f.input :dusoi, wrapper: :horizontal_input_group
+      = f.input_field :dusoi, class: "form-control"
+
+      # GOAL
+    = f.input :goal_fim, wrapper: :horizontal_input_group
+      = f.input_field :goal_fim, class: "form-control"
+    = f.input :goal_fam, wrapper: :horizontal_input_group
+      = f.input_field :goal_fam, class: "form-control"
+
+      # FINISH
+    = f.input :omb_completed, wrapper: :horizontal_input_group
+      = f.date_field :omb_completed, class: "form-control"
+    = f.input :finish_asia, wrapper: :horizontal_input_group
+      = f.input_field :finish_asia, class: "form-control"
+    = f.input :finish_fim, wrapper: :horizontal_input_group
+      = f.input_field :finish_fim, class: "form-control"
+    = f.input :finish_fam, wrapper: :horizontal_input_group
+      = f.input_field :finish_fam, class: "form-control"
+    = f.input :finish_swls, wrapper: :horizontal_input_group
+      = f.input_field :finish_swls, class: "form-control"
+    = f.input :finish_chart_sf, wrapper: :horizontal_input_group
+      = f.input_field :finish_chart_sf, class: "form-control"
+    = f.input :finish_sf_8, wrapper: :horizontal_input_group
+      = f.input_field :finish_sf_8, class: "form-control"
+    = f.input :finish_uspeq, wrapper: :horizontal_input_group
+      = f.input_field :finish_uspeq, class: "form-control"
+    = f.input :discharge_location, wrapper: :horizontal_input_group
+      = f.input_field :discharge_location, class: "form-control"
 
   .form-actions
     = f.button :submit
