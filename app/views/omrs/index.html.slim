@@ -1,0 +1,19 @@
+h1 Listing omrs
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @omrs.each do |omr|
+      tr
+        td = link_to 'Show', omr
+        td = link_to 'Edit', edit_omr_path(omr)
+        td = link_to 'Destroy', omr, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Omr', new_omr_path

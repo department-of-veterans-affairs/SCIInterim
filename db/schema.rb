@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512221656) do
+ActiveRecord::Schema.define(version: 20150513064947) do
 
   create_table "acute_rehabilitations", force: true do |t|
     t.integer  "fake_sadness"
@@ -64,10 +64,52 @@ ActiveRecord::Schema.define(version: 20150512221656) do
 
   add_index "episode_of_cares", ["patient_id"], name: "index_episode_of_cares_on_patient_id"
 
-  create_table "outpatient_episodes", force: true do |t|
-    t.integer  "fake_happiness"
+  create_table "omr1_years", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "followup_date"
+    t.integer  "fim"
+    t.string   "fam"
+    t.string   "swls"
+    t.string   "chart_sf"
+    t.string   "sf_8"
+    t.string   "place_of_residence"
+  end
+
+  create_table "omr90_days", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "followup_date"
+    t.integer  "fim"
+    t.string   "fam"
+    t.string   "swls"
+    t.string   "chart_sf"
+    t.string   "sf_8"
+    t.string   "place_of_residence"
+  end
+
+  create_table "omrs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "admission_date"
+    t.integer  "start_asia"
+    t.string   "start_fim"
+    t.string   "start_fam"
+    t.string   "start_swls"
+    t.string   "start_chart_sf"
+    t.string   "start_sf_8"
+    t.string   "dusoi"
+    t.string   "goal_fim"
+    t.string   "goal_fam"
+    t.date     "omb_completed"
+    t.integer  "finish_asia"
+    t.string   "finish_fim"
+    t.string   "finish_fam"
+    t.string   "finish_swls"
+    t.string   "finish_chart_sf"
+    t.string   "finish_sf_8"
+    t.string   "finish_uspeq"
+    t.string   "discharge_location"
   end
 
   create_table "patients", force: true do |t|

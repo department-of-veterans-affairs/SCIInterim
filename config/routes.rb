@@ -2,14 +2,20 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :annual_evaluations
-  resources :outpatient_episodes
+  # TODO(awong-dev) Remove non-nested routes.
   resources :acute_rehabilitations
+  resources :annual_evaluations
+  resources :omr1_years
+  resources :omr90_days
+  resources :omrs
 
   resources :patients do
-      resources :annual_evaluations
-      resources :outpatient_episodes
-      resources :acute_rehabilitations
+    # TODO(awong-dev) Remove unused verbs from routes.
+    resources :acute_rehabilitations
+    resources :annual_evaluations
+    resources :omr1_years
+    resources :omr90_days
+    resources :omrs
   end
 
   root to: redirect('/patients')

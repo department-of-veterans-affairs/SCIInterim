@@ -1,0 +1,19 @@
+h1 Listing omr1_years
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @omr1_years.each do |omr1_year|
+      tr
+        td = link_to 'Show', omr1_year
+        td = link_to 'Edit', edit_omr1_year_path(omr1_year)
+        td = link_to 'Destroy', omr1_year, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Omr1 year', new_omr1_year_path
