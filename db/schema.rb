@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511044148) do
+ActiveRecord::Schema.define(version: 20150512221656) do
 
   create_table "acute_rehabilitations", force: true do |t|
     t.integer  "fake_sadness"
@@ -23,6 +23,34 @@ ActiveRecord::Schema.define(version: 20150511044148) do
     t.integer  "asia_level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "eval_offered"
+    t.date     "eval_completed"
+    t.date     "next_eval"
+    t.boolean  "is_inpatient"
+    t.string   "audit"
+    t.string   "bmi"
+    t.string   "cage"
+    t.string   "ces_d"
+    t.string   "chart_sf"
+    t.string   "cyh"
+    t.string   "dast"
+    t.string   "dusoi"
+    t.string   "dusoi_a"
+    t.string   "fam"
+    t.string   "fim"
+    t.string   "kurtzke_edss"
+    t.string   "kurtzke_fss"
+    t.string   "mnfm"
+    t.string   "prime_md"
+    t.string   "push"
+    t.string   "sf_mpq"
+    t.string   "sf_8"
+    t.string   "swls"
+    t.string   "pumt_kit"
+    t.string   "bladder_drainage_method"
+    t.date     "colonoscopy_received"
+    t.date     "sigmoidoscopy_received"
+    t.date     "diabetic_retinal_screening_received"
   end
 
   create_table "episode_of_cares", force: true do |t|
