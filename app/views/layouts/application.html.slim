@@ -68,7 +68,6 @@ html
                     = "Signed in #{current_user.email}"
                 li
                   = link_to 'Logout', destroy_user_session_path, :method => :delete
-                li 
 
       / Main
       .container
@@ -80,7 +79,7 @@ html
               p.text-error.text-right
                 = alert
           .row
-            div.col-xs-12
+            .col-xs-12
                 = yield
 
     javascript:
