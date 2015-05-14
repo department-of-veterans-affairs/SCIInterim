@@ -41,39 +41,47 @@ html
       }
   body
     .main-container
-      .navbar.navbar-default
-        .container
-          a.navbar-brand SCI Interim Hack
-          - if user_signed_in?
-            p.navbar-text.navbar-right.login-req role="presentation"
-              = "Signed in #{current_user.email}"
-              = link_to 'Logout', destroy_user_session_path, :method => :delete
-              button.btn.btn-success onclick="show_unicorn();" Rainbows and Unicorns
 
+      / navbar
+      nav.navbar.navbar-default
+        .container
+          /! Brand and toggle get grouped for better mobile display
+          .navbar-header
+            button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="#" SCI Interim Hack
+          /! Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li.active role="presentation"
+                = link_to "Add new Patient", new_patient_path
+              li 
+                = link_to 'SCI Patient Registry', patients_path
+            ul.nav.navbar-nav.navbar-right
+              - if user_signed_in?
+                li role="presentation"
+                  / TODO fix this so it's not a link
+                  a
+                    = "Signed in #{current_user.email}"
+                li
+                  = link_to 'Logout', destroy_user_session_path, :method => :delete
+                li 
+
+      / Main
       .container
-        ul.nav.nav-tabs.right
-          li role="presentation"
-            = link_to "Add new Patient", new_patient_path
-          li.active role="presentation" 
-            = link_to 'SCI Patient Registry', patients_path
-          / li role="presentation"
-          /   a href="#" Analytics View
+          button.btn.btn-success.pull-right onclick="show_unicorn();" Rainbows and Unicorns
           .row
-            .col-xs-3
+            .col-xs-12
               p.text-warning.text-right
                 = notice
               p.text-error.text-right
                 = alert
           .row
-            div.col-xs-9
+            div.col-xs-12
                 = yield
-
-            / Move this panel to patient view
-            .col-xs-3
-              ul.nav.nav-pills.nav-stacked  role="navigation"
-                li.login-req role="presentation" thing 1
-                li.login-req role="presentation" thing 2
-                li role="presentation" 
 
     javascript:
       var url = window.location;
