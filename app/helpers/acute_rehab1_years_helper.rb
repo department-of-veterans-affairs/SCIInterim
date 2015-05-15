@@ -1,0 +1,2 @@
+module AcuteRehab1YearsHelper
+end

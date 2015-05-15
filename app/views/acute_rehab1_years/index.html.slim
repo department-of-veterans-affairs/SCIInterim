@@ -1,0 +1,19 @@
+h1 Listing acute_rehab1_years
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @acute_rehab1_years.each do |acute_rehab1_year|
+      tr
+        td = link_to 'Show', acute_rehab1_year
+        td = link_to 'Edit', edit_acute_rehab1_year_path(acute_rehab1_year)
+        td = link_to 'Destroy', acute_rehab1_year, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Acute rehab1 year', new_acute_rehab1_year_path

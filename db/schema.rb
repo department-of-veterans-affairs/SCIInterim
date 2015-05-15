@@ -11,12 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513064947) do
+ActiveRecord::Schema.define(version: 20150515000426) do
 
-  create_table "acute_rehabilitations", force: true do |t|
-    t.integer  "fake_sadness"
+  create_table "acute_rehab1_years", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "followup_date"
+    t.integer  "fim"
+    t.string   "swls"
+    t.string   "chart_sf"
+    t.string   "sf_8"
+    t.string   "place_of_residence"
+  end
+
+  create_table "acute_rehab90_days", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "followup_date"
+    t.integer  "fim"
+    t.string   "swls"
+    t.string   "chart_sf"
+    t.string   "sf_8"
+    t.string   "place_of_residence"
+  end
+
+  create_table "acute_rehabs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "admission_date"
+    t.integer  "start_asia"
+    t.string   "start_fim"
+    t.string   "start_swls"
+    t.string   "start_kurtzke_edss"
+    t.string   "goal_fim"
+    t.date     "accute_rehab_completed"
+    t.integer  "finish_asia"
+    t.string   "finish_fim"
+    t.string   "finish_kurtzke_edss"
+    t.string   "finish_uspeq"
+    t.string   "discharge_location"
   end
 
   create_table "annual_evaluations", force: true do |t|
