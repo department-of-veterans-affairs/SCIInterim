@@ -1,5 +1,5 @@
 = simple_form_for @patient, html: { class: 'form-horizontal' }, wrapper: :horizontal_input_group, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
-  = f.error_notification
+  = flash_messages
 
   div class="form-inputs span4 collapse-group"
     a class="detail-btn" href="#"
