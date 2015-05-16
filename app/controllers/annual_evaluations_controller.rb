@@ -31,11 +31,6 @@ class AnnualEvaluationsController < ApplicationController
     respond_with(@annual_evaluation)
   end
 
-  def destroy
-    @annual_evaluation.destroy
-    respond_with(@annual_evaluation)
-  end
-
   private
     def set_annual_evaluation
       @annual_evaluation = AnnualEvaluation.find(params[:id])

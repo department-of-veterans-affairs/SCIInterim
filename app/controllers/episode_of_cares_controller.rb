@@ -27,11 +27,6 @@ class EpisodeOfCaresController < ApplicationController
     respond_with(@episode_of_care)
   end
 
-  def destroy
-    @episode_of_care.destroy
-    respond_with(@episode_of_care)
-  end
-
   private
     def set_episode_of_care
       @episode_of_care = EpisodeOfCare.find(params[:id])

@@ -31,11 +31,6 @@ class AcuteRehabsController < ApplicationController
     respond_with(@acute_rehab)
   end
 
-  def destroy
-    @acute_rehab.destroy
-    respond_with(@acute_rehab)
-  end
-
   private
     def set_acute_rehab
       @acute_rehab = AcuteRehab.find(params[:id])

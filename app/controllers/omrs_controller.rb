@@ -31,11 +31,6 @@ class OmrsController < ApplicationController
     respond_with(@omr)
   end
 
-  def destroy
-    @omr.destroy
-    respond_with(@omr)
-  end
-
   private
     def set_omr
       @omr = Omr.find(params[:id])

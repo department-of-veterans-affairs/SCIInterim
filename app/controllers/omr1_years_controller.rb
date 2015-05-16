@@ -31,11 +31,6 @@ class Omr1YearsController < ApplicationController
     respond_with(@omr1_year)
   end
 
-  def destroy
-    @omr1_year.destroy
-    respond_with(@omr1_year)
-  end
-
   private
     def set_omr1_year
       @omr1_year = Omr1Year.find(params[:id])

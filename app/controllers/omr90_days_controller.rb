@@ -31,11 +31,6 @@ class Omr90DaysController < ApplicationController
     respond_with(@omr90_day)
   end
 
-  def destroy
-    @omr90_day.destroy
-    respond_with(@omr90_day)
-  end
-
   private
     def set_omr90_day
       @omr90_day = Omr90Day.find(params[:id])
