@@ -9,10 +9,6 @@ class PatientsController < ApplicationController
     respond_with(@patients)
   end
 
-  def show
-    respond_with(@patient)
-  end
-
   def new
     @patient = Patient.new
     respond_with(@patient)
@@ -23,13 +19,22 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
-    @patient.save
-    respond_with(@patient)
+    if @patient.save
+      flash[:success] = "You have successfully created a patient."
+      render :edit
+    else
+      flash[:error] = "Something went wrong when creating this patient. Please try again."
+      render :new
+    end
   end
 
   def update
-    @patient.update(patient_params)
-    respond_with(@patient)
+    if @patient.update(patient_params)
+      flash[:success] = "You have successfully updated this patient's data"
+    else
+      flash[:error] = "Something went wrong updating this patient's data. Try again."
+    end
+    render :edit
   end
 
   def destroy
