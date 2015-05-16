@@ -10,10 +10,6 @@ class Omr90DaysController < ApplicationController
     respond_with(@omr90_days)
   end
 
-  def show
-    respond_with(@omr90_day)
-  end
-
   def new
     @omr90_day = Omr90Day.new
     respond_with(@omr90_day)
@@ -53,12 +49,12 @@ class Omr90DaysController < ApplicationController
       params.require(:omr90_day).permit(
         :patient_id, # TODO(awong.dev): Required?
         :episode_date, # TODO(awong.dev): Dedup.
-        :followup_date, 
-        :fim, 
-        :fam, 
-        :swls, 
-        :chart_sf, 
-        :sf_8, 
+        :followup_date,
+        :fim,
+        :fam,
+        :swls,
+        :chart_sf,
+        :sf_8,
         :place_of_residence)
     end
 end

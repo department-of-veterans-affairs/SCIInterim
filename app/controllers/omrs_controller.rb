@@ -10,10 +10,6 @@ class OmrsController < ApplicationController
     respond_with(@omrs)
   end
 
-  def show
-    respond_with(@omr)
-  end
-
   def new
     @omr = Omr.new
     respond_with(@omr)
@@ -53,28 +49,28 @@ class OmrsController < ApplicationController
       params.require(:omr).permit(
         :patient_id, # TODO(awong.dev): Required?
         :episode_date, # TODO(awong.dev): Dedup.
-        :admission_date, 
-        :start_asia, 
-        :start_fim, 
-        :start_fam, 
-        :start_swls, 
-        :start_chart_sf, 
-        :start_sf_8, 
-        :dusoi, 
+        :admission_date,
+        :start_asia,
+        :start_fim,
+        :start_fam,
+        :start_swls,
+        :start_chart_sf,
+        :start_sf_8,
+        :dusoi,
 
         # GOAL
-        :goal_fim, 
-        :goal_fam, 
+        :goal_fim,
+        :goal_fam,
 
         # FINISH
-        :omb_completed, 
-        :finish_asia, 
-        :finish_fim, 
-        :finish_fam, 
-        :finish_swls, 
-        :finish_chart_sf, 
-        :finish_sf_8, 
-        :finish_uspeq, 
+        :omb_completed,
+        :finish_asia,
+        :finish_fim,
+        :finish_fam,
+        :finish_swls,
+        :finish_chart_sf,
+        :finish_sf_8,
+        :finish_uspeq,
         :discharge_location)
     end
 end

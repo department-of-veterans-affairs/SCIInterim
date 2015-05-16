@@ -8,10 +8,6 @@ class EpisodeOfCaresController < ApplicationController
     respond_with(@episode_of_cares)
   end
 
-  def show
-    respond_with(@episode_of_care)
-  end
-
   def new
     @episode_of_care = EpisodeOfCare.new
     respond_with(@episode_of_care)

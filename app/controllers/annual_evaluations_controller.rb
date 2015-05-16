@@ -10,10 +10,6 @@ class AnnualEvaluationsController < ApplicationController
     respond_with(@annual_evaluations)
   end
 
-  def show
-    respond_with(@annual_evaluation)
-  end
-
   def new
     @annual_evaluation = AnnualEvaluation.new
     respond_with(@annual_evaluation)

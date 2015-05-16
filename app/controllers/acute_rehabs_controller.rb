@@ -10,10 +10,6 @@ class AcuteRehabsController < ApplicationController
     respond_with(@acute_rehabs)
   end
 
-  def show
-    respond_with(@acute_rehab)
-  end
-
   def new
     @acute_rehab = AcuteRehab.new
     respond_with(@acute_rehab)

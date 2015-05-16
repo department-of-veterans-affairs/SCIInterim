@@ -10,10 +10,6 @@ class Omr1YearsController < ApplicationController
     respond_with(@omr1_years)
   end
 
-  def show
-    respond_with(@omr1_year)
-  end
-
   def new
     @omr1_year = Omr1Year.new
     respond_with(@omr1_year)
@@ -53,13 +49,13 @@ class Omr1YearsController < ApplicationController
       params.require(:omr1_year).permit(
         :patient_id, # TODO(awong.dev): Required?
         :episode_date, # TODO(awong.dev): Dedup.
-        :followup_date, 
-        :fim, 
-        :fam, 
-        :swls, 
-        :chart_sf, 
-        :sf_8, 
-        :place_of_residence, 
+        :followup_date,
+        :fim,
+        :fam,
+        :swls,
+        :chart_sf,
+        :sf_8,
+        :place_of_residence,
       )
     end
 end

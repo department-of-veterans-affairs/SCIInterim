@@ -10,10 +10,6 @@ class AcuteRehab1YearsController < ApplicationController
     respond_with(@acute_rehab1_years)
   end
 
-  def show
-    respond_with(@acute_rehab1_year)
-  end
-
   def new
     @acute_rehab1_year = AcuteRehab1Year.new
     respond_with(@acute_rehab1_year)
