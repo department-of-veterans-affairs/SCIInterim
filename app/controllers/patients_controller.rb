@@ -23,7 +23,7 @@ class PatientsController < ApplicationController
       flash[:success] = "You have successfully created a patient."
       render :edit
     else
-      flash[:error] = "Something went creating this patient. Please try again."
+      flash[:error] = "Something went wrong when creating this patient. Please try again."
       render :new
     end
   end
