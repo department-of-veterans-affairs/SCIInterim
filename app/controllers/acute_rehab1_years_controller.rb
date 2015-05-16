@@ -10,10 +10,6 @@ class AcuteRehab1YearsController < ApplicationController
     respond_with(@acute_rehab1_years)
   end
 
-  def show
-    respond_with(@acute_rehab1_year)
-  end
-
   def new
     @acute_rehab1_year = AcuteRehab1Year.new
     respond_with(@acute_rehab1_year)
@@ -32,11 +28,6 @@ class AcuteRehab1YearsController < ApplicationController
 
   def update
     @acute_rehab1_year.update(acute_rehab1_year_params)
-    respond_with(@acute_rehab1_year)
-  end
-
-  def destroy
-    @acute_rehab1_year.destroy
     respond_with(@acute_rehab1_year)
   end
 

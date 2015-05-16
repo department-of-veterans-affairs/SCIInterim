@@ -10,10 +10,6 @@ class AnnualEvaluationsController < ApplicationController
     respond_with(@annual_evaluations)
   end
 
-  def show
-    respond_with(@annual_evaluation)
-  end
-
   def new
     @annual_evaluation = AnnualEvaluation.new
     respond_with(@annual_evaluation)
@@ -32,11 +28,6 @@ class AnnualEvaluationsController < ApplicationController
 
   def update
     @annual_evaluation.update(annual_evaluation_params)
-    respond_with(@annual_evaluation)
-  end
-
-  def destroy
-    @annual_evaluation.destroy
     respond_with(@annual_evaluation)
   end
 

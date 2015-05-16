@@ -8,10 +8,6 @@ class EpisodeOfCaresController < ApplicationController
     respond_with(@episode_of_cares)
   end
 
-  def show
-    respond_with(@episode_of_care)
-  end
-
   def new
     @episode_of_care = EpisodeOfCare.new
     respond_with(@episode_of_care)
@@ -28,11 +24,6 @@ class EpisodeOfCaresController < ApplicationController
 
   def update
     @episode_of_care.update(episode_of_care_params)
-    respond_with(@episode_of_care)
-  end
-
-  def destroy
-    @episode_of_care.destroy
     respond_with(@episode_of_care)
   end
 

@@ -10,10 +10,6 @@ class AcuteRehabsController < ApplicationController
     respond_with(@acute_rehabs)
   end
 
-  def show
-    respond_with(@acute_rehab)
-  end
-
   def new
     @acute_rehab = AcuteRehab.new
     respond_with(@acute_rehab)
@@ -32,11 +28,6 @@ class AcuteRehabsController < ApplicationController
 
   def update
     @acute_rehab.update(acute_rehab_params)
-    respond_with(@acute_rehab)
-  end
-
-  def destroy
-    @acute_rehab.destroy
     respond_with(@acute_rehab)
   end
 
