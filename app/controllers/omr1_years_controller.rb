@@ -5,11 +5,6 @@ class Omr1YearsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @omr1_years = Omr1Year.all
-    respond_with(@omr1_years)
-  end
-
   def new
     @omr1_year = Omr1Year.new
     respond_with(@omr1_year)

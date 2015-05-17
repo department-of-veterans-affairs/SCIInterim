@@ -5,11 +5,6 @@ class OmrsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @omrs = Omr.all
-    respond_with(@omrs)
-  end
-
   def new
     @omr = Omr.new
     respond_with(@omr)

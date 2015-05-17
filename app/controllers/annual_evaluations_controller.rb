@@ -5,11 +5,6 @@ class AnnualEvaluationsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @annual_evaluations = AnnualEvaluation.all
-    respond_with(@annual_evaluations)
-  end
-
   def new
     @annual_evaluation = AnnualEvaluation.new
     respond_with(@annual_evaluation)

@@ -5,11 +5,6 @@ class AcuteRehab90DaysController < ApplicationController
 
   respond_to :html
 
-  def index
-    @acute_rehab90_days = AcuteRehab90Day.all
-    respond_with(@acute_rehab90_days)
-  end
-
   def new
     @acute_rehab90_day = AcuteRehab90Day.new
     respond_with(@acute_rehab90_day)

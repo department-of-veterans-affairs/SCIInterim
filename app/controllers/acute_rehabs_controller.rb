@@ -5,11 +5,6 @@ class AcuteRehabsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @acute_rehabs = AcuteRehab.all
-    respond_with(@acute_rehabs)
-  end
-
   def new
     @acute_rehab = AcuteRehab.new
     respond_with(@acute_rehab)

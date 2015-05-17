@@ -5,11 +5,6 @@ class Omr90DaysController < ApplicationController
 
   respond_to :html
 
-  def index
-    @omr90_days = Omr90Day.all
-    respond_with(@omr90_days)
-  end
-
   def new
     @omr90_day = Omr90Day.new
     respond_with(@omr90_day)
