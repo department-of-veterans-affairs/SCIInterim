@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.patient-nav {
+  float: right;
+  strong {
+    margin-right: 10px;
+  }
+}
+
 .patient-nav a {
   display: block;
+}
+
+.nav-name {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.patient-nav hr {
+  margin: 12px 0;
 }

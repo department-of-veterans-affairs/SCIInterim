@@ -1,15 +1,48 @@
-h1 Editing patient
+h1 Editing Patient
 hr
 div class='patient-info'
-div class='patient-nav col-md-3 well'
-  p Add...
-  = link_to 'Annual Eval', new_patient_annual_evaluation_path(@patient), { class: "" }
-  = link_to 'OMR', new_patient_omr_path(@patient), { class: "" }
-  = link_to 'OMR 90day', new_patient_omr90_day_path(@patient), { class: "" }
-  = link_to 'OMR 1year', new_patient_omr1_year_path(@patient), { class: "" }
-  = link_to 'Accute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }
-  = link_to 'Accute Rehab 90day', new_patient_acute_rehab90_day_path(@patient), { class: "" }
-  = link_to 'Accute Rehab 1year', new_patient_acute_rehab1_year_path(@patient), { class: "" }
+  div class='patient-forms col-md-9'
+    == render 'form'
 
-div class='patient-forms col-md-9'
-  == render 'form'
+  div class='patient-nav col-md-3'
+    div class='patient-data well col-md-12'
+      p class="nav-name" = @patient.name
+      hr
+      p
+        strong ID:
+        = @patient.patient_id
+      p
+        strong SSN:
+        = @patient.ssn
+      p
+        strong DOB:
+        = @patient.dob
+      p
+        strong Job Status:
+        = @patient.employment_status
+      hr
+      p
+        strong Education:
+        = @patient.highest_level_of_education
+      p
+        strong Service:
+        = @patient.registration_status
+      p
+        strong SCI Network:
+        = @patient.sci_network
+      p
+        strong DOD:
+        = @patient.date_of_death
+      p
+        strong Coordinator:
+        = @patient.outcome_coordinator
+
+    div class='patient-eoc col-md-12 well'
+      p Add...
+      = link_to 'Annual Eval', new_patient_annual_evaluation_path(@patient), { class: "" }
+      = link_to 'OMR', new_patient_omr_path(@patient), { class: "" }
+      = link_to 'OMR 90day', new_patient_omr90_day_path(@patient), { class: "" }
+      = link_to 'OMR 1year', new_patient_omr1_year_path(@patient), { class: "" }
+      = link_to 'Accute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }
+      = link_to 'Accute Rehab 90day', new_patient_acute_rehab90_day_path(@patient), { class: "" }
+      = link_to 'Accute Rehab 1year', new_patient_acute_rehab1_year_path(@patient), { class: "" }
