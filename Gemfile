@@ -6,6 +6,7 @@ gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'coffee-rails', '~> 4.0.0'
 # gem 'autoprefixer-rails'  # We want this for handling vender prefix on css.
 gem 'devise'
+gem 'factory_girl'
 gem 'foreigner'
 gem 'immigrant'
 gem 'jbuilder', '~> 2.0'
@@ -18,8 +19,22 @@ gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'better_errors',     group: :development
-gem 'byebug',            group: :development
-gem 'pry-byebug',        group: :development
-gem 'spring',            group: :development
-gem 'binding_of_caller', group: :development
+group :development do
+  gem 'better_errors'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+end
+
+group :development, :test do
+  gem 'binding_of_caller'
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'rspec-rails'
+  # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
+end
+
+group :development, :test do
+  gem 'capybara-webkit'
+  gem 'resque_spec'
+  gem 'timecop'
+end
