@@ -1,58 +1,63 @@
 = simple_form_for @patient, html: { class: 'form-horizontal' }, wrapper: :horizontal_input_group, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
   = flash_messages
+  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist" 
+    .panel.panel-default
+      #headingBasic.panel-heading role="tab" 
+        h4.panel-title
+          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+            | Basic Patient Info
+      #basicInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+        .panel-body
+          - for field_info in Patient.basic_fields do
+            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
+              - case field_info[1]
+                - when :string
+                  = f.input_field field_info[0], as: :string, class: "form-control"
+                - when :integer
+                  = f.input_field field_info[0], as: :integer, class: "form-control"
+                - when :date
+                  = f.date_field field_info[0], class: "form-control"
+                - when :enum
+                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+          = f.submit class:"btn btn-success pull-right"
 
-  div class="form-inputs span4 collapse-group"
-    a class="detail-btn" href="#"
-      h4 class="inline-block"
-        | Basic Paitent Info
-        span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
-    div class="collapse in"
-      - for field_info in Patient.basic_fields do
-        = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-          - case field_info[1]
-            - when :string
-              = f.input_field field_info[0], as: :string, class: "form-control"
-            - when :integer
-              = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :date
-              = f.date_field field_info[0], class: "form-control"
-            - when :enum
-              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
 
-  div class="form-inputs span4 collapse-group"
-    a class="detail-btn" href="#"
-      h4 class="inline-block"
-        | Assessment Info
-        span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
-    div class="collapse"
-      - for field_info in Patient.assessment_fields do
-        = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-          - case field_info[1]
-            - when :string
-              = f.input_field field_info[0], as: :string, class: "form-control"
-            - when :integer
-              = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :date
-              = f.date_field field_info[0], class: "form-control"
-            - when :enum
-              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+    .panel.panel-default
+      #headingAssess.panel-heading role="tab" 
+        h4.panel-title
+          a.collapsed aria-controls="assessInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#assessInfo" 
+            | Assessment Info
+      #assessInfo.panel-collapse.collapse aria-labelledby="headingAssess" role="tabpanel" 
+        .panel-body
+          - for field_info in Patient.assessment_fields do
+            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
+              - case field_info[1]
+                - when :string
+                  = f.input_field field_info[0], as: :string, class: "form-control"
+                - when :integer
+                  = f.input_field field_info[0], as: :integer, class: "form-control"
+                - when :date
+                  = f.date_field field_info[0], class: "form-control"
+                - when :enum
+                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+          = f.submit class:"btn btn-success pull-right"
 
-  div class="form-inputs span4 collapse-group"
-    a class="detail-btn" href="#"
-      h4 class="inline-block"
-        | Detailed Paitent Info
-        span class="glyphicon glyphicon glyphicon-collapse-down" style="margin-left: 4px;"
-    div class="collapse"
-      - for field_info in Patient.detailed_fields do
-        = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-          - case field_info[1]
-            - when :string
-              = f.input_field field_info[0], as: :string, class: "form-control"
-            - when :integer
-              = f.input_field field_info[0], as: :integer, class: "form-control"
-            - when :date
-              = f.date_field field_info[0], class: "form-control"
-            - when :enum
-              = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-
-    = f.submit class:"btn btn-success"
+    .panel.panel-default
+      #detailThree.panel-heading role="tab" 
+        h4.panel-title
+          a.collapsed aria-controls="detailInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#detailInfo" 
+            | Detailed Patient Info
+      #detailInfo.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
+        .panel-body
+          - for field_info in Patient.detailed_fields do
+            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
+              - case field_info[1]
+                - when :string
+                  = f.input_field field_info[0], as: :string, class: "form-control"
+                - when :integer
+                  = f.input_field field_info[0], as: :integer, class: "form-control"
+                - when :date
+                  = f.date_field field_info[0], class: "form-control"
+                - when :enum
+                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+          = f.submit class:"btn btn-success pull-right"
