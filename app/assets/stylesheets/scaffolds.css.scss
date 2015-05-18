@@ -67,3 +67,36 @@ div {
     list-style: square;
   }
 }
+
+.submit-button {
+  margin: .75em .75em 1em;
+}
+
+[href] {
+  cursor: pointer;
+}
+
+.panel-heading {
+  position: relative;
+  span.expand, span.collapse {
+    font-size: 120%;
+    position: absolute;
+    right: .75em;
+  }
+
+  span.expand {
+    display: none;
+  }
+  span.collapse {
+    right: .85em;
+    display: inline-block;
+  }
+  &.collapsed {
+    span.expand {
+      display: inline-block;
+    }
+    span.collapse {
+      display: none;
+    }
+  }
+}
