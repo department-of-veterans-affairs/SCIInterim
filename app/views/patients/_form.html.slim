@@ -2,10 +2,11 @@
   = flash_messages
   #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist" 
     .panel.panel-default
-      #headingBasic.panel-heading role="tab" 
+      #headingBasic.panel-heading aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
-            | Basic Patient Info
+          | Basic Patient Info
+          span.expand +
+          span.collapse -
       #basicInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
         .panel-body
           - for field_info in Patient.basic_fields do
@@ -19,14 +20,15 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          = f.submit class:"btn btn-success pull-right submit-button"
 
 
     .panel.panel-default
-      #headingAssess.panel-heading role="tab" 
+      #headingAssess.panel-heading.collapsed aria-controls="assessInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#assessInfo" role="tab"
         h4.panel-title
-          a.collapsed aria-controls="assessInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#assessInfo" 
-            | Assessment Info
+          | Assessment Info
+          span.expand +
+          span.collapse -
       #assessInfo.panel-collapse.collapse aria-labelledby="headingAssess" role="tabpanel" 
         .panel-body
           - for field_info in Patient.assessment_fields do
@@ -40,13 +42,14 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          = f.submit class:"btn btn-success pull-right submit-button"
 
     .panel.panel-default
-      #detailThree.panel-heading role="tab" 
+      #detailThree.panel-heading.collapsed aria-controls="detailInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#detailInfo" role="tab"
         h4.panel-title
-          a.collapsed aria-controls="detailInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#detailInfo" 
-            | Detailed Patient Info
+          span Detailed Patient Info
+          span.expand +
+          span.collapse -
       #detailInfo.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
         .panel-body
           - for field_info in Patient.detailed_fields do
@@ -60,4 +63,4 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          = f.submit class:"btn btn-success pull-right submit-button"
