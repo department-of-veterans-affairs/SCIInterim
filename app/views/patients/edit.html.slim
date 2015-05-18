@@ -23,6 +23,9 @@
           li
             = link_to 'Accute Rehab 1year', new_patient_acute_rehab1_year_path(@patient), { class: "" }
   .row
+    .patient-forms.col-md-9
+      == render 'form'
+
     .patient-nav.col-md-3
       .patient-data.list-group.panel.panel-default
         .panel-heading 
@@ -56,7 +59,3 @@
           strong Coordinator:
           = @patient.outcome_coordinator
       .button.btn.btn-default.pull-right onclick="show_unicorn();" Rainbows and Unicorns
-
-
-    .patient-forms.col-md-9
-      == render 'form'
