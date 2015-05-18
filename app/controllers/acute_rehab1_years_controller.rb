@@ -5,11 +5,6 @@ class AcuteRehab1YearsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @acute_rehab1_years = AcuteRehab1Year.all
-    respond_with(@acute_rehab1_years)
-  end
-
   def new
     @acute_rehab1_year = AcuteRehab1Year.new
     respond_with(@acute_rehab1_year)
