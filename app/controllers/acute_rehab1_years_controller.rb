@@ -7,10 +7,6 @@ class AcuteRehab1YearsController < ApplicationController
 
   def new
     @acute_rehab1_year = AcuteRehab1Year.new
-    respond_with(@acute_rehab1_year)
-  end
-
-  def edit
   end
 
   def create
@@ -18,7 +14,7 @@ class AcuteRehab1YearsController < ApplicationController
     @acute_rehab1_year.save
     @patient.episode_of_cares << @acute_rehab1_year
     @patient.save
-    respond_with(@acute_rehab1_year)
+    redirect_to edit_patient_path(@patient.id)
   end
 
   def update
