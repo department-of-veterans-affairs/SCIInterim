@@ -10,11 +10,11 @@ feature 'Patient Registry' do
     Warden.test_reset!
   end
 
-  # Scenario: Visit the patient registry.
+  # Scenario: See all patients in the database
   #   Given I am a user
   #   When I patient registry
   #   Then I see all patients in the database.
-  scenario 'visit patient registry' do
+  scenario 'See all patients in the database' do
     sign_in_user
     patient1 = create(:patient, patient_id: 1)
     patient2 = create(:patient, patient_id: 2)
