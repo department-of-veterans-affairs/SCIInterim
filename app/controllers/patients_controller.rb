@@ -5,7 +5,17 @@ class PatientsController < ApplicationController
   respond_to :html
 
   def index
-    @patients = Patient.all
+    @query = params[:query]
+
+    if (@query)
+      @patients = Patient.where(patient_id: params[:query])
+      if @patients.empty?
+        @patients = Patient.where("name LIKE :prefix", prefix: "%#{params[:query]}%")
+      end
+    else
+      @patients = Patient.all
+    end
+
     respond_with(@patients)
   end
 

@@ -5,12 +5,11 @@
     / This search field doesn't work yet
     form.form-inline.pull-right
       .form-group
-        label for="search"  Search by name 
         / Well this is embarrasing, TODO (emilyville)
         | &nbsp;
-        input#exampleInputName2.form-control placeholder=("Jane Doe") type="text" /
+        input#exampleInputName2.form-control placeholder=("Patient ID or name") name="query" type="text" value="#{@query}" /
         | &nbsp;
-      button.btn.btn-default type="submit"  Search 
+      button.btn.btn-default type="submit" Search
 
   hr
 table class='table table-striped table-hover'
