@@ -31,6 +31,7 @@ end
 group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
+  gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-byebug'
