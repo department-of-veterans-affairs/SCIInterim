@@ -18,12 +18,12 @@ class AcuteRehab1YearsController < ApplicationController
     @acute_rehab1_year.save
     @patient.episode_of_cares << @acute_rehab1_year
     @patient.save
-    respond_with(@acute_rehab1_year)
+    respond_with(@acute_rehab1_year, location: edit_patient_path(@patient))
   end
 
   def update
     @acute_rehab1_year.update(acute_rehab1_year_params)
-    respond_with(@acute_rehab1_year)
+    respond_with(@acute_rehab1_year, location: edit_patient_path(@patient))
   end
 
   private

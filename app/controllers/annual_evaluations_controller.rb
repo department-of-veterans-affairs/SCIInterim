@@ -23,7 +23,7 @@ class AnnualEvaluationsController < ApplicationController
 
   def update
     @annual_evaluation.update(annual_evaluation_params)
-    respond_with(@annual_evaluation)
+    respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end
 
   private

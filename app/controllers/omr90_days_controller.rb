@@ -18,12 +18,12 @@ class Omr90DaysController < ApplicationController
     @omr90_day.save
     @patient.episode_of_cares << @omr90_day
     @patient.save
-    respond_with(@omr90_day)
+    respond_with(@omr90_day, location: edit_patient_path(@patient))
   end
 
   def update
     @omr90_day.update(omr90_day_params)
-    respond_with(@omr90_day)
+    respond_with(@omr90_day, location: edit_patient_path(@patient))
   end
 
   private
