@@ -10,7 +10,7 @@ class PatientsController < ApplicationController
     if (@query)
       @patients = Patient.where(patient_id: params[:query])
       if @patients.empty?
-        @patients = Patient.where("name LIKE :prefix", prefix: "%#{params[:query]}%")
+        @patients = Patient.where("name LIKE :query or ssn LIKE :query", query: "%#{params[:query]}%")
       end
     else
       @patients = Patient.all
