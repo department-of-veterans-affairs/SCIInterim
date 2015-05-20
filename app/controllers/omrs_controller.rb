@@ -1,6 +1,6 @@
 class OmrsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_patient, only: [:new, :create]
+  before_action :set_patient
   before_action :set_omr, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

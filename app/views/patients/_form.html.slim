@@ -67,3 +67,20 @@
           .row
             .col-sm-offset-3.col-sm-9.form-actions
               = f.submit class:"btn btn-primary"
+
+    - if @patient
+      .panel.panel-default
+        #detailThree.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare" 
+              | Episodes Of Care
+        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
+          .panel-body
+            table
+              - for episode in @patient.episode_of_cares do
+                tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+                  td
+                    strong
+                    = episode.episode_date
+                  td
+                    = episode.specific.class.name
