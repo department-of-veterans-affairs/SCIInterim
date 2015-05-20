@@ -83,14 +83,20 @@ html
                 = yield
 
     javascript:
-      var url = window.location;
-      // Will only work if string in href matches with location
-      $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
 
-      // Will also work for relative and absolute hrefs
-      $('ul.nav a').filter(function() {
-          return this.href == url;
-          }).parent().addClass('active');
+      // Todo: This should be cleaned up
+      (function highlightActiveMenuItem() {
+        var url = window.location.pathname;
+        var exactMatch = $('ul.nav a[href="' + url + '"]');
+
+        if (exactMatch[0]) {
+          exactMatch.parent().addClass('active');
+        } else {
+          $('ul.nav a').filter(function () {
+            return window.location.href.match(this.href);
+          }).first().parent().addClass('active');
+        }
+      })();
 
       $('.detail-btn').on('click', function(e) {
           e.preventDefault();
