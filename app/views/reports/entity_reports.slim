@@ -1,0 +1,25 @@
+ol.breadcrumb
+  li: a href="/reports" Reports
+  - if @entity_name
+    li: a href="/reports/entity/#{@entity}" #{@entity}
+    li.active #{@entity_name}
+  - else
+    li.active #{@entity}
+  end
+ol
+
+h1 #{@entity} Reports #{ if @entity_name then ' for ' + @entity_name end }
+
+br
+- unless @reports.empty?
+  table.table.table-striped
+    tr
+      th Report
+      th Description
+    - for report in @reports
+      tr
+        td: a href="/reports/entity/#{@entity}/#{@entity_id}/#{report[:id]}" #{report[:name]}
+        td = report[:description]
+
+- else
+  p No reports available
