@@ -18,7 +18,7 @@ class AnnualEvaluationsController < ApplicationController
     @annual_evaluation.save
     @patient.episode_of_cares << @annual_evaluation
     @patient.save
-    respond_with(@annual_evaluation)
+    respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end
 
   def update
