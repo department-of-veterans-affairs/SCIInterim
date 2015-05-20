@@ -9,6 +9,7 @@ class Patient < ActiveRecord::Base
   enum employment_status: [ :Employed, :Unemployed ]
   enum highest_level_of_education: [ :"No Diploma", :"High School", :"Some College", :"Graduate School" ]
   enum registration_status: [ :"Currently Served", :"Not Served" ]
+  enum sci_network: { Yes: true, No: false }
 
   def self.to_display_name(symbol)
     return symbol.to_s.split('_').join(' ').titleize
@@ -27,7 +28,7 @@ class Patient < ActiveRecord::Base
       [ :employment_status, :enum ],
       [ :highest_level_of_education, :enum ],
       [ :registration_status, :enum ],
-      [ :sci_network, :string ],
+      [ :sci_network, :enum ],
       [ :date_of_death, :date ],
       [ :outcome_coordinator, :string ],
     ]
