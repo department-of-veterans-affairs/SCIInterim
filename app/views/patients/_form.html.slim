@@ -76,8 +76,11 @@
               | Episodes Of Care
         #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
           .panel-body
-            - for episode in @patient.episode_of_cares do
-              a href=edit_polymorphic_url([@patient, episode.specific])
-                = episode.episode_date
-                | &nbsp;
-                = episode.specific.class.name
+            table
+              - for episode in @patient.episode_of_cares do
+                tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+                  td
+                    strong
+                    = episode.episode_date
+                  td
+                    = episode.specific.class.name
