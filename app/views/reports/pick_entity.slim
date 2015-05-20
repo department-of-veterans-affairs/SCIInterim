@@ -1,0 +1,46 @@
+ol.breadcrumb
+  li: a href="/reports" Reports
+  li.active Select #{@entity}
+ol
+
+h1 Select a #{@entity}
+
+h3 Search
+
+form#form action="/reports/entity/#{@entity}"
+  div.form-group
+    label(for="name") Name
+    input type="text" id="name" name="query" class="form-control" placeholder="#{@entity} name" value="#{@query}"
+  button type="submit" class="submit-button btn btn-default" Search
+
+hr
+
+h3 Results
+
+- if @list
+  - unless @list.empty?
+    ul#list
+      - for item in @list
+        li: a href="/reports/entity/#{@entity}/#{item[:patient_id] || item[:id]}" #{item[:name]}
+  - else
+    p: em No #{@entity.downcase}s matching the query "#{@query}"
+- else
+    p: em Search for a #{@entity.downcase} to make a selection.
+
+//javascript:
+//  var Entity = '#{@entity}';
+//  var entity = Entity.toLowerCase();
+//  var list      = document.getElementById('list');
+//  var nameInput = document.getElementById('name');
+//  var form      = document.getElementById('form');
+//  form.addEventListener('submit', function(e) {
+//    e.preventDefault();
+//    $.get('/api/' + entity + 's/search?name=' + nameInput.value).then(function(result) {
+//      result = JSON.parse(result);
+//      var links = '';
+//      result.forEach(function(o) {
+//        links += '<li><a href="/reports/entity/' + Entity + '/' + o.id + '">' + o.name + '</a></li>'
+//      });
+//      list.innerHTML = links;
+//    })
+//  });
