@@ -58,8 +58,10 @@ html
             ul.nav.navbar-nav
               li role="presentation"
                 = link_to "Add new Patient", new_patient_path
-              li 
+              li
                 = link_to 'SCI Patient Registry', patients_path
+              li
+                = link_to 'Reports', reports_path
             ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
                 li role="presentation"

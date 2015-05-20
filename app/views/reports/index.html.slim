@@ -1,0 +1,9 @@
+h1 Reports
+
+- unless @categories.empty?
+  - for category in @categories do
+    h3: a href="/reports/entity/#{category}" #{category}
+  end
+- else
+  p
+    | No reports found.
