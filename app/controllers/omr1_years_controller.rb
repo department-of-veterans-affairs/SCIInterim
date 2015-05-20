@@ -18,12 +18,12 @@ class Omr1YearsController < ApplicationController
     @omr1_year.save
     @patient.episode_of_cares << @omr1_year
     @patient.save
-    respond_with(@omr1_year)
+    respond_with(@omr1_year, location: edit_patient_path(@patient))
   end
 
   def update
     @omr1_year.update(omr1_year_params)
-    respond_with(@omr1_year)
+    respond_with(@omr1_year, location: edit_patient_path(@patient))
   end
 
   private
