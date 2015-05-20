@@ -20,6 +20,10 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'better_errors'
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-spring'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
