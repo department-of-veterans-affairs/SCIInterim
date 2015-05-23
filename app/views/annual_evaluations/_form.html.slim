@@ -66,5 +66,6 @@
     = f.input :diabetic_retinal_screening_received, wrapper: :horizontal_input_group
       = f.date_field :diabetic_retinal_screening_received, class: "form-control"
 
-  .form-actions
-    = f.button :submit
+  .row
+    .col-sm-offset-3.col-sm-9.form-actions
+      = f.submit class:"btn btn-primary"

@@ -19,7 +19,9 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          .row
+            .col-sm-offset-3.col-sm-9.form-actions
+              = f.submit class:"btn btn-primary"
 
 
     .panel.panel-default
@@ -40,7 +42,9 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          .row
+            .col-sm-offset-3.col-sm-9.form-actions
+              = f.submit class:"btn btn-primary"
 
     .panel.panel-default
       #detailThree.panel-heading role="tab" 
@@ -60,4 +64,6 @@
                   = f.date_field field_info[0], class: "form-control"
                 - when :enum
                   = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
-          = f.submit class:"btn btn-success pull-right"
+          .row
+            .col-sm-offset-3.col-sm-9.form-actions
+              = f.submit class:"btn btn-primary"
