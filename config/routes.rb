@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   get 'reports/entity/:entity/:entity_id/:report_id' => 'reports#run_report'
 
   resources :patients do
-    resources :acute_rehab1_years, except: [:index, :show, :destroy]
-    resources :acute_rehab90_days, except: [:index, :show, :destroy]
-    resources :acute_rehabs, except: [:index, :show, :destroy]
-    resources :annual_evaluations, except: [:index, :show, :destroy]
-    resources :omr1_years, except: [:index, :show, :destroy]
-    resources :omr90_days, except: [:index, :show, :destroy]
-    resources :omrs, except: [:index, :show, :destroy]
+    resources :acute_rehab1_years, except: [:index, :destroy]
+    resources :acute_rehab90_days, except: [:index, :destroy]
+    resources :acute_rehabs, except: [:index, :destroy]
+    resources :annual_evaluations, except: [:index, :destroy]
+    resources :omr1_years, except: [:index, :destroy]
+    resources :omr90_days, except: [:index, :destroy]
+    resources :omrs, except: [:index, :destroy]
   end
 
   root to: redirect('/patients')
