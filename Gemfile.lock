@@ -148,6 +148,8 @@ GEM
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
+    puma (2.11.3)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -299,6 +301,7 @@ DEPENDENCIES
   jquery-rails
   pg
   pry-byebug
+  puma
   rails (= 4.1.7)
   resque_spec
   rspec-rails
