@@ -20,7 +20,7 @@ rvm:
 deploy:
   provider: heroku
   api_key:
-    secure: h7ksUcgiBZl+asj11Bu7+zXV3U4s7ouLD5OFngvxaq6guXNAa6wgk+g+FxLfKBuIy1ixkfljBQE16F5S+mLQN+1Ii9Chpy7rLOeRNOixcRd5/0OreamgECQk53W5k0kkJgiNu5oiocNFfPX+e5hO6GRioUtrHNRlQwmLcMsMIRQ=
+    secure: VVWcOUE6ZSuqmwg9ZbAZ/0tzC1kywmuzfZCUU4MBEm26ZrUGojLxrBEZDBugQYfr+he5wNzFzqVMGPkXAbFEu9sDFBbQYVUypoQYta4jxOxeEJdw2JYaHWtfkOI0vJYFhJ9pbq2GBXJBh19sUbWgu79L+pxBvEziPHFIj2yQuts=
   app: whispering-dusk-4439
   on:
     repo: awong-dev/SCIInterim
