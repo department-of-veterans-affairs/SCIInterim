@@ -27,11 +27,6 @@ gem 'rails_serve_static_assets', group: [:production]
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
-  gem 'guard-spring'
-  gem 'spring'
-  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
@@ -39,8 +34,11 @@ group :development, :test do
   gem 'byebug'
   gem 'coveralls', require: false
   gem 'factory_girl_rails'
+  gem 'guard-rspec'
   gem 'pry-byebug'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
 end
 
