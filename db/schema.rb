@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150515000426) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "acute_rehab1_years", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,7 +98,7 @@ ActiveRecord::Schema.define(version: 20150515000426) do
     t.datetime "updated_at"
   end
 
-  add_index "episode_of_cares", ["patient_id"], name: "index_episode_of_cares_on_patient_id"
+  add_index "episode_of_cares", ["patient_id"], name: "index_episode_of_cares_on_patient_id", using: :btree
 
   create_table "omr1_years", force: true do |t|
     t.datetime "created_at"
@@ -153,13 +156,13 @@ ActiveRecord::Schema.define(version: 20150515000426) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sci_region"
-    t.integer  "asia_level",                   limit: 255
+    t.integer  "asia_level"
     t.string   "asia_impairment"
     t.string   "bladder_drainage"
-    t.integer  "employment_status",            limit: 255
-    t.integer  "highest_level_of_education",   limit: 255
-    t.integer  "registration_status",          limit: 255
-    t.boolean  "sci_network",                  limit: 255
+    t.integer  "employment_status"
+    t.integer  "highest_level_of_education"
+    t.integer  "registration_status"
+    t.boolean  "sci_network"
     t.date     "sci_network_date_changed"
     t.string   "type_of_etiology"
     t.string   "etiology"
@@ -175,9 +178,9 @@ ActiveRecord::Schema.define(version: 20150515000426) do
     t.date     "annual_eval_next_due"
     t.string   "initial_rehab_site"
     t.date     "initial_rehab_discharge"
-    t.date     "date_first_seen_in_va_sci",    limit: 255
+    t.date     "date_first_seen_in_va_sci"
     t.string   "occupation_at_time_of_injury"
-    t.boolean  "service_connected",            limit: 255
+    t.boolean  "service_connected"
     t.date     "date_of_death"
     t.string   "outcome_coordinator"
   end
@@ -197,7 +200,9 @@ ActiveRecord::Schema.define(version: 20150515000426) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
 
 end
