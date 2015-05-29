@@ -7,6 +7,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+gem 'dpl'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'foreigner'
 gem 'immigrant'
@@ -22,7 +23,10 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 # For Heroku asset compilation.
-gem 'rails_serve_static_assets', group: [:production]
+group :production do
+  gem 'rails_serve_static_assets'
+  gem 'rails_12factor'
+end
 
 group :development do
   gem 'better_errors'
