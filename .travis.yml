@@ -1,19 +1,27 @@
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-  - bundle exec rake pg:first_run --trace
-  - bundle exec rake db:test:prepare --trace
-bundler_args: --without development
+- bundle exec rake pg:first_run --trace
+- bundle exec rake db:test:prepare --trace
+bundler_args: "--without development"
 cache:
-  - apt
-  - bundler
+- apt
+- bundler
 env:
-  - DB=sqlite3
+- DB=sqlite3
 language: ruby
 notifications:
   email: false
 rvm:
-  - ruby-2.1.2
+- ruby-2.1.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: h7ksUcgiBZl+asj11Bu7+zXV3U4s7ouLD5OFngvxaq6guXNAa6wgk+g+FxLfKBuIy1ixkfljBQE16F5S+mLQN+1Ii9Chpy7rLOeRNOixcRd5/0OreamgECQk53W5k0kkJgiNu5oiocNFfPX+e5hO6GRioUtrHNRlQwmLcMsMIRQ=
+  app: whispering-dusk-4439
+  on:
+    repo: awong-dev/SCIInterim
+    branch: master
