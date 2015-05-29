@@ -16,6 +16,7 @@ class OmrsController < ApplicationController
   def create
     @omr = Omr.new(omr_params)
     @omr.save
+    puts omr_params
     @patient.episode_of_cares << @omr
     @patient.save
     respond_with(@omr, location: edit_patient_path(@patient))

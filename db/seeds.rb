@@ -8,14 +8,17 @@ Patient.create!(patient_id:99999, name:'Albert J. Wong', ssn:'443-22-1234', dob:
 require 'rubygems'
 require 'faker'
 
-Patient.delete_all
 EpisodeOfCare.delete_all
+Patient.delete_all
+
+def date_between(from=0.0, to=Time.now)
+  Time.at(from + rand * (to.to_f - from.to_f)).to_date
+end
 
 for i in 1..10
   dob = Faker::Date.between(80.years.ago, 18.years.ago)
   dod = [Faker::Date.between(dob+20.years, Time.new), nil, nil, nil].sample
-  patient = {
-
+  patient_data = {
       patient_id: i,
       name: Faker::Name.name,
       ssn:  Faker::Number.number(3) + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
@@ -27,7 +30,7 @@ for i in 1..10
       sci_network: [true, false].sample,
       outcome_coordinator: Faker::Name.name,
   }
-  patient_record = Patient.create!(patient)
+  patient = Patient.create!(patient_data)
 
 
   # AR
@@ -37,19 +40,14 @@ for i in 1..10
   admission_date = Faker::Date.between(dob+18.years, dod != nil ? dod : Time.new)
 
   ar_data = {
-      # "created_at"
-      # "updated_at"
-      actable_id: i,
-      actable_type: 'acute_rehabs',
-      episode_date: admission_date,
-      patient_id: patient[:patient_id],
-      admission_date: admission_date,
+      episode_date: admission_date.iso8601,
+
       start_asia: start_asia,
       start_fim: start_fim,
       start_swls: Faker::Number.between(5, 35),
       start_kurtzke_edss: start_kurtzke_edss,
       goal_fim: Faker::Number.between(start_fim, 126),
-      accute_rehab_completed: [true, false].sample,
+      #accute_rehab_completed: [true, false].sample,
       finish_asia: [start_asia, ASIA.sample].sample,
       finish_fim: Faker::Number.between(start_fim, 126),
       finish_kurtzke_edss: Faker::Number.between(start_kurtzke_edss.floor, 100) / 1.0,
@@ -57,7 +55,8 @@ for i in 1..10
       discharge_location: ['Return to Community', 'VA Nursing Home', 'VA Hospital'].sample
   }
 
-  AcuteRehab.create(ar_data)
+  acute_rehab = AcuteRehab.new(ar_data)
+  patient.episode_of_cares << acute_rehab
 
 
   # OMR
@@ -67,12 +66,9 @@ for i in 1..10
   omr_admission_date = Faker::Date.between(admission_date, dod != nil ? dod : Time.new)
 
   omr_data = {
-      actable_id: (i*2)+2,
-      actable_type: 'omrs',
-      episode_date: omr_admission_date,
-      patient_id: i,
+      episode_date: omr_admission_date.iso8601,
 
-      admission_date: omr_admission_date,
+      admission_date: omr_admission_date.iso8601,
       start_asia: omr_start_asia,
       start_fim: omr_start_fim,
       start_fam: '23',
@@ -82,7 +78,7 @@ for i in 1..10
       dusoi: '2',
       goal_fim: '1',
       goal_fam: '1',
-      omb_completed: Faker::Date.between(omr_admission_date, dod != nil ? dod : Time.new),
+      omb_completed: Faker::Date.between(omr_admission_date, dod != nil ? dod : Time.new).iso8601,
       finish_asia: ASIA.sample,
       finish_fim: Faker::Number.between(omr_start_fim, 126),
       finish_fam: '45',
@@ -93,6 +89,9 @@ for i in 1..10
       discharge_location: 'Home'
   }
 
-  Omr.create!(omr_data)
+  omr = Omr.new(omr_data)
+  patient.episode_of_cares << omr
+
+  patient.save
 
 end
