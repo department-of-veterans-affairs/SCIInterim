@@ -7,7 +7,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
-gem 'dpl'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'foreigner'
 gem 'immigrant'
@@ -33,6 +32,10 @@ group :development do
   gem 'guard-bundler'
 end
 
+group :test, :darwin do
+  gem 'rb-fsevent'
+end
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
@@ -40,7 +43,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'pry-byebug'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   # gem 'brakeman'  # Enable once we figure out how to setup security scanning.

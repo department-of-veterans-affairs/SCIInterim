@@ -17,11 +17,3 @@ notifications:
   email: false
 rvm:
 - ruby-2.1.2
-deploy:
-  provider: heroku
-  api_key:
-    secure: VVWcOUE6ZSuqmwg9ZbAZ/0tzC1kywmuzfZCUU4MBEm26ZrUGojLxrBEZDBugQYfr+he5wNzFzqVMGPkXAbFEu9sDFBbQYVUypoQYta4jxOxeEJdw2JYaHWtfkOI0vJYFhJ9pbq2GBXJBh19sUbWgu79L+pxBvEziPHFIj2yQuts=
-  app: whispering-dusk-4439
-  on:
-    repo: awong-dev/SCIInterim
-    branch: master
