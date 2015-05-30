@@ -1,6 +1,8 @@
 {
   "name":"SCIInterim",
-  "scripts":{},
+  "scripts":{
+    "postdeploy":"rake db:migrate db:seed"
+   },
   "env":{
     "LANG":{
       "required":true
