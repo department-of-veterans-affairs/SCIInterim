@@ -80,7 +80,7 @@ html
                 = alert
           .row
             .col-xs-12
-                = yield
+                = content_for?(:application_body) ? yield(:application_body) : yield
 
     javascript:
 

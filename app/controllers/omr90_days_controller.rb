@@ -1,4 +1,6 @@
 class Omr90DaysController < ApplicationController
+  layout  'patient_edit'
+
   before_action :authenticate_user!
   before_action :set_patient
   before_action :set_omr90_day, only: [:show, :edit, :update, :destroy]

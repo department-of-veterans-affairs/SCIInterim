@@ -1,4 +1,6 @@
 class AnnualEvaluationsController < ApplicationController
+  layout 'patient_edit'
+
   before_action :authenticate_user!
   before_action :set_patient
   before_action :set_annual_evaluation, only: [:show, :edit, :update, :destroy]

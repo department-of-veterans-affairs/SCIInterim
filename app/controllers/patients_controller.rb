@@ -25,6 +25,7 @@ class PatientsController < ApplicationController
   end
 
   def edit
+    render layout: 'patient_edit'
   end
 
   def create
