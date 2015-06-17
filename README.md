@@ -39,3 +39,8 @@ Rails Setup
   * bundle install
   * rails s
   * guard  # Use this to auto-run affected specs as you change code.
+
+Useful Links
+-----------
+Install PostgreSQL: https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql
+Install Ruby On Rails on Mac: http://railsapps.github.io/installrubyonrails-mac.html
