@@ -9,20 +9,25 @@
             | Add Patient Evaluation
             span.caret
           ul.dropdown-menu.btn-block role="menu"
+            li.dropdown-header Annual Evaluation
             li
-              = link_to 'Annual Eval', new_patient_annual_evaluation_path(@patient), { class: "" }
+              = link_to 'AE', new_patient_annual_evaluation_path(@patient), { class: "" }
+            li.divider(role="separator")
+            li.dropdown-header Outpatient Medical Rehabilitation
             li
-              = link_to 'OMR', new_patient_omr_path(@patient), { class: "" }
+              = link_to 'Initial OMR', new_patient_omr_path(@patient), { class: "" }
             li
-              = link_to 'OMR 90 day', new_patient_omr90_day_path(@patient), { class: "" }
+              = link_to '90 Day OMR', new_patient_omr90_day_path(@patient), { class: "" }
             li
-              = link_to 'OMR 1 year', new_patient_omr1_year_path(@patient), { class: "" }
+              = link_to '1 Year OMR', new_patient_omr1_year_path(@patient), { class: "" }
+            li.divider(role="separator")
+            li.dropdown-header Acute Rehab
             li
-              = link_to 'Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }
+              = link_to 'Initial AR', new_patient_acute_rehab_path(@patient), { class: "" }
             li
-              = link_to 'Acute Rehab 90 day', new_patient_acute_rehab90_day_path(@patient), { class: "" }
+              = link_to '90 Day AR', new_patient_acute_rehab90_day_path(@patient), { class: "" }
             li
-              = link_to 'Acute Rehab 1 year', new_patient_acute_rehab1_year_path(@patient), { class: "" }
+              = link_to '1 Year AR', new_patient_acute_rehab1_year_path(@patient), { class: "" }
     .row
       .patient-forms.col-md-9
         == content_for?(:form) ? yield(:form) : yield
