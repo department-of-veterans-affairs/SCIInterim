@@ -1,7 +1,6 @@
 .row
 	h3
-		|New OMR 90 Day Followup:  
-		= @patient.name 		
+		|New OMR 90 Day Followup
         = link_to '&laquo; back to patient profile'.html_safe, edit_patient_path(@patient), { class: "button btn btn-link " }
 	hr
 == render 'form'

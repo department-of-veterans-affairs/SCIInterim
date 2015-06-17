@@ -1,7 +1,6 @@
 .row
 	h3
-		|New Acute Rehab 90 day Followup:
-		= @patient.name 		
+		|New Acute Rehab 90 day Followup
         = link_to '&laquo; back to patient profile'.html_safe, edit_patient_path(@patient), { class: "button btn btn-link " }
 	hr
 == render 'form'

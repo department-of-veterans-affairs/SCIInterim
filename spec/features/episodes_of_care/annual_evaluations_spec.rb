@@ -26,7 +26,7 @@ feature 'Annual Evaluations' do
     click_link("Annual Eval")
     expect(page).to have_content "New Annual Evaluation"
 
-    fill_in "Episode Date", with: Time.now
+    fill_in "Episode date", with: Time.now
 
     click_button("Create Annual evaluation")
     current_url.should == edit_patient_url(patient1)
