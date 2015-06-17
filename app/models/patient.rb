@@ -5,11 +5,13 @@ class Patient < ActiveRecord::Base
   validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "No numbers of special chars"
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{3}/, message: "Expect format 111-22-3333"
 
-  enum asia_level: (2..8).map { |level| "C#{level}" } + (1..12).map {|level| "T#{level}"} + (1..5).map {|level| "L#{level}"} + (1..3).map {|level| "S#{level}"} + [ :"S4-5" ]
   enum employment_status: [ :Employed, :Unemployed ]
   enum highest_level_of_education: [ :"No Diploma", :"High School", :"Some College", :"Graduate School" ]
   enum registration_status: [ :"Currently Served", :"Not Served" ]
   enum sci_network: { Yes: true, No: false }
+  
+  enum asia_level: (2..8).map { |level| "C#{level}" } + (1..12).map {|level| "T#{level}"} + (1..5).map {|level| "L#{level}"} + (1..3).map {|level| "S#{level}"} + [ :"S4-5" ]
+  enum etiology: [:"TFA = Fall", :"TSA = Sports Activity", :"TVE = Vehicular"]
 
   def self.to_display_name(symbol)
     return symbol.to_s.split('_').join(' ').titleize
@@ -40,7 +42,7 @@ class Patient < ActiveRecord::Base
       [ :asia_impairment, :string ],
       [ :bladder_drainage, :string ],
       [ :type_of_etiology, :string ],
-      [ :etiology, :string ],
+      [ :etiology, :enum ],
       [ :other_etiology, :string ],
       [ :date_of_onset, :date ],
       [ :brain_injury, :string ],
