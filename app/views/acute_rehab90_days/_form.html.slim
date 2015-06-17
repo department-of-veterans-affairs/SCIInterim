@@ -2,20 +2,13 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :episode_date, wrapper: :horizontal_input_group
-      = f.date_field :episode_date, class: "form-control"
-    = f.input :followup_date, wrapper: :horizontal_input_group
-      = f.date_field :followup_date, class: "form-control"
-    = f.input :fim, wrapper: :horizontal_input_group
-      = f.input_field :fim, class: "form-control"
-    = f.input :swls, wrapper: :horizontal_input_group
-      = f.input_field :swls, class: "form-control"
-    = f.input :chart_sf, wrapper: :horizontal_input_group
-      = f.input_field :chart_sf, class: "form-control"
-    = f.input :sf_8, wrapper: :horizontal_input_group
-      = f.input_field :sf_8, class: "form-control"
-    = f.input :place_of_residence, wrapper: :horizontal_input_group
-      = f.input_field :place_of_residence, class: "form-control"
+    = f.input :episode_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :followup_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :fim
+    = f.input :swls
+    = f.input :chart_sf
+    = f.input :sf_8
+    = f.input :place_of_residence
 
   .row
     .col-sm-offset-3.col-sm-9.form-actions

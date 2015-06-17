@@ -9,16 +9,14 @@
       #basicInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
         .panel-body
           - for field_info in Patient.basic_fields do
-            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-              - case field_info[1]
-                - when :string
-                  = f.input_field field_info[0], as: :string, class: "form-control"
-                - when :integer
-                  = f.input_field field_info[0], as: :integer, class: "form-control"
-                - when :date
-                  = f.date_field field_info[0], class: "form-control"
-                - when :enum
-                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+            - case field_info[1]
+              - when :date
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
+              - when :enum
+                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
+              - else
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
+
           .row
             .col-sm-offset-3.col-sm-9.form-actions
               = f.submit class:"btn btn-primary"
@@ -32,16 +30,13 @@
       #assessInfo.panel-collapse.collapse aria-labelledby="headingAssess" role="tabpanel" 
         .panel-body
           - for field_info in Patient.assessment_fields do
-            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-              - case field_info[1]
-                - when :string
-                  = f.input_field field_info[0], as: :string, class: "form-control"
-                - when :integer
-                  = f.input_field field_info[0], as: :integer, class: "form-control"
-                - when :date
-                  = f.date_field field_info[0], class: "form-control"
-                - when :enum
-                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+            - case field_info[1]
+              - when :date
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
+              - when :enum
+                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
+              - else
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
           .row
             .col-sm-offset-3.col-sm-9.form-actions
               = f.submit class:"btn btn-primary"
@@ -54,16 +49,13 @@
       #detailInfo.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
         .panel-body
           - for field_info in Patient.detailed_fields do
-            = f.input field_info[0], label: Patient.to_display_name(field_info[0]), wrapper: :horizontal_input_group do
-              - case field_info[1]
-                - when :string
-                  = f.input_field field_info[0], as: :string, class: "form-control"
-                - when :integer
-                  = f.input_field field_info[0], as: :integer, class: "form-control"
-                - when :date
-                  = f.date_field field_info[0], class: "form-control"
-                - when :enum
-                  = f.input_field field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys, class: "form-control"
+            - case field_info[1]
+              - when :date
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
+              - when :enum
+                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
+              - else
+                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
           .row
             .col-sm-offset-3.col-sm-9.form-actions
               = f.submit class:"btn btn-primary"

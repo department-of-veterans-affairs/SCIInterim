@@ -2,36 +2,24 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :episode_date, wrapper: :horizontal_input_group
-      = f.date_field :episode_date, class: "form-control"
-    = f.input :admission_date, wrapper: :horizontal_input_group
-      = f.date_field :admission_date, class: "form-control"
-    = f.input :start_asia, wrapper: :horizontal_input_group
-      = f.input_field :start_asia, class: "form-control"
-    = f.input :start_fim, wrapper: :horizontal_input_group
-      = f.input_field :start_fim, class: "form-control"
-    = f.input :start_swls, wrapper: :horizontal_input_group
-      = f.input_field :start_swls, class: "form-control"
-    = f.input :start_kurtzke_edss, wrapper: :horizontal_input_group, label: :"KURTZKE-EDSS"
-      = f.input_field :start_kurtzke_edss, class: "form-control"
+    = f.input :episode_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :admission_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :start_asia
+    = f.input :start_fim
+    = f.input :start_swls
+    = f.input :start_kurtzke_edss
 
       # GOAL
-    = f.input :goal_fim, wrapper: :horizontal_input_group
+    = f.input :goal_fim
       = f.input_field :goal_fim, class: "form-control"
 
       # FINISH
-    = f.input :accute_rehab_completed, wrapper: :horizontal_input_group
-      = f.date_field :accute_rehab_completed, class: "form-control"
-    = f.input :finish_asia, wrapper: :horizontal_input_group
-      = f.input_field :finish_asia, class: "form-control"
-    = f.input :finish_fim, wrapper: :horizontal_input_group
-      = f.input_field :finish_fim, class: "form-control"
-    = f.input :finish_kurtzke_edss, wrapper: :horizontal_input_group, label: :"KURTZKE-EDSS"
-      = f.input_field :finish_kurtzke_edss, class: "form-control"
-    = f.input :finish_uspeq, wrapper: :horizontal_input_group
-      = f.input_field :finish_uspeq, class: "form-control"
-    = f.input :discharge_location, wrapper: :horizontal_input_group
-      = f.input_field :discharge_location, class: "form-control"
+    = f.input :accute_rehab_completed, as: :string, input_html: { class: "datepicker" }
+    = f.input :finish_asia
+    = f.input :finish_fim
+    = f.input :finish_kurtzke_edss
+    = f.input :finish_uspeq
+    = f.input :discharge_location
 
   .row
     .col-sm-offset-3.col-sm-9.form-actions
