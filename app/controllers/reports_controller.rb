@@ -37,13 +37,13 @@ class ReportsController < ApplicationController
               @episodes = EpisodeOfCare.where(patient_id: patient_id).map { |eoc|
 
                 # Get episode data from its table
-                episode = ActiveRecord::Base.connection.execute("SELECT * FROM " + eoc[:actable_type].downcase + " WHERE id = " + String(eoc[:actable_id]))[0]
+                # episode = ActiveRecord::Base.connection.execute("SELECT * FROM " + eoc[:actable_type].downcase + " WHERE id = " + String(eoc[:actable_id]))[0]
+                episode = eoc[:actable_type].classify.constantize.find(eoc[:actable_id])
 
                 # Add the cleaned episode name
-                episode_name = eoc[:actable_type].sub('_', ' ')
-                episode_name = episode_name[0..-2]
-                episode[:actable_type] = episode_name.gsub(/\w+/) do |word|
-                  word.capitalize
+                episode_name = eoc[:actable_type] #.sub('_', ' ')
+                episode[:actable_type] = episode_name.gsub(/(?:[A-Z][a-z]+|\d+)/) do |word|
+                    word + ' '
                 end
 
                 # Add in episode date
