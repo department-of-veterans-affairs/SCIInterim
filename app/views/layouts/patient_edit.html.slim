@@ -2,7 +2,10 @@
   .patient-info
     .row
       .col-md-9
-        h2 = @patient.name
+        h2 
+          = @patient.first_name 
+          | &nbsp;
+          = @patient.last_name
       .col-md-3
         h2.btn-group.btn-block
           button.btn-block.btn.btn-primary.dropdown-toggle aria-expanded="false" data-toggle="dropdown" type="button"
@@ -31,7 +34,9 @@
         .patient-data.list-group.panel.panel-default
           .panel-heading
             strong Patient Name:
-            = @patient.name
+            = @patient.first_name
+            | &nbsp;
+            = @patient.last_name
           .list-group-item
             strong ID:
             = @patient.patient_id

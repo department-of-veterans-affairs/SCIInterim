@@ -149,7 +149,7 @@ class ReportsController < ApplicationController
       elsif @entity == 'Station'
         @list = @@stations.select { |station| String(station[:id]) == @query }
         if @list.empty?
-          @list = @@stations.select { |station| station[:name].downcase.include? @query.downcase }
+          @list = @@stations.select { |station| station[:last_name].downcase.include? @query.downcase }
         end
       end
     end
@@ -160,7 +160,7 @@ class ReportsController < ApplicationController
     @entity_id = Integer(params[:entity_id])
 
     if @entity == 'Patient'
-      @entity_name = Patient.find_by(patient_id: @entity_id)[:name]
+      @entity_name = Patient.find_by(patient_id: @entity_id)[:last_name]
     elsif @entity == 'Station'
       #begin
         @entity_name = @@stations.select { |station| station[:id] == @entity_id }[0][:name]
@@ -193,7 +193,7 @@ class ReportsController < ApplicationController
 
   def get_entity_name(entity, entity_id)
     if entity == 'Patient'
-      Patient.find_by(patient_id: entity_id)[:name]
+      Patient.find_by(patient_id: entity_id)[:last_name]
     elsif entity == 'Station'
       #begin
       @@stations.select { |station| station[:id] == entity_id }[0][:name]
