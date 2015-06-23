@@ -2,10 +2,7 @@
   .patient-info
     .row
       .col-md-9
-        h2 
-          = @patient.first_name 
-          | &nbsp;
-          = @patient.last_name
+        h2 = "#{@patient.first_name} #{@patient.last_name}"
       .col-md-3
         h2.btn-group.btn-block
           button.btn-block.btn.btn-primary.dropdown-toggle aria-expanded="false" data-toggle="dropdown" type="button"
@@ -29,14 +26,11 @@
     .row
       .patient-forms.col-md-9
         == content_for?(:form) ? yield(:form) : yield
-
       .patient-nav.col-md-3
         .patient-data.list-group.panel.panel-default
           .panel-heading
             strong Patient Name:
-            = @patient.first_name
-            | &nbsp;
-            = @patient.last_name
+            = "#{@patient.first_name} #{@patient.last_name}"
           .list-group-item
             strong ID:
             = @patient.patient_id

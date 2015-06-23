@@ -10,12 +10,6 @@
         .panel-body
           - for field_info in Patient.basic_fields do
             - case field_info[1]
-              / First Name 
-              / Last Name
-              / Social Security Number
-              / Date of Birth
-              / Computed Age
-              / Gender
               - when :date
                 = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
               - when :enum
