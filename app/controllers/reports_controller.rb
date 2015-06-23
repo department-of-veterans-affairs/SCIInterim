@@ -149,7 +149,7 @@ class ReportsController < ApplicationController
       elsif @entity == 'Station'
         @list = @@stations.select { |station| String(station[:id]) == @query }
         if @list.empty?
-          @list = @@stations.select { |station| station[:last_name].downcase.include? @query.downcase }
+          @list = @@stations.select { |station| station[:name].downcase.include? @query.downcase }
         end
       end
     end
