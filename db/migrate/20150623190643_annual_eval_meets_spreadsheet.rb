@@ -3,8 +3,8 @@ class AnnualEvalMeetsSpreadsheet < ActiveRecord::Migration
     change_column :annual_evaluations, :bmi, 'integer USING CAST(bmi AS integer)'
     change_column :annual_evaluations, :bladder_drainage_method, 'integer USING CAST(bladder_drainage_method AS integer)'
     add_column :annual_evaluations, :has_motor_or_sensory_asymmetry, :boolean
-    add_column :annual_evaluations, :neuro_zone_of_preservation1, :string
-    add_column :annual_evaluations, :neuro_zone_of_preservation2, :string
+    add_column :annual_evaluations, :neuro_zone_of_preservation1, :integer
+    add_column :annual_evaluations, :neuro_zone_of_preservation2, :integer
     add_column :annual_evaluations, :neuro_zone_of_preservation3, :integer
 
     add_column :annual_evaluations, :level_of_injury, :integer
