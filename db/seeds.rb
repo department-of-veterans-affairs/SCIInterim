@@ -3,7 +3,7 @@
 
 ASIA = ["High-tetra", "Low-tetra", "parapalegia", "multiple scaroliosis"]
 
-Patient.create!(patient_id:99999, first_name:'Albert J.', last_name: 'Wong', ssn:'443-22-1234', dob:'02/04/1961')
+Patient.create!(patient_id:99999, first_name:'Albert', last_name: 'Wong', ssn:'443-22-1234', dob:'02/04/1961')
 
 require 'rubygems'
 require 'faker'
