@@ -21,7 +21,7 @@ h3 Results
   - unless @list.empty?
     ul#list
       - for item in @list
-        li: a href="/reports/entity/#{@entity}/#{item[:patient_id] || item[:id]}" #{item[:name]}
+        li: a href="/reports/entity/#{@entity}/#{item[:patient_id] || item[:id]}" #{item[:last_name]}
   - else
     p: em No #{@entity.downcase}s matching the query "#{@query}"
 - else

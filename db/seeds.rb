@@ -3,7 +3,7 @@
 
 ASIA = ["High-tetra", "Low-tetra", "parapalegia", "multiple scaroliosis"]
 
-Patient.create!(patient_id:99999, name:'Albert J. Wong', ssn:'443-22-1234', dob:'02/04/1961')
+Patient.create!(patient_id:99999, first_name:'Albert', last_name: 'Wong', ssn:'443-22-1234', dob:'02/04/1961')
 
 require 'rubygems'
 require 'faker'
@@ -20,7 +20,8 @@ for i in 1..10
   dod = [Faker::Date.between(dob+20.years, Time.new), nil, nil, nil].sample
   patient_data = {
       patient_id: i,
-      name: Faker::Name.name,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
       ssn:  Faker::Number.number(3) + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
       dob:  dob,
       employment_status: [ :Employed, :Unemployed ].sample,

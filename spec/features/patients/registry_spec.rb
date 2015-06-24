@@ -22,8 +22,8 @@ feature 'Patient Registry' do
     visit patients_path
 
     expect(page).to have_content 'SCI Patient Registry'
-    expect(page).to have_content patient1.name
-    expect(page).to have_content patient2.name
+    expect(page).to have_content patient1.first_name
+    expect(page).to have_content patient2.first_name
   end
 end
 
