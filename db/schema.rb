@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515000426) do
+ActiveRecord::Schema.define(version: 20150623190643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,37 +56,22 @@ ActiveRecord::Schema.define(version: 20150515000426) do
   end
 
   create_table "annual_evaluations", force: true do |t|
-    t.integer  "asia_level"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "eval_offered"
     t.date     "eval_completed"
-    t.date     "next_eval"
     t.boolean  "is_inpatient"
-    t.string   "audit"
-    t.string   "bmi"
-    t.string   "cage"
-    t.string   "ces_d"
-    t.string   "chart_sf"
+    t.integer  "bmi"
     t.string   "cyh"
-    t.string   "dast"
-    t.string   "dusoi"
-    t.string   "dusoi_a"
-    t.string   "fam"
     t.string   "fim"
     t.string   "kurtzke_edss"
-    t.string   "kurtzke_fss"
-    t.string   "mnfm"
-    t.string   "prime_md"
-    t.string   "push"
-    t.string   "sf_mpq"
-    t.string   "sf_8"
-    t.string   "swls"
-    t.string   "pumt_kit"
-    t.string   "bladder_drainage_method"
-    t.date     "colonoscopy_received"
-    t.date     "sigmoidoscopy_received"
-    t.date     "diabetic_retinal_screening_received"
+    t.integer  "bladder_drainage_method"
+    t.boolean  "has_motor_or_sensory_asymmetry"
+    t.integer  "neuro_zone_of_preservation1"
+    t.integer  "neuro_zone_of_preservation2"
+    t.integer  "neuro_zone_of_preservation3"
+    t.integer  "level_of_injury"
+    t.integer  "asia_score"
   end
 
   create_table "episode_of_cares", force: true do |t|
