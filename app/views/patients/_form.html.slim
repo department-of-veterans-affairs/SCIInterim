@@ -5,7 +5,7 @@
       #headingBasic.panel-heading role="tab" 
         h4.panel-title
           a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
-            | Patient Registry: Basic Information
+            | Basic Patient Info
       #basicInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
         .panel-body
           - for field_info in Patient.basic_fields do

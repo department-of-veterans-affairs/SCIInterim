@@ -20,8 +20,8 @@ for i in 1..10
   dod = [Faker::Date.between(dob+20.years, Time.new), nil, nil, nil].sample
   patient_data = {
       patient_id: i,
-      first_name: Faker::Name.name,
-      last_name: Faker::Name.name,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
       ssn:  Faker::Number.number(3) + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
       dob:  dob,
       employment_status: [ :Employed, :Unemployed ].sample,
