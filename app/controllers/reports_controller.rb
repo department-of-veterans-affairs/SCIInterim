@@ -142,7 +142,7 @@ class ReportsController < ApplicationController
       if @entity == 'Patient'
         @list = Patient.where(patient_id: params[:query])
         if @list.empty?
-          @list = Patient.where("first_name LIKE :prefix or last_name LIKE :prefix", prefix: "%#{params[:query]}%")
+          @list = Patient.where("first_name LIKE :prefix Or last_name LIKE :prefix", prefix: "%#{params[:query]}%")
         end
 
       # Search for stations by name or id
