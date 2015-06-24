@@ -3,7 +3,8 @@ FactoryGirl.define do
 
   factory :patient do
     patient_id 1
-    name { Faker::Name.name }
+    first_name { Faker::Name.name }
+    last_name { Faker::Name.name }
     ssn "123-45-6789"
     dob { Faker::Date.between(100.years.ago, Date.today) }
     created_at Time.now
