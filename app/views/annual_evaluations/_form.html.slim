@@ -1,31 +1,35 @@
 = wrapped_form_for([@patient, @annual_evaluation]) do |f|
   = f.error_notification
-
   .form-inputs
-    h2 Clinical
-    = f.input :bmi
-    = f.input :bladder_drainage_method, collection: AnnualEvaluation.bladder_drainage_methods.keys
+    h4 Clinical
+    = f.input :bmi, label: "BMI", :placeholder => "00"
+    = f.input :bladder_drainage_method,  label: "Bladder Drainage Method", :prompt => "Please select one", collection: AnnualEvaluation.bladder_drainage_methods.keys
     = f.input :has_motor_or_sensory_asymmetry
-    = f.input :neuro_zone_of_preservation1, collection: AnnualEvaluation.neuro_zone_of_preservation1s.keys
-    = f.input :neuro_zone_of_preservation2, collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
-    = f.input :neuro_zone_of_preservation3
+    = f.input :neuro_zone_of_preservation1,  label: "Neuro Zone of Preservation", :prompt => "Please select one", collection: AnnualEvaluation.neuro_zone_of_preservation1s.keys
+    = f.input :neuro_zone_of_preservation2, label: false, :prompt => "Please select one", collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
+    = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
 
-    h2 ASIA and LOI
-    = f.input :level_of_injury
-    = f.input :asia_score
+    h4 ASIA and LOI
+    .instrument
+        p ASIA recorded: A C6 from 12/23/1987
+        h4
+            = link_to "+ add new assessment", new_patient_omr1_year_path(@patient)
 
-    h2 Administrative
+        / = f.input :level_of_injury
+        / = f.input :asia_score
+
+    h4 Administrative
     = f.input :eval_offered, label: "Date Offered", as: :string, input_html: { class: "datepicker" }
     = f.input :eval_completed, label: "Date of Completion", as: :string, input_html: { class: "datepicker" }
     Display next AE Due here.
     = f.input :is_inpatient
 
-    h2 Standard Instruments
+    h4 Standard Instruments
     = f.input :cyh
     = f.input :fim
     = f.input :kurtzke_edss
 
-    h2 Ignore the stuff below. We need to remove.
+    h4 Ignore the stuff below. We need to remove.
     = f.input :episode_date, as: :string, input_html: { class: "datepicker" }
 
   .row
