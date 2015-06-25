@@ -40,7 +40,34 @@ class AcuteRehabsController < ApplicationController
     def acute_rehab_params
       params.require(:acute_rehab).permit(
         :patient_id, # TODO(awong.dev): Required?
-        :episode_date, # TODO(awong.dev): Dedup.
+        :start_asia,
+        :start_fim,
+        :start_swls,
+        :goal_fim,
+        :finish_asia,
+        :finish_fim,
+        :reason_for_admission,
+        :reason_for_admission_other,
+        :hospital_admission,
+        :acute_rehab_admission,
+        :hospital_discharge,
+        :acute_rehab_discharge,
+        :residence_type,
+        :residence_name,
+        :discharge_to_community,
+        :start_sf8,
+        :finish_swls,
+        :finish_sf8,
+        :followup_90day_date,
+        :followup_90day_fim,
+        :followup_90day_swls,
+        :followup_90day_chart_sf,
+        :followup_90day_sf8,
+        :followup_1yr_date,
+        :followup_1yr_fim,
+        :followup_1yr_swls,
+        :followup_1yr_chart_sf,
+        :followup_1yr_sf8,
       )
     end
 end

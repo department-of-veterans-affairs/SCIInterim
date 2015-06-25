@@ -26,7 +26,7 @@ feature 'Acute Rehab' do
     click_link("Acute Rehab")
     expect(page).to have_content "New Acute Rehab"
 
-    fill_in "Episode date", with: Time.now
+    fill_in "Hospital admission", with: Time.now
 
     click_button("Create Acute rehab")
     current_url.should == edit_patient_url(patient1)

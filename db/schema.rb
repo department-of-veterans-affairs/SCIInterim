@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623191614) do
+ActiveRecord::Schema.define(version: 20150624231727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,18 +41,34 @@ ActiveRecord::Schema.define(version: 20150623191614) do
   create_table "acute_rehabs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "admission_date"
     t.integer  "start_asia"
     t.string   "start_fim"
     t.string   "start_swls"
-    t.string   "start_kurtzke_edss"
     t.string   "goal_fim"
-    t.date     "accute_rehab_completed"
     t.integer  "finish_asia"
     t.string   "finish_fim"
-    t.string   "finish_kurtzke_edss"
-    t.string   "finish_uspeq"
-    t.string   "discharge_location"
+    t.integer  "reason_for_admission"
+    t.string   "reason_for_admission_other"
+    t.date     "hospital_admission"
+    t.date     "acute_rehab_admission"
+    t.date     "hospital_discharge"
+    t.date     "acute_rehab_discharge"
+    t.integer  "residence_type"
+    t.string   "residence_name"
+    t.boolean  "discharge_to_community"
+    t.string   "start_sf8"
+    t.string   "finish_swls"
+    t.string   "finish_sf8"
+    t.date     "followup_90day_date"
+    t.string   "followup_90day_fim"
+    t.string   "followup_90day_swls"
+    t.string   "followup_90day_chart_sf"
+    t.string   "followup_90day_sf8"
+    t.date     "followup_1yr_date"
+    t.string   "followup_1yr_fim"
+    t.string   "followup_1yr_swls"
+    t.string   "followup_1yr_chart_sf"
+    t.string   "followup_1yr_sf8"
   end
 
   create_table "annual_evaluations", force: true do |t|
@@ -170,6 +186,16 @@ ActiveRecord::Schema.define(version: 20150623191614) do
     t.string   "outcome_coordinator"
     t.string   "last_name"
   end
+
+  create_table "transfers", force: true do |t|
+    t.integer  "acute_rehabs_id"
+    t.date     "in"
+    t.date     "out"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "transfers", ["acute_rehabs_id"], name: "index_transfers_on_acute_rehabs_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
