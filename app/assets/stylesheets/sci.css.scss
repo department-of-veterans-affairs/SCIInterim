@@ -1,0 +1,28 @@
+// Place all the styles related to the Patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.panel-form {
+	h4, .panel-title {
+    	color: #406e7b;
+    	size: 14px;
+    }
+    h4 {
+    	padding-top: 20px;
+	}
+	.panel-title {
+		font-weight: bold;
+	}	
+	.form-horizontal .control-label {
+		color: #4d4d4d;
+		font-weight: normal;
+		font-size: 14px;
+	}
+	.instrument {
+		background-color: whitesmoke;
+		border: 1px dashed #ccc;
+		text-align: center;
+		margin: 25px;
+		padding: 30px 40px;
+	}
+}
