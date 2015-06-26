@@ -10,29 +10,36 @@
     = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
 
     h4 ASIA &mdash; LOI
+    / TODO for instruments (@emilyville)
+        / - show most recent logged file and display date with link to it
+        / - show most recent score (i.e. A-C6)
+        / - figure out the right workflow for filling out the assessment. I think for ASIA it will involve a PDF, but for others it may be different
     .instrument
         h4
           | ASIA-LOI: A-C6  
           span.small = link_to "view record: 12/23/1987"
         h4
-            = link_to "+ add new assessment", new_patient_omr1_year_path(@patient)
+            = link_to "+ add new assessment", "#"
         / = f.input :level_of_injury
         / = f.input :asia_score
 
     h4 Administrative
-    = f.input :eval_offered, label: "Date Offered", :placeholder => "June 10, 2015", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Date of Completion", :placeholder => "June 21, 2015", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "June 21, 2016",  disabled: true, as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_offered, label: "Date Offered", :placeholder => "05/01/2015", as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_completed, label: "Date of Completion", :placeholder => "06/01/2015", as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "06/01/2016",  disabled: true, as: :string, input_html: { class: "datepicker" }
     
     = f.input :is_inpatient
 
     h4 Standard Instruments
+    / TODO for instruments (@emilyville)
+        / - make instruments work, see above
     .instrument
-        h4 = link_to "+ add CYH assessment", new_patient_omr1_year_path(@patient)
+        h4 = link_to "+ add CYH assessment", "#"
     .instrument
-        h4 = link_to "+ add FIM assessment", new_patient_omr1_year_path(@patient)
+        h4 = link_to "+ add FIM assessment", "#"
     .instrument
-        h4 = link_to "+ add Kurtzke EDSS assessment", new_patient_omr1_year_path(@patient)
+        h4 = link_to "+ add Kurtzke EDSS assessment", "#"
+    / Commented out for now, until intrument workflow is more understood and instruments are built
     / = f.input :cyh
     / = f.input :fim
     / = f.input :kurtzke_edss
