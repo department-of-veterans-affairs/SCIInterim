@@ -2,14 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.panel-form {
+.panel-form {	
 	h4, .panel-title {
     	color: #406e7b;
     	size: 14px;
+    	margin: 10px;
     }
-    h4 {
-    	padding-top: 20px;
-	}
+    .panel-body {
+    	padding: 40px;
+    }
 	.panel-title {
 		font-weight: bold;
 	}	
@@ -22,7 +23,15 @@
 		background-color: whitesmoke;
 		border: 1px dashed #ccc;
 		text-align: center;
-		margin: 25px;
-		padding: 30px 40px;
+		margin: 35px 10px;
+		padding: 20px 40px;
+	}
+	.instrument:hover {
+		background-color: #eee;
+		border: 1px dashed #ddd;
+	}	
+
+	a {
+		color: #808E8E;
 	}
 }
