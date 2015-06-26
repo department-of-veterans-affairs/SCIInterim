@@ -41,19 +41,35 @@ for i in 1..10
   admission_date = Faker::Date.between(dob+18.years, dod != nil ? dod : Time.new)
 
   ar_data = {
-      episode_date: admission_date.iso8601,
-
-      start_asia: start_asia,
-      start_fim: start_fim,
-      start_swls: Faker::Number.between(5, 35),
-      start_kurtzke_edss: start_kurtzke_edss,
-      goal_fim: Faker::Number.between(start_fim, 126),
-      #accute_rehab_completed: [true, false].sample,
-      finish_asia: [start_asia, ASIA.sample].sample,
-      finish_fim: Faker::Number.between(start_fim, 126),
-      finish_kurtzke_edss: Faker::Number.between(start_kurtzke_edss.floor, 100) / 1.0,
-      finish_uspeq: Faker::Company.name, # Todo: Replace this with a valid choice
-      discharge_location: ['Return to Community', 'VA Nursing Home', 'VA Hospital'].sample
+    episode_date: admission_date.iso8601,
+    start_asia: rand(10),
+    start_fim: rand(18..126),
+    start_swls: rand(5..35),
+    start_sf8: rand(5..35),
+    goal_fim: rand(18..126),
+    finish_asia: rand(10),
+    finish_fim: rand(18..126),
+    finish_swls: rand(5..35),
+    finish_sf8: rand(5..35),
+    reason_for_admission: AcuteRehab.reason_for_admissions.keys.sample,
+    reason_for_admission_other: Faker::Lorem.sentence(3, false, 10),
+    hospital_admission: Faker::Date.between(20.years.ago, Date.today),
+    acute_rehab_admission: Faker::Date.between(20.years.ago, Date.today),
+    acute_rehab_discharge: Faker::Date.between(20.years.ago, Date.today),
+    hospital_discharge: Faker::Date.between(20.years.ago, Date.today),
+    residence_type: AcuteRehab.residence_types.keys.sample,
+    residence_name: Faker::Company.name,
+    discharge_to_community: [true, false].sample,
+    followup_90day_date: Faker::Date.between(20.years.ago, Date.today),
+    followup_90day_fim: rand(18..126),
+    followup_90day_swls: rand(5..35),
+    followup_90day_chart_sf: rand(5..35),
+    followup_90day_sf8: rand(5..35),
+    followup_1yr_date: Faker::Date.between(20.years.ago, Date.today),
+    followup_1yr_fim: rand(18..126),
+    followup_1yr_swls: rand(5..35),
+    followup_1yr_chart_sf: rand(5..35),
+    followup_1yr_sf8: rand(5..35)
   }
 
   acute_rehab = AcuteRehab.new(ar_data)
