@@ -33,7 +33,7 @@
             = "#{@patient.first_name} #{@patient.last_name}"
           .list-group-item
             strong ID:
-            = @patient.patient_id
+            = @patient.id
           .list-group-item
             strong SSN:
             = @patient.ssn
@@ -41,23 +41,8 @@
             strong DOB:
             = @patient.dob
           .list-group-item
-            strong Job Status:
-            = @patient.employment_status
-          .list-group-item
             strong Education:
             = @patient.highest_level_of_education
-          .list-group-item
-            strong Service:
-            = @patient.registration_status
-          .list-group-item
-            strong SCI Network:
-            = @patient.sci_network
-          .list-group-item
-            strong DOD:
-            = @patient.date_of_death
-          .list-group-item
-            strong Coordinator:
-            = @patient.outcome_coordinator
         .button.btn.btn-default.pull-right onclick="show_unicorn();" Rainbows and Unicorns
 
 = render template: "layouts/application"

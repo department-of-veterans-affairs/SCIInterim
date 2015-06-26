@@ -3,8 +3,6 @@
 
 ASIA = ["High-tetra", "Low-tetra", "parapalegia", "multiple scaroliosis"]
 
-Patient.create!(patient_id:99999, first_name:'Albert', last_name: 'Wong', ssn:'443-22-1234', dob:'02/04/1961')
-
 require 'rubygems'
 require 'faker'
 
@@ -15,21 +13,59 @@ def date_between(from=0.0, to=Time.now)
   Time.at(from + rand * (to.to_f - from.to_f)).to_date
 end
 
-for i in 1..10
+for i in 1..50
   dob = Faker::Date.between(80.years.ago, 18.years.ago)
   dod = [Faker::Date.between(dob+20.years, Time.new), nil, nil, nil].sample
   patient_data = {
-      patient_id: i,
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      ssn:  Faker::Number.number(3) + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
-      dob:  dob,
-      employment_status: [ :Employed, :Unemployed ].sample,
-      highest_level_of_education: [ :"No Diploma", :"High School", :"Some College", :"Graduate School" ].sample,
-      registration_status: [ :"Currently Served", :"Not Served" ].sample,
-      date_of_death: [Faker::Date.between(dob+20.years, Time.new), nil, nil, nil].sample,
-      sci_network: [true, false].sample,
-      outcome_coordinator: Faker::Name.name,
+    scido_id: rand(200000),
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name + 'Fake',
+    ssn: ["000", "666"].sample + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
+    dob: Faker::Date.between(100.years.ago, Date.today),
+    highest_level_of_education: Patient.highest_level_of_educations.keys.sample,
+    occupation_at_time_of_injury: Faker::Lorem.sentence(3),
+    gender: Patient.genders.keys.sample,
+    # TODO(awong): Add address 
+    my_healthevet_messaging: [true, false].sample,
+    sci_service_connected: [true, false].sample,
+    travel_status: Patient.travel_statuses.keys.sample,
+    benefits_waiver_exemption_date: Faker::Date.between(100.years.ago, Date.today),
+    va_status: Patient.va_statuses.keys.sample,
+    assigned_vamc: rand(10),
+    assigned_sci_hub: rand(10),
+    assigned_sci_hub_physician_first_name: Faker::Name.first_name,
+    assigned_sci_hub_physician_last_name: Faker::Name.last_name,
+    preferred_sci_hub: rand(10),
+    preferred_sci_hub_physician_first_name: Faker::Name.first_name,
+    preferred_sci_hub_physician_last_name: Faker::Name.last_name,
+    non_va_facility_name: Faker::Company.name,
+    non_va_facility_contact: Faker::Name.name,
+    non_va_facility_phone_number: Faker::PhoneNumber.phone_number,
+    non_va_facility_fax_number: Faker::PhoneNumber.phone_number,
+    non_va_facility_pcp_first_name: Faker::Name.first_name,
+    non_va_facility_pcp_last_name: Faker::Name.last_name,
+    va_facility: Faker::Company.name,
+    va_facility_pcp_first_name: Faker::Name.first_name,
+    va_facility_pcp_last_name: Faker::Name.last_name,
+    theater_of_service: Patient.theater_of_services.keys.sample,
+    sci_arrival_date: Faker::Date.between(100.years.ago, Date.today),
+    is_injured_on_active_duty: [true, false].sample,
+    sci_type: Patient.sci_types.keys.sample,
+    date_of_injury: Faker::Date.between(100.years.ago, Date.today),
+    level_of_injury: Patient.level_of_injuries.keys.sample,
+    asia_level: Patient.asia_levels.keys.sample,
+    is_asia_complete: [true, false].sample,
+    current_occupation: Faker::Lorem.sentence(1, false, 4),
+    # TODO(awong): Move residence type into a concer.
+    residence_type: AcuteRehab.residence_types.keys.sample,
+    residence_name: Faker::Company.name,
+    has_caregiver: [true, false].sample,
+    # TODO(awong): Create a caregiver_address 
+    is_receiving_non_va_care: [true, false].sample,
+    non_va_care_hours_per_month: rand(1000),
+    non_va_caregiver_receiving_reimbursement: Faker::Company.name,
+    last_fee_basis_evaluation_date: Faker::Date.between(100.years.ago, Date.today),
+    is_receiving_hhha: [true, false].sample,
   }
   patient = Patient.create!(patient_data)
 

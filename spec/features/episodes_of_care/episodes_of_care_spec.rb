@@ -22,7 +22,7 @@ feature 'Episodes of Care' do
 
     ar = create(:acute_rehab)
 
-    expect(page).to have_content "Basic Patient Info"
+    expect(page).to have_content "Personal Information"
     expect(page).to have_content patient1.ssn
   end
 end

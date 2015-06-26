@@ -16,8 +16,8 @@ feature 'Patient Registry' do
   #   Then I see all patients in the database.
   scenario 'See all patients in the database' do
     sign_in_user
-    patient1 = create(:patient, patient_id: 1)
-    patient2 = create(:patient, patient_id: 2)
+    patient1 = create(:patient, id: 1)
+    patient2 = create(:patient, id: 2)
 
     visit patients_path
 

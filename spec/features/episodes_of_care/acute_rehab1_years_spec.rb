@@ -20,7 +20,7 @@ feature 'Acute Rehab 1 Year Followup' do
     patient1 = create(:patient)
     visit edit_patient_path(patient1)
 
-    expect(page).to have_content "Basic Patient Info"
+    expect(page).to have_content "Personal Information"
     expect(page).to have_content patient1.ssn
 
     click_link("Acute Rehab 1 year")

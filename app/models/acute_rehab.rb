@@ -12,10 +12,11 @@ class AcuteRehab < ActiveRecord::Base
   enum residence_type: {
     "Own" => 1,
     "Rent" => 2,
-    "Assisted living" => 3,
-    "Nursing home" => 4,
-    "Shelter" => 5,
-    "Group Home" => 6,
-    "Board and Care" => 7
+    "Homeless" => 3,
+    "Assisted living" => 4,
+    "Nursing home" => 5,
+    "Shelter" => 6,
+    "Group Home" => 7,
+    "Board and Care" => 8,
   }
 end

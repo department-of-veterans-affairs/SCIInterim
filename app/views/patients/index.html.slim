@@ -20,7 +20,7 @@ table class='table table-striped table-hover'
     hr
     - @patients.each do |patient|
         tr class="clickable-row" data-href=edit_patient_path(patient)
-          td = patient.patient_id
+          td = patient.id
           td: a href="#{edit_patient_path(patient)}"  = patient.first_name
           td: a href="#{edit_patient_path(patient)}"  = patient.last_name
           td = patient.ssn
