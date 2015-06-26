@@ -21,10 +21,12 @@ class PatientsController < ApplicationController
 
   def new
     @patient = Patient.new
+    @patient_nav = false
     respond_with(@patient)
   end
 
   def edit
+    @patient_nav = true
     render layout: 'patient_edit'
   end
 

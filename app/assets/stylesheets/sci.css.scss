@@ -3,18 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #patient-nav {
-	background: #BBBBBB;
-	border-radius: 0;
+  background: #E7E7E7;
+  border-radius: 0;
   margin-top: -20px;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
 
   li {
-  	margin-right: 30px;
+    margin-right: 30px;
 
-  	&.top {
-  		margin-top: 8px;
-  		line-height: 30px;
-  	}
+    &.top {
+      margin-top: 8px;
+      line-height: 30px;
+    }
   }
 }

@@ -11,7 +11,7 @@ html
   body
     .main-container
       = render partial: "layouts/nav"
-      - if defined? (@patient.first_name)
+      - if @patient_nav == true
         = render partial: "layouts/patientnav"
       - else
       / Main

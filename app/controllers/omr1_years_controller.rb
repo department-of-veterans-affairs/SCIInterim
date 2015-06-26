@@ -9,6 +9,7 @@ class Omr1YearsController < ApplicationController
 
   def new
     @omr1_year = Omr1Year.new
+    @patient_nav = true
     respond_with(@omr1_year)
   end
 

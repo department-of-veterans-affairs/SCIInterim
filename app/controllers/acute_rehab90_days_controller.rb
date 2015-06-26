@@ -9,6 +9,7 @@ class AcuteRehab90DaysController < ApplicationController
 
   def new
     @acute_rehab90_day = AcuteRehab90Day.new
+    @patient_nav = true
     respond_with(@acute_rehab90_day)
   end
 
