@@ -26,7 +26,7 @@ feature 'Annual Evaluations' do
     click_link("Annual Eval")
     expect(page).to have_content "New Annual Evaluation"
 
-    click_button("Save Annual evaluation")
+    click_button("Save Annual Evaluation")
     current_url.should == edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify annual evaluation shows.
