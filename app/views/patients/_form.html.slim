@@ -1,72 +1,125 @@
 = wrapped_form_for(@patient) do |f|
   = flash_messages
-  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist" 
+  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist"
     .panel.panel-default
-      #headingBasic.panel-heading role="tab" 
+      #headingPersonalInfo.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
-            | Basic Patient Info
-      #basicInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+          a aria-controls="personalInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#personalInfo"
+            | Personal Information
+      #personalInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          - for field_info in Patient.basic_fields do
-            - case field_info[1]
-              - when :date
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
-              - when :enum
-                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
-              - else
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
-
-          .row
-            .col-sm-offset-3.col-sm-9.form-actions
-              = f.submit class:"btn btn-primary"
-
+          = f.input :first_name
+          = f.input :last_name
+          = f.input :dob, as: :string, input_html: { class: "datepicker" }
+          p Computer Age goes here
+          = f.input :gender, collection: Patient.genders.keys
+          = f.input :scido_id, label: "SCIDO Patient Id", readonly: true
 
     .panel.panel-default
-      #headingAssess.panel-heading role="tab" 
+      #headingContactInfo.panel-heading role="tab"
         h4.panel-title
-          a.collapsed aria-controls="assessInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#assessInfo" 
-            | Assessment Info
-      #assessInfo.panel-collapse.collapse aria-labelledby="headingAssess" role="tabpanel" 
+          a.collapsed aria-controls="contactInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
+            | Contact Information
+      #contactInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          - for field_info in Patient.assessment_fields do
-            - case field_info[1]
-              - when :date
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
-              - when :enum
-                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
-              - else
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
-          .row
-            .col-sm-offset-3.col-sm-9.form-actions
-              = f.submit class:"btn btn-primary"
+          p Patient contact info here.
+          = f.input :my_healthevet_messaging
+          = f.input :sci_service_connected
 
     .panel.panel-default
-      #detailThree.panel-heading role="tab" 
+      #headingTravelEligibility.panel-heading role="tab"
         h4.panel-title
-          a.collapsed aria-controls="detailInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#detailInfo" 
-            | Detailed Patient Info
-      #detailInfo.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
+          a.collapsed aria-controls="travelEligibility" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
+            | Travel Eligibility
+      #travelEligibility.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          - for field_info in Patient.detailed_fields do
-            - case field_info[1]
-              - when :date
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0]), as: :string, input_html: { class: "datepicker" }
-              - when :enum
-                = f.input field_info[0], collection: Patient.send(field_info[0].to_s.pluralize).keys
-              - else
-                = f.input field_info[0], label: Patient.to_display_name(field_info[0])
-          .row
-            .col-sm-offset-3.col-sm-9.form-actions
-              = f.submit class:"btn btn-primary"
+          = f.input :travel_status, collection: Patient.travel_statuses.keys
+          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+
+    .panel.panel-default
+      #headingVAStatus.panel-heading role="tab"
+        h4.panel-title
+          a.collapsed aria-controls="vaStatus" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
+            | VA Status
+      #vaStatus.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
+        .panel-body
+          = f.input :va_status, collection: Patient.va_statuses.keys
+          = f.input :assigned_vamc
+          = f.input :assigned_sci_hub
+          = f.input :assigned_sci_hub_physician_first_name
+          = f.input :assigned_sci_hub_physician_last_name
+          = f.input :preferred_sci_hub
+          = f.input :preferred_sci_hub_physician_first_name
+          = f.input :preferred_sci_hub_physician_last_name
+
+    .panel.panel-default
+      #headingPrimaryCare.panel-heading role="tab"
+        h4.panel-title
+          a.collapsed aria-controls="primaryCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
+            | Primary Care
+      #primaryCare.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
+        .panel-body
+          = f.input :non_va_facility_name
+          = f.input :non_va_facility_contact
+          = f.input :non_va_facility_phone_number
+          = f.input :non_va_facility_fax_number
+          = f.input :non_va_facility_pcp_first_name
+          = f.input :non_va_facility_pcp_last_name
+          = f.input :va_facility
+          = f.input :va_facility_pcp_first_name
+          = f.input :va_facility_pcp_last_name
+
+    .panel.panel-default
+      #headingSCIDInfo.panel-heading role="tab"
+        h4.panel-title
+          a.collapsed aria-controls="scidInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
+            | SCI/D Information
+      #scidInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
+        .panel-body
+          = f.input :theater_of_service, collection: Patient.theater_of_services.keys
+          = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
+          = f.input :is_injured_on_active_duty
+          = f.input :sci_type, collection: Patient.sci_types.keys
+          = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
+          = f.input :level_of_injury, collection: Patient.level_of_injuries.keys
+          = f.input :asia_level, collection: Patient.asia_levels.keys
+          = f.input :is_asia_complete
+
+    .panel.panel-default
+      #headingPsychosocial.panel-heading role="tab"
+        h4.panel-title
+          a.collapsed aria-controls="psychosocial" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
+            | Psychosocial
+      #psychosocial.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
+        .panel-body
+          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys
+          = f.input :occupation_at_time_of_injury
+          = f.input :current_occupation
+
+    .panel.panel-default
+      #headingResidencyAndCaregiver.panel-heading role="tab"
+        h4.panel-title
+          a aria-controls="residencyAndCaregiver" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
+            | Residency and Caregiver
+      #residencyAndCaregiver.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
+        .panel-body
+          = f.input :residence_type
+          = f.input :residence_name
+          = f.input :has_caregiver
+          p Add Address here.
+          = f.input :is_receiving_non_va_care
+          = f.input :non_va_care_hours_per_month
+          = f.input :non_va_caregiver_receiving_reimbursement
+          = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }
+          = f.input :is_receiving_hhha
 
     - if @patient
       .panel.panel-default
-        #detailThree.panel-heading role="tab" 
+        #detailThree.panel-heading role="tab"
           h4.panel-title
-            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare" 
+            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare"
               | Episodes Of Care
-        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
+        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel"
           .panel-body
             table
               - for episode in @patient.episode_of_cares do

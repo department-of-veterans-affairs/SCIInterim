@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624231727) do
+ActiveRecord::Schema.define(version: 20150625235826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,19 @@ ActiveRecord::Schema.define(version: 20150624231727) do
     t.string   "followup_1yr_swls"
     t.string   "followup_1yr_chart_sf"
     t.string   "followup_1yr_sf8"
+  end
+
+  create_table "addresses", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.integer  "state"
+    t.integer  "zip"
+    t.integer  "zip_plus4"
+    t.string   "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "annual_evaluations", force: true do |t|
@@ -150,41 +163,56 @@ ActiveRecord::Schema.define(version: 20150624231727) do
   end
 
   create_table "patients", force: true do |t|
-    t.integer  "patient_id"
+    t.integer  "scido_id"
     t.string   "first_name"
     t.string   "ssn"
     t.date     "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sci_region"
     t.integer  "asia_level"
-    t.string   "asia_impairment"
-    t.string   "bladder_drainage"
-    t.integer  "employment_status"
     t.integer  "highest_level_of_education"
-    t.integer  "registration_status"
-    t.boolean  "sci_network"
-    t.date     "sci_network_date_changed"
-    t.string   "type_of_etiology"
-    t.string   "etiology"
-    t.string   "other_etiology"
-    t.date     "date_of_onset"
-    t.string   "brain_injury"
-    t.string   "other_injury"
-    t.string   "annual_eval_vamc"
-    t.string   "primary_care_vamc"
-    t.string   "additional_care_vamc"
-    t.string   "primary_care_provider"
-    t.date     "annual_eval_received"
-    t.date     "annual_eval_next_due"
-    t.string   "initial_rehab_site"
-    t.date     "initial_rehab_discharge"
-    t.date     "date_first_seen_in_va_sci"
     t.string   "occupation_at_time_of_injury"
-    t.boolean  "service_connected"
-    t.date     "date_of_death"
-    t.string   "outcome_coordinator"
     t.string   "last_name"
+    t.integer  "gender"
+    t.integer  "address"
+    t.boolean  "my_healthevet_messaging"
+    t.boolean  "sci_service_connected"
+    t.integer  "travel_status"
+    t.date     "benefits_waiver_exemption_date"
+    t.integer  "va_status"
+    t.integer  "assigned_vamc"
+    t.integer  "assigned_sci_hub"
+    t.string   "assigned_sci_hub_physician_first_name"
+    t.string   "assigned_sci_hub_physician_last_name"
+    t.integer  "preferred_sci_hub"
+    t.string   "preferred_sci_hub_physician_first_name"
+    t.string   "preferred_sci_hub_physician_last_name"
+    t.string   "non_va_facility_name"
+    t.string   "non_va_facility_contact"
+    t.string   "non_va_facility_phone_number"
+    t.string   "non_va_facility_fax_number"
+    t.string   "non_va_facility_pcp_first_name"
+    t.string   "non_va_facility_pcp_last_name"
+    t.string   "va_facility"
+    t.string   "va_facility_pcp_first_name"
+    t.string   "va_facility_pcp_last_name"
+    t.integer  "theater_of_service"
+    t.date     "sci_arrival_date"
+    t.boolean  "is_injured_on_active_duty"
+    t.integer  "sci_type"
+    t.date     "date_of_injury"
+    t.integer  "level_of_injury"
+    t.boolean  "is_asia_complete"
+    t.string   "current_occupation"
+    t.integer  "residence_type"
+    t.string   "residence_name"
+    t.boolean  "has_caregiver"
+    t.integer  "caregiver_address"
+    t.boolean  "is_receiving_non_va_care"
+    t.integer  "non_va_care_hours_per_month"
+    t.string   "non_va_caregiver_receiving_reimbursement"
+    t.date     "last_fee_basis_evaluation_date"
+    t.boolean  "is_receiving_hhha"
   end
 
   create_table "transfers", force: true do |t|
@@ -216,5 +244,8 @@ ActiveRecord::Schema.define(version: 20150624231727) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
+
+  add_foreign_key "patients", "addresses", name: "patients_address_fk", column: "address", dependent: :delete
+  add_foreign_key "patients", "addresses", name: "patients_caregiver_address_fk", column: "caregiver_address", dependent: :delete
 
 end

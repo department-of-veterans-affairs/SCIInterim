@@ -20,7 +20,7 @@ feature 'OMR 90 Day Followup' do
     patient1 = create(:patient)
     visit edit_patient_path(patient1)
 
-    expect(page).to have_content "Basic Patient Info"
+    expect(page).to have_content "Personal Information"
     expect(page).to have_content patient1.ssn
 
     click_link("OMR 90 day")
