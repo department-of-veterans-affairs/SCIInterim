@@ -1,4 +1,6 @@
 - content_for :application_body do
-  
-= render template: "layouts/application"
 
+- content_for :nav_patient do
+  = render partial: "layouts/patientnav"
+
+= render template: "layouts/application"

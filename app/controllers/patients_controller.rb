@@ -15,18 +15,15 @@ class PatientsController < ApplicationController
     else
       @patients = Patient.all
     end
-
     respond_with(@patients)
   end
 
   def new
     @patient = Patient.new
-    @patient_nav = false
     respond_with(@patient)
   end
 
   def edit
-    @patient_nav = true
     render layout: 'patient_edit'
   end
 

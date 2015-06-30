@@ -11,8 +11,8 @@ html
   body
     .main-container
       = render partial: "layouts/nav"
-      - if @patient_nav == true
-        = render partial: "layouts/patientnav"
+      - if content_for?(:nav_patient) 
+        = yield(:nav_patient)
       - else
       / Main
       .container
