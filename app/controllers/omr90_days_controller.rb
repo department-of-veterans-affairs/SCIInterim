@@ -9,7 +9,6 @@ class Omr90DaysController < ApplicationController
 
   def new
     @omr90_day = Omr90Day.new
-    @patient_nav = true
     respond_with(@omr90_day)
   end
 

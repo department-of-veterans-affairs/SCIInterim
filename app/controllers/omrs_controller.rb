@@ -9,7 +9,6 @@ class OmrsController < ApplicationController
 
   def new
     @omr = Omr.new
-    @patient_nav = true
     respond_with(@omr)
   end
 

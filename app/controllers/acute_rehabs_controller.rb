@@ -9,7 +9,6 @@ class AcuteRehabsController < ApplicationController
 
   def new
     @acute_rehab = AcuteRehab.new
-    @patient_nav = true
     respond_with(@acute_rehab)
   end
 

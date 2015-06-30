@@ -9,7 +9,6 @@ class AnnualEvaluationsController < ApplicationController
 
   def new
     @annual_evaluation = AnnualEvaluation.new
-    @patient_nav = true
     respond_with(@annual_evaluation)
   end
 
