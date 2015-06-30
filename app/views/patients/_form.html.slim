@@ -1,12 +1,12 @@
 = wrapped_form_for(@patient) do |f|
   = flash_messages
-  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist" 
+  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist"
     .panel.panel-default
-      #headingPersonalInfo.panel-heading role="tab" 
+      #headingPersonalInfo.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a aria-controls="personalInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#personalInfo"
             | Personal Information
-      #personalInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #personalInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :first_name
           = f.input :last_name
@@ -15,33 +15,33 @@
           = f.input :gender, collection: Patient.genders.keys
           = f.input :scido_id, label: "SCIDO Patient Id", readonly: true
 
-      .panel.panel-default
-      #headingContactInfo.panel-heading role="tab" 
+    .panel.panel-default
+      #headingContactInfo.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="contactInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
             | Contact Information
-      #contactInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #contactInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           p Patient contact info here.
           = f.input :my_healthevet_messaging
           = f.input :sci_service_connected
 
-      .panel.panel-default
-      #headingTravelEligibility.panel-heading role="tab" 
+    .panel.panel-default
+      #headingTravelEligibility.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="travelEligibility" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
             | Travel Eligibility
-      #travelEligibility.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #travelEligibility.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :travel_status, collection: Patient.travel_statuses.keys
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
 
-      .panel.panel-default
-      #headingVAStatus.panel-heading role="tab" 
+    .panel.panel-default
+      #headingVAStatus.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="vaStatus" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
             | VA Status
-      #vaStatus.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #vaStatus.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :va_status, collection: Patient.va_statuses.keys
           = f.input :assigned_vamc
@@ -52,12 +52,12 @@
           = f.input :preferred_sci_hub_physician_first_name
           = f.input :preferred_sci_hub_physician_last_name
 
-      .panel.panel-default
-      #headingPrimaryCare.panel-heading role="tab" 
+    .panel.panel-default
+      #headingPrimaryCare.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="primaryCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
             | Primary Care
-      #primaryCare.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #primaryCare.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :non_va_facility_name
           = f.input :non_va_facility_contact
@@ -69,12 +69,12 @@
           = f.input :va_facility_pcp_first_name
           = f.input :va_facility_pcp_last_name
 
-      .panel.panel-default
-      #headingSCIDInfo.panel-heading role="tab" 
+    .panel.panel-default
+      #headingSCIDInfo.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="scidInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
             | SCI/D Information
-      #scidInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #scidInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :theater_of_service, collection: Patient.theater_of_services.keys
           = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
@@ -85,23 +85,23 @@
           = f.input :asia_level, collection: Patient.asia_levels.keys
           = f.input :is_asia_complete
 
-      .panel.panel-default
-      #headingPsychosocial.panel-heading role="tab" 
+    .panel.panel-default
+      #headingPsychosocial.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a.collapsed aria-controls="psychosocial" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
             | Psychosocial
-      #psychosocial.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #psychosocial.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys
           = f.input :occupation_at_time_of_injury
           = f.input :current_occupation
 
-      .panel.panel-default
-      #headingResidencyAndCaregiver.panel-heading role="tab" 
+    .panel.panel-default
+      #headingResidencyAndCaregiver.panel-heading role="tab"
         h4.panel-title
-          a aria-controls="basicInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#basicInfo" 
+          a aria-controls="residencyAndCaregiver" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
             | Residency and Caregiver
-      #residencyAndCaregiver.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel" 
+      #residencyAndCaregiver.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
           = f.input :residence_type
           = f.input :residence_name
@@ -115,11 +115,11 @@
 
     - if @patient
       .panel.panel-default
-        #detailThree.panel-heading role="tab" 
+        #detailThree.panel-heading role="tab"
           h4.panel-title
-            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare" 
+            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare"
               | Episodes Of Care
-        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel" 
+        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel"
           .panel-body
             table
               - for episode in @patient.episode_of_cares do
