@@ -5,6 +5,7 @@
 .navbar-inverse#sci-nav {
   background-color: #1D3D46;
   border-color: #12252B;
+  border-radius: 0px;
 
 // .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
   li a, .navbar-brand, .navbar-text {
@@ -24,23 +25,24 @@
   }
 }
 
-.panel-form.panel.panel-default { 
+.panel.panel-default { 
   border-radius: 0px;
   border-color: #ddd;
   
   .panel-heading {
     background-color: #EDF1F2;
   }
-
-  h4, .panel-title {
+  .panel-title {
     color: #1D3D46;
     size: 14px;
     margin: 10px;
     border: #1D3D46;
   }
-
-  .panel-body {
-    padding: 40px;
+  h4 {
+    color: #808E8E;
+    size: 14px;
+    margin: 10px;
+    border: #1D3D46;
   }
 
   .panel-title {
@@ -70,6 +72,10 @@
     color: #808E8E;
   }
 } 
+
+.panel.panel-default.patient-sidebar {
+    background-color: #EDF1F2;
+}
 
 #patient-nav {
   background: #EDF1F2;

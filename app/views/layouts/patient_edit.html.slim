@@ -3,44 +3,68 @@
 - content_for :nav_patient do
   = render partial: "layouts/patientnav"
 
-  / .container 
-  /   .patient-info
-  /   .row
-  /     .patient-forms.col-md-9
-  /       == content_for?(:form) ? yield(:form) : yield
+  .container 
+    .row
+      .col-md-9
+        == content_for?(:form) ? yield(:form) : yield
 
-  /     .patient-nav.col-md-3
-  /       .patient-data.list-group.panel.panel-default
-  /         .panel-heading
-  /           strong Patient Name:
-  /           / = @patient.first_name
-  /           | &nbsp;
-  /           / = @patient.last_name
-  /         .list-group-item
-  /           strong ID:
-  /           / = @patient.patient_id
-  /         .list-group-item
-  /           strong SSN:
-  /           / = @patient.ssn
-  /         .list-group-item
-  /           strong DOB:
-  /           / = @patient.dob
-  /         .list-group-item
-  /           strong Job Status:
-  /           / = @patient.employment_status
-  /         .list-group-item
-  /           strong Education:
-  /           / = @patient.highest_level_of_education
-  /         .list-group-item
-  /           strong Service:
-  /           / = @patient.registration_status
-  /         .list-group-item
-  /           strong SCI Network:
-  /           / = @patient.sci_network
-  /         .list-group-item
-  /           strong DOD:
-  /           / = @patient.date_of_death
-  /         .list-group-item
-  /           strong Coordinator:
-  /           / = @patient.outcome_coordinator
+      .col-md-3
+        .panel.panel-default.patient-sidebar
+          .panel-body.row
+            .col-md-12
+              h5 Summary of Assessments
+            .col-md-5
+              p ASIA B - C7
+            .col-md-7
+              p.pull-left
+                a 3/25/2015
+          .panel-body.row
+            .col-md-5
+              p FIM 1: 87
+              p FIM 2: 82
+              p FIM 3: 80
+            .col-md-7
+              p.pull-left
+                a 3/25/2015
+              p.pull-left
+                a 3/25/2015
+              p.pull-left
+                a 3/25/2015
+          .panel-body.row
+            .col-md-5
+              p CHART - SF
+            .col-md-7
+              p.pull-left
+                a 3/25/2015
+          .panel-body.row
+            .col-md-5
+              p SWLS 6-10
+            .col-md-7
+              p.pull-left
+                a 3/25/2015
+
+      .col-md-3
+        .panel.panel-default.patient-sidebar
+          .panel-body.row
+            .col-md-12
+              h5 Recent Episodes of Care
+          .panel-body.row
+            .col-md-7
+              p Annual Evaluation
+            .col-md-5
+              p.pull-left
+                a 3/25/2015
+          .panel-body.row
+            .col-md-7
+              p Acute Rehab
+            .col-md-5
+              p.pull-left
+                a 3/25/2015
+          .panel-body.row
+            .col-md-7
+              p Initial Registration
+            .col-md-5
+              p.pull-left
+                a 3/25/2015
+
 = render template: "layouts/application"
