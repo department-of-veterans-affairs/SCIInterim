@@ -1,0 +1,27 @@
+/ navbar
+nav.navbar.navbar-default
+  .container
+    /! Brand and toggle get grouped for better mobile display
+    .navbar-header
+      button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/" SCI Interim
+    /! Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li role="presentation"
+          = link_to "Add new Patient", new_patient_path
+        li
+          = link_to 'SCI Patient Registry', patients_path
+        li
+          = link_to 'Reports', reports_path
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li role="presentation"
+            p.navbar-text
+              = "Signed in #{current_user.email}"
+          li
+            = link_to 'Logout', destroy_user_session_path, :method => :delete

@@ -15,7 +15,6 @@ class PatientsController < ApplicationController
     else
       @patients = Patient.all
     end
-
     respond_with(@patients)
   end
 

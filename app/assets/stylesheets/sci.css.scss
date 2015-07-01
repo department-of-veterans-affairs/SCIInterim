@@ -1,37 +1,20 @@
-// Place all the styles related to the Patients controller here.
+// Place all the styles related to the reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.panel-form {	
-	h4, .panel-title {
-		color: #406e7b;
-		size: 14px;
-		margin: 10px;
-	}
-	.panel-body {
-		padding: 40px;
-	}
-	.panel-title {
-		font-weight: bold;
-	}	
-	.form-horizontal .control-label {
-		color: #4d4d4d;
-		font-weight: normal;
-		font-size: 14px;
-	}
-	.instrument {
-		background-color: whitesmoke;
-		border: 1px dashed #ccc;
-		text-align: center;
-		margin: 35px 10px;
-		padding: 20px 40px;
-	}
-	.instrument:hover {
-		background-color: #eee;
-		border: 1px dashed #ddd;
-	}	
+#patient-nav {
+  background: #E7E7E7;
+  border-radius: 0;
+  margin-top: -20px;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 
-	a {
-		color: #808E8E;
-	}
+  li {
+    margin-right: 30px;
+
+    &.top {
+      margin-top: 8px;
+      line-height: 30px;
+    }
+  }
 }
