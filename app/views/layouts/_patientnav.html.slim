@@ -6,23 +6,25 @@ nav.navbar.navbav-default#patient-nav
         ul.nav.nav-pills 
           li 
             | SSN:
-            = @patient.ssn
+            strong = @patient.ssn
       .col-md-3
         ul.nav.nav-pills 
           li.top
             | DOB: 
-            = @patient.dob
+            strong = @patient.dob
           li
             | SCI Identification:
-            = @patient.scido_id
+            strong = @patient.scido_id
       .col-md-3
         ul.nav.nav-pills 
           li.top
-            | VA Status:
-            = @patient.va_status
+            | Patient Status:
+            strong Registered, 2001
+            / = @patient.va_status
           li 
             | SCI Type:
-            = @patient.sci_type
+            / = @patient.sci_type
+            strong High Tetraplegic
       .col-md-3
         .patient-info
             h2.btn-group.pull-right

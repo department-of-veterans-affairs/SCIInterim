@@ -2,15 +2,93 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.navbar-inverse#sci-nav {
+  background-color: #1D3D46;
+  border-color: #12252B;
+
+// .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
+  li a, .navbar-brand, .navbar-text {
+    color: #BFC5C6;
+  }
+
+  .navbar-text {
+    opacity: .5;
+  }
+
+  .active a, .navbar-brand.active a {
+      color: #DFEDF1;
+  }
+
+  .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: #12252B;
+  }
+}
+
+.panel-form.panel.panel-default { 
+  border-radius: 0px;
+  border-color: #ddd;
+  
+  .panel-heading {
+    background-color: #EDF1F2;
+  }
+
+  h4, .panel-title {
+    color: #1D3D46;
+    size: 14px;
+    margin: 10px;
+    border: #1D3D46;
+  }
+
+  .panel-body {
+    padding: 40px;
+  }
+
+  .panel-title {
+    font-weight: 500;
+  } 
+
+  .form-horizontal .control-label {
+    color: #4d4d4d;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .instrument {
+    background-color: #EDF1F2;
+    border: 1px dashed #ccc;
+    text-align: center;
+    margin: 35px 10px;
+    padding: 20px 40px;
+  }
+
+  .instrument:hover {
+    background-color: #DFEDF1;
+    border: 1px dashed #ddd;
+  } 
+  
+  a {
+    color: #808E8E;
+  }
+} 
+
 #patient-nav {
-  background: #E7E7E7;
+  background: #EDF1F2;
+  padding-top: 10px;
   border-radius: 0;
   margin-top: -20px;
   border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
+  min-height: 90px;
+  border-bottom: 1px solid #ddd;
+
+  h4 {
+    color: #1D3D46;
+    } 
 
   li {
     margin-right: 30px;
+    color: #1D3D46;
+    font-size: 12px;
+    opacity: .8;
 
     &.top {
       margin-top: 8px;

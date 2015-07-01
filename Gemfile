@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.2"
+# ruby "2.1.2"
 
 gem 'active_record-acts_as'
 gem 'autoprefixer-rails'  # We want this for handling vender prefix on css.

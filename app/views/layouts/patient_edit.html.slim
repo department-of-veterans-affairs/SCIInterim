@@ -3,4 +3,44 @@
 - content_for :nav_patient do
   = render partial: "layouts/patientnav"
 
+  / .container 
+  /   .patient-info
+  /   .row
+  /     .patient-forms.col-md-9
+  /       == content_for?(:form) ? yield(:form) : yield
+
+  /     .patient-nav.col-md-3
+  /       .patient-data.list-group.panel.panel-default
+  /         .panel-heading
+  /           strong Patient Name:
+  /           / = @patient.first_name
+  /           | &nbsp;
+  /           / = @patient.last_name
+  /         .list-group-item
+  /           strong ID:
+  /           / = @patient.patient_id
+  /         .list-group-item
+  /           strong SSN:
+  /           / = @patient.ssn
+  /         .list-group-item
+  /           strong DOB:
+  /           / = @patient.dob
+  /         .list-group-item
+  /           strong Job Status:
+  /           / = @patient.employment_status
+  /         .list-group-item
+  /           strong Education:
+  /           / = @patient.highest_level_of_education
+  /         .list-group-item
+  /           strong Service:
+  /           / = @patient.registration_status
+  /         .list-group-item
+  /           strong SCI Network:
+  /           / = @patient.sci_network
+  /         .list-group-item
+  /           strong DOD:
+  /           / = @patient.date_of_death
+  /         .list-group-item
+  /           strong Coordinator:
+  /           / = @patient.outcome_coordinator
 = render template: "layouts/application"
