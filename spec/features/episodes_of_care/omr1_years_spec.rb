@@ -29,7 +29,7 @@ feature 'OMR 1 Year Followup' do
     fill_in "Episode date", with: Time.now
 
     click_button("Create Omr1 year")
-    current_url.should == edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify OMR 1 year shows.
   end

@@ -29,7 +29,7 @@ feature 'Acute Rehab 1 Year Followup' do
     fill_in "Episode date", with: Time.now
 
     click_button("Create Acute rehab1 year")
-    current_url.should == edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify Acute Rehab 1 year shows.
   end

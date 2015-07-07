@@ -29,7 +29,7 @@ feature 'OMR' do
     fill_in "Episode date", with: Time.now
 
     click_button("Create Omr")
-    current_url.should == edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify OMR shows.
   end
