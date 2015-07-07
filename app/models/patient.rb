@@ -67,4 +67,10 @@ class Patient < ActiveRecord::Base
     "On-Hold" => 3,
     "Expired" => 4
   }
+
+  def computed_age
+    age = Date.today.year - dob.year
+    age -= 1 if Date.today < dob + age.years
+    return age
+  end
 end

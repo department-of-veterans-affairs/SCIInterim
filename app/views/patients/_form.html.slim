@@ -11,7 +11,7 @@
           = f.input :first_name
           = f.input :last_name
           = f.input :dob, as: :string, input_html: { class: "datepicker" }
-          p Computer Age goes here
+          = f.input :computed_age, label: "Age", readonly: true
           = f.input :gender, collection: Patient.genders.keys
           = f.input :scido_id, label: "SCIDO Patient Id", readonly: true
 
