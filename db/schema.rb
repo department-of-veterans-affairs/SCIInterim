@@ -11,32 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625235826) do
+ActiveRecord::Schema.define(version: 20150707060702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "acute_rehab1_years", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "followup_date"
-    t.integer  "fim"
-    t.string   "swls"
-    t.string   "chart_sf"
-    t.string   "sf_8"
-    t.string   "place_of_residence"
-  end
-
-  create_table "acute_rehab90_days", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "followup_date"
-    t.integer  "fim"
-    t.string   "swls"
-    t.string   "chart_sf"
-    t.string   "sf_8"
-    t.string   "place_of_residence"
-  end
 
   create_table "acute_rehabs", force: true do |t|
     t.datetime "created_at"
@@ -113,30 +91,6 @@ ActiveRecord::Schema.define(version: 20150625235826) do
   end
 
   add_index "episode_of_cares", ["patient_id"], name: "index_episode_of_cares_on_patient_id", using: :btree
-
-  create_table "omr1_years", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "followup_date"
-    t.integer  "fim"
-    t.string   "fam"
-    t.string   "swls"
-    t.string   "chart_sf"
-    t.string   "sf_8"
-    t.string   "place_of_residence"
-  end
-
-  create_table "omr90_days", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "followup_date"
-    t.integer  "fim"
-    t.string   "fam"
-    t.string   "swls"
-    t.string   "chart_sf"
-    t.string   "sf_8"
-    t.string   "place_of_residence"
-  end
 
   create_table "omrs", force: true do |t|
     t.datetime "created_at"
