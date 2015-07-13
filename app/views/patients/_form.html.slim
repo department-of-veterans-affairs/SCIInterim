@@ -2,9 +2,9 @@
   = flash_messages
   #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist"
     .panel.panel-default
-      #headingPersonalInfo.panel-heading role="tab"
+      #headingPersonalInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#personalInfo"
         h4.panel-title
-          a aria-controls="personalInfo" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#personalInfo"
+          a aria-controls="personalInfo" aria-expanded="true" 
             | Personal Information
       #personalInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -16,9 +16,9 @@
           = f.input :scido_id, label: "SCIDO Patient Id", readonly: true
 
     .panel.panel-default
-      #headingContactInfo.panel-heading role="tab"
+      #headingContactInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
         h4.panel-title
-          a.collapsed aria-controls="contactInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
+          a.collapsed aria-controls="contactInfo" aria-expanded="false" 
             | Contact Information
       #contactInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -27,9 +27,9 @@
           = f.input :sci_service_connected
 
     .panel.panel-default
-      #headingTravelEligibility.panel-heading role="tab"
+      #headingTravelEligibility.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
         h4.panel-title
-          a.collapsed aria-controls="travelEligibility" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
+          a.collapsed aria-controls="travelEligibility" aria-expanded="false" 
             | Travel Eligibility
       #travelEligibility.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -37,9 +37,9 @@
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
 
     .panel.panel-default
-      #headingVAStatus.panel-heading role="tab"
+      #headingVAStatus.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
         h4.panel-title
-          a.collapsed aria-controls="vaStatus" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
+          a.collapsed aria-controls="vaStatus" aria-expanded="false"
             | VA Status
       #vaStatus.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -53,9 +53,9 @@
           = f.input :preferred_sci_hub_physician_last_name
 
     .panel.panel-default
-      #headingPrimaryCare.panel-heading role="tab"
+      #headingPrimaryCare.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
         h4.panel-title
-          a.collapsed aria-controls="primaryCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
+          a.collapsed aria-controls="primaryCare" aria-expanded="false" 
             | Primary Care
       #primaryCare.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -70,9 +70,9 @@
           = f.input :va_facility_pcp_last_name
 
     .panel.panel-default
-      #headingSCIDInfo.panel-heading role="tab"
+      #headingSCIDInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
         h4.panel-title
-          a.collapsed aria-controls="scidInfo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
+          a.collapsed aria-controls="scidInfo" aria-expanded="false" 
             | SCI/D Information
       #scidInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -86,9 +86,9 @@
           = f.input :is_asia_complete
 
     .panel.panel-default
-      #headingPsychosocial.panel-heading role="tab"
+      #headingPsychosocial.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
         h4.panel-title
-          a.collapsed aria-controls="psychosocial" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
+          a.collapsed aria-controls="psychosocial" aria-expanded="false" 
             | Psychosocial
       #psychosocial.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -97,9 +97,9 @@
           = f.input :current_occupation
 
     .panel.panel-default
-      #headingResidencyAndCaregiver.panel-heading role="tab"
+      #headingResidencyAndCaregiver.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
         h4.panel-title
-          a aria-controls="residencyAndCaregiver" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
+          a aria-controls="residencyAndCaregiver" aria-expanded="false" 
             | Residency and Caregiver
       #residencyAndCaregiver.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
@@ -115,9 +115,9 @@
 
     - if @patient
       .panel.panel-default
-        #detailThree.panel-heading role="tab"
+        #detailThree.panel-heading role="tab" data-toggle="collapse" href="#episodesOfCare"
           h4.panel-title
-            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#episodesOfCare"
+            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion"
               | Episodes Of Care
         #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel"
           .panel-body
