@@ -44,3 +44,14 @@ Useful Links
 -----------
 Install PostgreSQL: https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql
 Install Ruby On Rails on Mac: http://railsapps.github.io/installrubyonrails-mac.html
+
+Issues
+-----------
+We are currently using labels and milestones from tracking requirements and bugs during sprint cycles. Label are for priority; milestone for sprint cycle
+  * To search Issues by piroirty and milestone, use example: label:p2 milestone:[0]pre-testing 
+  * Prioirty Definition:
+    * P0 - Must Have 
+    * P1 - Should Have
+    * P2 - Could Have
+    * P3 - Wish List
+  * Sprint names: For now, we will use descriptive names like [0]pre-testing, [1]alpha-launch. In the future, we may revert to using m0, m1, m2, etc. Let's see what works better for communicating sprint cycles. 
