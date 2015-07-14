@@ -49,7 +49,7 @@ Issues
 -----------
 We are currently using labels and milestones from tracking requirements and bugs during sprint cycles. Label are for priority; milestone for sprint cycle
   * To search Issues by piroirty and milestone, use example: label:p2 milestone:[0]pre-testing 
-  * Prioirty Definition:
+  * Priority Definition:
     * P0 - Must Have 
     * P1 - Should Have
     * P2 - Could Have
