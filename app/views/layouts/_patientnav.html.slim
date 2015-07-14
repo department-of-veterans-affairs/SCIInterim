@@ -10,9 +10,8 @@ nav.navbar.navbav-default#patient-nav
         ul.nav.nav-pills 
           li 
             | Age: 
-            / TODO @Emilyville Add Age when exists
-            strong 24 yrs 
-            | DoB: 
+            strong = @patient.computed_age
+            |  DoB: 
             strong = @patient.dob 
           li
             | SSN: 
