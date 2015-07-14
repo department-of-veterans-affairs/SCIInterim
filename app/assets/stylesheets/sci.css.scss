@@ -1,4 +1,4 @@
-// Place all the styles related to the reports controller here.
+// Place all the styles special to the SCI app here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
@@ -107,6 +107,14 @@
   margin-top: -20px;
   height: 60px;
   padding: 16px;
+}
+
+// some usability accordion stuff
+.panel-heading {
+    cursor: pointer;
+}
+.panel-group .panel.panel-default {
+  border-radius: 0px;
 }
 
 
