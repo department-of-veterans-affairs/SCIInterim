@@ -54,4 +54,10 @@ We are currently using labels and milestones from tracking requirements and bugs
     * P1 - Should Have
     * P2 - Could Have
     * P3 - Wish List
-  * Sprint names: For now, we will use descriptive names like [0]pre-testing, [1]alpha-launch. In the future, we may revert to using m0, m1, m2, etc. Let's see what works better for communicating sprint cycles. 
+  * Sprint names: For now, we will use descriptive names like [0]pre-testing, [1]alpha-launch. In the future, we may revert to using m0, m1, m2, etc. Let's see what works better for communicating sprint cycles.
+  * Status: 
+    * status:not-started
+    * status:in-progress
+    * status:help-wanted
+    * status:wont-fix
+    * status:done
