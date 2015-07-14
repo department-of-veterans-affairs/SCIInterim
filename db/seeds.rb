@@ -20,7 +20,7 @@ for i in 1..50
     scido_id: rand(200000),
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name + 'Fake',
-    ssn: ["000", "666"].sample + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(3),
+    ssn: ["000", "666"].sample + '-' + Faker::Number.number(2) + '-' + Faker::Number.number(4),
     dob: Faker::Date.between(100.years.ago, Date.today),
     highest_level_of_education: Patient.highest_level_of_educations.keys.sample,
     occupation_at_time_of_injury: Faker::Lorem.sentence(3),

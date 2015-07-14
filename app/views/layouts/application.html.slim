@@ -14,17 +14,17 @@ html
       - if content_for?(:nav_patient) 
         = yield(:nav_patient)
       - else
-      / Main
-      .container
-          .row
-            .col-xs-12
-              p.text-warning.text-right
-                = notice
-              p.text-error.text-right
-                = alert
-          .row
-            .col-xs-12
-                = content_for?(:application_body) ? yield(:application_body) : yield
+        / Main
+        .container
+            .row
+              .col-xs-12
+                p.text-warning.text-right
+                  = notice
+                p.text-error.text-right
+                  = alert
+            .row
+              .col-xs-12
+                  = content_for?(:application_body) ? yield(:application_body) : yield
 
     javascript:
 
