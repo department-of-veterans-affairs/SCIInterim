@@ -27,7 +27,7 @@ feature 'Annual Evaluations' do
     expect(page).to have_content "New Annual Evaluation"
 
     click_button("Save Annual Evaluation")
-    current_url.should == edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify annual evaluation shows.
   end

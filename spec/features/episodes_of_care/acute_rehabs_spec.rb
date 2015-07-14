@@ -29,7 +29,7 @@ feature 'Acute Rehab' do
     fill_in "Hospital admission", with: Time.now
 
     click_button("Create Acute rehab")
-    current_url.should == edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify Acute Rehab shows.
   end
