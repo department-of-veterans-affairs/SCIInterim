@@ -1,10 +1,11 @@
 class Patient < ActiveRecord::Base
   has_many :episode_of_cares
 
-  validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "No numbers or special chars"
-  validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "No numbers or special chars"
-  validates :scido_id, numericality: { only_integer: true, greater_than: 0}
-  validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Expect format 111-22-3333"
+  validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
+  validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
+  validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
+  validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
+  validate :dob_is_valid_date
 
   enum asia_level: { 'A' => 1, 'B' => 2, 'C' => 3, 'D' => 4 }
   enum gender: { "Female" => 1, "Male" => 2, "Unknown" => 3 }
@@ -73,4 +74,9 @@ class Patient < ActiveRecord::Base
     age -= 1 if Date.today < dob + age.years
     return age
   end
+
+  def dob_is_valid_date
+    errors.add(:dob, 'must be a valid date') if (!dob.is_a?(Date))
+  end
 end
+

@@ -24,4 +24,4 @@ table class='table table-striped table-hover'
           td: a href="#{edit_patient_path(patient)}"  = patient.first_name
           td: a href="#{edit_patient_path(patient)}"  = patient.last_name
           td = patient.ssn
-          td = patient.dob
+          td = localize(patient.dob) if patient.dob
