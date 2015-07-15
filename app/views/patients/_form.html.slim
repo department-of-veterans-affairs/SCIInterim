@@ -10,10 +10,12 @@
         .panel-body
           = f.input :first_name
           = f.input :last_name
-          = f.input :dob, as: :string, input_html: { class: "datepicker" }
-          = f.input :gender, collection: Patient.genders.keys
-          = f.input :scido_id, label: "SCIDO Patient Id", readonly: true
-
+          = f.input :dob, as: :date, html5: true, label: "Date of Birth"
+          = f.input :gender, collection: Patient.genders.keys, :prompt => "Select one"
+          = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
+          = f.input :scido_id, label: "SCIDO Patient Id"
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingContactInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
         h4.panel-title
@@ -24,7 +26,8 @@
           p Patient contact info here.
           = f.input :my_healthevet_messaging
           = f.input :sci_service_connected
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingTravelEligibility.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
         h4.panel-title
@@ -34,7 +37,8 @@
         .panel-body
           = f.input :travel_status, collection: Patient.travel_statuses.keys
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingVAStatus.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
         h4.panel-title
@@ -50,7 +54,8 @@
           = f.input :preferred_sci_hub
           = f.input :preferred_sci_hub_physician_first_name
           = f.input :preferred_sci_hub_physician_last_name
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingPrimaryCare.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
         h4.panel-title
@@ -67,7 +72,8 @@
           = f.input :va_facility
           = f.input :va_facility_pcp_first_name
           = f.input :va_facility_pcp_last_name
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingSCIDInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
         h4.panel-title
@@ -83,7 +89,8 @@
           = f.input :level_of_injury, collection: Patient.level_of_injuries.keys
           = f.input :asia_level, collection: Patient.asia_levels.keys
           = f.input :is_asia_complete
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingPsychosocial.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
         h4.panel-title
@@ -94,7 +101,8 @@
           = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys
           = f.input :occupation_at_time_of_injury
           = f.input :current_occupation
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     .panel.panel-default
       #headingResidencyAndCaregiver.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
         h4.panel-title
@@ -111,7 +119,8 @@
           = f.input :non_va_caregiver_receiving_reimbursement
           = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }
           = f.input :is_receiving_hhha
-
+          .col-sm-offset-3.col-sm-9.form-actions
+            = f.submit class:"btn btn-primary"
     - if @patient
       .panel.panel-default
         #detailThree.panel-heading role="tab" data-toggle="collapse" href="#episodesOfCare"
@@ -128,3 +137,4 @@
                     = episode.episode_date
                   td
                     = episode.specific.class.name
+

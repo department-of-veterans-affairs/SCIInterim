@@ -11,8 +11,8 @@ nav.navbar.navbav-default#patient-nav
           li 
             | Age: 
             strong = @patient.computed_age
-            |  DoB: 
-            strong = @patient.dob 
+            |  DOB: 
+            strong = localize(@patient.dob)
           li
             | SSN: 
             strong = @patient.ssn

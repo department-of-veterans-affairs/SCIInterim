@@ -1,3 +1,5 @@
+#require 'pry'
+
 class PatientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
@@ -44,6 +46,7 @@ class PatientsController < ApplicationController
     else
       flash[:error] = "Something went wrong updating this patient's data. Try again."
     end
+    #binding.pry
     render :edit
   end
 
@@ -58,7 +61,7 @@ class PatientsController < ApplicationController
 
     def patient_params
       params.require(:patient).permit(
-        :patient_id, :first_name, :last_name, :ssn, :dob,
+        :scido_id, :first_name, :last_name, :ssn, :dob, :gender,
         :asia_level, :asia_impairment,
         :bladder_drainage, :employment_status,
         :highest_level_of_education,
