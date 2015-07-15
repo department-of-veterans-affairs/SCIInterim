@@ -4,7 +4,7 @@ SCI Interim
 *Data entry and records application for Spinal Care Injuries at Veterans Affairs*
 
 [![Build Status](https://travis-ci.org/department-of-veterans-affairs/SCIInterim.svg?branch=test-hygiene)](https://travis-ci.org/department-of-veterans-affairs/SCIInterim)
-[![Coverage Status](https://coveralls.io/repos/awong-dev/SCIInterim/badge.svg)](https://coveralls.io/r/awong-dev/SCIInterim)
+[![Coverage Status](https://coveralls.io/repos/awong-dev/SCIInterim/badge.svg?branch=master&service=github)](https://coveralls.io/github/awong-dev/SCIInterim?branch=master)
 
 How to get started hacking
 ==========================
