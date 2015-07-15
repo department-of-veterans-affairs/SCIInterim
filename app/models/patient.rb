@@ -7,7 +7,6 @@ class Patient < ActiveRecord::Base
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
 
-
   enum asia_level: { 'A' => 1, 'B' => 2, 'C' => 3, 'D' => 4 }
   enum gender: { "Female" => 1, "Male" => 2, "Unknown" => 3 }
   enum highest_level_of_education: {
@@ -69,13 +68,6 @@ class Patient < ActiveRecord::Base
     "On-Hold" => 3,
     "Expired" => 4
   }
-
-  def dob_local
-    if dob
-      return localize(dob)
-    end
-    return dob
-  end
 
   def computed_age
     age = Date.today.year - dob.year

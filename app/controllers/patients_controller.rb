@@ -1,5 +1,3 @@
-#require 'pry'
-
 class PatientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
@@ -46,7 +44,6 @@ class PatientsController < ApplicationController
     else
       flash[:error] = "Something went wrong updating this patient's data. Try again."
     end
-    #binding.pry
     render :edit
   end
 
