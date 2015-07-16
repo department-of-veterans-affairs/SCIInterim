@@ -19,6 +19,20 @@ require 'factory_girl'
 # require only the support files necessary.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+# Work around some fragilely writen migrations with foreign keys which causes
+# guard to barf. Dropping all constraints prior to reseting for a test is good
+# enough.
+if ActiveRecord::Migrator.needs_migration?
+  drop_constraints = ActiveRecord::Base.connection.select_all <<-SQL
+ SELECT 'ALTER TABLE '||table_name||' DROP CONSTRAINT  IF EXISTS '||constraint_name||' CASCADE;' as sql
+   FROM information_schema.constraint_table_usage;
+  SQL
+
+  drop_constraints.each do |drop_constraint|
+   ActiveRecord::Base.connection.execute(drop_constraint['sql'])
+  end
+end
+
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
