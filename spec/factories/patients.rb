@@ -13,7 +13,7 @@ FactoryGirl.define do
     highest_level_of_education { Patient.highest_level_of_educations.keys.sample }
     occupation_at_time_of_injury { Faker::Lorem.sentence(3) }
     gender { Patient.genders.keys.sample }
-    # TODO(awong): Add address 
+    address { create(:address) }
     my_healthevet_messaging { [true, false].sample }
     sci_service_connected { [true, false].sample }
     travel_status { Patient.travel_statuses.keys.sample }
@@ -48,7 +48,7 @@ FactoryGirl.define do
     residence_type { AcuteRehab.residence_types.keys.sample }
     residence_name { Faker::Company.name }
     has_caregiver { [true, false].sample }
-    # TODO(awong): Create a caregiver_address 
+    caregiver_address { create(:address) }
     is_receiving_non_va_care { [true, false].sample }
     non_va_care_hours_per_month { rand(1000) }
     non_va_caregiver_receiving_reimbursement { Faker::Company.name }

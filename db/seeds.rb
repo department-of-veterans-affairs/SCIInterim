@@ -67,7 +67,10 @@ for i in 1..50
     last_fee_basis_evaluation_date: Faker::Date.between(100.years.ago, Date.today),
     is_receiving_hhha: [true, false].sample,
   }
-  patient = Patient.create!(patient_data)
+  patient = Patient.new(patient_data)
+  patient.create_address
+  patient.create_caregiver_address
+  patient.save!
 
 
   # AR
