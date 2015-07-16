@@ -83,7 +83,7 @@
         .panel-body
           = f.input :theater_of_service, collection: Patient.theater_of_services.keys
           = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
-          = f.input :is_injured_on_active_duty
+          = f.input :active_duty, label: "Currently on Active Duty"
           = f.input :sci_type, collection: Patient.sci_types.keys
           = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
           = f.input :level_of_injury, collection: Patient.level_of_injuries.keys
