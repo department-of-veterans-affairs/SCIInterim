@@ -49,7 +49,7 @@ for i in 1..50
     va_facility_pcp_last_name: Faker::Name.last_name,
     theater_of_service: Patient.theater_of_services.keys.sample,
     sci_arrival_date: Faker::Date.between(100.years.ago, Date.today),
-    is_injured_on_active_duty: [true, false].sample,
+    is_on_active_duty: [true, false].sample,
     sci_type: Patient.sci_types.keys.sample,
     date_of_injury: Faker::Date.between(100.years.ago, Date.today),
     level_of_injury: Patient.level_of_injuries.keys.sample,
