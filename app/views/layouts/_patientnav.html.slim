@@ -31,16 +31,16 @@ nav.navbar.navbav-default#patient-nav
             strong = @patient.sci_type
           li
             | Active Duty:
-            strong = @patient.is_injured_on_active_duty
+            strong = @patient.active_duty
       .col-md-1
       .col-md-2.border-left
         ul.nav.nav-pills 
           li 
             | SCI Center:
-            / strong = @patient.sci_center
+            / TODO: strong = add variable here
           li
             | Assigned VAMC:
-            / strong = @patient.is_injured_on_active_duty        
+            / TODO: strong = add variable here
       .col-md-2
         ul.nav.nav-pills 
           li SCI Primary Physician
