@@ -40,8 +40,8 @@ FactoryGirl.define do
     is_on_active_duty { [true, false].sample }
     sci_type { Patient.sci_types.keys.sample }
     date_of_injury { Faker::Date.between(100.years.ago, Date.today) }
-    level_of_injury { Patient.level_of_injuries.keys.sample }
-    asia_level { Patient.asia_levels.keys.sample }
+    level_of_injury { Asia.level_of_injuries.keys.sample }
+    asia_level { Asia.classifications.keys.sample }
     is_asia_complete { [true, false].sample }
     current_occupation { Faker::Lorem.sentence(1, false, 4) }
     # TODO(awong): Move residence type into a concer.

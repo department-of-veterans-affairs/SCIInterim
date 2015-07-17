@@ -81,6 +81,22 @@ ActiveRecord::Schema.define(version: 20150717230308) do
     t.integer  "asia_score"
   end
 
+  create_table "asia", force: true do |t|
+    t.integer  "classification"
+    t.boolean  "is_complete"
+    t.boolean  "has_motor_or_sensory_asymmetry"
+    t.integer  "neurological_sensory_level_left"
+    t.integer  "neurological_sensory_level_right"
+    t.integer  "neurological_motor_level_left"
+    t.integer  "neurological_motor_level_right"
+    t.integer  "preservation_sensory_left"
+    t.integer  "preservation_sensory_right"
+    t.integer  "preservation_motor_left"
+    t.integer  "preservation_motor_right"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "episode_of_cares", force: true do |t|
     t.integer  "patient_id"
     t.integer  "actable_id"
