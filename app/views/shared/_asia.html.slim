@@ -1,0 +1,77 @@
+= wrapped_form_for([@patient, @annual_evaluation]) do |f| 
+  .instrument
+    h4
+    h4 ASIA Assessment Score
+    hr
+    .row
+      .col-md-4
+        label Neurological Level
+        .table-responsive
+          table.table.table-bordered.table-striped
+            thead
+              tr
+                th 
+                th Left
+                th Right
+            tbody
+              tr
+                th scope="row"  Sensory
+                td 
+                  .form-control.input
+                td 
+                  .form-control.input
+              tr
+                th scope="row"  Motor
+                td 
+                  .form-control.input
+                td 
+                  .form-control.input
+      .col-md-4
+        label ASIA Impairment Scale
+        = f.input :asia_score, :prompt => "Select one", collection: Patient.asia_levels.keys, :label => false, input_html: { class: "form-control" }
+        hr
+
+        label Neurological Level of Injury
+        = f.input :level_of_injury, :label => "Neurological Level of Injury", :prompt => "Select one", collection: Patient.level_of_injuries.keys, :label => false, :no_col => true
+
+        label.radio-inline
+          input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" Complete
+        label.radio-inline
+          input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1" Incomplete  
+  
+        label
+          .checkbox-inline
+            =f.input_field :has_motor_or_sensory_asymmetry
+            | Has motor or sensory asymmetry
+        / # / If this is true (checked) then there are some things that need to be below it
+
+        / @awong I think these three below go in the tables? (moved them in here from above)
+          / = f.input :neuro_zone_of_preservation1,  label: "Neuro Zone of Preservation", :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation1s.keys
+          / = f.input :neuro_zone_of_preservation2, label: false, :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
+          / = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
+ 
+      .col-md-4
+        label Zone of Partial Preservation
+        .table-responsive
+          table.table.table-bordered.table-striped
+            thead
+              tr
+                th 
+                th Left
+                th Right
+            tbody
+              tr
+                th scope="row"  Sensory
+                td 
+                  .form-control.input
+                td 
+                  .form-control.input
+              tr
+                th scope="row"  Motor
+                td 
+                  .form-control.input
+                td 
+                  .form-control.input
+    .row
+      .col-md-12
+        .btn.btn-lg.btn-primary.pull-right save new assessment
