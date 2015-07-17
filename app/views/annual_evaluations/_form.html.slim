@@ -9,19 +9,7 @@
     = f.input :neuro_zone_of_preservation2, label: false, :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
     = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
 
-    h4 ASIA &mdash; LOI
-    / TODO for instruments (@emilyville)
-        / - show most recent logged file and display date with link to it
-        / - show most recent score (i.e. A-C6)
-        / - figure out the right workflow for filling out the assessment. I think for ASIA it will involve a PDF, but for others it may be different
-    .instrument
-        h4
-          | ASIA-LOI: A-C6  
-          span.small = link_to "view record: 12/23/1987"
-        h4
-            = link_to "+ add new assessment", "#"
-        / = f.input :level_of_injury
-        / = f.input :asia_score
+    == render 'asia'
 
     h4 Administrative
     = f.input :eval_offered, label: "Date Offered", :placeholder => "05/01/2015", as: :string, input_html: { class: "datepicker" }
