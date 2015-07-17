@@ -12,9 +12,9 @@
     == render 'shared/asia'
 
     h4 Administrative
-    = f.input :eval_offered, label: "Date Offered", :placeholder => "05/01/2015", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Date of Completion", :placeholder => "06/01/2015", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "06/01/2016",  disabled: true, as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_offered, label: "Date Offered", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_completed, label: "Date of Completion", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
+    = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "DD/MM/YYYY",  disabled: true, as: :string, input_html: { class: "datepicker" }
     
     = f.input :is_inpatient
 
