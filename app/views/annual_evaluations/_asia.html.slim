@@ -28,11 +28,11 @@
                   .form-control.input
       .col-md-4
         label ASIA Impairment Scale
-        .form-control.input
-        / = f.input_field :asia_score, :prompt => "Select one", collection: Patient.asia_levels.keys, :label => false
+        = f.input :asia_score, :prompt => "Select one", collection: Patient.asia_levels.keys, :label => false, input_html: { class: "form-control" }
+        hr
+
         label Neurological Level of Injury
-        .form-control.input
-        / = f.input :level_of_injury, :label => "Neurological Level of Injury", :prompt => "Select one", collection: Patient.level_of_injuries.keys
+        = f.input :level_of_injury, :label => "Neurological Level of Injury", :prompt => "Select one", collection: Patient.level_of_injuries.keys, :label => false, :no_col => true
 
         label.radio-inline
           input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" Complete
