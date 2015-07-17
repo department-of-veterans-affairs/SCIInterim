@@ -9,7 +9,7 @@
     = f.input :neuro_zone_of_preservation2, label: false, :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
     = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
 
-    == render 'asia'
+    == render 'shared/asia'
 
     h4 Administrative
     = f.input :eval_offered, label: "Date Offered", :placeholder => "05/01/2015", as: :string, input_html: { class: "datepicker" }
