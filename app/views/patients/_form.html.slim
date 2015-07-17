@@ -23,7 +23,8 @@
             | Contact Information
       #contactInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          p Patient contact info here.
+          = f.simple_fields_for :address do |address|
+            = render 'shared/address_fields', :f => address 
           = f.input :my_healthevet_messaging
           = f.input :sci_service_connected
           .col-sm-offset-3.col-sm-9.form-actions
@@ -113,7 +114,8 @@
           = f.input :residence_type
           = f.input :residence_name
           = f.input :has_caregiver
-          p Add Address here.
+          = f.simple_fields_for :caregiver_address do |caregiver_address|
+            = render 'shared/address_fields', :f => caregiver_address 
           = f.input :is_receiving_non_va_care
           = f.input :non_va_care_hours_per_month
           = f.input :non_va_caregiver_receiving_reimbursement

@@ -1,6 +1,12 @@
 class Patient < ActiveRecord::Base
   has_many :episode_of_cares
 
+  belongs_to :address, class_name: 'Address'
+  accepts_nested_attributes_for :address
+
+  belongs_to :caregiver_address, class_name: 'Address', foreign_key: 'caregiver_address_id'
+  accepts_nested_attributes_for :caregiver_address
+
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
