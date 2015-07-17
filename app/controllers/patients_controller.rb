@@ -1,4 +1,6 @@
 class PatientsController < ApplicationController
+  include AttributeParam 
+
   before_action :authenticate_user!
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
@@ -20,6 +22,8 @@ class PatientsController < ApplicationController
 
   def new
     @patient = Patient.new
+    @patient.build_address
+    @patient.build_caregiver_address
     respond_with(@patient)
   end
 
@@ -29,6 +33,7 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
+    @patient.assign_attributes(patient_params)
     if @patient.save
       flash[:success] = "You have successfully created a patient."
       render :edit
@@ -39,6 +44,7 @@ class PatientsController < ApplicationController
   end
 
   def update
+    @patient.assign_attributes(patient_params)
     if @patient.update(patient_params)
       flash[:success] = "You have successfully updated this patient's data"
     else
@@ -72,6 +78,9 @@ class PatientsController < ApplicationController
         :annual_eval_received, :annual_eval_next_due,
         :initial_rehab_site, :initial_rehab_discharge,
         :data_first_seen_in_va_sci, :occupation_at_time_of_injury,
-        :service_connected, :date_of_death, :outcome_coordinator)
+        :service_connected, :date_of_death, :outcome_coordinator,
+        address_attributes: nested_model_attributes(Address),
+        caregiver_address_attributes: nested_model_attributes(Address),
+        )
     end
 end

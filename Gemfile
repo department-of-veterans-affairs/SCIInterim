@@ -7,6 +7,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'bootstrap-datepicker-rails'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'country_select'
 gem 'devise'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'foreigner'

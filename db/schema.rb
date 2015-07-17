@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716005314) do
+ActiveRecord::Schema.define(version: 20150716005315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20150716005314) do
     t.string   "occupation_at_time_of_injury"
     t.string   "last_name"
     t.integer  "gender"
-    t.integer  "address"
     t.boolean  "my_healthevet_messaging"
     t.boolean  "sci_service_connected"
     t.integer  "travel_status"
@@ -161,13 +160,17 @@ ActiveRecord::Schema.define(version: 20150716005314) do
     t.integer  "residence_type"
     t.string   "residence_name"
     t.boolean  "has_caregiver"
-    t.integer  "caregiver_address"
     t.boolean  "is_receiving_non_va_care"
     t.integer  "non_va_care_hours_per_month"
     t.string   "non_va_caregiver_receiving_reimbursement"
     t.date     "last_fee_basis_evaluation_date"
     t.boolean  "is_receiving_hhha"
+    t.integer  "address_id",                               null: false
+    t.integer  "caregiver_address_id",                     null: false
   end
+
+  add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
+  add_index "patients", ["caregiver_address_id"], name: "index_patients_on_caregiver_address_id", unique: true, using: :btree
 
   create_table "transfers", force: true do |t|
     t.integer  "acute_rehabs_id"
@@ -199,7 +202,7 @@ ActiveRecord::Schema.define(version: 20150716005314) do
 
   add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
 
-  add_foreign_key "patients", "addresses", name: "patients_address_fk", column: "address", dependent: :delete
-  add_foreign_key "patients", "addresses", name: "patients_caregiver_address_fk", column: "caregiver_address", dependent: :delete
+  add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
+  add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete
 
 end
