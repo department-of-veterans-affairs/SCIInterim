@@ -36,7 +36,7 @@
             | Travel Eligibility
       #travelEligibility.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          = f.input :travel_status, collection: Patient.travel_statuses.keys
+          = f.input :travel_status, collection: Patient.travel_statuses.keys, :prompt => "Select one"
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
           .col-sm-offset-3.col-sm-9.form-actions
             = f.submit class:"btn btn-primary"
@@ -47,7 +47,7 @@
             | VA Status
       #vaStatus.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          = f.input :va_status, collection: Patient.va_statuses.keys
+          = f.input :va_status, collection: Patient.va_statuses.keys, :prompt => "Select one"
           = f.input :assigned_vamc
           = f.input :assigned_sci_hub
           = f.input :assigned_sci_hub_physician_first_name
@@ -64,6 +64,7 @@
             | Primary Care
       #primaryCare.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
+          = f.input :principle_pcp_va_nonva, :label => "Principle primary care physician", collection: Patient.principle_pcp_va_nonvas.keys, :prompt => "Select one"
           = f.input :non_va_facility_name
           = f.input :non_va_facility_contact
           = f.input :non_va_facility_phone_number
@@ -82,13 +83,13 @@
             | SCI/D Information
       #scidInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          = f.input :theater_of_service, collection: Patient.theater_of_services.keys
+          = f.input :theater_of_service, collection: Patient.theater_of_services.keys, :prompt => "Select one"
           = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
-          = f.input :sci_type, collection: Patient.sci_types.keys
+          = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
           = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
-          = f.input :level_of_injury, collection: Patient.level_of_injuries.keys
-          = f.input :asia_level, collection: Patient.asia_levels.keys
+          = f.input :level_of_injury, collection: Patient.level_of_injuries.keys, :prompt => "Select one"
+          = f.input :asia_level, collection: Patient.asia_levels.keys, :prompt => "Select one"
           = f.input :is_asia_complete
           .col-sm-offset-3.col-sm-9.form-actions
             = f.submit class:"btn btn-primary"
@@ -99,7 +100,7 @@
             | Psychosocial
       #psychosocial.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
         .panel-body
-          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys
+          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
           = f.input :occupation_at_time_of_injury
           = f.input :current_occupation
           .col-sm-offset-3.col-sm-9.form-actions
