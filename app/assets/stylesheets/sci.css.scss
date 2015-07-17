@@ -58,13 +58,18 @@
   .instrument {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
-    text-align: center;
+    // text-align: center;
     margin: 35px 10px;
     padding: 20px 40px;
+
+    // Temporary hack here until I figure out the simple_form way  
+    input[type="checkbox"] {
+      margin: -3px -20px 0;
+    }
   }
 
   .instrument:hover {
-    background-color: #DFEDF1;
+    // background-color: #DFEDF1;
     border: 1px dashed #ddd;
   } 
   
@@ -119,4 +124,3 @@
 .checkbox {
   float: left;
 }
-
