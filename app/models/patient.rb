@@ -74,6 +74,7 @@ class Patient < ActiveRecord::Base
     "On-Hold" => 3,
     "Expired" => 4
   }
+  enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
   def computed_age
     age = Date.today.year - dob.year
