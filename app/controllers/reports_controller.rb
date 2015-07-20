@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
 
   REPORT_VIEWS_DIR = Dir.pwd + '/app/views/reports/report_views/'
 
-  @@categories = %w(Patient Station Nation)
+  @@categories = %w(Patient Station National)
 
   @@stations = [
       {
@@ -63,46 +63,53 @@ class ReportsController < ApplicationController
       },
       {
           id: 2,
-          name: 'Station Specific AE',
+          name: 'Annual Eval Report',
           description: '#, % of AE in a given time period',
           entity: 'Station',
           definition: lambda { |station_id| '#, % of AE in a given time period for station ' + @@stations.select { |station| station[:id] == station_id }[0][:name] }
       },
       {
           id: 3,
-          name: 'VHA SCI AE',
+          name: 'SCI Registry Total',
+          description: 'list of all SCI patients by name, SSN, and station',
+          entity: 'National',
+          definition: lambda { 'list of all SCI Registry patients' }
+      },
+      {
+          id: 3,
+          name: 'Annual Eval Report',
           description: 'list of #, % of AE for each SCI Center in a given time period',
           area: 'AE',
-          entity: 'Nation',
-          definition: lambda { 'list of #, % of AE for each SCI Center in a given time period' }
+          entity: 'National',
+          definition: lambda { 'list of #, % of AE for each SCI Center' }
       },
       {
           id: 4,
-          name: 'Station Specific AR',
+          name: 'Acute Rehab Report',
           description: '#, % of AR in a given time period',
           entity: 'Station',
           definition: lambda { |station_id| '#, % of AR in a given time period for station ' + @@stations.select { |station| station[:id] == station_id }[0][:name] }
       },
       {
           id: 5,
-          name: 'VHA SCI AR',
+          name: 'Acute Rehab Report',
           description: 'list of #, % of AR for each SCI Center in a given time period',
-          entity: 'Nation',
-          definition: lambda { 'list of #, % of AR for each SCI Center in a given time period' }
+          entity: 'National',
+          definition: lambda { 'list of #, % of AR for each SCI Center' }
       },
       {
           id: 6,
-          name: 'Station Specific OMR',
+          name: 'OMR Report',
           description: '#, % of ORM in a given time period',
           entity: 'Station',
           definition: lambda { |station_id| '#, % of ORM in a given time period for station ' + @@stations.select { |station| station[:id] == station_id }[0][:name] }
       },
       {
           id: 7,
-          name: 'VHA SCI OMR',
+          name: 'OMR Report',
           description: 'list of #, % of OMR for each SCI Center in a given time period',
-          entity: 'Nation',
-          definition: lambda { 'list of #, % of OMR for each SCI Center in a given time period' }
+          entity: 'National',
+          definition: lambda { 'list of #, % of OMR for each SCI Center' }
       },
       {
           id: 8,
@@ -120,9 +127,11 @@ class ReportsController < ApplicationController
       }
   ]
 
-  # Render a list of the different categories: (1) Patient, (2) Station, (3) Nation
+  # Originally this would render a list of the different categories: (1) Patient, (2) Station, (3) National
+  # currently we're only using National, so it's redirecting there. 
   def index()
-    @categories = @@categories
+    # @categories = @@categories
+      redirect_to '/reports/entity/National/0/'
   end
 
   # If the report is entity-specific, make the user pick an entity
@@ -130,9 +139,9 @@ class ReportsController < ApplicationController
     @entity = params[:entity]
     @query = params[:query]
 
-    # 'Nation' reports are not entity specific
-    if @entity == 'Nation'
-      redirect_to '/reports/entity/Nation/0/'
+    # '' reports are not entity specific
+    if @entity == 'National'
+      redirect_to '/reports/entity//0/'
     end
 
     # If a query parameter is provided, then try to populate the list
@@ -167,7 +176,7 @@ class ReportsController < ApplicationController
       #rescue
       #  @entity_name = ''
       #end
-    elsif @entity == 'Nation'
+    elsif @entity == 'National'
       @entity_name = nil
     end
 
@@ -200,7 +209,7 @@ class ReportsController < ApplicationController
       #rescue
       #  entity_name = ''
       #end
-    elsif entity == 'Nation'
+    elsif entity == 'National'
       nil
     end
   end

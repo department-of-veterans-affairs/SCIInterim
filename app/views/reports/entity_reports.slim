@@ -1,14 +1,9 @@
-ol.breadcrumb
-  li: a href="/reports" Reports
-  - if @entity_name
-    li: a href="/reports/entity/#{@entity}" #{@entity}
-    li.active #{@entity_name}
-  - else
-    li.active #{@entity}
-  end
-ol
-
-h1 #{@entity} Reports #{ if @entity_name then ' for ' + @entity_name end }
+row.
+  .pull-left
+    h3 #{@entity} Reports #{ if @entity_name then ' for ' + @entity_name end }
+  .pull-right
+    / This is the temporary solution for demo-ing minimal SCI capability
+    button.btn.btn-primary Export SCI Registry
 
 br
 - unless @reports.empty?
@@ -16,10 +11,42 @@ br
     tr
       th Report
       th Description
+      th Facility
+      th Export
     - for report in @reports
       tr
-        td: a href="/reports/entity/#{@entity}/#{@entity_id}/#{report[:id]}" #{report[:name]}
+        td 
+          strong #{report[:name]}
         td = report[:description]
+        td 
+          .btn-group
+            button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+              | Select Facility 
+              span.caret
+            ul.dropdown-menu
+              li
+                a href="#"  All Facilities
+              li
+                a href="#"  Longbeach
+              li
+                a href="#"  Palo Alto
+              li
+                a href="#"  Miami
+        td 
+          .btn-group
+            button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+              | Export as 
+              span.caret
+            ul.dropdown-menu
+              li
+                a href="#"  CSV
+              li
+                a href="#"  Excel
+              li
+                a href="#"  Something else here
+              li.divider role="separator" 
+              li
+                a href="#"  Something else here
 
 - else
   p No reports available
