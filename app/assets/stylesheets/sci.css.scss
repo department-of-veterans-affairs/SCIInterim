@@ -41,7 +41,7 @@
   h4 {
     color: #808E8E;
     size: 14px;
-    margin: 10px;
+    margin: 10px 30px;
     border: #1D3D46;
   }
 
@@ -121,6 +121,16 @@
 .panel-group .panel.panel-default {
   border-radius: 0px;
 }
+
+// Some hacks for simple form
 .checkbox {
   float: left;
+}
+.radio_buttons.form-control {
+  height: auto;
+  border: none;
+  box-shadow: none;
+}
+.radio.radio-inline {
+  padding-left: 0px;
 }

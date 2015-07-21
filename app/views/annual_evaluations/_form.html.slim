@@ -15,7 +15,11 @@
     = f.input :eval_offered, label: "Date Offered", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
     = f.input :eval_completed, label: "Date of Completion", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
     = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "DD/MM/YYYY",  disabled: true, as: :string, input_html: { class: "datepicker" }
-    
+    = f.input :is_inpatient,
+      :collection => [[true, 'is_inpatient'], [false, 'outpatient']], 
+      :as => :radio_buttons, 
+      :item_wrapper_class => 'radio-inline',
+      :checked => true
     = f.input :is_inpatient
 
     / h4 Ignore the stuff below. We need to remove.
