@@ -1,4 +1,4 @@
-= wrapped_form_for([@patient, @annual_evaluation]) do |f| 
+.nested-fields
   .instrument
     h4
     h4 ASIA Assessment Score
@@ -17,22 +17,22 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  .form-control.input
+                  = f.input_field :neurological_sensory_level_left, label: false, collection: Asia.level_of_injuries.keys
                 td 
-                  .form-control.input
+                  = f.input_field :neurological_sensory_level_right, label: false, collection: Asia.level_of_injuries.keys
               tr
                 th scope="row"  Motor
                 td 
-                  .form-control.input
+                  = f.input_field :neurological_motor_level_left, label: false, collection: Asia.level_of_injuries.keys
                 td 
-                  .form-control.input
+                  = f.input_field :neurological_motor_level_right, label: false, collection: Asia.level_of_injuries.keys
       .col-md-4
         label ASIA Impairment Scale
-        = f.input :asia_score, :prompt => "Select one", collection: Asia.classifications.keys, :label => false, input_html: { class: "form-control" }
+        .form-control.input Missing JS auto-calc
         hr
 
         label Neurological Level of Injury
-        = f.input :level_of_injury, :label => "Neurological Level of Injury", :prompt => "Select one", collection: Asia.level_of_injuries.keys, :label => false, :no_col => true
+        .form-control.input Missing JS auto-calc
 
         label.radio-inline
           input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" Complete
@@ -41,7 +41,7 @@
   
         label
           .checkbox-inline
-            =f.input_field :has_motor_or_sensory_asymmetry
+            = f.input_field :has_motor_or_sensory_asymmetry
             | Has motor or sensory asymmetry
         / # / If this is true (checked) then there are some things that need to be below it
 
@@ -58,15 +58,12 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  .form-control.input
+                  = f.input_field :preservation_sensory_left, collection: Asia.level_of_injuries.keys
                 td 
-                  .form-control.input
+                  = f.input_field :preservation_sensory_right, collection: Asia.level_of_injuries.keys
               tr
                 th scope="row"  Motor
                 td 
-                  .form-control.input
+                  = f.input_field :preservation_motor_left, label: false, collection: Asia.level_of_injuries.keys
                 td 
-                  .form-control.input
-    .row
-      .col-md-12
-        .btn.btn-lg.btn-primary.pull-right save new assessment
+                  = f.input_field :preservation_motor_right, label: false, collection: Asia.level_of_injuries.keys

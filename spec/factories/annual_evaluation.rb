@@ -15,11 +15,6 @@ FactoryGirl.define do
     fim { rand(18..126) }
     kurtzke_edss { Faker::Lorem.word }
     bladder_drainage_method { AnnualEvaluation.bladder_drainage_methods.keys.sample }
-    has_motor_or_sensory_asymmetry { [true, false].sample }
-    neuro_zone_of_preservation1 { 1 }
-    neuro_zone_of_preservation2 { 2 }
-    neuro_zone_of_preservation3 { 3 }
-    level_of_injury { 4 }
-    asia_score { 1 }
+    asia_assessment { create(:asia) }
   end
 end

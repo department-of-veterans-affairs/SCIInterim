@@ -7,6 +7,10 @@ class Patient < ActiveRecord::Base
   belongs_to :caregiver_address, class_name: 'Address', foreign_key: 'caregiver_address_id'
   accepts_nested_attributes_for :caregiver_address
 
+  has_one :asia_assessment, class_name: 'Asia', as: :has_asia
+  accepts_nested_attributes_for :asia_assessment
+  validates_associated :asia_assessment
+
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}

@@ -17,7 +17,8 @@
     = f.input :residence_name
 
     h4 START
-    = f.input :start_asia
+    = f.simple_fields_for :start_asia_assessment do |asia_assessment|
+      = render 'shared/asia_fields', :f => asia_assessment
     = f.input :start_fim
     = f.input :start_swls
     = f.input :start_sf8
@@ -26,7 +27,8 @@
     = f.input :goal_fim
 
     h4 FINISH
-    = f.input :finish_asia
+    = f.simple_fields_for :finish_asia_assessment do |asia_assessment|
+      = render 'shared/asia_fields', :f => asia_assessment
     = f.input :finish_fim
     = f.input :finish_swls
     = f.input :finish_sf8

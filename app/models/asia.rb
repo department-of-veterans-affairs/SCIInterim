@@ -1,6 +1,9 @@
 class Asia < ActiveRecord::Base
+  belongs_to :has_asia, polymorphic: true
+
   enum classification: { 'A' => 1, 'B' => 2, 'C' => 3, 'D' => 4 }
   LEVEL_OF_INJURIES = {
+      "" => 0,
       "C2" => 1,
       "C3" => 2,
       "C4" => 3,
@@ -42,6 +45,7 @@ class Asia < ActiveRecord::Base
   end
 
   def int_to_level_of_injury(value)
+    return nil if value.nil?
     raise "Invalid Level of Injury" unless LEVEL_OF_INJURIES_INVERT.has_key?(value)
     LEVEL_OF_INJURIES_INVERT[value]
   end

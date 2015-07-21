@@ -1,4 +1,6 @@
 class AcuteRehabsController < ApplicationController
+  include AttributeParam 
+
   layout 'patient_edit'
 
   before_action :authenticate_user!
@@ -9,6 +11,8 @@ class AcuteRehabsController < ApplicationController
 
   def new
     @acute_rehab = AcuteRehab.new
+    @acute_rehab.build_start_asia_assessment
+    @acute_rehab.build_finish_asia_assessment
     respond_with(@acute_rehab)
   end
 
@@ -17,6 +21,7 @@ class AcuteRehabsController < ApplicationController
 
   def create
     @acute_rehab = AcuteRehab.new(acute_rehab_params)
+    @acute_rehab.assign_attributes(acute_rehab_params)
     @acute_rehab.save
     @patient.episode_of_cares << @acute_rehab
     @patient.save
@@ -24,6 +29,7 @@ class AcuteRehabsController < ApplicationController
   end
 
   def update
+    @acute_rehab.assign_attributes(acute_rehab_params)
     @acute_rehab.update(acute_rehab_params)
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
   end
@@ -40,11 +46,9 @@ class AcuteRehabsController < ApplicationController
     def acute_rehab_params
       params.require(:acute_rehab).permit(
         :patient_id, # TODO(awong.dev): Required?
-        :start_asia,
         :start_fim,
         :start_swls,
         :goal_fim,
-        :finish_asia,
         :finish_fim,
         :reason_for_admission,
         :reason_for_admission_other,
@@ -68,6 +72,8 @@ class AcuteRehabsController < ApplicationController
         :followup_1yr_swls,
         :followup_1yr_chart_sf,
         :followup_1yr_sf8,
+        start_asia_assessment_attributes: nested_model_attributes(Asia),
+        finish_asia_assessment_attributes: nested_model_attributes(Asia),
       )
     end
 end

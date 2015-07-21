@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717230308) do
+ActiveRecord::Schema.define(version: 20150721213642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,9 @@ ActiveRecord::Schema.define(version: 20150717230308) do
   create_table "acute_rehabs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "start_asia"
     t.string   "start_fim"
     t.string   "start_swls"
     t.string   "goal_fim"
-    t.integer  "finish_asia"
     t.string   "finish_fim"
     t.integer  "reason_for_admission"
     t.string   "reason_for_admission_other"
@@ -73,12 +71,6 @@ ActiveRecord::Schema.define(version: 20150717230308) do
     t.string   "fim"
     t.string   "kurtzke_edss"
     t.integer  "bladder_drainage_method"
-    t.boolean  "has_motor_or_sensory_asymmetry"
-    t.integer  "neuro_zone_of_preservation1"
-    t.integer  "neuro_zone_of_preservation2"
-    t.integer  "neuro_zone_of_preservation3"
-    t.integer  "level_of_injury"
-    t.integer  "asia_score"
   end
 
   create_table "asia", force: true do |t|
@@ -95,7 +87,11 @@ ActiveRecord::Schema.define(version: 20150717230308) do
     t.integer  "preservation_motor_right"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "has_asia_id"
+    t.string   "has_asia_type"
   end
+
+  add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
 
   create_table "episode_of_cares", force: true do |t|
     t.integer  "patient_id"
@@ -139,7 +135,6 @@ ActiveRecord::Schema.define(version: 20150717230308) do
     t.date     "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "asia_level"
     t.integer  "highest_level_of_education"
     t.string   "occupation_at_time_of_injury"
     t.string   "last_name"
@@ -170,8 +165,6 @@ ActiveRecord::Schema.define(version: 20150717230308) do
     t.boolean  "is_on_active_duty"
     t.integer  "sci_type"
     t.date     "date_of_injury"
-    t.integer  "level_of_injury"
-    t.boolean  "is_asia_complete"
     t.string   "current_occupation"
     t.integer  "residence_type"
     t.string   "residence_name"
