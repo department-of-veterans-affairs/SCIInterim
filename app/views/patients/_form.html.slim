@@ -88,9 +88,8 @@
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
           = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
           = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
-          = f.input :level_of_injury, collection: Patient.level_of_injuries.keys, :prompt => "Select one"
-          = f.input :asia_level, collection: Patient.asia_levels.keys, :prompt => "Select one"
-          = f.input :is_asia_complete
+          = f.simple_fields_for :asia_assessment do |asia_assessment|
+            = render 'shared/asia_fields', :f => asia_assessment
           .col-sm-offset-3.col-sm-9.form-actions
             = f.submit class:"btn btn-primary"
     .panel.panel-default

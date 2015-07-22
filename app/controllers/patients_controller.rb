@@ -23,6 +23,7 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     @patient.build_address
+    @patient.build_asia_assessment
     @patient.build_caregiver_address
     respond_with(@patient)
   end
@@ -44,7 +45,7 @@ class PatientsController < ApplicationController
   end
 
   def update
-    @patient.assign_attributes(patient_params)
+    @patient.update_attributes(patient_params)
     if @patient.update(patient_params)
       flash[:success] = "You have successfully updated this patient's data"
     else
@@ -80,6 +81,7 @@ class PatientsController < ApplicationController
         :data_first_seen_in_va_sci, :occupation_at_time_of_injury,
         :service_connected, :date_of_death, :outcome_coordinator,
         address_attributes: nested_model_attributes(Address),
+        asia_assessment_attributes: nested_model_attributes(Asia),
         caregiver_address_attributes: nested_model_attributes(Address),
         )
     end

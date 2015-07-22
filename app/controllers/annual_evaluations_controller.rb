@@ -1,4 +1,6 @@
 class AnnualEvaluationsController < ApplicationController
+  include AttributeParam 
+
   layout 'patient_edit'
 
   before_action :authenticate_user!
@@ -9,6 +11,7 @@ class AnnualEvaluationsController < ApplicationController
 
   def new
     @annual_evaluation = AnnualEvaluation.new
+    @annual_evaluation.build_asia_assessment
     respond_with(@annual_evaluation)
   end
 
@@ -17,6 +20,7 @@ class AnnualEvaluationsController < ApplicationController
 
   def create
     @annual_evaluation = AnnualEvaluation.new(annual_evaluation_params)
+    @annual_evaluation.assign_attributes(annual_evaluation_params)
     @annual_evaluation.save
     @patient.episode_of_cares << @annual_evaluation
     @patient.save
@@ -24,6 +28,7 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def update
+    @annual_evaluation.update_attributes(annual_evaluation_params)
     @annual_evaluation.update(annual_evaluation_params)
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end
@@ -41,7 +46,7 @@ class AnnualEvaluationsController < ApplicationController
       params.require(:annual_evaluation).permit(
         :patient_id,
         :episode_date,
-        :asia_level
+        asia_assessment_attributes: nested_model_attributes(Asia),
       )
     end
 end
