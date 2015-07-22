@@ -4,12 +4,9 @@
     h4 Clinical
     = f.input :bmi, label: "BMI", :placeholder => "00"
     = f.input :bladder_drainage_method,  label: "Bladder Drainage Method", :prompt => "Select one", collection: AnnualEvaluation.bladder_drainage_methods.keys
-    = f.input :has_motor_or_sensory_asymmetry
-    = f.input :neuro_zone_of_preservation1,  label: "Neuro Zone of Preservation", :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation1s.keys
-    = f.input :neuro_zone_of_preservation2, label: false, :prompt => "Select one", collection: AnnualEvaluation.neuro_zone_of_preservation2s.keys
-    = f.input :neuro_zone_of_preservation3, label: false, :placeholder => "00"
 
-    == render 'shared/asia'
+    = f.simple_fields_for :asia_assessment do |asia_assessment|
+      = render 'shared/asia_fields', :f => asia_assessment
 
     h4 Administrative
     = f.input :eval_offered, label: "Date Offered", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }

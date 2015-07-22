@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'country_select'
 gem 'devise'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
+gem 'factory_girl_rails'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'foreigner'
 gem 'immigrant'
 gem 'jbuilder', '~> 2.0'
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'coveralls', require: false
-  gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'pry-byebug'
   gem 'rspec-rails'

@@ -13,46 +13,41 @@
     = f.input :scido_id, label: "SCIDO Patient Id"
 
     .callout
-      h4 Contact Information
+      h4 Patient Contact Information
       = f.simple_fields_for :address do |address|
         = render 'shared/address_fields', :f => address 
       = f.input :my_healthevet_messaging
       = f.input :sci_service_connected
     
     .callout
-      h4 Travel Eligibility
+      h4 VA Status and Travel Eligibility
+      = f.input :assigned_vamc
       = f.input :travel_status,
         :collection => Patient.travel_statuses.keys, 
         :as => :radio_buttons, 
         :item_wrapper_class => 'radio-inline'
       = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
 
-    h4 VA Status
-    = f.input :travel_status,
-      :collection => Patient.va_statuses.keys, 
-      :as => :radio_buttons, 
-      :item_wrapper_class => 'radio-inline'
-      = f.input :assigned_vamc
     .callout
-      h5 Assigned SCI Hub
+      h4 Assigned SCI Hub
       = f.input :assigned_sci_hub, label: "Location Name"
       = f.input :assigned_sci_hub_physician_first_name, label: "Physician last name"
       = f.input :assigned_sci_hub_physician_last_name, label: "Physician first name"
     .callout
-      h5 Preferred SCI Hub
+      h4 Preferred SCI Hub
       = f.input :preferred_sci_hub, label: "Location name"
       = f.input :preferred_sci_hub_physician_first_name, label: "Physician last name"
       = f.input :preferred_sci_hub_physician_last_name, label: "Physician first name"
     
     .callout
-      h5 Primary Care
+      h4 Primary Care
       = f.input :principle_pcp_va_nonva,
         label: "Primary Care Physician",
         :collection => Patient.principle_pcp_va_nonvas.keys, 
         :as => :radio_buttons, 
         :item_wrapper_class => 'radio-inline'          
     .callout
-      h5 Non VA Facility
+      h4 Non VA Facility
       = f.input :non_va_facility_name, label: "Facility name"
       = f.input :non_va_facility_contact, label: "Contact name"
       = f.input :non_va_facility_phone_number, label: "Number"
@@ -60,7 +55,7 @@
       = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
       = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
     .callout
-      h5 VA Facility
+      h4 VA Facility
       = f.input :va_facility, label: "Facility name"
       = f.input :va_facility_pcp_first_name, label: "Physician first name"
       = f.input :va_facility_pcp_last_name, label: "Physician last name"
@@ -74,9 +69,9 @@
     = f.input :is_on_active_duty, label: "Currently on Active Duty"
     = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
     = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
-    = f.input :level_of_injury, collection: Patient.level_of_injuries.keys, :prompt => "Select one"
-    = f.input :asia_level, collection: Patient.asia_levels.keys, :prompt => "Select one"
-    = f.input :is_asia_complete
+
+    = f.simple_fields_for :asia_assessment do |asia_assessment|
+      = render 'shared/asia_fields', :f => asia_assessment    
     
     h4 Psychosocial
     = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
@@ -84,7 +79,7 @@
     = f.input :current_occupation
 
     .callout
-      h5 Residence information
+      h4 Residence information
       = f.input :residence_type
       = f.input :residence_name
       = f.input :has_caregiver
@@ -92,7 +87,7 @@
         = render 'shared/address_fields', :f => caregiver_address 
 
     .callout
-      h5 Caregiver information
+      h4 Caregiver information
       = f.input :is_receiving_non_va_care 
       = f.input :non_va_care_hours_per_month, label: "Care hours per month"
       hr
