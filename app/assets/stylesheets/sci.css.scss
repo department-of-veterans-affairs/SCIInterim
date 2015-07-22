@@ -43,6 +43,7 @@
     size: 14px;
     margin: 10px 30px;
     border: #1D3D46;
+    clear: both;
   }
 
   .panel-title {
@@ -55,20 +56,22 @@
     font-size: 14px;
   }
 
-  .instrument {
+  .instrument, .callout {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
-    // text-align: center;
     margin: 35px 10px;
-    padding: 20px 40px;
+    padding: 20px 20px 20px 0px;
 
     // Temporary hack here until I figure out the simple_form way  
     input[type="checkbox"] {
       margin: -3px -20px 0;
     }
+    .row {
+      padding: 20px;
+    }
   }
 
-  .instrument:hover {
+  .instrument:hover, .callout:hover {
     // background-color: #DFEDF1;
     border: 1px dashed #ddd;
   } 
