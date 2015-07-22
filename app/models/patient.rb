@@ -47,6 +47,17 @@ class Patient < ActiveRecord::Base
     "On-Hold" => 3,
     "Expired" => 4
   }
+  enum residence_type: {
+    "Own" => 1,
+    "Rent" => 2,
+    "Homeless" => 3,
+    "Assisted living" => 4,
+    "Nursing home" => 5,
+    "Shelter" => 6,
+    "Group Home" => 7,
+    "Board and Care" => 8,
+  }
+
   enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
   def computed_age

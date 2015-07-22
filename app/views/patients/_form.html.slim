@@ -80,8 +80,7 @@
 
     .callout
       h4 Residency information
-      / TODO: Needs to be dropdown
-      = f.input :residence_type
+      = f.input :residence_type, collection: Patient.residence_types.keys, :prompt => "Select one"
       / TODO: Make clear address is for caregiver and not residency, all below is for cg      
       / TODO: should be radio: No Caregiver / paid family caregiver .... 5 items
       = f.input :has_caregiver
