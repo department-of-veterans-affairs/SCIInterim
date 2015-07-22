@@ -19,9 +19,6 @@
       :checked => true
     = f.input :is_inpatient
 
-    / h4 Ignore the stuff below. We need to remove.
-    = f.input :episode_date, :placeholder => "to be removed", as: :string, disabled: true, input_html: { class: "datepicker" }
-
     h4 Standard Instruments
     / TODO for instruments (@emilyville)
         / - make instruments work, see above
@@ -31,11 +28,6 @@
         h4 = link_to "+ add FIM assessment", "#"
     .instrument
         h4 = link_to "+ add Kurtzke EDSS assessment", "#"
-
-    / Commented out for now, until intrument workflow is more understood and instruments are built
-    / = f.input :cyh
-    / = f.input :fim
-    / = f.input :kurtzke_edss
 
     .pull-right
         = f.submit "Save Annual Evaluation", class: "btn btn-lg btn-primary"

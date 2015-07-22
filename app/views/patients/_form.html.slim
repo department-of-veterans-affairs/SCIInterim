@@ -26,6 +26,7 @@
         :collection => Patient.travel_statuses.keys, 
         :as => :radio_buttons, 
         :item_wrapper_class => 'radio-inline'
+      / TOODO: Should be conditional on last radio selected
       = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
 
     .callout
@@ -49,7 +50,6 @@
     .callout
       h4 Non VA Facility
       = f.input :non_va_facility_name, label: "Facility name"
-      = f.input :non_va_facility_contact, label: "Contact name"
       = f.input :non_va_facility_phone_number, label: "Number"
       = f.input :non_va_facility_fax_number, label: "Fax number"
       = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
@@ -79,31 +79,22 @@
     = f.input :current_occupation
 
     .callout
-      h4 Residence information
+      h4 Residency information
+      / TODO: Needs to be dropdown
       = f.input :residence_type
-      = f.input :residence_name
+      / TODO: Make clear address is for caregiver and not residency, all below is for cg      
+      / TODO: should be radio: No Caregiver / paid family caregiver .... 5 items
       = f.input :has_caregiver
       = f.simple_fields_for :caregiver_address do |caregiver_address|
         = render 'shared/address_fields', :f => caregiver_address 
 
     .callout
       h4 Caregiver information
-      = f.input :is_receiving_non_va_care 
+      = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
+      / TODO: Should be conditional if prev is answered
       = f.input :non_va_care_hours_per_month, label: "Care hours per month"
       hr
-      = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Fee basis evaluation"
-      = f.input :non_va_caregiver_receiving_reimbursement, label: "Is caregiver reimbursed"
-      = f.input :is_receiving_hhha
-    .col-sm-offset-3.col-sm-9.form-actions
-      = f.submit class:"btn btn-primary"
-    - if @patient    
-      h4 Episodes Of Care
-      table
-        - for episode in @patient.episode_of_cares do
-          tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
-            td
-              strong
-              = episode.episode_date
-            td
-              = episode.specific.class.name
+      = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
+      = f.input :is_receiving_hhha, label: "Check if receiving HHH/A"
+
 

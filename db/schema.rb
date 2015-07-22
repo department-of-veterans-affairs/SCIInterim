@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721213642) do
+ActiveRecord::Schema.define(version: 20150722204939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,15 @@ ActiveRecord::Schema.define(version: 20150721213642) do
   end
 
   create_table "addresses", force: true do |t|
-    t.string   "name"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.integer  "state"
     t.integer  "zip"
-    t.integer  "zip_plus4"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "phone_number"
   end
 
   create_table "annual_evaluations", force: true do |t|
@@ -97,7 +96,6 @@ ActiveRecord::Schema.define(version: 20150721213642) do
     t.integer  "patient_id"
     t.integer  "actable_id"
     t.string   "actable_type"
-    t.date     "episode_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -167,15 +165,13 @@ ActiveRecord::Schema.define(version: 20150721213642) do
     t.date     "date_of_injury"
     t.string   "current_occupation"
     t.integer  "residence_type"
-    t.string   "residence_name"
     t.boolean  "has_caregiver"
     t.boolean  "is_receiving_non_va_care"
     t.integer  "non_va_care_hours_per_month"
-    t.string   "non_va_caregiver_receiving_reimbursement"
     t.date     "last_fee_basis_evaluation_date"
     t.boolean  "is_receiving_hhha"
-    t.integer  "address_id",                               null: false
-    t.integer  "caregiver_address_id",                     null: false
+    t.integer  "address_id",                             null: false
+    t.integer  "caregiver_address_id",                   null: false
     t.integer  "principle_pcp_va_nonva"
   end
 
