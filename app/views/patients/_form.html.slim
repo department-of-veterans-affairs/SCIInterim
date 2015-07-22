@@ -1,143 +1,114 @@
 = wrapped_form_for(@patient) do |f|
   = flash_messages
-  #accordion.panel-group.form-inputs aria-multiselectable="true" role="tablist"
-    .panel.panel-default
-      #headingPersonalInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#personalInfo"
-        h4.panel-title
-          a aria-controls="personalInfo" aria-expanded="true" 
-            | Personal Information
-      #personalInfo.panel-collapse.collapse.in aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :first_name
-          = f.input :last_name
-          = f.input :dob, as: :date, html5: true, label: "Date of Birth"
-          = f.input :gender, collection: Patient.genders.keys, :prompt => "Select one"
-          = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
-          = f.input :scido_id, label: "SCIDO Patient Id"
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingContactInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#contactInfo"
-        h4.panel-title
-          a.collapsed aria-controls="contactInfo" aria-expanded="false" 
-            | Contact Information
-      #contactInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.simple_fields_for :address do |address|
-            = render 'shared/address_fields', :f => address 
-          = f.input :my_healthevet_messaging
-          = f.input :sci_service_connected
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingTravelEligibility.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#travelEligibility"
-        h4.panel-title
-          a.collapsed aria-controls="travelEligibility" aria-expanded="false" 
-            | Travel Eligibility
-      #travelEligibility.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :travel_status, collection: Patient.travel_statuses.keys, :prompt => "Select one"
-          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingVAStatus.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#vaStatus"
-        h4.panel-title
-          a.collapsed aria-controls="vaStatus" aria-expanded="false"
-            | VA Status
-      #vaStatus.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :va_status, collection: Patient.va_statuses.keys, :prompt => "Select one"
-          = f.input :assigned_vamc
-          = f.input :assigned_sci_hub
-          = f.input :assigned_sci_hub_physician_first_name
-          = f.input :assigned_sci_hub_physician_last_name
-          = f.input :preferred_sci_hub
-          = f.input :preferred_sci_hub_physician_first_name
-          = f.input :preferred_sci_hub_physician_last_name
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingPrimaryCare.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#primaryCare"
-        h4.panel-title
-          a.collapsed aria-controls="primaryCare" aria-expanded="false" 
-            | Primary Care
-      #primaryCare.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :principle_pcp_va_nonva, :label => "Principle primary care physician", collection: Patient.principle_pcp_va_nonvas.keys, :prompt => "Select one"
-          = f.input :non_va_facility_name
-          = f.input :non_va_facility_contact
-          = f.input :non_va_facility_phone_number
-          = f.input :non_va_facility_fax_number
-          = f.input :non_va_facility_pcp_first_name
-          = f.input :non_va_facility_pcp_last_name
-          = f.input :va_facility
-          = f.input :va_facility_pcp_first_name
-          = f.input :va_facility_pcp_last_name
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingSCIDInfo.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#scidInfo"
-        h4.panel-title
-          a.collapsed aria-controls="scidInfo" aria-expanded="false" 
-            | SCI/D Information
-      #scidInfo.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :theater_of_service, collection: Patient.theater_of_services.keys, :prompt => "Select one"
-          = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
-          = f.input :is_on_active_duty, label: "Currently on Active Duty"
-          = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
-          = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
-          = f.input :level_of_injury, collection: Patient.level_of_injuries.keys, :prompt => "Select one"
-          = f.input :asia_level, collection: Patient.asia_levels.keys, :prompt => "Select one"
-          = f.input :is_asia_complete
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingPsychosocial.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#psychosocial"
-        h4.panel-title
-          a.collapsed aria-controls="psychosocial" aria-expanded="false" 
-            | Psychosocial
-      #psychosocial.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
-          = f.input :occupation_at_time_of_injury
-          = f.input :current_occupation
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    .panel.panel-default
-      #headingResidencyAndCaregiver.panel-heading role="tab" data-parent="#accordion" data-toggle="collapse" href="#residencyAndCaregiver"
-        h4.panel-title
-          a aria-controls="residencyAndCaregiver" aria-expanded="false" 
-            | Residency and Caregiver
-      #residencyAndCaregiver.panel-collapse.collapse aria-labelledby="headingBasic" role="tabpanel"
-        .panel-body
-          = f.input :residence_type
-          = f.input :residence_name
-          = f.input :has_caregiver
-          = f.simple_fields_for :caregiver_address do |caregiver_address|
-            = render 'shared/address_fields', :f => caregiver_address 
-          = f.input :is_receiving_non_va_care
-          = f.input :non_va_care_hours_per_month
-          = f.input :non_va_caregiver_receiving_reimbursement
-          = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }
-          = f.input :is_receiving_hhha
-          .col-sm-offset-3.col-sm-9.form-actions
-            = f.submit class:"btn btn-primary"
-    - if @patient
-      .panel.panel-default
-        #detailThree.panel-heading role="tab" data-toggle="collapse" href="#episodesOfCare"
-          h4.panel-title
-            a.collapsed aria-controls="episodesOfCare" aria-expanded="false" data-parent="#accordion"
-              | Episodes Of Care
-        #episodesOfCare.panel-collapse.collapse aria-labelledby="detailThree" role="tabpanel"
-          .panel-body
-            table
-              - for episode in @patient.episode_of_cares do
-                tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
-                  td
-                    strong
-                    = episode.episode_date
-                  td
-                    = episode.specific.class.name
+  .form-inputs
+    h4 Personal Information
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :dob, as: :date, html5: true, label: "Date of Birth"
+    = f.input :gender,
+      :collection => Patient.genders.keys, 
+      :as => :radio_buttons, 
+      :item_wrapper_class => 'radio-inline'
+    = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
+    = f.input :scido_id, label: "SCIDO Patient Id"
+
+    .callout
+      h4 Contact Information
+      = f.simple_fields_for :address do |address|
+        = render 'shared/address_fields', :f => address 
+      = f.input :my_healthevet_messaging
+      = f.input :sci_service_connected
+    
+    .callout
+      h4 Travel Eligibility
+      = f.input :travel_status,
+        :collection => Patient.travel_statuses.keys, 
+        :as => :radio_buttons, 
+        :item_wrapper_class => 'radio-inline'
+      = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+
+    h4 VA Status
+    = f.input :travel_status,
+      :collection => Patient.va_statuses.keys, 
+      :as => :radio_buttons, 
+      :item_wrapper_class => 'radio-inline'
+      = f.input :assigned_vamc
+    .callout
+      h5 Assigned SCI Hub
+      = f.input :assigned_sci_hub, label: "Location Name"
+      = f.input :assigned_sci_hub_physician_first_name, label: "Physician last name"
+      = f.input :assigned_sci_hub_physician_last_name, label: "Physician first name"
+    .callout
+      h5 Preferred SCI Hub
+      = f.input :preferred_sci_hub, label: "Location name"
+      = f.input :preferred_sci_hub_physician_first_name, label: "Physician last name"
+      = f.input :preferred_sci_hub_physician_last_name, label: "Physician first name"
+    
+    .callout
+      h5 Primary Care
+      = f.input :principle_pcp_va_nonva,
+        label: "Primary Care Physician",
+        :collection => Patient.principle_pcp_va_nonvas.keys, 
+        :as => :radio_buttons, 
+        :item_wrapper_class => 'radio-inline'          
+    .callout
+      h5 Non VA Facility
+      = f.input :non_va_facility_name, label: "Facility name"
+      = f.input :non_va_facility_contact, label: "Contact name"
+      = f.input :non_va_facility_phone_number, label: "Number"
+      = f.input :non_va_facility_fax_number, label: "Fax number"
+      = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
+      = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
+    .callout
+      h5 VA Facility
+      = f.input :va_facility, label: "Facility name"
+      = f.input :va_facility_pcp_first_name, label: "Physician first name"
+      = f.input :va_facility_pcp_last_name, label: "Physician last name"
+    
+    h4 SCI/D Information
+    = f.input :theater_of_service,
+      :collection => Patient.theater_of_services.keys, 
+      :as => :radio_buttons, 
+      :item_wrapper_class => 'radio-inline'            
+    = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :is_on_active_duty, label: "Currently on Active Duty"
+    = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
+    = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
+    = f.input :level_of_injury, collection: Patient.level_of_injuries.keys, :prompt => "Select one"
+    = f.input :asia_level, collection: Patient.asia_levels.keys, :prompt => "Select one"
+    = f.input :is_asia_complete
+    
+    h4 Psychosocial
+    = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
+    = f.input :occupation_at_time_of_injury
+    = f.input :current_occupation
+
+    .callout
+      h5 Residence information
+      = f.input :residence_type
+      = f.input :residence_name
+      = f.input :has_caregiver
+      = f.simple_fields_for :caregiver_address do |caregiver_address|
+        = render 'shared/address_fields', :f => caregiver_address 
+
+    .callout
+      h5 Caregiver information
+      = f.input :is_receiving_non_va_care 
+      = f.input :non_va_care_hours_per_month, label: "Care hours per month"
+      hr
+      = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Fee basis evaluation"
+      = f.input :non_va_caregiver_receiving_reimbursement, label: "Is caregiver reimbursed"
+      = f.input :is_receiving_hhha
+    .col-sm-offset-3.col-sm-9.form-actions
+      = f.submit class:"btn btn-primary"
+    - if @patient    
+      h4 Episodes Of Care
+      table
+        - for episode in @patient.episode_of_cares do
+          tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+            td
+              strong
+              = episode.episode_date
+            td
+              = episode.specific.class.name
 

@@ -43,6 +43,7 @@
     size: 14px;
     margin: 10px 30px;
     border: #1D3D46;
+    clear: both;
   }
 
   .panel-title {
@@ -55,10 +56,9 @@
     font-size: 14px;
   }
 
-  .instrument {
+  .instrument, .callout {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
-    // text-align: center;
     margin: 35px 10px;
     padding: 20px 40px;
 
@@ -68,7 +68,7 @@
     }
   }
 
-  .instrument:hover {
+  .instrument:hover, .callout:hover {
     // background-color: #DFEDF1;
     border: 1px dashed #ddd;
   } 
