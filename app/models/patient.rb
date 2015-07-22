@@ -10,13 +10,14 @@ class Patient < ActiveRecord::Base
   has_one :asia_assessment, class_name: 'Asia', as: :has_asia
   accepts_nested_attributes_for :asia_assessment
   validates_associated :asia_assessment
-
+  
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
 
+  #Enumeration in alphabetical order for Patient page
   enum gender: { "Female" => 1, "Male" => 2, "Unknown" => 3 }
   enum highest_level_of_education: {
     "No Diploma" => 1,
