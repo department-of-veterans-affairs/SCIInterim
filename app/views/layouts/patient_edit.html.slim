@@ -84,9 +84,6 @@
     /     - for episode in @patient.episode_of_cares do
     /       tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
     /         td
-    /           strong
-    /           = episode.episode_date
-    /         td
               / = episode.specific.class.name
 
 = render template: "layouts/application"
