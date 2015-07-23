@@ -57,7 +57,6 @@ class Patient < ActiveRecord::Base
     "Group Home" => 7,
     "Board and Care" => 8,
   }
-
   enum has_caregiver: {
     "No Caregiver" => 1,
     "Paid Family" => 2,
@@ -65,7 +64,6 @@ class Patient < ActiveRecord::Base
     "Paid Non-family" => 4,
     "Unpaid Non-family" => 5,
   }
-
   # This needs love and is very sad
   enum occupation_at_time_of_injury: {
     "Working (competitive labor market, includes military) at time of injury" => 1,
@@ -77,7 +75,6 @@ class Patient < ActiveRecord::Base
     "Other, unclassified (includes volunteer, disability or medical leave) at time of injury"  => 7,
     "Unknown occupation at time of injury" => 8
   }
-
   enum current_occupation: {
     "Working (competitive labor market, includes military)" => 1,
     "Homemaker" => 2, 
@@ -88,7 +85,21 @@ class Patient < ActiveRecord::Base
     "Other, unclassified (includes volunteer, disability or medical leave)" => 7,
     "Unknown current occupation" => 8
   }
-
+  enum scid_etiology: {
+    "Sports" => 1,
+    "Assault" => 2,
+    "Transport" => 3,
+    "Fall" => 4,
+    "Other traumatic cause" => 5,
+    "Non-traumatic spinal cord dysfunction" => 6,
+    "Unspecified or Unknown" => 7
+  } 
+  enum scid_eligibility: {
+    "SCI" => 1, 
+    "MS" => 2,
+    "ALS" => 3, 
+    "other" => 4
+  }
   enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
   def computed_age

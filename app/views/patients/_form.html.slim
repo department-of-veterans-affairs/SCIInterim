@@ -60,10 +60,14 @@
       :collection => Patient.theater_of_services.keys, 
       :as => :radio_buttons, 
       :item_wrapper_class => 'radio-inline'            
-    = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }
+    = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
     = f.input :is_on_active_duty, label: "Currently on Active Duty"
-    = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one"
-    = f.input :date_of_injury, as: :string, input_html: { class: "datepicker" }
+    = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one", label: "SCI Type"
+    = f.input :scid_eligibility, collection: Patient.scid_eligibilities.keys, :prompt => "Select one", label: "SCI/D Eligibility"
+    / only if SCI is selected above
+    = f.input :scid_eligibility_other, label: "SCI/D Eligibility Other"
+    = f.input :scid_etiology, collection: Patient.scid_etiologies.keys, :prompt => "Select one", label: "SCI/D Etiology"
+    = f.input :date_of_injury, as: :date, html5: true
     = f.simple_fields_for :asia_assessment do |asia_assessment|
       = render 'shared/asia_fields', :f => asia_assessment    
     h4 Psychosocial

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722204939) do
+ActiveRecord::Schema.define(version: 20150723005742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,9 @@ ActiveRecord::Schema.define(version: 20150722204939) do
     t.integer  "address_id",                             null: false
     t.integer  "caregiver_address_id",                   null: false
     t.integer  "principle_pcp_va_nonva"
+    t.integer  "scid_eligibility"
+    t.string   "scid_eligibility_other"
+    t.integer  "scid_etiology"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
