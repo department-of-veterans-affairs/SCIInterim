@@ -45,7 +45,6 @@ class AnnualEvaluationsController < ApplicationController
     def annual_evaluation_params
       params.require(:annual_evaluation).permit(
         :patient_id,
-        :episode_date,
         asia_assessment_attributes: nested_model_attributes(Asia),
       )
     end

@@ -77,4 +77,13 @@
               p.pull-left
                 a 3/25/2015
 
+    /   = f.submit class:"btn btn-primary"
+    / - if @patient    
+    /   h4 Episodes Of Care
+    /   table
+    /     - for episode in @patient.episode_of_cares do
+    /       tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+    /         td
+              / = episode.specific.class.name
+
 = render template: "layouts/application"

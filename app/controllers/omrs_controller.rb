@@ -41,7 +41,6 @@ class OmrsController < ApplicationController
     def omr_params
       params.require(:omr).permit(
         :patient_id, # TODO(awong.dev): Required?
-        :episode_date, # TODO(awong.dev): Dedup.
         :admission_date,
         :start_asia,
         :start_fim,

@@ -46,9 +46,6 @@ class ReportsController < ApplicationController
                   word.capitalize
                 end
 
-                # Add in episode date
-                episode[:episode_date] = eoc[:episode_date]
-
                 # Return
                 episode
               }

@@ -47,6 +47,48 @@ class Patient < ActiveRecord::Base
     "On-Hold" => 3,
     "Expired" => 4
   }
+  enum residence_type: {
+    "Own" => 1,
+    "Rent" => 2,
+    "Homeless" => 3,
+    "Assisted living" => 4,
+    "Nursing home" => 5,
+    "Shelter" => 6,
+    "Group Home" => 7,
+    "Board and Care" => 8,
+  }
+
+  enum has_caregiver: {
+    "No Caregiver" => 1,
+    "Paid Family" => 2,
+    "Unpaid Family" => 3,
+    "Paid Non-family" => 4,
+    "Unpaid Non-family" => 5,
+  }
+
+  # This needs love and is very sad
+  enum occupation_at_time_of_injury: {
+    "Working (competitive labor market, includes military) at time of injury" => 1,
+    "Homemaker at time of injury" => 2, 
+    "On-th-job training at time of injury" => 3, 
+    "Sheltered workshop at time of injury" => 4,
+    "Student at time of injury"  => 5,
+    "Unemployed (may or may not be looking for work) at time of injury"  => 6,
+    "Other, unclassified (includes volunteer, disability or medical leave) at time of injury"  => 7,
+    "Unknown occupation at time of injury" => 8
+  }
+
+  enum current_occupation: {
+    "Working (competitive labor market, includes military)" => 1,
+    "Homemaker" => 2, 
+    "On-th-job training" => 3, 
+    "Sheltered workshop" => 4,
+    "Student" => 5,
+    "Unemployed (may or may not be looking for work)" => 6,
+    "Other, unclassified (includes volunteer, disability or medical leave)" => 7,
+    "Unknown current occupation" => 8
+  }
+
   enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
   def computed_age
