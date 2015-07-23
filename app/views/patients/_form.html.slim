@@ -90,5 +90,7 @@
       hr
       = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
       = f.input :is_receiving_hhha, label: "Check if receiving HHH/A"
-
+      .row 
+       .col-sm-offset-8.col-sm-4.form-actions
+        = f.submit class:"btn btn-primary btn-lg btn-block"
 
