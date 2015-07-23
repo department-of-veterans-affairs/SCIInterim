@@ -11,7 +11,7 @@ FactoryGirl.define do
     ssn "123-45-6789"
     dob { Faker::Date.between(100.years.ago, Date.today) }
     highest_level_of_education { Patient.highest_level_of_educations.keys.sample }
-    occupation_at_time_of_injury { Faker::Lorem.sentence(3) }
+    occupation_at_time_of_injury { Patient.occupation_at_time_of_injuries.keys.sample }
     gender { Patient.genders.keys.sample }
     address { create(:address) }
     my_healthevet_messaging { [true, false].sample }
@@ -41,15 +41,13 @@ FactoryGirl.define do
     sci_type { Patient.sci_types.keys.sample }
     date_of_injury { Faker::Date.between(100.years.ago, Date.today) }
     asia_assessment { create(:asia) }
-    current_occupation { Faker::Lorem.sentence(1, false, 4) }
+    current_occupation { Patient.current_occupations.keys.sample }
     # TODO(awong): Move residence type into a concer.
     residence_type { AcuteRehab.residence_types.keys.sample }
-    residence_name { Faker::Company.name }
-    has_caregiver { [true, false].sample }
+    has_caregiver { Patient.has_caregivers.keys.sample }
     caregiver_address { create(:address) }
     is_receiving_non_va_care { [true, false].sample }
     non_va_care_hours_per_month { rand(1000) }
-    non_va_caregiver_receiving_reimbursement { Faker::Company.name }
     last_fee_basis_evaluation_date { Faker::Date.between(100.years.ago, Date.today) }
     is_receiving_hhha { [true, false].sample }
   end
