@@ -26,7 +26,7 @@ feature 'OMR' do
     click_link("OMR")
     expect(page).to have_content "New OMR"
 
-    fill_in "Episode date", with: Time.now
+    # fill_in "Episode date", with: Time.now
 
     click_button("Create Omr")
     expect(current_url).to eql edit_patient_url(patient1)
