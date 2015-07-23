@@ -9,42 +9,50 @@ nav.navbar.navbav-default#patient-nav
       .col-md-3
         ul.nav.nav-pills 
           li 
-            | Age: 
+            | Age/DOB: 
             strong = @patient.computed_age
-            |  DOB: 
+            | / 
             strong = localize(@patient.dob)
           li
             | SSN: 
             strong = @patient.ssn
-      .col-md-2
-        ul.nav.nav-pills 
           li
             | Gender:
             strong = @patient.gender
-          li
-            | Onset:
-            strong = @patient.va_status
-      .col-md-2
+      .col-md-3
         ul.nav.nav-pills 
           li 
             | SCI Type:
             strong = @patient.sci_type
           li
+            | Onset:
+            strong = @patient.va_status
+          li
             | Active Duty:
             strong = @patient.is_on_active_duty
+      .col-md-1
+        ul.nav.nav-pills 
       .col-md-1
       .col-md-2.border-left
         ul.nav.nav-pills 
           li 
-            | SCI Center:
-            / strong = TODO: add variable 
+            | Facility:
+            strong = @patient.assigned_sci_hub
           li
             | Assigned VAMC:
-            / strong = TODO: add variable       
+            strong = @patient.assigned_vamc
       .col-md-2
         ul.nav.nav-pills 
-          li SCI Primary Physician
-          li PCPs
+          li 
+            | SCI PCP: 
+            strong = @patient.assigned_sci_hub_physician_first_name 
+            |  
+            strong = @patient.assigned_sci_hub_physician_last_name
+          li 
+            | VA PCP: 
+            strong = @patient.va_facility_pcp_first_name 
+            |  
+            strong = @patient.va_facility_pcp_last_name
 
 
 

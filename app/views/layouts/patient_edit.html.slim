@@ -19,6 +19,13 @@
               = link_to 'OMR', new_patient_omr_path(@patient), { class: "" }
             li
               = link_to 'Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
+        table.table.table-bordered.table-striped
+          .tr
+            th Recent Episodes of Care
+          - for episode in @patient.episode_of_cares do
+            tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+              .col-md-12
+                td = episode.specific.class.name
         .panel.panel-default.patient-sidebar
           .panel-body.row
             .col-md-12
@@ -52,38 +59,5 @@
             .col-md-7
               p.pull-left
                 a 3/25/2015
-
-      .col-md-3
-        .panel.panel-default.patient-sidebar
-          .panel-body.row
-            .col-md-12
-              h5 Recent Episodes of Care
-          .panel-body.row
-            .col-md-7
-              p Annual Evaluation
-            .col-md-5
-              p.pull-left
-                a 3/25/2015
-          .panel-body.row
-            .col-md-7
-              p Acute Rehab
-            .col-md-5
-              p.pull-left
-                a 3/25/2015
-          .panel-body.row
-            .col-md-7
-              p Initial Registration
-            .col-md-5
-              p.pull-left
-                a 3/25/2015
-
-    /   = f.submit class:"btn btn-primary"
-    / - if @patient    
-    /   h4 Episodes Of Care
-    /   table
-    /     - for episode in @patient.episode_of_cares do
-    /       tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
-    /         td
-              / = episode.specific.class.name
 
 = render template: "layouts/application"
