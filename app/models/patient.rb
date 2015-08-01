@@ -117,6 +117,24 @@ class Patient < ActiveRecord::Base
   }
   enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
+  def self.collections
+    {
+      "highest_level_of_education" => Patient.highest_level_of_educations.keys,
+      "gender" => Patient.genders.keys,
+      "sci_type" => Patient.sci_types.keys,
+      "travel_status" => Patient.travel_statuses.keys,
+      "theater_of_service" => Patient.theater_of_services.keys,
+      "residence_type" => Patient.residence_types.keys,
+      "has_caregiver" => Patient.has_caregivers.keys,
+      "occupation_at_time_of_injury" => Patient.occupation_at_time_of_injuries.keys,
+      "current_occupation" => Patient.current_occupations.keys,
+      "scid_etiology" => Patient.scid_etiologies.keys,
+      "scid_eligibility" => Patient.scid_eligibilities.keys,
+      "assigned_vamc" => Patient.assigned_vamcs.keys,
+      "principle_pcp_va_nonva" => Patient.principle_pcp_va_nonvas.keys,
+    }
+  end
+
   def computed_age
     age = Date.today.year - dob.year
     age -= 1 if Date.today < dob + age.years

@@ -19,15 +19,18 @@ FactoryGirl.define do
     travel_status { Patient.travel_statuses.keys.sample }
     benefits_waiver_exemption_date { Faker::Date.between(100.years.ago, Date.today) }
     va_status { Patient.va_statuses.keys.sample }
-    assigned_vamc { rand(10) }
+    assigned_vamc { Patient.assigned_vamcs.keys.sample }
     assigned_sci_hub { rand(10) }
     assigned_sci_hub_physician_first_name { Faker::Name.first_name }
     assigned_sci_hub_physician_last_name { Faker::Name.last_name }
+    scid_eligibility { Patient.scid_eligibilities.keys.sample } 
+    scid_eligibility_other { Faker::Lorem.sentence(4) } 
+    scid_etiology { Patient.scid_etiologies.keys.sample } 
+    principle_pcp_va_nonva { Patient.principle_pcp_va_nonvas.keys.sample }
     preferred_sci_hub { rand(10) }
     preferred_sci_hub_physician_first_name { Faker::Name.first_name }
     preferred_sci_hub_physician_last_name { Faker::Name.last_name }
     non_va_facility_name { Faker::Company.name }
-    non_va_facility_contact { Faker::Name.name }
     non_va_facility_phone_number { Faker::PhoneNumber.phone_number }
     non_va_facility_fax_number { Faker::PhoneNumber.phone_number }
     non_va_facility_pcp_first_name { Faker::Name.first_name }
@@ -42,7 +45,7 @@ FactoryGirl.define do
     date_of_injury { Faker::Date.between(100.years.ago, Date.today) }
     asia_assessment { create(:asia) }
     current_occupation { Patient.current_occupations.keys.sample }
-    # TODO(awong): Move residence type into a concer.
+    # TODO(awong): Move residence type into a concern.
     residence_type { AcuteRehab.residence_types.keys.sample }
     has_caregiver { Patient.has_caregivers.keys.sample }
     caregiver_address { create(:address) }

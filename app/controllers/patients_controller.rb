@@ -85,7 +85,6 @@ class PatientsController < ApplicationController
         :preferred_sci_hub_physician_last_name,
         :principle_pcp_va_nonva,
         :non_va_facility_name,
-        :non_va_facility_contact,
         :non_va_facility_phone_number,
         :non_va_facility_fax_number,
         :non_va_facility_pcp_first_name,

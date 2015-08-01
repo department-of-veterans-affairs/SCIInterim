@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723005742) do
+ActiveRecord::Schema.define(version: 20150808004550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20150723005742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "highest_level_of_education"
-    t.string   "occupation_at_time_of_injury"
     t.string   "last_name"
     t.integer  "gender"
     t.boolean  "my_healthevet_messaging"
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(version: 20150723005742) do
     t.string   "preferred_sci_hub_physician_first_name"
     t.string   "preferred_sci_hub_physician_last_name"
     t.string   "non_va_facility_name"
-    t.string   "non_va_facility_contact"
     t.string   "non_va_facility_phone_number"
     t.string   "non_va_facility_fax_number"
     t.string   "non_va_facility_pcp_first_name"
@@ -163,9 +161,7 @@ ActiveRecord::Schema.define(version: 20150723005742) do
     t.boolean  "is_on_active_duty"
     t.integer  "sci_type"
     t.date     "date_of_injury"
-    t.string   "current_occupation"
     t.integer  "residence_type"
-    t.boolean  "has_caregiver"
     t.boolean  "is_receiving_non_va_care"
     t.integer  "non_va_care_hours_per_month"
     t.date     "last_fee_basis_evaluation_date"
@@ -176,6 +172,9 @@ ActiveRecord::Schema.define(version: 20150723005742) do
     t.integer  "scid_eligibility"
     t.string   "scid_eligibility_other"
     t.integer  "scid_etiology"
+    t.integer  "occupation_at_time_of_injury"
+    t.integer  "current_occupation"
+    t.integer  "has_caregiver"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
