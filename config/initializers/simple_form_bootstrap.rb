@@ -1,5 +1,19 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+  config.wrappers :vertical_input_group, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, class: 'control-label'
+
+    b.wrapper tag: 'div' do |ba|
+      ba.wrapper tag: 'div', class: 'input-group col-sm-12' do |append|
+        append.use :input, class: 'form-control'
+      end
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+  
   config.wrappers :bootstrap, tag: 'div', class: 'control-group', error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
@@ -63,9 +77,9 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
 
-    b.wrapper tag: 'div', class: 'col-sm-offset-3 col-sm-9' do |wr|
+    b.wrapper tag: 'div' do |wr|
       wr.wrapper tag: 'div', class: 'checkbox' do |ba|
-        ba.use :label_input, class: 'col-sm-9'
+        ba.use :label_input
       end
 
       wr.use :error, wrap_with: { tag: 'span', class: 'help-block' }

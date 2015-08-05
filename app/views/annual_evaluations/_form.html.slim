@@ -1,33 +1,40 @@
 = wrapped_form_for([@patient, @annual_evaluation]) do |f|
   = f.error_notification
   .form-inputs
-    h4 Clinical
-    = f.input :bmi, label: "BMI", :placeholder => "00"
-    = f.input :bladder_drainage_method,  label: "Bladder Drainage Method", :prompt => "Select one", collection: AnnualEvaluation.bladder_drainage_methods.keys
-
+    .callout-blank
+      h4 Clinical
+      .row
+        .col-md-4
+          = f.input :bmi, label: "BMI", :placeholder => "00"
+        .col-md-4
+          = f.input :bladder_drainage_method,  label: "Bladder Drainage Method", :prompt => "Select one", collection: AnnualEvaluation.bladder_drainage_methods.keys
     = f.simple_fields_for :asia_assessment do |asia_assessment|
-      = render 'shared/asia_fields', :f => asia_assessment
+        = render 'shared/asia_fields', :f => asia_assessment
+    .callout-blank
+      h4 Administrative
+      .row
+        .col-md-4
+          = f.input :eval_offered, label: "Date Offered", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
+        .col-md-4
+          = f.input :eval_completed, label: "Date of Completion", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
+        .col-md-4
+          = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "DD/MM/YYYY",  disabled: true, as: :string, input_html: { class: "datepicker" }
+        .col-md-4
+          = f.input :is_inpatient,
+            :collection => [[true, 'is_inpatient'], [false, 'outpatient']], 
+            :as => :radio_buttons, 
+            :item_wrapper_class => 'radio-inline',
+            :checked => true
+    .callout-blank
+      h4 Standard Instruments
+      / TODO for instruments (@emilyville)
+          / - make instruments work, see above
+      .instrument
+          h4 = link_to "+ add CYH assessment", "#"
+      .instrument
+          h4 = link_to "+ add FIM assessment", "#"
+      .instrument
+          h4 = link_to "+ add Kurtzke EDSS assessment", "#"
 
-    h4 Administrative
-    = f.input :eval_offered, label: "Date Offered", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Date of Completion", :placeholder => "DD/MM/YYYY", as: :string, input_html: { class: "datepicker" }
-    = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "DD/MM/YYYY",  disabled: true, as: :string, input_html: { class: "datepicker" }
-    = f.input :is_inpatient,
-      :collection => [[true, 'is_inpatient'], [false, 'outpatient']], 
-      :as => :radio_buttons, 
-      :item_wrapper_class => 'radio-inline',
-      :checked => true
-    = f.input :is_inpatient
-
-    h4 Standard Instruments
-    / TODO for instruments (@emilyville)
-        / - make instruments work, see above
-    .instrument
-        h4 = link_to "+ add CYH assessment", "#"
-    .instrument
-        h4 = link_to "+ add FIM assessment", "#"
-    .instrument
-        h4 = link_to "+ add Kurtzke EDSS assessment", "#"
-
-    .pull-right
-        = f.submit "Save Annual Evaluation", class: "btn btn-lg btn-primary"
+      .pull-right
+          = f.submit "Save Annual Evaluation", class: "btn btn-lg btn-primary"

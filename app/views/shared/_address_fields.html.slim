@@ -1,8 +1,15 @@
 .nested-fields
-  = f.input :address1
-  = f.input :address2
-  = f.input :phone_number
-  = f.input :city
-  = f.input :state
-  = f.input :zip
-  = f.input :country
+  .col-md-8
+    = f.input :address1, label: "Address"
+  .col-md-4
+    = f.input :city, :placeholder => "City Name"
+  .col-md-8
+    = f.input :address2, label: "Address, line 2"
+  .col-md-4
+    = f.input :state, :placeholder => "Select one"
+  .col-md-4
+    = f.input :zip, :placeholder => "12345"
+  .col-md-4 
+    = f.input :country, :prompt => "Select one"
+  .col-md-4
+    = f.input :phone_number, :placeholder => "111-222-3333"

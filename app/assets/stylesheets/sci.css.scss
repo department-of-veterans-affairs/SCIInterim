@@ -40,9 +40,8 @@
   }
   h4 {
     color: #808E8E;
-    size: 14px;
-    margin: 10px 30px;
-    border: #1D3D46;
+    font-size: 14px;
+    margin: 25px 0px;
     clear: both;
   }
 
@@ -55,15 +54,16 @@
     font-weight: normal;
     font-size: 14px;
   }
-
+  .callout-blank {
+    background-color: #fff;
+    margin: 0px 10px;
+    padding: 0px 20px 20px 20px;
+  }
   .instrument, .callout {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
     margin: 35px 10px;
-    padding: 20px 20px 20px 0px;
-    .row {
-      padding: 20px;
-    }
+    padding: 20px 20px 20px 20px;
   }
 
   .instrument:hover, .callout:hover {
@@ -130,4 +130,6 @@
 }
 .radio.radio-inline {
   padding-left: 0px;
+  margin-top: 0px;
+  height: 35px;
 }
