@@ -1,42 +1,73 @@
 = wrapped_form_for(@patient) do |f|
   = flash_messages
   .form-inputs
-    h4 Personal Information
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :dob, as: :date, html5: true, label: "Date of Birth"
-    = f.input :gender,
-      :collection => Patient.genders.keys, 
-      :as => :radio_buttons, 
-      :item_wrapper_class => 'radio-inline'
-    = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
-    = f.input :scido_id, label: "SCIDO Patient Id"
-    .callout
-      h4 Patient Contact Information
-      = f.simple_fields_for :address do |address|
-        = render 'shared/address_fields', :f => address 
-      = f.input :my_healthevet_messaging
-      = f.input :sci_service_connected
+    .callout-blank
+      h4 Patient Basic Information
+      .row
+        .col-md-4
+          = f.input :first_name
+        .col-md-4
+          = f.input :last_name
+        .col-md-4
+          = f.input :dob, as: :date, html5: true, label: "Date of Birth"
+        .col-md-4
+          = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
+        .col-md-8
+          = f.input :gender,
+          :collection => Patient.genders.keys, 
+          :as => :radio_buttons, 
+          :item_wrapper_class => 'radio-inline'
+      hr
+      h4 Basic SCI Information
+      .row
+        .col-md-4
+          = f.input :scido_id, label: "SCIDO ID"
+        .col-md-4
+          = f.input :sci_service_connected, label: "SCI is service connected"
+        .col-md-4
+          = f.input :my_healthevet_messaging
+      hr
+      h4 Patient Address Information
+      .row
+        .col-md-3
+        .col-md-3
+      .row 
+        = f.simple_fields_for :address do |address|
+          = render 'shared/address_fields', :f => address 
     .callout
       h4 VA Status and Travel Eligibility
-      = f.input :assigned_vamc
-      = f.input :travel_status,
-        :collection => Patient.travel_statuses.keys, 
-        :as => :radio_buttons, 
-        :item_wrapper_class => 'radio-inline'
-      / TOODO: Should be conditional on last radio selected
-      = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+      .row
+        .col-md-6
+          = f.input :assigned_vamc, :label => "Assigned VAMC"       
+        .col-md-6
+          / TOODO: Should be conditional on last radio selected
+          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+      .row
+        .col-md-12
+          = f.input :travel_status,
+            :collection => Patient.travel_statuses.keys, 
+            :as => :radio_buttons, 
+            :item_wrapper_class => 'radio-inline' 
     .callout
-      h4 Assigned SCI Hub
-      = f.input :assigned_sci_hub, label: "Location Name"
-      = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
-      = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
+      h4 Assigned SCI Hub and Physician
+      .row
+        .col-md-6
+          = f.input :assigned_sci_hub, label: "Location"
+        .col-md-3
+          = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"  
+        .col-md-3
+          = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
     .callout
-      h4 Preferred SCI Hub
-      = f.input :preferred_sci_hub, label: "Location name"
-      = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
-      = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
-    .callout
+      h4 Preferred SCI Hub and Physician
+      .row    
+        .col-md-6
+          = f.input :preferred_sci_hub, label: "Location name"
+        .col-md-3
+          = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
+        .col-md-3
+          = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
+    .callout-blank
+      / This could be in a later flow displaying the information (w/ address and physician)
       h4 Primary Care
       = f.input :principle_pcp_va_nonva,
         label: "Primary Care Physician",
@@ -45,51 +76,85 @@
         :item_wrapper_class => 'radio-inline'          
     .callout
       h4 Non VA Facility
-      = f.input :non_va_facility_name, label: "Facility name"
-      = f.input :non_va_facility_phone_number, label: "Number"
-      = f.input :non_va_facility_fax_number, label: "Fax number"
-      = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
-      = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
+      .row    
+        .col-md-6
+          = f.input :non_va_facility_name, label: "Facility name"
+          = f.input :non_va_facility_phone_number, label: "Number"
+        .col-md-6
+          = f.input :non_va_facility_fax_number, label: "Fax number"
+        .col-md-3
+          = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
+        .col-md-3
+          = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
     .callout
       h4 VA Facility
-      = f.input :va_facility, label: "Facility name"
-      = f.input :va_facility_pcp_first_name, label: "Physician first name"
-      = f.input :va_facility_pcp_last_name, label: "Physician last name"
-    h4 SCI/D Information
-    = f.input :theater_of_service,
-      :collection => Patient.theater_of_services.keys, 
-      :as => :radio_buttons, 
-      :item_wrapper_class => 'radio-inline'            
-    = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
-    = f.input :is_on_active_duty, label: "Currently on Active Duty"
-    = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one", label: "SCI Type"
-    = f.input :scid_eligibility, collection: Patient.scid_eligibilities.keys, :prompt => "Select one", label: "SCI/D Eligibility"
-    / only if SCI is selected above
-    = f.input :scid_eligibility_other, label: "SCI/D Eligibility Other"
-    = f.input :scid_etiology, collection: Patient.scid_etiologies.keys, :prompt => "Select one", label: "SCI/D Etiology"
-    = f.input :date_of_injury, as: :date, html5: true
-    = f.simple_fields_for :asia_assessment do |asia_assessment|
-      = render 'shared/asia_fields', :f => asia_assessment    
-    h4 Psychosocial
-    = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
-    = f.input :occupation_at_time_of_injury, collection: Patient.occupation_at_time_of_injuries.keys, :prompt => "Select one"
-    = f.input :current_occupation, collection: Patient.current_occupations.keys, :prompt => "Select one"
-    h4 Residency
-    = f.input :residence_type, collection: Patient.residence_types.keys, :prompt => "Select one"
+      .row
+        .col-md-6
+          = f.input :va_facility, label: "Facility name"
+        .col-md-3
+          = f.input :va_facility_pcp_first_name, label: "Physician first name"
+        .col-md-3
+          = f.input :va_facility_pcp_last_name, label: "Physician last name", inline_label: 'Yes, remember me'
+    .callout-blank
+      h4 SCI/D Information
+      .row
+        .col-md-6           
+          = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one", label: "SCI Type"
+          = f.input :scid_eligibility, collection: Patient.scid_eligibilities.keys, :prompt => "Select one", label: "SCI/D Eligibility"
+          / only if other is selected above
+          = f.input :scid_eligibility_other, label: "Other"
+          = f.input :is_on_active_duty, label: "Currently on Active Duty"
+        .col-md-6
+          = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
+          = f.input :theater_of_service,
+          :collection => Patient.theater_of_services.keys, 
+          :as => :radio_buttons, 
+          :item_wrapper_class => 'radio-inline' 
+      / TODO conditional only if SCI is selected above
+      .row
+        .col-md-6     
+          = f.input :scid_etiology, collection: Patient.scid_etiologies.keys, :prompt => "Select one", label: "SCI/D Etiology"
+        .col-md-6     
+          = f.input :date_of_injury, as: :date, html5: true
+      .row
+        = f.simple_fields_for :asia_assessment do |asia_assessment|
+          = render 'shared/asia_fields', :f => asia_assessment  
+      / end conditional only if SCI is selected above
+    .callout-blank
+      h4 Psychosocial and Residence type
+      .row
+        .col-md-6
+          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
+        .col-md-6
+          = f.input :occupation_at_time_of_injury, collection: Patient.occupation_at_time_of_injuries.keys, :prompt => "Select one"
+      .row
+        .col-md-6
+          = f.input :current_occupation, collection: Patient.current_occupations.keys, :prompt => "Select one"
+        .col-md-6
+          = f.input :residence_type, collection: Patient.residence_types.keys, :prompt => "Select one"
     .callout
       h4 Caregiver Information
-      = f.input :has_caregiver, label: "Caregiver type",
-        :collection => Patient.has_caregivers.keys, 
-        :as => :radio_buttons, 
-        :item_wrapper_class => 'radio-inline'     
-      = f.simple_fields_for :caregiver_address do |caregiver_address|
-        = render 'shared/address_fields', :f => caregiver_address 
-      = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
-      / TODO: Should be conditional if prev is answered
-      = f.input :non_va_care_hours_per_month, label: "Care hours per month"
+      .row
+        .col-md-12
+          = f.input :has_caregiver, label: "Caregiver type",
+          :collection => Patient.has_caregivers.keys, 
+          :as => :radio_buttons, 
+          :item_wrapper_class => 'radio-inline'     
+      .row
+        = f.simple_fields_for :caregiver_address do |caregiver_address|
+          = render 'shared/address_fields', :f => caregiver_address 
       hr
-      = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
-      = f.input :is_receiving_hhha, label: "Check if receiving HHH/A"
+      .row
+        .col-md-6
+          = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
+          / TODO: Should be conditional if prev is answered
+        .col-md-6
+          = f.input :is_receiving_hhha, label: "Check if receiving HHH/A"
+      .row
+        .col-md-6
+          = f.input :non_va_care_hours_per_month, label: "Care hours per month"
+        .col-md-6
+          = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
       .row 
        .col-sm-offset-8.col-sm-4.form-actions
         = f.submit class:"btn btn-primary btn-lg btn-block"
