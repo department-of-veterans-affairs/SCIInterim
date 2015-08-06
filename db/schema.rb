@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150723005742) do
     t.date     "date_of_injury"
     t.string   "current_occupation"
     t.integer  "residence_type"
-    t.integer  "has_caregiver"
+    t.boolean  "has_caregiver"
     t.boolean  "is_receiving_non_va_care"
     t.integer  "non_va_care_hours_per_month"
     t.date     "last_fee_basis_evaluation_date"
