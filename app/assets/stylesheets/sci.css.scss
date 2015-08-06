@@ -129,7 +129,11 @@
   box-shadow: none;
 }
 .radio.radio-inline {
-  padding-left: 0px;
+  // padding-left: 0px;
   margin-top: 0px;
   height: 35px;
+
+  label {
+    margin-left: 10px;
+  }
 }
