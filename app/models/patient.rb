@@ -102,6 +102,7 @@ class Patient < ActiveRecord::Base
   }
   # This is here as a placeholder until we have a real list
   enum assigned_vamc: {
+    "VAMC Name 0" => 0, 
     "VAMC Name 1" => 1, 
     "VAMC Name 2" => 2,
     "VAMC Name 3" => 3, 
