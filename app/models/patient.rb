@@ -100,6 +100,20 @@ class Patient < ActiveRecord::Base
     "ALS" => 3, 
     "other" => 4
   }
+  # This is here as a placeholder until we have a real list
+  enum assigned_vamc: {
+    "VAMC Name 1" => 1, 
+    "VAMC Name 2" => 2,
+    "VAMC Name 3" => 3, 
+    "VAMC Name 4" => 4
+    "VAMC Name 5" => 5
+    "VAMC Name 6" => 6
+    "VAMC Name 7" => 7
+    "VAMC Name 8" => 8
+    "VAMC Name 9" => 9
+    "VAMC Name 10" => 10
+    "VAMC Name 11" => 11
+  }
   enum principle_pcp_va_nonva: { "VA" => 1, "NonVA" => 2, "Other" => 3 }
 
   def computed_age

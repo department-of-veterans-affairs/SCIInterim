@@ -38,10 +38,10 @@
       h4 VA Status and Travel Eligibility
       .row
         .col-md-6
-          = f.input :assigned_vamc, :label => "Assigned VAMC"       
+          = f.input :assigned_vamc, :label => "Assigned VAMC", collection: Patient.assigned_vamcs.keys, :prompt => "Select one"     
         .col-md-6
           / TOODO: Should be conditional on last radio selected
-          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+          = f.input :benefits_waiver_exemption_date, as: :date, input_html: { class: "datepicker" }, placeholder: "will be conditional upon travel status"
       .row
         .col-md-12
           = f.input :travel_status,
@@ -105,7 +105,7 @@
           = f.input :scid_eligibility_other, label: "Other"
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
         .col-md-6
-          = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
+          = f.input :sci_arrival_date, as: :date, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
           = f.input :theater_of_service,
           :collection => Patient.theater_of_services.keys, 
           :as => :radio_buttons, 
@@ -154,7 +154,7 @@
         .col-md-6
           = f.input :non_va_care_hours_per_month, label: "Care hours per month"
         .col-md-6
-          = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
+          = f.input :last_fee_basis_evaluation_date, as: :date, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
       .row 
        .col-sm-offset-8.col-sm-4.form-actions
         = f.submit class:"btn btn-primary btn-lg btn-block"
