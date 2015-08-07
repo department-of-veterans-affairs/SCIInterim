@@ -13,7 +13,8 @@
         .col-md-4
           = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
         .col-md-8
-          = f.input :gender,
+          label.control-label.radio.radio-inline Gender
+          = f.input_field :gender,
           :collection => Patient.genders.keys, 
           :as => :radio_buttons, 
           :item_wrapper_class => 'radio-inline'
@@ -38,13 +39,14 @@
       h4 VA Status and Travel Eligibility
       .row
         .col-md-6
-          = f.input :assigned_vamc, :label => "Assigned VAMC"       
+          = f.input :assigned_vamc, :label => "Assigned VAMC", collection: Patient.assigned_vamcs.keys, :prompt => "Select one"     
         .col-md-6
           / TOODO: Should be conditional on last radio selected
-          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }
+          = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }, placeholder: "will be conditional upon travel status"
       .row
         .col-md-12
-          = f.input :travel_status,
+          label.control-label.radio.radio-inline Travel status
+          = f.input_field :travel_status,
             :collection => Patient.travel_statuses.keys, 
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline' 
@@ -69,7 +71,8 @@
     .callout-blank
       / This could be in a later flow displaying the information (w/ address and physician)
       h4 Primary Care
-      = f.input :principle_pcp_va_nonva,
+      label.control-label.radio.radio-inline Primary Care Physician
+      = f.input_field :principle_pcp_va_nonva,
         label: "Primary Care Physician",
         :collection => Patient.principle_pcp_va_nonvas.keys, 
         :as => :radio_buttons, 
@@ -106,7 +109,9 @@
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
         .col-md-6
           = f.input :sci_arrival_date, as: :string, input_html: { class: "datepicker" }, label: "SCI Arrival Date"
-          = f.input :theater_of_service,
+        .col-md-12
+          label.control-label.radio.radio-inline Theater of service
+          = f.input_field :theater_of_service,
           :collection => Patient.theater_of_services.keys, 
           :as => :radio_buttons, 
           :item_wrapper_class => 'radio-inline' 
@@ -136,7 +141,8 @@
       h4 Caregiver Information
       .row
         .col-md-12
-          = f.input :has_caregiver, label: "Caregiver type",
+          label.control-label.radio.radio-inline Caregiver type
+          = f.input_field :has_caregiver, label: "Caregiver type",
           :collection => Patient.has_caregivers.keys, 
           :as => :radio_buttons, 
           :item_wrapper_class => 'radio-inline'     
