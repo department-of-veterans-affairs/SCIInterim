@@ -15,9 +15,11 @@
         .col-md-8
           label.control-label.radio.radio-inline Gender
           = f.input_field :gender,
-          :collection => Patient.genders.keys, 
-          :as => :radio_buttons, 
-          :item_wrapper_class => 'radio-inline'
+          collection: Patient.collections[:gender],
+          label_method: :name,
+          value_method: :id,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
       hr
       h4 Basic SCI Information
       .row
@@ -32,14 +34,18 @@
       .row
         .col-md-3
         .col-md-3
-      .row 
+      .row
         = f.simple_fields_for :address do |address|
-          = render 'shared/address_fields', :f => address 
+          = render 'shared/address_fields', :f => address
     .callout
       h4 VA Status and Travel Eligibility
       .row
         .col-md-6
-          = f.input :assigned_vamc, :label => "Assigned VAMC", collection: Patient.collections[:assigned_vamc], :prompt => "Select one"     
+          = f.input :assigned_vamc, :label => "Assigned VAMC",
+          collection: Patient.collections[:assigned_vamc],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one"
         .col-md-6
           / TOODO: Should be conditional on last radio selected
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }, placeholder: "will be conditional upon travel status"
@@ -47,21 +53,23 @@
         .col-md-12
           label.control-label.radio.radio-inline Travel status
           = f.input_field :travel_status,
-            :collection => Patient.travel_statuses.keys, 
-            :as => :radio_buttons, 
-            :item_wrapper_class => 'radio-inline' 
+            collection: Patient.collections[:travel_status],
+            label_method: :name,
+            value_method: :id,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
     .callout
       h4 Assigned SCI Hub and Physician
       .row
         .col-md-6
           = f.input :assigned_sci_hub, label: "Location"
         .col-md-3
-          = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"  
+          = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
         .col-md-3
           = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
     .callout
       h4 Preferred SCI Hub and Physician
-      .row    
+      .row
         .col-md-6
           = f.input :preferred_sci_hub, label: "Location name"
         .col-md-3
@@ -74,12 +82,14 @@
       label.control-label.radio.radio-inline Primary Care Physician
       = f.input_field :principle_pcp_va_nonva,
         label: "Primary Care Physician",
-        :collection => Patient.principle_pcp_va_nonvas.keys, 
-        :as => :radio_buttons, 
-        :item_wrapper_class => 'radio-inline'          
+        collection: Patient.collections[:principle_pcp_va_nonva],
+        label_method: :name,
+        value_method: :id,
+        as: :radio_buttons,
+        item_wrapper_class: 'radio-inline'
     .callout
       h4 Non VA Facility
-      .row    
+      .row
         .col-md-6
           = f.input :non_va_facility_name, label: "Facility name"
           = f.input :non_va_facility_phone_number, label: "Number"
@@ -101,9 +111,19 @@
     .callout-blank
       h4 SCI/D Information
       .row
-        .col-md-6           
-          = f.input :sci_type, collection: Patient.collections[:sci_type], :prompt => "Select one", label: "SCI Type"
-          = f.input :scid_eligibility, collection: Patient.collections[:scid_eligibility], :prompt => "Select one", label: "SCI/D Eligibility"
+        .col-md-6
+          = f.input :sci_type,
+          collection: Patient.collections[:sci_type],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one",
+          label: "SCI Type"
+          = f.input :scid_eligibility,
+          collection: Patient.collections[:scid_eligibility],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one",
+          label: "SCI/D Eligibility"
           / only if other is selected above
           = f.input :scid_eligibility_other, label: "Other"
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
@@ -112,43 +132,68 @@
         .col-md-12
           label.control-label.radio.radio-inline Theater of service
           = f.input_field :theater_of_service,
-          :collection => Patient.theater_of_services.keys, 
-          :as => :radio_buttons, 
-          :item_wrapper_class => 'radio-inline' 
+          collection: Patient.collections[:theater_of_service],
+          label_method: :name,
+          value_method: :id,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
       / TODO conditional only if SCI is selected above
       .row
-        .col-md-6     
-          = f.input :scid_etiology, collection: Patient.collections[:scid_etiology], :prompt => "Select one", label: "SCI/D Etiology"
-        .col-md-6     
+        .col-md-6
+          = f.input :scid_etiology,
+          collection: Patient.collections[:scid_etiology],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one",
+          label: "SCI/D Etiology"
+        .col-md-6
           = f.input :date_of_injury, as: :date, html5: true
       .row
         = f.simple_fields_for :asia_assessment do |asia_assessment|
-          = render 'shared/asia_fields', :f => asia_assessment  
+          = render 'shared/asia_fields', :f => asia_assessment
       / end conditional only if SCI is selected above
     .callout-blank
       h4 Psychosocial and Residence type
       .row
         .col-md-6
-          = f.input :highest_level_of_education, collection: Patient.collections[:highest_level_of_education], :prompt => "Select one"
+          = f.input :highest_level_of_education,
+          collection: Patient.collections[:highest_level_of_education],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one"
         .col-md-6
-          = f.input :occupation_at_time_of_injury, collection: Patient.collections[:occupation_at_time_of_injury], :prompt => "Select one"
+          = f.input :occupation_at_time_of_injury,
+          collection: Patient.collections[:occupation_at_time_of_injury],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one"
       .row
         .col-md-6
-          = f.input :current_occupation, collection: Patient.collections[:current_occupation], :prompt => "Select one"
+          = f.input :current_occupation,
+          collection: Patient.collections[:current_occupation],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one"
         .col-md-6
-          = f.input :residence_type, collection: Patient.collections[:residence_type], :prompt => "Select one"
+          = f.input :residence_type,
+          collection: Patient.collections[:residence_type],
+          label_method: :name,
+          value_method: :id,
+          prompt: "Select one"
     .callout
       h4 Caregiver Information
       .row
         .col-md-12
           label.control-label.radio.radio-inline Caregiver type
           = f.input_field :has_caregiver, label: "Caregiver type",
-          :collection => Patient.has_caregivers.keys, 
-          :as => :radio_buttons, 
-          :item_wrapper_class => 'radio-inline'     
+          collection: Patient.collections[:has_caregiver],
+          label_method: :name,
+          value_method: :id,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
       .row
         = f.simple_fields_for :caregiver_address do |caregiver_address|
-          = render 'shared/address_fields', :f => caregiver_address 
+          = render 'shared/address_fields', :f => caregiver_address
       hr
       .row
         .col-md-6
@@ -161,7 +206,7 @@
           = f.input :non_va_care_hours_per_month, label: "Care hours per month"
         .col-md-6
           = f.input :last_fee_basis_evaluation_date, as: :string, input_html: { class: "datepicker" }, label: "Date of last bowel/bladder non VA care evaluation"
-      .row 
+      .row
        .col-sm-offset-8.col-sm-4.form-actions
         = f.submit class:"btn btn-primary btn-lg btn-block"
 

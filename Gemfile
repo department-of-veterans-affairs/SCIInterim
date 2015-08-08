@@ -42,16 +42,14 @@ end
 group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
+  gem 'capybara-webkit'
   gem 'coveralls', require: false
+  gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'pry-byebug'
+  gem 'resque_spec'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
-end
-
-group :development, :test do
-  gem 'capybara-webkit'
-  gem 'resque_spec'
   gem 'timecop'
+  # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
 end

@@ -9,9 +9,10 @@ SCI Interim
 How to get started hacking
 ==========================
 
-There are 2 steps:
+There are 3 steps:
   1. Setting up postgres
   2. Setting up rails
+  3. [options] Add some fake data.
 
 postgres Setup
 -----------
@@ -39,6 +40,14 @@ Rails Setup
   * bundle install
   * rails s
   * guard  # Use this to auto-run affected specs as you change code.
+
+Rails Setup
+-----------
+
+If you want to create fake data, there is a rake task. Run
+```
+rake app:seed_fake
+```
 
 Useful Links
 -----------
