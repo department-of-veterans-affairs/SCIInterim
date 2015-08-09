@@ -1,4 +1,17 @@
 module DomainSeeds
+  module MigrationHelper
+    def enum_to_domain(table_name, domain_table_name, attribute_name, value_map, options = {})
+      if !options.has_key?(:seed_entries) || options[:seed_entries]
+        DomainSeeds.send("seed_#{domain_table_name}")
+      end
+      add_foreign_key table_name, domain_table_name, column: attribute_name
+    end
+
+    def domain_to_enum(table_name, attribute_name, value_map)
+      remove_foreign_key table_name, column: attribute_name
+    end
+  end
+
   GENDER_MAP = { "" => 0, "Female" => 1, "Male" => 2, "Unknown" => 3 }
   HIGHEST_LEVEL_OF_EDUCATION_MAP = {
     "" => 0,
