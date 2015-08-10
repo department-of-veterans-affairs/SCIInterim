@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808055044) do
+ActiveRecord::Schema.define(version: 20150809054840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 20150808055044) do
 
   add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
 
+  create_table "domain_asia_classifications", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_bladder_drainage_methods", force: true do |t|
+    t.string "name"
+  end
+
   create_table "domain_caregiver_types", force: true do |t|
     t.string "name"
   end
@@ -104,11 +112,19 @@ ActiveRecord::Schema.define(version: 20150808055044) do
     t.string "name"
   end
 
+  create_table "domain_level_of_injuries", force: true do |t|
+    t.string "name"
+  end
+
   create_table "domain_occupations", force: true do |t|
     t.string "name"
   end
 
   create_table "domain_principle_pcp_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_reason_for_admissions", force: true do |t|
     t.string "name"
   end
 
@@ -259,6 +275,21 @@ ActiveRecord::Schema.define(version: 20150808055044) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "acute_rehabs", "domain_reason_for_admissions", name: "acute_rehabs_reason_for_admission_fk", column: "reason_for_admission"
+  add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_residence_type_fk", column: "residence_type"
+
+  add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_fk", column: "bladder_drainage_method"
+
+  add_foreign_key "asia", "domain_asia_classifications", name: "asia_classification_fk", column: "classification"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_left_fk", column: "neurological_motor_level_left"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_right_fk", column: "neurological_motor_level_right"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_left_fk", column: "neurological_sensory_level_left"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_right_fk", column: "neurological_sensory_level_right"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_left_fk", column: "preservation_motor_left"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_right_fk", column: "preservation_motor_right"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_left_fk", column: "preservation_sensory_left"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_right_fk", column: "preservation_sensory_right"
 
   add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
 

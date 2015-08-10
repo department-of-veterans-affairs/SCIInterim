@@ -5,7 +5,7 @@ FactoryGirl.define do
     created_at Time.now
     updated_at Time.now
 
-    start_asia { Asia.classifications.keys.sample }
+    start_asia { 'BAD SETUP' }
     start_fim { rand(18..126) }
     start_fam { rand(18..126) }
     start_swls { rand(5..35) }
@@ -15,7 +15,7 @@ FactoryGirl.define do
     goal_fim { rand(18..126) }
     goal_fam { rand(18..126) }
     omb_completed { Faker::Date.between(20.years.ago, Date.today) }
-    finish_asia { Asia.classifications.keys.sample }
+    finish_asia { 'BAD SETUP' }
     finish_fim { rand(18..126) }
     finish_fam { rand(18..126) }
     finish_swls { rand(5..35) }

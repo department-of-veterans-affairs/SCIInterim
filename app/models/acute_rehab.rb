@@ -10,21 +10,10 @@ class AcuteRehab < ActiveRecord::Base
   accepts_nested_attributes_for :finish_asia_assessment
   validates_associated :finish_asia_assessment
 
-  enum reason_for_admission: {
-    "Newly injured" => 1,
-    "Deconditioned" => 2,
-    "Transition to home" => 3,
-    "Other" => 4
-  }
-
-  enum residence_type: {
-    "Own" => 1,
-    "Rent" => 2,
-    "Homeless" => 3,
-    "Assisted living" => 4,
-    "Nursing home" => 5,
-    "Shelter" => 6,
-    "Group Home" => 7,
-    "Board and Care" => 8,
-  }
+  def self.collections
+    {
+      reason_for_admission: Domain::ReasonForAdmission.collection,
+      residence_type: Domain::ResidenceType.collection,
+    }.with_indifferent_access
+  end
 end
