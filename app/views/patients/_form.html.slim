@@ -39,7 +39,7 @@
       h4 VA Status and Travel Eligibility
       .row
         .col-md-6
-          = f.input :assigned_vamc, :label => "Assigned VAMC", collection: Patient.assigned_vamcs.keys, :prompt => "Select one"     
+          = f.input :assigned_vamc, :label => "Assigned VAMC", collection: Patient.collections[:assigned_vamc], :prompt => "Select one"     
         .col-md-6
           / TOODO: Should be conditional on last radio selected
           = f.input :benefits_waiver_exemption_date, as: :string, input_html: { class: "datepicker" }, placeholder: "will be conditional upon travel status"
@@ -102,8 +102,8 @@
       h4 SCI/D Information
       .row
         .col-md-6           
-          = f.input :sci_type, collection: Patient.sci_types.keys, :prompt => "Select one", label: "SCI Type"
-          = f.input :scid_eligibility, collection: Patient.scid_eligibilities.keys, :prompt => "Select one", label: "SCI/D Eligibility"
+          = f.input :sci_type, collection: Patient.collections[:sci_type], :prompt => "Select one", label: "SCI Type"
+          = f.input :scid_eligibility, collection: Patient.collections[:scid_eligibility], :prompt => "Select one", label: "SCI/D Eligibility"
           / only if other is selected above
           = f.input :scid_eligibility_other, label: "Other"
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
@@ -118,7 +118,7 @@
       / TODO conditional only if SCI is selected above
       .row
         .col-md-6     
-          = f.input :scid_etiology, collection: Patient.scid_etiologies.keys, :prompt => "Select one", label: "SCI/D Etiology"
+          = f.input :scid_etiology, collection: Patient.collections[:scid_etiology], :prompt => "Select one", label: "SCI/D Etiology"
         .col-md-6     
           = f.input :date_of_injury, as: :date, html5: true
       .row
@@ -129,14 +129,14 @@
       h4 Psychosocial and Residence type
       .row
         .col-md-6
-          = f.input :highest_level_of_education, collection: Patient.highest_level_of_educations.keys, :prompt => "Select one"
+          = f.input :highest_level_of_education, collection: Patient.collections[:highest_level_of_education], :prompt => "Select one"
         .col-md-6
-          = f.input :occupation_at_time_of_injury, collection: Patient.occupation_at_time_of_injuries.keys, :prompt => "Select one"
+          = f.input :occupation_at_time_of_injury, collection: Patient.collections[:occupation_at_time_of_injury], :prompt => "Select one"
       .row
         .col-md-6
-          = f.input :current_occupation, collection: Patient.current_occupations.keys, :prompt => "Select one"
+          = f.input :current_occupation, collection: Patient.collections[:current_occupation], :prompt => "Select one"
         .col-md-6
-          = f.input :residence_type, collection: Patient.residence_types.keys, :prompt => "Select one"
+          = f.input :residence_type, collection: Patient.collections[:residence_type], :prompt => "Select one"
     .callout
       h4 Caregiver Information
       .row
