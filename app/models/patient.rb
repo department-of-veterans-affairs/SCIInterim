@@ -132,7 +132,7 @@ class Patient < ActiveRecord::Base
       "scid_eligibility" => Patient.scid_eligibilities.keys,
       "assigned_vamc" => Patient.assigned_vamcs.keys,
       "principle_pcp_va_nonva" => Patient.principle_pcp_va_nonvas.keys,
-    }
+    }.with_indifferent_access
   end
 
   def computed_age
