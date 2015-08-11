@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808004550) do
+ActiveRecord::Schema.define(version: 20150808055044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,58 @@ ActiveRecord::Schema.define(version: 20150808004550) do
   end
 
   add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
+
+  create_table "domain_caregiver_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_genders", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_highest_level_of_educations", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_occupations", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_principle_pcp_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_residence_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_sci_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_scid_eligibilities", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_scid_etiologies", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_theater_of_services", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_travel_statuses", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_va_medical_centers", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_va_statuses", force: true do |t|
+    t.string "name"
+  end
 
   create_table "episode_of_cares", force: true do |t|
     t.integer  "patient_id"
@@ -212,5 +264,19 @@ ActiveRecord::Schema.define(version: 20150808004550) do
 
   add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
   add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete
+  add_foreign_key "patients", "domain_caregiver_types", name: "patients_has_caregiver_fk", column: "has_caregiver"
+  add_foreign_key "patients", "domain_genders", name: "patients_gender_fk", column: "gender"
+  add_foreign_key "patients", "domain_highest_level_of_educations", name: "patients_highest_level_of_education_fk", column: "highest_level_of_education"
+  add_foreign_key "patients", "domain_occupations", name: "patients_current_occupation_fk", column: "current_occupation"
+  add_foreign_key "patients", "domain_occupations", name: "patients_occupation_at_time_of_injury_fk", column: "occupation_at_time_of_injury"
+  add_foreign_key "patients", "domain_principle_pcp_types", name: "patients_principle_pcp_va_nonva_fk", column: "principle_pcp_va_nonva"
+  add_foreign_key "patients", "domain_residence_types", name: "patients_residence_type_fk", column: "residence_type"
+  add_foreign_key "patients", "domain_sci_types", name: "patients_sci_type_fk", column: "sci_type"
+  add_foreign_key "patients", "domain_scid_eligibilities", name: "patients_scid_eligibility_fk", column: "scid_eligibility"
+  add_foreign_key "patients", "domain_scid_etiologies", name: "patients_scid_etiology_fk", column: "scid_etiology"
+  add_foreign_key "patients", "domain_theater_of_services", name: "patients_theater_of_service_fk", column: "theater_of_service"
+  add_foreign_key "patients", "domain_travel_statuses", name: "patients_travel_status_fk", column: "travel_status"
+  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_assigned_vamc_fk", column: "assigned_vamc"
+  add_foreign_key "patients", "domain_va_statuses", name: "patients_va_status_fk", column: "va_status"
 
 end

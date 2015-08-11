@@ -1,9 +1,11 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
+require 'domain_seeds'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -40,25 +42,31 @@ ActiveRecord::Migration.maintain_test_schema!
 # Takes the data parameter and deterministically creates a different
 # value suitable for use in testing an edit of a database model.
 def modify_value_for_test(data, options = {})
-  case data
-  when String, NilClass
-    if options[:collection].present? and !options[:collection].empty?
-      left_over = options[:collection].reject { |item| item == data }
-      raise "Not enough options for unique value" if left_over.length == 0
-      left_over[-1]
+  if options[:collection].present? and !options[:collection].empty?
+    left_over = options[:collection].reject { |item| item == data }
+    raise "Not enough options for unique value" if left_over.length == 0
+    new_value = left_over[-1]
+    # Handle domain tables.
+    if new_value.is_a?(ActiveRecord::Base)
+      return new_value.id
     else
-      "z#{data}"
+      return new_value
     end
-  when Date
-    data + 1.day
-  when TrueClass
-    false
-  when FalseClass
-    true
-  when Fixnum
-    data + 13
   else
-    raise "Unknown Data type #{data.class.name}"
+    case data
+    when String, NilClass
+      "z#{data}"
+    when Date
+      data + 1.day
+    when TrueClass
+      false
+    when FalseClass
+      true
+    when Fixnum
+      data + 13
+    else
+      raise "Unknown Data type #{data.class.name}"
+    end
   end
 end
 
@@ -99,6 +107,11 @@ def model_to_form(model_name, field_name, model_object)
     when tags.length == 1
       # Finding one entry that is a select is a drop-down.
       if tags[0].tag_name == 'select'
+        collection_obj_type = model_object.class.collections[field_name].first
+        if collection_obj_type.is_a?(ActiveRecord::Base)
+          # Reverse map the domain object.
+          new_value = collection_obj_type.class.find(new_value).name
+        end
         select(new_value, from: form_name_attribute)
       else
         fill_in(form_name_attribute, with: new_value)
@@ -110,12 +123,12 @@ def model_to_form(model_name, field_name, model_object)
       else
         # Assume radio button if there is a bag of inputs with the same name
         # and the underlying datatype is not a boolean.
-        new_choice = new_value.downcase.tr(" ", "_").delete("^a-zA-Z0-9_\-")
+        new_choice = new_value.to_s.downcase.tr(" ", "_").delete("^a-zA-Z0-9_\-")
         choose("#{model_name}_#{field_name}_#{new_choice}")
       end
     end
   rescue
-    raise "Capybara error with #{form_name_attribute}: #{$!}\n #{$!.backtrace[1..10].join("\n\t")}"
+    raise "Error with #{form_name_attribute}: #{$!}\n #{$!.backtrace[1..10].join("\n\t")}"
   end
 end
 
@@ -128,10 +141,26 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  # Set up DatabaseCleaner instead of the default ActiveRecord transactions.
+  config.use_transactional_fixtures = false
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    load "#{Rails.root}/db/seeds.rb" 
+  end
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+    load "#{Rails.root}/db/seeds.rb" 
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
   config.order = 'random'
   config.infer_spec_type_from_file_location!
 
