@@ -3,7 +3,11 @@
 
   .form-inputs
     h4 Information
-    = f.input :reason_for_admission, collection: AcuteRehab.reason_for_admissions.keys, :prompt => "Select one"
+    = f.input :reason_for_admission,
+    collection: AcuteRehab.collections[:reason_for_admission],
+    label_method: :name,
+    value_method: :id,
+    :prompt => "Select one"
     = f.input :reason_for_admission_other
 
     = f.input :hospital_admission, as: :string, input_html: { class: "datepicker" }, :label => "Hospital admission date",  :placeholder => "DD/MM/YYYY"
@@ -13,7 +17,11 @@
 
     h4 Some UI for dates of transfer... hardcode a few fields.
 
-    = f.input :residence_type, collection: AcuteRehab.residence_types.keys, :prompt => "Select one"
+    = f.input :residence_type,
+    collection: AcuteRehab.collections[:residence_type],
+    label_method: :name,
+    value_method: :id,
+    :prompt => "Select one"
     = f.input :residence_name
 
     h4 START

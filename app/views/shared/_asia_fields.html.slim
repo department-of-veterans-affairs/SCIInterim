@@ -17,15 +17,31 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :neurological_sensory_level_left, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :neurological_sensory_level_left,
+                  label: false,
+                  collection: Asia.collections[:neurological_sensory_level_left],
+                  label_method: :name,
+                  value_method: :id
                 td 
-                  = f.input_field :neurological_sensory_level_right, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :neurological_sensory_level_right,
+                  label: false,
+                  collection: Asia.collections[:neurological_sensory_level_right],
+                  label_method: :name,
+                  value_method: :id
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :neurological_motor_level_left, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :neurological_motor_level_left,
+                  label: false,
+                  collection: Asia.collections[:neurological_motor_level_left],
+                  label_method: :name,
+                  value_method: :id
                 td 
-                  = f.input_field :neurological_motor_level_right, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :neurological_motor_level_right,
+                  label: false,
+                  collection: Asia.collections[:neurological_motor_level_right],
+                  label_method: :name,
+                  value_method: :id
       .col-md-4
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc
@@ -58,12 +74,26 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :preservation_sensory_left, collection: Asia.level_of_injuries.keys
+                  = f.input_field :preservation_sensory_left,
+                  collection: Asia.collections[:preservation_sensory_left],
+                  label_method: :name,
+                  value_method: :id
                 td 
-                  = f.input_field :preservation_sensory_right, collection: Asia.level_of_injuries.keys
+                  = f.input_field :preservation_sensory_right,
+                  collection: Asia.collections[:preservation_sensory_right],
+                  label_method: :name,
+                  value_method: :id
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :preservation_motor_left, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :preservation_motor_left,
+                  label: false,
+                  collection: Asia.collections[:preservation_motor_left],
+                  label_method: :name,
+                  value_method: :id
                 td 
-                  = f.input_field :preservation_motor_right, label: false, collection: Asia.level_of_injuries.keys
+                  = f.input_field :preservation_motor_right,
+                  label: false,
+                  collection: Asia.collections[:preservation_motor_right],
+                  label_method: :name,
+                  value_method: :id
