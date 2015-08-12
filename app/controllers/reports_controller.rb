@@ -162,22 +162,13 @@ class ReportsController < ApplicationController
   end
 
   def entity_reports()
-<<<<<<< HEAD
-=======
-  
-    #@patients = Patient.all
->>>>>>> added ajax to display patient info
     @entity = params[:entity]
     @entity_id = Integer(params[:entity_id])
 
     if @entity == 'Patient'
       @entity_name = Patient.find_by(patient_id: @entity_id)[:last_name]
     elsif @entity == 'Station'
-      #begin
-        @entity_name = @@stations.select { |station| station[:id] == @entity_id }[0][:name]
-      #rescue
-      #  @entity_name = ''
-      #end
+      @entity_name = @@stations.select { |station| station[:id] == @entity_id }[0][:name]
     elsif @entity == 'National'
       @entity_name = nil
     end
@@ -203,20 +194,18 @@ class ReportsController < ApplicationController
   end
 
   def output_report
-      #binding.pry 
-      respond_to do |format|
-      format.html{@patients = Patient.all}
-      format.js{
-        facility_id = params[:facility_id]
-        if facility_id.to_i.zero?
+    respond_to do |format|
+      format.html { @patients = Patient.all }
+      format.js {
+        vamc = params[:assigned_vamc]
+        if vamc.empty?
           @patients = Patient.all
         else
-          @patients = Patient.where(facility_id: facility_id)
+          @patients = Patient.where(assigned_vamc: vamc)
         end
-        #render json: @patients.to_json
         render partial: "index"
       }
-       format.csv { send_data @patients.as_csv }
+      format.csv { send_data @patients.as_csv }
     end
   end
 

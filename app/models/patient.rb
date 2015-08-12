@@ -1,3 +1,5 @@
+require 'csv'
+
 class Patient < ActiveRecord::Base
   has_many :episode_of_cares
 
@@ -51,11 +53,8 @@ class Patient < ActiveRecord::Base
       columns = %w(first_name last_name ssn) 
       csv << ["First Name", "Last Name", "SSN", "Facility"]
       all.each do |item|
-        csv << [item.first_name, item.last_name, item.ssn, item.facility.official_name]
+        csv << [item.first_name, item.last_name, item.ssn, Domain::VaMedicalCenter.find(item.assigned_vamc).name]
       end
     end
   end
 end
-
-end
-

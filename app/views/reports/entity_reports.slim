@@ -14,7 +14,7 @@ br
           strong #{report[:name]}
         td = report[:description]
         td
-         = select_tag :facilities, options_for_select(Facility.all.map{|h| [h.official_name, h.id]}.insert(0,['All', 0]) ) 
+         = select_tag :assigned_vamc, options_from_collection_for_select(Domain::VaMedicalCenter.collection, :id, :name)
         
         td 
           .btn-group

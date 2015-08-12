@@ -21,10 +21,6 @@ class PatientsController < ApplicationController
         format.html {respond_with(@patients)}
         format.csv { send_data @patients.as_csv }
     end
-    #respond_with(@patients)
-
-    #http://localhost:3000/posts.csv
-
   end
 
    
