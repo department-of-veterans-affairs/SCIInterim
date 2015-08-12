@@ -23,6 +23,9 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'render_csv'
+gem 'acts_as_xlsx'
+gem 'axlsx_rails'
 
 # For Heroku asset compilation.
 group :production do
@@ -33,6 +36,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
+  gem 'pry'
 end
 
 group :test, :darwin do
@@ -50,6 +54,8 @@ group :development, :test do
   gem 'resque_spec'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'capybara-webkit'
+  gem 'resque_spec'
   gem 'timecop'
   # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
 end

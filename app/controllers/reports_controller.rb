@@ -162,6 +162,11 @@ class ReportsController < ApplicationController
   end
 
   def entity_reports()
+<<<<<<< HEAD
+=======
+  
+    #@patients = Patient.all
+>>>>>>> added ajax to display patient info
     @entity = params[:entity]
     @entity_id = Integer(params[:entity_id])
 
@@ -180,7 +185,7 @@ class ReportsController < ApplicationController
     @reports = @@reports.select { |report| report[:entity] == @entity }
   end
 
-  def run_report()
+ def run_report()
     @entity = params[:entity]
     @entity_id = Integer(params[:entity_id])
     @entity_name = get_entity_name @entity, @entity_id
@@ -197,6 +202,25 @@ class ReportsController < ApplicationController
     end
   end
 
+  def output_report
+      #binding.pry 
+      respond_to do |format|
+      format.html{@patients = Patient.all}
+      format.js{
+        facility_id = params[:facility_id]
+        if facility_id.to_i.zero?
+          @patients = Patient.all
+        else
+          @patients = Patient.where(facility_id: facility_id)
+        end
+        #render json: @patients.to_json
+        render partial: "index"
+      }
+       format.csv { send_data @patients.as_csv }
+    end
+  end
+
+
   def get_entity_name(entity, entity_id)
     if entity == 'Patient'
       Patient.find_by(patient_id: entity_id)[:last_name]
@@ -210,5 +234,10 @@ class ReportsController < ApplicationController
       nil
     end
   end
+
+  def new
+
+  end
+
 
 end

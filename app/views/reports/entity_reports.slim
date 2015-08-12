@@ -1,10 +1,6 @@
 row.
   .pull-left
     h3 #{@entity} Reports #{ if @entity_name then ' for ' + @entity_name end }
-  .pull-right
-    / This is the temporary solution for demo-ing minimal SCI capability
-    button.btn.btn-primary Export SCI Registry
-
 br
 - unless @reports.empty?
   table.table.table-striped
@@ -12,26 +8,14 @@ br
       th Report
       th Description
       th Facility
-      th Export
     - for report in @reports
       tr
         td 
           strong #{report[:name]}
         td = report[:description]
-        td 
-          .btn-group
-            button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
-              | Select Facility 
-              span.caret
-            ul.dropdown-menu
-              li
-                a href="#"  All Facilities
-              li
-                a href="#"  Longbeach
-              li
-                a href="#"  Palo Alto
-              li
-                a href="#"  Miami
+        td
+         = select_tag :facilities, options_for_select(Facility.all.map{|h| [h.official_name, h.id]}.insert(0,['All', 0]) ) 
+        
         td 
           .btn-group
             button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
@@ -39,7 +23,7 @@ br
               span.caret
             ul.dropdown-menu
               li
-                a href="#"  CSV
+               = link_to 'CSV', "/patients.csv"
               li
                 a href="#"  Excel
               li
@@ -50,3 +34,41 @@ br
 
 - else
   p No reports available
+br
+
+ table.table.table-striped
+    tr 
+     th First name
+     th Last name
+     th SSN
+     th Facility
+     th 
+      .btn-group.pull-right
+        button.btn.btn-default.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+          | Export as 
+          span.caret
+        ul.dropdown-menu
+          li
+           = link_to 'CSV', "/patients.csv"
+          li
+            a href="#"  Excel
+          li
+            a href="#"  Something else here
+          li.divider role="separator" 
+          li
+            a href="#"  Something else here
+
+div id="report_output"
+  table.table.table-striped
+    = render partial: 'index'
+
+javascript:
+  $('#facilities').on('change', function(e){
+    $.ajax({
+      url: ('patients.js?facility_id='+$(this).val()),
+      dataType: 'script',
+      complete: function(resp) { 
+        $("#report_output").html(resp.responseText);
+      }
+    });
+  })

@@ -45,5 +45,17 @@ class Patient < ActiveRecord::Base
   def dob_is_valid_date
     errors.add(:dob, 'must be a valid date') if (!dob.is_a?(Date))
   end
+
+  def self.as_csv
+    CSV.generate do |csv|
+      columns = %w(first_name last_name ssn) 
+      csv << ["First Name", "Last Name", "SSN", "Facility"]
+      all.each do |item|
+        csv << [item.first_name, item.last_name, item.ssn, item.facility.official_name]
+      end
+    end
+  end
+end
+
 end
 
