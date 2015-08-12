@@ -168,11 +168,7 @@ class ReportsController < ApplicationController
     if @entity == 'Patient'
       @entity_name = Patient.find_by(patient_id: @entity_id)[:last_name]
     elsif @entity == 'Station'
-      #begin
-        @entity_name = @@stations.select { |station| station[:id] == @entity_id }[0][:name]
-      #rescue
-      #  @entity_name = ''
-      #end
+      @entity_name = @@stations.select { |station| station[:id] == @entity_id }[0][:name]
     elsif @entity == 'National'
       @entity_name = nil
     end
@@ -180,7 +176,7 @@ class ReportsController < ApplicationController
     @reports = @@reports.select { |report| report[:entity] == @entity }
   end
 
-  def run_report()
+ def run_report()
     @entity = params[:entity]
     @entity_id = Integer(params[:entity_id])
     @entity_name = get_entity_name @entity, @entity_id
@@ -197,6 +193,23 @@ class ReportsController < ApplicationController
     end
   end
 
+  def output_report
+    respond_to do |format|
+      format.html { @patients = Patient.all }
+      format.js {
+        vamc = params[:assigned_vamc]
+        if vamc.empty?
+          @patients = Patient.all
+        else
+          @patients = Patient.where(assigned_vamc: vamc)
+        end
+        render partial: "index"
+      }
+      format.csv { send_data @patients.as_csv }
+    end
+  end
+
+
   def get_entity_name(entity, entity_id)
     if entity == 'Patient'
       Patient.find_by(patient_id: entity_id)[:last_name]
@@ -210,5 +223,10 @@ class ReportsController < ApplicationController
       nil
     end
   end
+
+  def new
+
+  end
+
 
 end

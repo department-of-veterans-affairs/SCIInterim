@@ -17,8 +17,13 @@ class PatientsController < ApplicationController
     else
       @patients = Patient.all
     end
-    respond_with(@patients)
+    respond_to do |format|
+        format.html {respond_with(@patients)}
+        format.csv { send_data @patients.as_csv }
+    end
   end
+
+   
 
   def new
     @patient = Patient.new

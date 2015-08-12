@@ -1,3 +1,5 @@
+require 'csv'
+
 class Patient < ActiveRecord::Base
   has_many :episode_of_cares
 
@@ -45,5 +47,14 @@ class Patient < ActiveRecord::Base
   def dob_is_valid_date
     errors.add(:dob, 'must be a valid date') if (!dob.is_a?(Date))
   end
-end
 
+  def self.as_csv
+    CSV.generate do |csv|
+      columns = %w(first_name last_name ssn) 
+      csv << ["First Name", "Last Name", "SSN", "Facility"]
+      all.each do |item|
+        csv << [item.first_name, item.last_name, item.ssn, Domain::VaMedicalCenter.find(item.assigned_vamc).name]
+      end
+    end
+  end
+end
