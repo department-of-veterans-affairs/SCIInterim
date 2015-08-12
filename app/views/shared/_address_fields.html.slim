@@ -10,6 +10,6 @@
   .col-md-4
     = f.input :zip, :placeholder => "12345"
   .col-md-4 
-    = f.input :country, :prompt => "Select one"
+    = f.input :country, :prompt => "Select one", priority: [ "United States", "United States Minor Outlying Islands", "Canada", "Mexico" ], selected: "US"
   .col-md-4
     = f.input :phone_number, :placeholder => "111-222-3333"

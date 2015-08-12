@@ -77,5 +77,17 @@ feature 'Patient Registry' do
     saved_patient = Patient.first
     writable_attributes.each { |attribute_name| expect_eql_attributes(saved_patient, patient, attribute_name) }
   end
+
+  # Scenario: Country defaults to US
+  #   Given I am a user
+  #   When I create a new patient
+  #   The Country in the address field defaults to the US
+  scenario 'Default to US for address country' do
+    sign_in_user
+
+    visit new_patient_path
+
+    expect(find_field('patient[address_attributes][country]').value).to eql("US")
+  end
 end
 
