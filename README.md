@@ -70,3 +70,8 @@ We are currently using labels and milestones from tracking requirements and bugs
     * status:help-wanted
     * status:wont-fix
     * status:done
+  * Task Size:
+    * 1: A few Minutes
+    * 2: Half a Day
+    * 3: One Day
+    * 5: We have no idea how long this will take!
