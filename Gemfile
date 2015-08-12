@@ -54,8 +54,6 @@ group :development, :test do
   gem 'resque_spec'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'capybara-webkit'
-  gem 'resque_spec'
   gem 'timecop'
   # gem 'brakeman'  # Enable once we figure out how to setup security scanning.
 end
