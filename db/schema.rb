@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 20150813190902) do
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
-    t.integer  "state"
     t.integer  "zip"
     t.string   "country"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "phone_number"
+    t.string   "state"
   end
 
   create_table "annual_evaluations", force: true do |t|
@@ -100,6 +100,34 @@ ActiveRecord::Schema.define(version: 20150813190902) do
   end
 
   create_table "domain_caregiver_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_admission_classes", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_communication_comprehension_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_communication_expression_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_impairment_categories", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_impairment_groups", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_locomotion_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_fim_measurements", force: true do |t|
     t.string "name"
   end
 
@@ -168,6 +196,47 @@ ActiveRecord::Schema.define(version: 20150813190902) do
   end
 
   add_index "episode_of_cares", ["patient_id"], name: "index_episode_of_cares_on_patient_id", using: :btree
+
+  create_table "fim_measurements", force: true do |t|
+    t.integer  "eating"
+    t.integer  "grooming"
+    t.integer  "bathing"
+    t.integer  "dressing_upper"
+    t.integer  "dressing_lower"
+    t.integer  "toileting"
+    t.integer  "bladder_management"
+    t.integer  "bowel_management"
+    t.integer  "transfer_bed_chair_wheelchair"
+    t.integer  "transfer_toilet"
+    t.integer  "transfer_tub_shower"
+    t.integer  "locomotion_walk_wheelchar"
+    t.integer  "locomotion_stairs"
+    t.integer  "communication_comprehension"
+    t.integer  "communication_expression"
+    t.integer  "social_cognition_social_interaction"
+    t.integer  "social_cognition_problem_solving"
+    t.integer  "social_cognition_memory"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fims", force: true do |t|
+    t.boolean  "is_active_duty"
+    t.integer  "admission_class"
+    t.boolean  "is_program_interrupted"
+    t.integer  "impairment_category"
+    t.integer  "impairment_group"
+    t.integer  "measurements_start"
+    t.integer  "measurements_goal"
+    t.integer  "measurements_finish"
+    t.integer  "measurements_90day"
+    t.integer  "measurements_1year"
+    t.integer  "locomotion_type"
+    t.integer  "communication_comprehension_type"
+    t.integer  "communication_expression_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "omrs", force: true do |t|
     t.datetime "created_at"
@@ -291,6 +360,37 @@ ActiveRecord::Schema.define(version: 20150813190902) do
   add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_right_fk", column: "preservation_sensory_right"
 
   add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
+
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_bathing_fk", column: "bathing"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_bladder_management_fk", column: "bladder_management"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_bowel_management_fk", column: "bowel_management"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_communication_comprehension_fk", column: "communication_comprehension"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_communication_expression_fk", column: "communication_expression"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_dressing_lower_fk", column: "dressing_lower"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_dressing_upper_fk", column: "dressing_upper"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_eating_fk", column: "eating"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_grooming_fk", column: "grooming"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_locomotion_stairs_fk", column: "locomotion_stairs"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_locomotion_walk_wheelchar_fk", column: "locomotion_walk_wheelchar"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_social_cognition_memory_fk", column: "social_cognition_memory"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_social_cognition_problem_solving_fk", column: "social_cognition_problem_solving"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_social_cognition_social_interaction_fk", column: "social_cognition_social_interaction"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_toileting_fk", column: "toileting"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_transfer_bed_chair_wheelchair_fk", column: "transfer_bed_chair_wheelchair"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_transfer_toilet_fk", column: "transfer_toilet"
+  add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_transfer_tub_shower_fk", column: "transfer_tub_shower"
+
+  add_foreign_key "fims", "domain_fim_admission_classes", name: "fims_admission_class_fk", column: "admission_class"
+  add_foreign_key "fims", "domain_fim_communication_comprehension_types", name: "fims_communication_comprehension_type_fk", column: "communication_comprehension_type"
+  add_foreign_key "fims", "domain_fim_communication_expression_types", name: "fims_communication_expression_type_fk", column: "communication_expression_type"
+  add_foreign_key "fims", "domain_fim_impairment_categories", name: "fims_impairment_category_fk", column: "impairment_category"
+  add_foreign_key "fims", "domain_fim_impairment_groups", name: "fims_impairment_group_fk", column: "impairment_group"
+  add_foreign_key "fims", "domain_fim_locomotion_types", name: "fims_locomotion_type_fk", column: "locomotion_type"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_1year_fk", column: "measurements_1year"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_90day_fk", column: "measurements_90day"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_finish_fk", column: "measurements_finish"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_fk", column: "measurements_goal"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_fk", column: "measurements_start"
 
   add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
   add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete

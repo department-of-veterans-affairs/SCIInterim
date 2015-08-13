@@ -1,3 +1,9 @@
+require 'countries'
+
 class Address < ActiveRecord::Base
-  has_one :patient
+  def self.collections
+    {
+      "state" => Country['US'].states.map { |key, value| value["name"] }
+    }.with_indifferent_access
+  end
 end
