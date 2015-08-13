@@ -30,7 +30,7 @@ module DomainSeeds
     5 => "IP - Ileal Pouch",
     6 => "SC - Suprapubic Catheter",
     7 => "SS - Surgical Stent",
-    8 => "VV - Voluntary Voiding"
+    8 => "VV - Voluntary Voiding",
   }
   CAREGIVER_TYPE_MAP = {
     0 => "",
@@ -40,18 +40,82 @@ module DomainSeeds
     4 => "Paid Non-family",
     5 => "Unpaid Non-family",
   }
+  FIM_ADMISSION_CLASS_MAP = {
+    0 => "",
+    1 => "Initial Rehabilitation",
+    2 => "Short Stay Eval",
+    3 => "Unplanned D/C",
+    4 => "Readmission",
+    5 => "Continuing Rehab",
+  }
+  FIM_IMPAIRMENT_CATEGORY_MAP = {
+    0 => "",
+    1 => "4.1 SCD - Non-Traumatic Spinal Cord Dysfunction",
+    2 => "4.2 SCD - Traumatic Spinal Cord Dysfunction",
+  }
+  FIM_IMPAIRMENT_GROUP_MAP = {
+    0 => "",
+    1 => "4.11 Non-Traumatic Paraplegia, Unspecified",
+    2 => "4.111 Non-Traumatic Incomplete Paraplegia",
+    3 => "4.112 Non-Traumatic Complete Paraplegia",
+    4 => "4.12 Non-Traumatic Quadriplegia Unspecified",
+    5 => "4.1211 Non-Traumatic Quadriplegia Incomplete C1-4",
+    6 => "4.1212 Non-Traumatic Quadriplegia Incomplete C5-8",
+    7 => "4.1221 Non-Traumatic Quadriplegia Complete C1-4",
+    8 => "4.1222 Non-Traumatic Quadriplegia Complete C5-8",
+    9 => "4.13 Other Non-Traumatic SC",
+    10 => "4.21 Traumatic Paraplegia, Unspecified",
+    11 => "4.211 Traumatic Incomplete Paraplegia",
+    12 => "4.212 Traumatic Complete Paraplegia",
+    13 => "4.22 Traumatic Quadriplegia, Unspecified",
+    14 => "4.2211 Traumatic Quadriplegia Incomplete C1-4",
+    15 => "4.2212 Traumatic Quadriplegia Incomplete C5-8",
+    16 => "4.2221 Traumatic Quadriplegia Complete C1-4",
+    17 => "4.2222 Traumatic Quadriplegia Complete C5-8",
+    18 => "4.23 Other Traumatic SC",
+  }
+  FIM_LOCOMOTION_TYPE_MAP = {
+    0 => "",
+    1 => "Walk",
+    2 => "Wheelchair",
+    3 => "Both"
+  }
+  FIM_COMMUNICATION_COMPREHENSION_TYPE_MAP = {
+    0 => "",
+    1 => "Auditory",
+    2 => "Visual",
+    3 => "Both",
+  }
+  FIM_COMMUNICATION_EXPRESSION_TYPE_MAP = {
+    0 => "",
+    1 => "Vocal",
+    2 => "Non-vocal",
+    3 => "Both",
+  }
+  FIM_MEASUREMENT_MAP = {
+    0 => "",
+    1 => "Total Assistance (performs less than 25% of task)",
+    2 => "Maximal Assistance (performs 25%-49% of task)",
+    3 => "Moderate Assistance (performs 50%-74% of task)",
+    4 => "Minimal Contact Assistance (performs 75% or more of task)",
+    5 => "Supervision of Setup (cuing, coaxing, prompting)",
+    6 => "Modified Independence (extra time, devices)",
+    7 => "Complete Independence (timely, safely)",
+  }
   GENDER_MAP = {
     0 => "",
     1 => "Female",
     2 => "Male",
-    3 => "Unknown"
+    3 => "Unknown",
   }
   HIGHEST_LEVEL_OF_EDUCATION_MAP = {
     0 => "",
     1 => "No Diploma",
     2 => "High School",
-    3 => "Some College",
-    4 => "Graduate School"
+    3 => "Trade School",
+    4 => "Some College",
+    5 => "College",
+    6 => "Graduate School",
   }
   LEVEL_OF_INJURIES_MAP = {
     0 => "",
@@ -83,7 +147,7 @@ module DomainSeeds
     26 => "S1",
     27 => "S2",
     28 => "S3",
-    29 => "S4-5"
+    29 => "S4-5",
   }
   OCCUPATION_MAP = {
     0 => "",
@@ -94,20 +158,20 @@ module DomainSeeds
     5 => "Student",
     6 => "Unemployed (may or may not be looking for work)",
     7 => "Other, unclassified (includes volunteer, disability or medical leave)",
-    8 => "Unknown"
+    8 => "Unknown",
   }
   PRINCIPLE_PCP_VA_NONVA_MAP = {
     0 => "",
     1 => "VA",
     2 => "NonVA",
-    3 => "Other"
+    3 => "Other",
   }
   REASON_FOR_ADMISSION = {
     0 => "",
     1 => "Newly injured",
     2 => "Deconditioned",
     3 => "Transition to home",
-    4 => "Other"
+    4 => "Other",
   }
   RESIDENCE_TYPE_MAP = {
     0 => "",
@@ -125,14 +189,14 @@ module DomainSeeds
     1 => "Unknown",
     2 => "High Tetraplegic",
     3 => "Low Tetraplegic",
-    4 => "Paraplegic"
+    4 => "Paraplegic",
   }
   SCID_ELIGIBILITY_MAP = {
     0 => "",
     1 => "SCI",
     2 => "MS",
     3 => "ALS",
-    4 => "other"
+    4 => "Other",
   }
   SCID_ETIOLOGY_MAP = {
     0 => "",
@@ -142,20 +206,20 @@ module DomainSeeds
     4 => "Fall",
     5 => "Other traumatic cause",
     6 => "Non-traumatic spinal cord dysfunction",
-    7 => "Unspecified or Unknown"
+    7 => "Unspecified or Unknown",
   }
   THEATER_OF_SERVICE_MAP = {
     0 => "",
     1 => "NONE",
     2 => "OEF/OIF",
-    3 => "OND"
+    3 => "OND",
   }
   TRAVEL_STATUS_MAP = {
     0 => "",
     1 => "Not Eligible",
     2 => ">=30% more",
     3 => "VA pension",
-    4 => "Benefit Travel Waiver"
+    4 => "Benefit Travel Waiver",
   }
   VA_MEDICAL_CENTER_MAP = {
     0 => "",
@@ -170,14 +234,14 @@ module DomainSeeds
     8 => "VAMC Name 8",
     9 => "VAMC Name 9",
     10 => "VAMC Name 10",
-    11 => "VAMC Name 11"
+    11 => "VAMC Name 11",
   }
   VA_STATUS_MAP = {
     0 => "",
     1 => "Active",
     2 => "Deactivate",
     3 => "On-Hold",
-    4 => "Expired"
+    4 => "Expired",
   }
 
   def self.seed_domain_asia_classifications
@@ -192,6 +256,39 @@ module DomainSeeds
 
   def self.seed_domain_caregiver_types
     update_domain_table(:domain_caregiver_types, CAREGIVER_TYPE_MAP)
+  end
+
+  def self.seed_domain_fim_admission_classes
+    update_domain_table(:domain_fim_admission_classes,
+                        FIM_ADMISSION_CLASS_MAP)
+  end
+
+  def self.seed_domain_fim_communication_comprehension_types
+    update_domain_table(:domain_fim_communication_comprehension_types,
+                        FIM_COMMUNICATION_COMPREHENSION_TYPE_MAP)
+  end
+
+  def self.seed_domain_fim_communication_expression_types
+    update_domain_table(:domain_fim_communication_expression_types,
+                        FIM_COMMUNICATION_EXPRESSION_TYPE_MAP)
+  end
+
+  def self.seed_domain_fim_impairment_categories
+    update_domain_table(:domain_fim_impairment_categories,
+                        FIM_IMPAIRMENT_CATEGORY_MAP)
+  end
+
+  def self.seed_domain_fim_impairment_groups
+    update_domain_table(:domain_fim_impairment_groups,
+                        FIM_IMPAIRMENT_GROUP_MAP)
+  end
+
+  def self.seed_domain_fim_locomotion_types
+    update_domain_table(:domain_fim_locomotion_types, FIM_LOCOMOTION_TYPE_MAP)
+  end
+
+  def self.seed_domain_fim_measurements
+    update_domain_table(:domain_fim_measurements, FIM_MEASUREMENT_MAP)
   end
 
   def self.seed_domain_genders
