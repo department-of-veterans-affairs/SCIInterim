@@ -2,58 +2,72 @@
   = f.error_notification
 
   .form-inputs
-    h4 Information
-    = f.input :reason_for_admission,
-    collection: AcuteRehab.collections[:reason_for_admission],
-    label_method: :name,
-    value_method: :id,
-    :prompt => "Select one"
-    = f.input :reason_for_admission_other
+    .callout-blank
+        h4 Admission
+        .row
+            .col-md-8
+                = f.input :reason_for_admission,
+                collection: AcuteRehab.collections[:reason_for_admission],
+                label_method: :name,
+                value_method: :id,
+                as: :radio_buttons,
+                item_wrapper_class: 'radio-inline'
+            .col-md-4
+                = f.input :reason_for_admission_other
+        .row
+            .col-md-4
+                = f.input :hospital_admission, as: :string, input_html: { class: "datepicker" }, :label => "Hospital admission date",  :placeholder => "DD/MM/YYYY"
+            .col-md-4
+                = f.input :acute_rehab_admission, as: :string, input_html: { class: "datepicker" }, :label => "Acute rehab admission date", :placeholder => "DD/MM/YYYY"
 
-    = f.input :hospital_admission, as: :string, input_html: { class: "datepicker" }, :label => "Hospital admission date",  :placeholder => "DD/MM/YYYY"
-    = f.input :acute_rehab_admission, as: :string, input_html: { class: "datepicker" }, :label => "Acute rehab admission date", :placeholder => "DD/MM/YYYY"
-    = f.input :hospital_discharge, as: :string, input_html: { class: "datepicker" }, :label => "Hospital discharge date",  :placeholder => "DD/MM/YYYY"
-    = f.input :acute_rehab_discharge, as: :string, input_html: { class: "datepicker" }, :label => "Acute rehab discharge date", :placeholder => "DD/MM/YYYY"
+    .callout
+        h4 Discharge
+        .row
+            .col-md-4
+                = f.input :hospital_discharge, as: :string, input_html: { class: "datepicker" }, :label => "Hospital discharge date",  :placeholder => "DD/MM/YYYY"
+            .col-md-4
+                = f.input :acute_rehab_discharge, as: :string, input_html: { class: "datepicker" }, :label => "Acute rehab discharge date", :placeholder => "DD/MM/YYYY"        
+        .row
+            .col-md-4
+                = f.input :residence_type,
+                collection: AcuteRehab.collections[:residence_type],
+                label_method: :name,
+                value_method: :id,
+                :prompt => "Select one"
 
-    h4 Some UI for dates of transfer... hardcode a few fields.
-
-    = f.input :residence_type,
-    collection: AcuteRehab.collections[:residence_type],
-    label_method: :name,
-    value_method: :id,
-    :prompt => "Select one"
-    = f.input :residence_name
-
-    h4 START
+    .callout-blank
+        h4 START
     = f.simple_fields_for :start_asia_assessment do |asia_assessment|
-      = render 'shared/asia_fields', :f => asia_assessment
-    = f.input :start_fim
-    = f.input :start_swls
-    = f.input :start_sf8
+        = render 'shared/asia_fields', :f => asia_assessment
 
-    h4 GOAL
-    = f.input :goal_fim
+    .callout-blank
+        h4 GOAL
+        = f.input :goal_fim
 
-    h4 FINISH
+    .callout-blank
+        h4 FINISH
     = f.simple_fields_for :finish_asia_assessment do |asia_assessment|
       = render 'shared/asia_fields', :f => asia_assessment
-    = f.input :finish_fim
-    = f.input :finish_swls
-    = f.input :finish_sf8
+    .callout-blank
+        = f.input :finish_fim
+        = f.input :finish_swls
+        = f.input :finish_sf8
 
-    h4 Followup 90 Days
-    = f.input :followup_90day_date, as: :string, input_html: { class: "datepicker" }
-    = f.input :followup_90day_fim
-    = f.input :followup_90day_swls
-    = f.input :followup_90day_chart_sf
-    = f.input :followup_90day_sf8
+    .callout-blank
+        h4 Followup 90 Days
+        = f.input :followup_90day_date, as: :string, input_html: { class: "datepicker" }
+        = f.input :followup_90day_fim
+        = f.input :followup_90day_swls
+        = f.input :followup_90day_chart_sf
+        = f.input :followup_90day_sf8
 
-    h4 Followup 1 Year
-    = f.input :followup_1yr_date, as: :string, input_html: { class: "datepicker" }
-    = f.input :followup_1yr_fim
-    = f.input :followup_1yr_swls
-    = f.input :followup_1yr_chart_sf
-    = f.input :followup_1yr_sf8
+    .callout-blank
+        h4 Followup 1 Year
+        = f.input :followup_1yr_date, as: :string, input_html: { class: "datepicker" }
+        = f.input :followup_1yr_fim
+        = f.input :followup_1yr_swls
+        = f.input :followup_1yr_chart_sf
+        = f.input :followup_1yr_sf8
 
   .row
     .col-sm-offset-3.col-sm-9.form-actions
