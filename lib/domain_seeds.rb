@@ -1,3 +1,5 @@
+require 'set'
+
 module DomainSeeds
   module MigrationHelper
     def enum_to_domain(table_name, domain_table_name, attribute_name, options = {})
@@ -13,256 +15,240 @@ module DomainSeeds
   end
 
   ASIA_CLASSIFICATION_MAP = {
-    "" => 0,
-    "A" => 1,
-    "B" => 2,
-    "C" => 3,
-    "D" => 4,
+    0 => "",
+    1 => "A",
+    2 => "B",
+    3 => "C",
+    4 => "D",
   }
   BLADDER_DRAINAGE_METHOD_MAP = {
-    "" => 0,
-    'BA - Bladder Augmentation' => 1,
-    'EC - Condom/External Catheter' => 2,
-    'IC - Intermittent Catheterization' => 3,
-    'IN - Indwelling Catheter' => 4,
-    'IP - Ileal Pouch' => 5,
-    'SC - Suprapubic Catheter' => 6,
-    'SS - Surgical Stent' => 7,
-    'VV - Voluntary Voiding' => 8
+    0 => "",
+    1 => "BA - Bladder Augmentation",
+    2 => "EC - Condom/External Catheter",
+    3 => "IC - Intermittent Catheterization",
+    4 => "IN - Indwelling Catheter",
+    5 => "IP - Ileal Pouch",
+    6 => "SC - Suprapubic Catheter",
+    7 => "SS - Surgical Stent",
+    8 => "VV - Voluntary Voiding"
   }
   CAREGIVER_TYPE_MAP = {
-    "" => 0,
-    "No Caregiver" => 1,
-    "Paid Family" => 2,
-    "Unpaid Family" => 3,
-    "Paid Non-family" => 4,
-    "Unpaid Non-family" => 5,
+    0 => "",
+    1 => "No Caregiver",
+    2 => "Paid Family",
+    3 => "Unpaid Family",
+    4 => "Paid Non-family",
+    5 => "Unpaid Non-family",
   }
   GENDER_MAP = {
-    "" => 0,
-    "Female" => 1,
-    "Male" => 2,
-    "Unknown" => 3
+    0 => "",
+    1 => "Female",
+    2 => "Male",
+    3 => "Unknown"
   }
   HIGHEST_LEVEL_OF_EDUCATION_MAP = {
-    "" => 0,
-    "No Diploma" => 1,
-    "High School" => 2,
-    "Some College" => 3,
-    "Graduate School" => 4
+    0 => "",
+    1 => "No Diploma",
+    2 => "High School",
+    3 => "Some College",
+    4 => "Graduate School"
   }
   LEVEL_OF_INJURIES_MAP = {
-    "" => 0,
-    "C2" => 1,
-    "C3" => 2,
-    "C4" => 3,
-    "C5" => 4,
-    "C6" => 5,
-    "C7" => 6,
-    "C8" => 7,
-    "T1" => 8,
-    "T2" => 9,
-    "T3" => 10,
-    "T4" => 11,
-    "T5" => 12,
-    "T6" => 13,
-    "T7" => 14,
-    "T8" => 15,
-    "T9" => 16,
-    "T10" => 17,
-    "T11" => 18,
-    "T12" => 19,
-    "L1" => 20,
-    "L2" => 21,
-    "L3" => 22,
-    "L4" => 23,
-    "L5" => 24,
-    "S1" => 25,
-    "S2" => 26,
-    "S3" => 27,
-    "S4-5" => 28
+    0 => "",
+    1 => "C1",
+    2 => "C2",
+    3 => "C3",
+    4 => "C4",
+    5 => "C5",
+    6 => "C6",
+    7 => "C7",
+    8 => "C8",
+    9 => "T1",
+    10 => "T2",
+    11 => "T3",
+    12 => "T4",
+    13 => "T5",
+    14 => "T6",
+    15 => "T7",
+    16 => "T8",
+    17 => "T9",
+    18 => "T10",
+    19 => "T11",
+    20 => "T12",
+    21 => "L1",
+    22 => "L2",
+    23 => "L3",
+    24 => "L4",
+    25 => "L5",
+    26 => "S1",
+    27 => "S2",
+    28 => "S3",
+    29 => "S4-5"
   }
   OCCUPATION_MAP = {
-    "" => 0,
-    "Working (competitive labor market, includes military)" => 1,
-    "Homemaker" => 2,
-    "On-th-job training" => 3,
-    "Sheltered workshop" => 4,
-    "Student" => 5,
-    "Unemployed (may or may not be looking for work)" => 6,
-    "Other, unclassified (includes volunteer, disability or medical leave)" => 7,
-    "Unknown" => 8
+    0 => "",
+    1 => "Working (competitive labor market, includes military)",
+    2 => "Homemaker",
+    3 => "On-th-job training",
+    4 => "Sheltered workshop",
+    5 => "Student",
+    6 => "Unemployed (may or may not be looking for work)",
+    7 => "Other, unclassified (includes volunteer, disability or medical leave)",
+    8 => "Unknown"
   }
   PRINCIPLE_PCP_VA_NONVA_MAP = {
-    "" => 0,
-    "VA" => 1,
-    "NonVA" => 2,
-    "Other" => 3
+    0 => "",
+    1 => "VA",
+    2 => "NonVA",
+    3 => "Other"
   }
   REASON_FOR_ADMISSION = {
-    "" => 0,
-    "Newly injured" => 1,
-    "Deconditioned" => 2,
-    "Transition to home" => 3,
-    "Other" => 4
+    0 => "",
+    1 => "Newly injured",
+    2 => "Deconditioned",
+    3 => "Transition to home",
+    4 => "Other"
   }
   RESIDENCE_TYPE_MAP = {
-    "" => 0,
-    "Own" => 1,
-    "Rent" => 2,
-    "Homeless" => 3,
-    "Assisted living" => 4,
-    "Nursing home" => 5,
-    "Shelter" => 6,
-    "Group Home" => 7,
-    "Board and Care" => 8,
+    0 => "",
+    1 => "Own",
+    2 => "Rent",
+    3 => "Homeless",
+    4 => "Assisted living",
+    5 => "Nursing home",
+    6 => "Shelter",
+    7 => "Group Home",
+    8 => "Board and Care",
   }
   SCI_TYPE_MAP = {
-    "" => 0,
-    "Unknown" => 1,
-    "High Tetraplegic" => 2,
-    "Low Tetraplegic" => 3,
-    "Paraplegic" => 4
+    0 => "",
+    1 => "Unknown",
+    2 => "High Tetraplegic",
+    3 => "Low Tetraplegic",
+    4 => "Paraplegic"
   }
   SCID_ELIGIBILITY_MAP = {
-    "" => 0,
-    "SCI" => 1,
-    "MS" => 2,
-    "ALS" => 3,
-    "other" => 4
+    0 => "",
+    1 => "SCI",
+    2 => "MS",
+    3 => "ALS",
+    4 => "other"
   }
   SCID_ETIOLOGY_MAP = {
-    "" => 0,
-    "Sports" => 1,
-    "Assault" => 2,
-    "Transport" => 3,
-    "Fall" => 4,
-    "Other traumatic cause" => 5,
-    "Non-traumatic spinal cord dysfunction" => 6,
-    "Unspecified or Unknown" => 7
+    0 => "",
+    1 => "Sports",
+    2 => "Assault",
+    3 => "Transport",
+    4 => "Fall",
+    5 => "Other traumatic cause",
+    6 => "Non-traumatic spinal cord dysfunction",
+    7 => "Unspecified or Unknown"
   }
   THEATER_OF_SERVICE_MAP = {
-    "" => 0,
-    "NONE" => 1,
-    "OEF/OIF" => 2,
-    "OND" => 3
+    0 => "",
+    1 => "NONE",
+    2 => "OEF/OIF",
+    3 => "OND"
   }
   TRAVEL_STATUS_MAP = {
-    "" => 0,
-    "Not Eligible" => 1,
-    ">=30% more" => 2,
-    "VA pension" => 3,
-    "Benefit Travel Waiver" => 4
+    0 => "",
+    1 => "Not Eligible",
+    2 => ">=30% more",
+    3 => "VA pension",
+    4 => "Benefit Travel Waiver"
   }
   VA_MEDICAL_CENTER_MAP = {
-    "" => 0,
+    0 => "",
     # This is here as a placeholder until we have a real list
-    "VAMC Name 1" => 1,
-    "VAMC Name 2" => 2,
-    "VAMC Name 3" => 3,
-    "VAMC Name 4" => 4,
-    "VAMC Name 5" => 5,
-    "VAMC Name 6" => 6,
-    "VAMC Name 7" => 7,
-    "VAMC Name 8" => 8,
-    "VAMC Name 9" => 9,
-    "VAMC Name 10" => 10,
-    "VAMC Name 11" => 11
+    1 => "VAMC Name 1",
+    2 => "VAMC Name 2",
+    3 => "VAMC Name 3",
+    4 => "VAMC Name 4",
+    5 => "VAMC Name 5",
+    6 => "VAMC Name 6",
+    7 => "VAMC Name 7",
+    8 => "VAMC Name 8",
+    9 => "VAMC Name 9",
+    10 => "VAMC Name 10",
+    11 => "VAMC Name 11"
   }
   VA_STATUS_MAP = {
-    "" => 0,
-    "Active" => 1,
-    "Deactivate" => 2,
-    "On-Hold" => 3,
-    "Expired" => 4
+    0 => "",
+    1 => "Active",
+    2 => "Deactivate",
+    3 => "On-Hold",
+    4 => "Expired"
   }
 
   def self.seed_domain_asia_classifications
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_asia_classifications,
-                            ASIA_CLASSIFICATION_MAP))
+    update_domain_table(:domain_asia_classifications,
+                        ASIA_CLASSIFICATION_MAP)
   end
 
   def self.seed_domain_bladder_drainage_methods
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_bladder_drainage_methods,
-                            BLADDER_DRAINAGE_METHOD_MAP))
+    update_domain_table(:domain_bladder_drainage_methods,
+                        BLADDER_DRAINAGE_METHOD_MAP)
   end
 
   def self.seed_domain_caregiver_types
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_caregiver_types, CAREGIVER_TYPE_MAP))
+    update_domain_table(:domain_caregiver_types, CAREGIVER_TYPE_MAP)
   end
 
   def self.seed_domain_genders
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_genders, GENDER_MAP))
+    update_domain_table(:domain_genders, GENDER_MAP)
   end
 
   def self.seed_domain_highest_level_of_educations
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_highest_level_of_educations,
-                            HIGHEST_LEVEL_OF_EDUCATION_MAP))
+    update_domain_table(:domain_highest_level_of_educations,
+                        HIGHEST_LEVEL_OF_EDUCATION_MAP)
   end
 
   def self.seed_domain_level_of_injuries
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_level_of_injuries, LEVEL_OF_INJURIES_MAP))
+    update_domain_table(:domain_level_of_injuries, LEVEL_OF_INJURIES_MAP)
   end
 
   def self.seed_domain_occupations
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_occupations, OCCUPATION_MAP))
+    update_domain_table(:domain_occupations, OCCUPATION_MAP)
   end
 
   def self.seed_domain_principle_pcp_types
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_principle_pcp_types, PRINCIPLE_PCP_VA_NONVA_MAP))
+    update_domain_table(:domain_principle_pcp_types, PRINCIPLE_PCP_VA_NONVA_MAP)
   end
 
   def self.seed_domain_reason_for_admissions
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_reason_for_admissions, REASON_FOR_ADMISSION))
+    update_domain_table(:domain_reason_for_admissions, REASON_FOR_ADMISSION)
   end
 
   def self.seed_domain_residence_types
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_residence_types, RESIDENCE_TYPE_MAP))
+    update_domain_table(:domain_residence_types, RESIDENCE_TYPE_MAP)
   end
 
   def self.seed_domain_sci_types
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_sci_types, SCI_TYPE_MAP))
+    update_domain_table(:domain_sci_types, SCI_TYPE_MAP)
   end
 
   def self.seed_domain_scid_eligibilities
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_scid_eligibilities, SCID_ELIGIBILITY_MAP))
+    update_domain_table(:domain_scid_eligibilities, SCID_ELIGIBILITY_MAP)
   end
 
   def self.seed_domain_scid_etiologies
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_scid_etiologies, SCID_ETIOLOGY_MAP))
+    update_domain_table(:domain_scid_etiologies, SCID_ETIOLOGY_MAP)
   end
 
   def self.seed_domain_theater_of_services
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_theater_of_services, THEATER_OF_SERVICE_MAP))
+    update_domain_table(:domain_theater_of_services, THEATER_OF_SERVICE_MAP)
   end
 
   def self.seed_domain_travel_statuses
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_travel_statuses, TRAVEL_STATUS_MAP))
+    update_domain_table(:domain_travel_statuses, TRAVEL_STATUS_MAP)
   end
 
   def self.seed_domain_va_medical_centers
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_va_medical_centers, VA_MEDICAL_CENTER_MAP))
+    update_domain_table(:domain_va_medical_centers, VA_MEDICAL_CENTER_MAP)
   end
 
   def self.seed_domain_va_statuses
-    ActiveRecord::Base.connection.execute(
-      make_insert_statement(:domain_va_statuses, VA_STATUS_MAP))
+    update_domain_table(:domain_va_statuses, VA_STATUS_MAP)
   end
 
   def self.seed_all
@@ -288,10 +274,25 @@ module DomainSeeds
   end
 
  private
-  def self.make_insert_statement(table_name, value_map)
-    values = value_map.map do |name, id|
-      "(#{ActiveRecord::Base.connection.quote(id)}, #{ActiveRecord::Base.connection.quote(name)})"
+  def self.update_domain_table(table_name, value_map)
+    ActiveRecord::Base.transaction do
+      result = ActiveRecord::Base.connection.execute("SELECT id from #{table_name}")
+      # PG:Results come back as an array of arrays even if it's a single value per row.
+      existing_ids = result.values.inject(Set.new) { |memo, id| memo << id.first.to_i }
+      key_set = Set.new(value_map.keys)
+
+      (key_set & existing_ids).each do |id|
+        ActiveRecord::Base.connection.execute(
+          "UPDATE #{table_name} SET name = #{ActiveRecord::Base.connection.quote(value_map[id])} WHERE id = #{ActiveRecord::Base.connection.quote(id)}")
+      end
+
+      (key_set - existing_ids).each do |id|
+        ActiveRecord::Base.connection.execute(
+          "INSERT INTO #{table_name} (name, id) values (#{ActiveRecord::Base.connection.quote(value_map[id])}, #{ActiveRecord::Base.connection.quote(id)})")
+      end
+
+      to_delete = (existing_ids - key_set).map { |id| ActiveRecord::Base.connection.quote(id) }
+      ActiveRecord::Base.connection.execute("DELETE FROM #{table_name} where id in (#{to_delete.join(',')})") if !to_delete.empty?
     end
-    "INSERT INTO #{table_name}(id, name) values #{values.join(',')}"
   end
 end
