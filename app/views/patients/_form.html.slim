@@ -185,12 +185,16 @@
       .row
         .col-md-12
           label.control-label.radio.radio-inline Caregiver type
-          = f.input_field :has_caregiver, label: "Caregiver type",
-          collection: Patient.collections[:has_caregiver],
+          = f.input_field :caregiver_type,
+          collection: Patient.collections[:caregiver_type],
           label_method: :name,
           value_method: :id,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
+        .col-md-4
+          = f.input :caregiver_first_name
+        .col-md-4
+          = f.input :caregiver_last_name
       .row
         = f.simple_fields_for :caregiver_address do |caregiver_address|
           = render 'shared/address_fields', :f => caregiver_address

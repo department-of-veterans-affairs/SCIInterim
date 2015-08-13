@@ -47,8 +47,10 @@ FactoryGirl.define do
     current_occupation { Patient.collections[:current_occupation].sample.id }
     # TODO(awong): Move residence type into a concern.
     residence_type { Patient.collections[:residence_type].sample.id }
-    has_caregiver { Patient.collections[:has_caregiver].sample.id }
+    caregiver_type { Patient.collections[:caregiver_type].sample.id }
     caregiver_address { create(:address) }
+    caregiver_first_name { Faker::Name.first_name }
+    caregiver_last_name { Faker::Name.last_name }
     is_receiving_non_va_care { [true, false].sample }
     non_va_care_hours_per_month { rand(1000) }
     last_fee_basis_evaluation_date { Faker::Date.between(100.years.ago, Date.today) }
