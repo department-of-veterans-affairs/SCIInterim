@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813190902) do
+ActiveRecord::Schema.define(version: 20150813215144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,8 @@ ActiveRecord::Schema.define(version: 20150813190902) do
     t.integer  "occupation_at_time_of_injury"
     t.integer  "current_occupation"
     t.integer  "has_caregiver"
+    t.string   "caregiver_first_name"
+    t.string   "caregiver_last_name"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree

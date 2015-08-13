@@ -21,7 +21,6 @@ FactoryGirl.define do
     acute_rehab_discharge { Faker::Date.between(20.years.ago, Date.today) }
     hospital_discharge { Faker::Date.between(20.years.ago, Date.today) }
     residence_type { AcuteRehab.collections[:residence_type].sample.id }
-    residence_name { Faker::Company.name }
     discharge_to_community { [true, false].sample }
     followup_90day_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_90day_fim { rand(18..126) }
