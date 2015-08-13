@@ -185,8 +185,8 @@
       .row
         .col-md-12
           label.control-label.radio.radio-inline Caregiver type
-          = f.input_field :has_caregiver, label: "Caregiver type",
-          collection: Patient.collections[:has_caregiver],
+          = f.input_field :caregiver_type,
+          collection: Patient.collections[:caregiver_type],
           label_method: :name,
           value_method: :id,
           as: :radio_buttons,

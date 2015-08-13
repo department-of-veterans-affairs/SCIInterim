@@ -310,9 +310,9 @@ ActiveRecord::Schema.define(version: 20150813215144) do
     t.integer  "scid_etiology"
     t.integer  "occupation_at_time_of_injury"
     t.integer  "current_occupation"
-    t.integer  "has_caregiver"
     t.string   "caregiver_first_name"
     t.string   "caregiver_last_name"
+    t.integer  "caregiver_type"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -396,7 +396,6 @@ ActiveRecord::Schema.define(version: 20150813215144) do
 
   add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
   add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete
-  add_foreign_key "patients", "domain_caregiver_types", name: "patients_has_caregiver_fk", column: "has_caregiver"
   add_foreign_key "patients", "domain_genders", name: "patients_gender_fk", column: "gender"
   add_foreign_key "patients", "domain_highest_level_of_educations", name: "patients_highest_level_of_education_fk", column: "highest_level_of_education"
   add_foreign_key "patients", "domain_occupations", name: "patients_current_occupation_fk", column: "current_occupation"

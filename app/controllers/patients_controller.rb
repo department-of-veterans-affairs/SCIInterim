@@ -109,7 +109,7 @@ class PatientsController < ApplicationController
         :occupation_at_time_of_injury,
         :current_occupation,
         :residence_type,
-        :has_caregiver,
+        :caregiver_type,
         :caregiver_last_name,
         :caregiver_first_name,
         :is_receiving_non_va_care,

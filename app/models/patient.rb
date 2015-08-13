@@ -27,7 +27,7 @@ class Patient < ActiveRecord::Base
       travel_status: Domain::TravelStatus.collection,
       theater_of_service: Domain::TheaterOfService.collection,
       residence_type: Domain::ResidenceType.collection,
-      has_caregiver: Domain::CaregiverType.collection,
+      caregiver_type: Domain::CaregiverType.collection,
       occupation_at_time_of_injury: Domain::Occupation.collection,
       current_occupation: Domain::Occupation.collection,
       scid_etiology: Domain::ScidEtiology.collection,
