@@ -42,7 +42,7 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def destroy
-    render status: :forbidden, text: "Deleting an Annual Evaluations is not allowed"
+    render status: :forbidden, text: "Deleting an Annual Evaluation is not allowed"
   end
 
   private
