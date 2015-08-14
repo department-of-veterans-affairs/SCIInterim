@@ -9,10 +9,18 @@ class AnnualEvaluationsController < ApplicationController
 
   respond_to :html
 
+  def index
+    render status: :not_found, text: "Listing all annual evaluations is odd"
+  end
+
   def new
     @annual_evaluation = AnnualEvaluation.new
     @annual_evaluation.build_asia_assessment
     respond_with(@annual_evaluation)
+  end
+
+  def show
+    render :edit
   end
 
   def edit
@@ -31,6 +39,10 @@ class AnnualEvaluationsController < ApplicationController
     @annual_evaluation.update_attributes(annual_evaluation_params)
     @annual_evaluation.update(annual_evaluation_params)
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))
+  end
+
+  def destroy
+    render status: :forbidden, text: "Deleting an Annual Evaluation is not allowed"
   end
 
   private

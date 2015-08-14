@@ -13,7 +13,7 @@ class AcuteRehab < ActiveRecord::Base
   def self.collections
     {
       reason_for_admission: Domain::ReasonForAdmission.collection,
-      residence_type: Domain::ResidenceType.collection,
+      discharge_location: Domain::ResidenceType.collection,
     }.with_indifferent_access
   end
 end
