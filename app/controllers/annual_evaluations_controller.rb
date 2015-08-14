@@ -10,7 +10,7 @@ class AnnualEvaluationsController < ApplicationController
   respond_to :html
 
   def index
-    render status: :not_found, text: "Listing all all annual evaluations is odd"
+    render status: :not_found, text: "Listing all annual evaluations is odd"
   end
 
   def new
