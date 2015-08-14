@@ -8,8 +8,6 @@
             .col-md-8
                 = f.input :reason_for_admission,
                 collection: AcuteRehab.collections[:reason_for_admission],
-                label_method: :name,
-                value_method: :id,
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
             .col-md-4
@@ -31,8 +29,6 @@
             .col-md-4
                 = f.input :discharge_location,
                 collection: AcuteRehab.collections[:discharge_location],
-                label_method: :name,
-                value_method: :id,
                 :prompt => "Select one"
 
     .callout-blank

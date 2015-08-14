@@ -19,29 +19,21 @@
                 td 
                   = f.input_field :neurological_sensory_level_left,
                   label: false,
-                  collection: Asia.collections[:neurological_sensory_level_left],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:neurological_sensory_level_left]
                 td 
                   = f.input_field :neurological_sensory_level_right,
                   label: false,
-                  collection: Asia.collections[:neurological_sensory_level_right],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:neurological_sensory_level_right]
               tr
                 th scope="row"  Motor
                 td 
                   = f.input_field :neurological_motor_level_left,
                   label: false,
-                  collection: Asia.collections[:neurological_motor_level_left],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:neurological_motor_level_left]
                 td 
                   = f.input_field :neurological_motor_level_right,
                   label: false,
-                  collection: Asia.collections[:neurological_motor_level_right],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:neurological_motor_level_right]
       .col-md-4
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc
@@ -75,25 +67,17 @@
                 th scope="row"  Sensory
                 td 
                   = f.input_field :preservation_sensory_left,
-                  collection: Asia.collections[:preservation_sensory_left],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:preservation_sensory_left]
                 td 
                   = f.input_field :preservation_sensory_right,
-                  collection: Asia.collections[:preservation_sensory_right],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:preservation_sensory_right]
               tr
                 th scope="row"  Motor
                 td 
                   = f.input_field :preservation_motor_left,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_left],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:preservation_motor_left]
                 td 
                   = f.input_field :preservation_motor_right,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_right],
-                  label_method: :name,
-                  value_method: :id
+                  collection: Asia.collections[:preservation_motor_right]
