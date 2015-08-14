@@ -23,7 +23,9 @@ class PatientsController < ApplicationController
     end
   end
 
-   
+  def show
+    render :edit, layout: 'patient_edit'
+  end
 
   def new
     @patient = Patient.new
@@ -60,7 +62,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    render :nothing => true, :status => 400
+    render status: :forbidden, text: "Deleting a Patient is not allowed"
   end
 
   private

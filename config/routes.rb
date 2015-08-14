@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get 'reports/entity/:entity/:entity_id/:report_id' => 'reports#output_report'
 
   resources :patients do
-    resources :acute_rehabs, except: [:index, :destroy]
-    resources :annual_evaluations, except: [:index, :destroy]
-    resources :omrs, except: [:index, :destroy]
+    resources :acute_rehabs
+    resources :annual_evaluations
+    resources :omrs
   end
 
   resources :facilities

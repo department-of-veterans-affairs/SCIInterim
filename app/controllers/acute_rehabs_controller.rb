@@ -9,6 +9,10 @@ class AcuteRehabsController < ApplicationController
 
   respond_to :html
 
+  def index
+    render status: :not_found, text: "Listing all acute rehabs alone is odd"
+  end
+
   def new
     @acute_rehab = AcuteRehab.new
     @acute_rehab.build_start_asia_assessment
@@ -17,6 +21,10 @@ class AcuteRehabsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
+    render :edit
   end
 
   def create
@@ -32,6 +40,10 @@ class AcuteRehabsController < ApplicationController
     @acute_rehab.assign_attributes(acute_rehab_params)
     @acute_rehab.update(acute_rehab_params)
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
+  end
+
+  def destroy
+    render status: :forbidden, text: "Deleting an Acute Rehab is not allowed"
   end
 
   private
