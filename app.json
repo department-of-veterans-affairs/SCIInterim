@@ -1,7 +1,7 @@
 {
   "name":"SCIInterim",
   "scripts":{
-    "postdeploy":"rake db:migrate db:seed app:seed_fake"
+    "postdeploy":"bundle exec rake db:migrate db:seed app:seed_fake"
    },
   "env":{
     "LANG":{
