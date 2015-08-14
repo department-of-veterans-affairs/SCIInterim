@@ -191,6 +191,10 @@
           value_method: :id,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
+        .col-md-4
+          = f.input :caregiver_first_name
+        .col-md-4
+          = f.input :caregiver_last_name
       .row
         = f.simple_fields_for :caregiver_address do |caregiver_address|
           = render 'shared/address_fields', :f => caregiver_address

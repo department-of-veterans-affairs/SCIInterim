@@ -110,6 +110,8 @@ class PatientsController < ApplicationController
         :current_occupation,
         :residence_type,
         :has_caregiver,
+        :caregiver_first_name,
+        :caregiver_last_name,
         :is_receiving_non_va_care,
         :non_va_care_hours_per_month,
         :last_fee_basis_evaluation_date,
