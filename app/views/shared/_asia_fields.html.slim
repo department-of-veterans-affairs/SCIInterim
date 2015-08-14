@@ -49,17 +49,15 @@
 
         label Neurological Level of Injury
         .form-control.input Missing JS auto-calc
-
-        label.radio-inline
-          input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" Complete
-        label.radio-inline
-          input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option1" Incomplete  
-  
+        = f.input :is_complete, 
+        collection: Asia.collections[:is_complete], 
+        label_method: "Is ASIA complete?",
+        as: :radio_buttons, 
+        item_wrapper_class: 'radio-inline'
         label
           .checkbox-inline
             = f.input_field :has_motor_or_sensory_asymmetry
             | Has motor or sensory asymmetry
-        / # / If this is true (checked) then there are some things that need to be below it
 
       .col-md-4
         label Zone of Partial Preservation

@@ -21,6 +21,7 @@ class Patient < ActiveRecord::Base
 
   def self.collections
     {
+      is_complete: [ {value: false, label: "Complete"}, {value: true, label: "Incomplete"} ],
       highest_level_of_education: Domain::HighestLevelOfEducation.collection,
       gender: Domain::Gender.collection,
       sci_type: Domain::SciType.collection,
