@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814055633) do
+ActiveRecord::Schema.define(version: 20150814064609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,32 @@ ActiveRecord::Schema.define(version: 20150814055633) do
 
   add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
 
+  create_table "chart_sfs", force: true do |t|
+    t.integer  "q1a_hours_paid"
+    t.integer  "q1b_hours_unpaid"
+    t.integer  "q2_at_home_assisted_cognitive"
+    t.integer  "q3_not_home_assisted_cognitive"
+    t.integer  "q4_hours_out_of_bed_per_day"
+    t.integer  "q5_days_out_of_house_per_week"
+    t.integer  "q6_nights_not_home_per_year"
+    t.integer  "q7a_hours_paid_for_job_per_week"
+    t.integer  "q7b_occupation"
+    t.integer  "q8_hours_in_school_per_week"
+    t.integer  "q9_hours_homemaking_per_week"
+    t.integer  "q10_hours_in_home_maintenance_per_week"
+    t.integer  "q11_hours_in_recreation_per_week"
+    t.integer  "q12_num_people_cohabiting"
+    t.integer  "q13_living_with_spouse"
+    t.integer  "q14_num_relatives_cohabiting"
+    t.integer  "q15_num_associates_visited_per_month"
+    t.integer  "q16_num_friends_visited_per_month"
+    t.integer  "q17_num_initiated_stranger_conversations_per_month"
+    t.integer  "q18_household_combined_income"
+    t.integer  "q19_total_medical_expenses_last_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "domain_asia_classifications", force: true do |t|
     t.string "name"
   end
@@ -100,6 +126,34 @@ ActiveRecord::Schema.define(version: 20150814055633) do
   end
 
   create_table "domain_caregiver_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_at_home_cognitives", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_away_nights", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_household_incomes", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_initiated_stranger_conversations", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_medical_expenses", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_not_home_cognitives", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "domain_chart_sf_spouse_resident_options", force: true do |t|
     t.string "name"
   end
 
@@ -360,6 +414,14 @@ ActiveRecord::Schema.define(version: 20150814055633) do
   add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_right_fk", column: "preservation_motor_right"
   add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_left_fk", column: "preservation_sensory_left"
   add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_right_fk", column: "preservation_sensory_right"
+
+  add_foreign_key "chart_sfs", "domain_chart_sf_at_home_cognitives", name: "chart_sfs_q2_at_home_assisted_cognitive_fk", column: "q2_at_home_assisted_cognitive"
+  add_foreign_key "chart_sfs", "domain_chart_sf_away_nights", name: "chart_sfs_q6_nights_not_home_per_year_fk", column: "q6_nights_not_home_per_year"
+  add_foreign_key "chart_sfs", "domain_chart_sf_household_incomes", name: "chart_sfs_q18_household_combined_income_fk", column: "q18_household_combined_income"
+  add_foreign_key "chart_sfs", "domain_chart_sf_initiated_stranger_conversations", name: "chart_sfs_q17_num_initiated_stranger_conversations_per_month_fk", column: "q17_num_initiated_stranger_conversations_per_month"
+  add_foreign_key "chart_sfs", "domain_chart_sf_medical_expenses", name: "chart_sfs_q19_total_medical_expenses_last_year_fk", column: "q19_total_medical_expenses_last_year"
+  add_foreign_key "chart_sfs", "domain_chart_sf_not_home_cognitives", name: "chart_sfs_q3_not_home_assisted_cognitive_fk", column: "q3_not_home_assisted_cognitive"
+  add_foreign_key "chart_sfs", "domain_chart_sf_spouse_resident_options", name: "chart_sfs_q13_living_with_spouse_fk", column: "q13_living_with_spouse"
 
   add_foreign_key "episode_of_cares", "patients", name: "episode_of_cares_patient_id_fk"
 
