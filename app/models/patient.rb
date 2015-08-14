@@ -21,7 +21,7 @@ class Patient < ActiveRecord::Base
 
   def self.collections
     {
-      is_complete: [ {value: false, label: "Complete"}, {value: true, label: "Incomplete"} ],
+      is_complete: [ ["Complete", false], ["Incomplete", true] ],
       assigned_vamc: Domain::VaMedicalCenter.collection,
       current_occupation: Domain::Occupation.collection,
       gender: Domain::Gender.collection,

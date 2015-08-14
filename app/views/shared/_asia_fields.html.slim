@@ -50,8 +50,8 @@
         label Neurological Level of Injury
         .form-control.input Missing JS auto-calc
         = f.input :is_complete, 
-        collection: Asia.collections[:is_complete], 
-        label: "Is ASIA complete?",
+        collection: Patient.collections[:is_complete], 
+        label: false,
         as: :radio_buttons, 
         item_wrapper_class: 'radio-inline'
         label
