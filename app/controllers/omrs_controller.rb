@@ -7,9 +7,17 @@ class OmrsController < ApplicationController
 
   respond_to :html
 
+  def index
+    render status: :not_found, text: "Listing all OMRS is odd"
+  end
+
   def new
     @omr = Omr.new
     respond_with(@omr)
+  end
+
+  def show
+    render :edit
   end
 
   def edit
@@ -27,6 +35,10 @@ class OmrsController < ApplicationController
   def update
     @omr.update(omr_params)
     respond_with(@omr, location: edit_patient_path(@patient))
+  end
+
+  def destroy
+    render status: :forbidden, text: "Deleting an OMR is not allowed"
   end
 
   private

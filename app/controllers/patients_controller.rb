@@ -23,7 +23,9 @@ class PatientsController < ApplicationController
     end
   end
 
-   
+  def show
+    render :edit, layout: 'patient_edit'
+  end
 
   def new
     @patient = Patient.new
@@ -42,7 +44,7 @@ class PatientsController < ApplicationController
     @patient.assign_attributes(patient_params)
     if @patient.save
       flash[:success] = "You have successfully created a patient."
-      render :edit
+      respond_with(@patient, location: edit_patient_path(@patient))
     else
       flash[:error] = "Something went wrong when creating this patient. Please try again."
       render :new
@@ -56,11 +58,11 @@ class PatientsController < ApplicationController
     else
       flash[:error] = "Something went wrong updating this patient's data. Try again."
     end
-    render :edit
+    respond_with(@patient, location: edit_patient_path(@patient))
   end
 
   def destroy
-    render :nothing => true, :status => 400
+    render status: :forbidden, text: "Deleting a Patient is not allowed"
   end
 
   private
