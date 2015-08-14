@@ -40,6 +40,66 @@ module DomainSeeds
     4 => "Paid Non-family",
     5 => "Unpaid Non-family",
   }
+  CHART_SF_AT_HOME_COGNITIVE_MAP = {
+    0 => "",
+    1 => "Someone else is always with me to observer or supervise",
+    2 => "Someone else is always around, but they only check on me now and then",
+    3 => "Sometimes I am left alone for an hour or two",
+    4 => "Sometimes I am left alone for most of the day",
+    5 => "I have been left alone all day and all night, but someone checks in on me",
+    6 => "I am left alone without anyone checking on me",
+  }
+  CHART_SF_AWAY_NIGHT_MAP = {
+    0 => "",
+    1 => "None",
+    2 => "1-2",
+    3 => "3-4",
+    4 => "5 or more",
+  }
+  CHART_SF_HOUSEHOLD_INCOME_MAP = {
+    0 => "",
+    1 => "Less than 10,000",
+    2 => "10,000 - 14,999",
+    3 => "15,000 - 19,999",
+    4 => "20,000 - 24,999",
+    5 => "25,000 - 34,999",
+    6 => "35,000 - 49,999",
+    7 => "50,000 - 74,999",
+    8 => "75,000 or more",
+    9 => "Don't know",
+    10 => "Refused",
+  }
+  CHART_SF_INITIATED_STRANGER_CONVERSATION_MAP = {
+    0 => "",
+    0 => "",
+    1 => "None",
+    2 => "1-2",
+    3 => "3-5",
+    4 => "6 or more",
+  }
+  CHART_SF_MEDICAL_EXPENSE_MAP = {
+    0 => "",
+    1 => "Less than 1,000",
+    2 => "1,000 - 2,499",
+    3 => "2,500 - 4,999",
+    4 => "5,000 - 9,999",
+    5 => "10,000 or more",
+    9 => "Don't know",
+    10 => "Refused",
+  }
+  CHART_SF_NOT_HOME_COGNITIVE_MAP = {
+    0 => "",
+    1 => "I am restricted from leaving, even with someone else",
+    2 => "Someone is always with me to help with remembering, decision-making or judgement when I go anywhere",
+    3 => "I go to place on my own as long as they are familiar",
+    4 => "I do not need help going anywhere",
+  }
+  CHART_SF_SPOUSE_RESIDENT_OPTION_MAP = {
+    0 => "",
+    1 => "Yes",
+    2 => "No",
+    3 => "Not applicable (subject lives alone)",
+  }
   FIM_ADMISSION_CLASS_MAP = {
     0 => "",
     1 => "Initial Rehabilitation",
@@ -265,6 +325,40 @@ module DomainSeeds
     update_domain_table(:domain_caregiver_types, CAREGIVER_TYPE_MAP)
   end
 
+  def self.seed_domain_chart_sf_at_home_cognitives
+    update_domain_table(:domain_chart_sf_at_home_cognitives,
+                        CHART_SF_AT_HOME_COGNITIVE_MAP)
+  end
+
+  def self.seed_domain_chart_sf_away_nights
+    update_domain_table(:domain_chart_sf_away_nights, CHART_SF_AWAY_NIGHT_MAP)
+  end
+
+  def self.seed_domain_chart_sf_household_incomes
+    update_domain_table(:domain_chart_sf_household_incomes,
+                        CHART_SF_HOUSEHOLD_INCOME_MAP)
+  end
+
+  def self.seed_domain_chart_sf_initiated_stranger_conversations
+    update_domain_table(:domain_chart_sf_initiated_stranger_conversations,
+                        CHART_SF_INITIATED_STRANGER_CONVERSATION_MAP)
+  end
+
+  def self.seed_domain_chart_sf_medical_expenses
+    update_domain_table(:domain_chart_sf_medical_expenses,
+                        CHART_SF_MEDICAL_EXPENSE_MAP)
+  end
+
+  def self.seed_domain_chart_sf_not_home_cognitives
+    update_domain_table(:domain_chart_sf_not_home_cognitives,
+                        CHART_SF_NOT_HOME_COGNITIVE_MAP)
+  end
+
+  def self.seed_domain_chart_sf_spouse_resident_options
+    update_domain_table(:domain_chart_sf_spouse_resident_options,
+                        CHART_SF_SPOUSE_RESIDENT_OPTION_MAP)
+  end
+
   def self.seed_domain_fim_admission_classes
     update_domain_table(:domain_fim_admission_classes,
                         FIM_ADMISSION_CLASS_MAP)
@@ -360,6 +454,14 @@ module DomainSeeds
       seed_domain_asia_classifications
       seed_domain_bladder_drainage_methods
       seed_domain_caregiver_types
+      seed_domain_chart_sf_at_home_cognitives
+      seed_domain_chart_sf_away_nights
+      seed_domain_chart_sf_household_incomes
+      seed_domain_chart_sf_initiated_stranger_conversations
+      seed_domain_chart_sf_medical_expenses
+      seed_domain_chart_sf_not_home_cognitives
+      seed_domain_chart_sf_spouse_resident_options
+      seed_domain_fim_admission_classes
       seed_domain_genders
       seed_domain_highest_level_of_educations
       seed_domain_level_of_injuries
