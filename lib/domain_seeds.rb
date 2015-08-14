@@ -103,6 +103,10 @@ module DomainSeeds
     7 => "Complete Independence (timely, safely)",
   }
   GENDER_MAP = {
+    # TODO(awong): This is a very VERY limited set of genders. Currently
+    # stuck this way because we need to reconcile with a legacy system.
+    # Find a way to extend the list to encompass the full complexity of
+    # gender identity.
     0 => "",
     1 => "Female",
     2 => "Male",
