@@ -109,7 +109,6 @@ class PatientsController < ApplicationController
         :occupation_at_time_of_injury,
         :current_occupation,
         :residence_type,
-        :residence_name,
         :has_caregiver,
         :is_receiving_non_va_care,
         :non_va_care_hours_per_month,

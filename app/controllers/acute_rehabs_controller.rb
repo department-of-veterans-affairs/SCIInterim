@@ -57,7 +57,6 @@ class AcuteRehabsController < ApplicationController
         :hospital_discharge,
         :acute_rehab_discharge,
         :residence_type,
-        :residence_name,
         :discharge_to_community,
         :start_sf8,
         :finish_swls,
