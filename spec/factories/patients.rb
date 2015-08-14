@@ -35,7 +35,7 @@ FactoryGirl.define do
     non_va_facility_fax_number { Faker::PhoneNumber.phone_number }
     non_va_facility_pcp_first_name { Faker::Name.first_name }
     non_va_facility_pcp_last_name { Faker::Name.last_name }
-    va_facility { Faker::Company.name }
+    va_facility { Patient.collections[:va_facility].sample.id }
     va_facility_pcp_first_name { Faker::Name.first_name }
     va_facility_pcp_last_name { Faker::Name.last_name }
     theater_of_service { Patient.collections[:theater_of_service].sample.id }

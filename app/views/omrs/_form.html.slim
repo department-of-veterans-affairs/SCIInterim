@@ -24,7 +24,11 @@
     = f.input :finish_chart_sf
     = f.input :finish_sf_8
     = f.input :finish_uspeq
-    = f.input :discharge_location
+    = f.input :discharge_location,
+    collection: Omr.collections[:discharge_location],
+    label_method: :name,
+    value_method: :id,
+    :prompt => "Select one"
 
   .row
     .col-sm-offset-3.col-sm-9.form-actions

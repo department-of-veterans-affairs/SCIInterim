@@ -29,8 +29,8 @@
                 = f.input :acute_rehab_discharge, as: :string, input_html: { class: "datepicker" }, :label => "Acute rehab discharge date", :placeholder => "DD/MM/YYYY"        
         .row
             .col-md-4
-                = f.input :residence_type,
-                collection: AcuteRehab.collections[:residence_type],
+                = f.input :discharge_location,
+                collection: AcuteRehab.collections[:discharge_location],
                 label_method: :name,
                 value_method: :id,
                 :prompt => "Select one"
