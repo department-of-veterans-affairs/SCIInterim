@@ -21,19 +21,20 @@ class Patient < ActiveRecord::Base
 
   def self.collections
     {
-      highest_level_of_education: Domain::HighestLevelOfEducation.collection,
-      gender: Domain::Gender.collection,
-      sci_type: Domain::SciType.collection,
-      travel_status: Domain::TravelStatus.collection,
-      theater_of_service: Domain::TheaterOfService.collection,
-      residence_type: Domain::ResidenceType.collection,
-      has_caregiver: Domain::CaregiverType.collection,
-      occupation_at_time_of_injury: Domain::Occupation.collection,
-      current_occupation: Domain::Occupation.collection,
-      scid_etiology: Domain::ScidEtiology.collection,
-      scid_eligibility: Domain::ScidEligibility.collection,
       assigned_vamc: Domain::VaMedicalCenter.collection,
+      current_occupation: Domain::Occupation.collection,
+      gender: Domain::Gender.collection,
+      has_caregiver: Domain::CaregiverType.collection,
+      highest_level_of_education: Domain::HighestLevelOfEducation.collection,
+      occupation_at_time_of_injury: Domain::Occupation.collection,
       principle_pcp_va_nonva: Domain::PrinciplePcpType.collection,
+      residence_type: Domain::ResidenceType.collection,
+      sci_type: Domain::SciType.collection,
+      scid_eligibility: Domain::ScidEligibility.collection,
+      scid_etiology: Domain::ScidEtiology.collection,
+      theater_of_service: Domain::TheaterOfService.collection,
+      travel_status: Domain::TravelStatus.collection,
+      va_facility: Domain::VaMedicalCenter.collection,
       va_status: Domain::VaStatus.collection,
     }.with_indifferent_access
   end

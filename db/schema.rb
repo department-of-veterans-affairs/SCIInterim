@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814053006) do
+ActiveRecord::Schema.define(version: 20150814055633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150814053006) do
     t.date     "acute_rehab_admission"
     t.date     "hospital_discharge"
     t.date     "acute_rehab_discharge"
-    t.integer  "residence_type"
+    t.integer  "discharge_location"
     t.boolean  "discharge_to_community"
     t.string   "start_sf8"
     t.string   "finish_swls"
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 20150814053006) do
     t.string   "finish_chart_sf"
     t.string   "finish_sf_8"
     t.string   "finish_uspeq"
-    t.string   "discharge_location"
+    t.integer  "discharge_location"
   end
 
   create_table "patients", force: true do |t|
@@ -289,7 +289,6 @@ ActiveRecord::Schema.define(version: 20150814053006) do
     t.string   "non_va_facility_fax_number"
     t.string   "non_va_facility_pcp_first_name"
     t.string   "non_va_facility_pcp_last_name"
-    t.string   "va_facility"
     t.string   "va_facility_pcp_first_name"
     t.string   "va_facility_pcp_last_name"
     t.integer  "theater_of_service"
@@ -313,6 +312,7 @@ ActiveRecord::Schema.define(version: 20150814053006) do
     t.integer  "has_caregiver"
     t.string   "caregiver_first_name"
     t.string   "caregiver_last_name"
+    t.integer  "va_facility"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -347,7 +347,7 @@ ActiveRecord::Schema.define(version: 20150814053006) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "acute_rehabs", "domain_reason_for_admissions", name: "acute_rehabs_reason_for_admission_fk", column: "reason_for_admission"
-  add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_residence_type_fk", column: "residence_type"
+  add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_residence_type_fk", column: "discharge_location"
 
   add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_fk", column: "bladder_drainage_method"
 
@@ -394,6 +394,8 @@ ActiveRecord::Schema.define(version: 20150814053006) do
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_fk", column: "measurements_goal"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_fk", column: "measurements_start"
 
+  add_foreign_key "omrs", "domain_residence_types", name: "omrs_discharge_location_fk", column: "discharge_location"
+
   add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
   add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete
   add_foreign_key "patients", "domain_caregiver_types", name: "patients_has_caregiver_fk", column: "has_caregiver"
@@ -409,6 +411,7 @@ ActiveRecord::Schema.define(version: 20150814053006) do
   add_foreign_key "patients", "domain_theater_of_services", name: "patients_theater_of_service_fk", column: "theater_of_service"
   add_foreign_key "patients", "domain_travel_statuses", name: "patients_travel_status_fk", column: "travel_status"
   add_foreign_key "patients", "domain_va_medical_centers", name: "patients_assigned_vamc_fk", column: "assigned_vamc"
+  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_va_facility_fk", column: "va_facility"
   add_foreign_key "patients", "domain_va_statuses", name: "patients_va_status_fk", column: "va_status"
 
 end
