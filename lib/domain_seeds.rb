@@ -179,14 +179,17 @@ module DomainSeeds
   }
   RESIDENCE_TYPE_MAP = {
     0 => "",
-    1 => "Own",
-    2 => "Rent",
-    3 => "Homeless",
-    4 => "Assisted living",
-    5 => "Nursing home",
-    6 => "Shelter",
-    7 => "Group Home",
-    8 => "Board and Care",
+    1 => "01 Private residence",
+    2 => "02 Hospital",
+    3 => "03 Nursing home",
+    4 => "04 Assisted living residence",
+    5 => "05 Group living situation",
+    6 => "06 Correctional institution",
+    7 => "07 Hotel or motel",
+    8 => "08 Homeless",
+    9 => "09 Deceased",
+   10 => "10 Other, unclassified",
+   99 => "99 Unknown",
   }
   SCI_TYPE_MAP = {
     0 => "",
