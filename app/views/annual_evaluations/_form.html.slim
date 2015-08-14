@@ -25,9 +25,9 @@
         .col-md-4
           = f.input :eval_completed, label: "Next Annual Evaluation due:", :placeholder => "DD/MM/YYYY",  disabled: true, as: :string, input_html: { class: "datepicker" }
         .col-md-8
-          label.control-label.radio.radio-inline Is inpatient:
-          = f.input_field :is_inpatient,
-            :collection => [[true, 'is_inpatient'], [false, 'outpatient']], 
+          = f.input :is_inpatient,
+            collection: AnnualEvaluation.collections[:is_inpatient], 
+            label: "Inpatient?",
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'
     .callout-blank

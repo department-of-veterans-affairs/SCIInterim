@@ -7,6 +7,7 @@ class AnnualEvaluation < ActiveRecord::Base
 
   def self.collections
     {
+      is_inpatient: [ {value: true, label: "Inpatient"}, {value: false, label: "Outpatient"} ],
       bladder_drainage_method: Domain::BladderDrainageMethod.collection,
     }.with_indifferent_access
   end
