@@ -22,6 +22,7 @@ class AnnualEvaluationsController < ApplicationController
     @annual_evaluation.fim.build_measurements_finish
     @annual_evaluation.fim.build_measurements_90day
     @annual_evaluation.fim.build_measurements_1year
+    @annual_evaluation.build_kurtzke_edss
     respond_with(@annual_evaluation)
   end
 
@@ -76,6 +77,7 @@ class AnnualEvaluationsController < ApplicationController
         measurements_finish_attributes: nested_model_attributes(FimMeasurement),
         measurements_90day_attributes: nested_model_attributes(FimMeasurement),
         measurements_1year_attributes: nested_model_attributes(FimMeasurement),
+        kurtzke_edss_attributes: nested_model_attributes(KurtzkeEdss),
       )
     end
 end

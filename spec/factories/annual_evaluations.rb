@@ -11,7 +11,7 @@ FactoryGirl.define do
     bmi { rand(32.0) }
     cyh { Faker::Lorem.word }
     fim { build_fim }
-    kurtzke_edss { Faker::Lorem.word }
+    kurtzke_edss { build_kurtzke_edss }
     bladder_drainage_method { AnnualEvaluation.collections[:bladder_drainage_method].sample.id }
     asia_assessment { create(:asia) }
   end

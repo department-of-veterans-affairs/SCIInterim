@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815071836) do
+ActiveRecord::Schema.define(version: 20150817125734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20150815071836) do
     t.boolean  "is_inpatient"
     t.integer  "bmi"
     t.string   "cyh"
-    t.string   "kurtzke_edss"
     t.integer  "bladder_drainage_method"
     t.integer  "fim_id"
     t.integer  "patient_id"
+    t.integer  "kurtzke_edss_id"
   end
 
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
@@ -199,6 +199,10 @@ ActiveRecord::Schema.define(version: 20150815071836) do
     t.string "name"
   end
 
+  create_table "domain_kurtzke_edss_scores", force: true do |t|
+    t.text "name"
+  end
+
   create_table "domain_level_of_injuries", force: true do |t|
     t.string "name"
   end
@@ -286,6 +290,14 @@ ActiveRecord::Schema.define(version: 20150815071836) do
     t.integer  "measurements_finish_id"
     t.integer  "measurements_90day_id"
     t.integer  "measurements_1year_id"
+  end
+
+  create_table "kurtzke_edsses", force: true do |t|
+    t.string   "care_type"
+    t.string   "score_type"
+    t.integer  "scale_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "omrs", force: true do |t|
@@ -405,6 +417,7 @@ ActiveRecord::Schema.define(version: 20150815071836) do
 
   add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_fk", column: "bladder_drainage_method"
   add_foreign_key "annual_evaluations", "fims", name: "annual_evaluations_fim_id_fk", dependent: :delete
+  add_foreign_key "annual_evaluations", "kurtzke_edsses", name: "annual_evaluations_kurtzke_edss_id_fk"
   add_foreign_key "annual_evaluations", "patients", name: "annual_evaluations_patient_id_fk", dependent: :delete
 
   add_foreign_key "asia", "domain_asia_classifications", name: "asia_classification_fk", column: "classification"
@@ -455,6 +468,8 @@ ActiveRecord::Schema.define(version: 20150815071836) do
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_finish_id_fk", column: "measurements_finish_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_id_fk", column: "measurements_goal_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_id_fk", column: "measurements_start_id"
+
+  add_foreign_key "kurtzke_edsses", "domain_kurtzke_edss_scores", name: "kurtzke_edsses_scale_value_fk", column: "scale_value"
 
   add_foreign_key "omrs", "domain_residence_types", name: "omrs_discharge_location_fk", column: "discharge_location"
   add_foreign_key "omrs", "patients", name: "omrs_patient_id_fk", dependent: :delete

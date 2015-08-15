@@ -181,6 +181,29 @@ module DomainSeeds
     5 => "College",
     6 => "Graduate School",
   }
+  KURTZKE_EDSS_SCORE_MAP = {
+    0 => "",
+    1 => "0.0 - Normal neurologic examination (all grade 0 in Functional Systems [FS]; Cerebral grade 1 acceptable).",
+    2 => "1.0 - No disability, minimal signs in one FS (i.e., grade 1 excluding Cerebral grade 1).",
+    3 => "1.5 - No disability, minimal signs in more than one FS (more than one grade 1 excluding Cerebral grade 1).",
+    4 => "2.0 - Minimal disability in one FS (one FS grade 2, others 0 or 1).",
+    5 => "2.5 - Minimal disability in two FS (two FS grade 2, others 0 or 1).",
+    6 => "3.0 - Moderate disability in one FS (one FS grade 3, others 0 or 1), or mild disability in three or four FS (three/four FS grade 2, others 0 or 1) though fully ambulatory.",
+    7 => "3.5 - Fully ambulatory but with moderate disability in one FS (one grade 3) and one or two FS grade 2; or two FS grade 3; or five FS grade 2 (others 0 or 1).",
+    8 => "4.0 - Fully ambulatory without aid, self-sufficient, up and about some 12 hours a day despite relatively severe disability consisting of one FS grade 4 (others 0 or 1) or combinations of lesser grades exceeding limits of previous steps. Able to walk without aid or rest some 500 meters.",
+    9 => "4.5 - Fully ambulatory without aid, up and about much of the day, able to work a full day, may otherwise have some limitation of full activity or require minimal assistance; characterized by relatively severe disability, usually consisting of one FS grade 4 (others 0 or 1) or combinations of lesser grades exceeding limits of previous steps. Able to walk without aid or rest for some 300 meters.",
+    10 => "5.0 - Ambulatory without aid or rest for about 200 meters; disability severe enough to impair full daily activities (e.g., to work full day without special provisions). (Usual FS equivalents are one grade 5 alone, others 0 or 1; or combinations of lesser grades usually exceeding specifications for step 4.0.)",
+    11 => "5.5 - Ambulatory without aid or rest for about 100 meters; disability severe enough to preclude full daily activities. (Usual FS equivalents are one grade 5 alone, others 0 or 1; or combinations of lesser grades usually exceeding those for step 4.0).",
+    12 => "6.0 - Intermittent or unilateral constant assistance (cane, crutch, or brace) required to walk about 100 meters with or without resting. (Usual FS equivalents are combinations with more than two FS grade 3+.)",
+    13 => "6.5 - Constant bilateral assistance (canes, crutches, or braces) required to walk about 20 meters without resting. (Usual FS equivalents are combinations with more than two FS grade 3+.)",
+    14 => "7.0 - Unable to walk beyond about 5 meters even with aid, essentially restricted to wheelchair; wheels self in standard wheelchair and transfers alone; up and about in some 12 hours a day. (Usual FS equivalents are combinations with more than one FS grade 4+; very rarely, pyramidal grade 5 alone.)",
+    15 => "7.5 - Unable to take more than a few steps; restricted to wheelchair; may need aid in transfer; wheels self but cannot carry on in standard wheelchair a full day; may require motorized wheelchair. (Usual FS equivalents are combinations with more than one FS grade 4+.)",
+    16 => "8.0 - Essentially restricted to bed or chair or perambulated in wheelchair, but may be out of bed itself much of the day; retains many self-care functions; generally has effective use of arms. (Usual FS equivalents are combinations, generally grade 4+ in several systems.)",
+    17 => "8.5 - Essentially restricted to bed much of the day; has some effective use of arm(s); retains some self-care functions. (Usual FS equivalents are combinations, generally grade 4+ in several systems.)",
+    18 => "9.0 - Helpless bed patient; can communicate and eat. (Usual FS equivalents are combinations, mostly grade 4+.)",
+    19 => "9.5 - Totally helpless bed patient; unable to communicate effectively or eat/swallow. (Usual FS equivalents are combinations, almost all grade 4+.)",
+    20 => "10 - Death due to MS.",
+  }
   LEVEL_OF_INJURIES_MAP = {
     0 => "",
     1 => "C1",
@@ -401,6 +424,11 @@ module DomainSeeds
                         HIGHEST_LEVEL_OF_EDUCATION_MAP)
   end
 
+  def self.seed_domain_kurtzke_edss_scores
+    update_domain_table(:domain_kurtzke_edss_scores,
+                        KURTZKE_EDSS_SCORE_MAP)
+  end
+
   def self.seed_domain_level_of_injuries
     update_domain_table(:domain_level_of_injuries, LEVEL_OF_INJURIES_MAP)
   end
@@ -464,6 +492,7 @@ module DomainSeeds
       seed_domain_fim_admission_classes
       seed_domain_genders
       seed_domain_highest_level_of_educations
+      seed_domain_kurtzke_edss_scores
       seed_domain_level_of_injuries
       seed_domain_occupations
       seed_domain_principle_pcp_types
