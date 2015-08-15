@@ -10,7 +10,7 @@ FactoryGirl.define do
     is_inpatient { [true, false].sample }
     bmi { rand(32.0) }
     cyh { Faker::Lorem.word }
-    fim { rand(18..126) }
+    fim { build_fim }
     kurtzke_edss { Faker::Lorem.word }
     bladder_drainage_method { AnnualEvaluation.collections[:bladder_drainage_method].sample.id }
     asia_assessment { create(:asia) }
