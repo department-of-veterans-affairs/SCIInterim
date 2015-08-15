@@ -16,6 +16,12 @@ class AnnualEvaluationsController < ApplicationController
   def new
     @annual_evaluation = AnnualEvaluation.new
     @annual_evaluation.build_asia_assessment
+    @annual_evaluation.build_fim
+    @annual_evaluation.fim.build_measurements_start
+    @annual_evaluation.fim.build_measurements_goal
+    @annual_evaluation.fim.build_measurements_finish
+    @annual_evaluation.fim.build_measurements_90day
+    @annual_evaluation.fim.build_measurements_1year
     respond_with(@annual_evaluation)
   end
 
@@ -63,6 +69,11 @@ class AnnualEvaluationsController < ApplicationController
         :eval_completed,
         :is_inpatient,
         asia_assessment_attributes: nested_model_attributes(Asia),
+        measurements_start_attributes: nested_model_attributes(FimMeasurement),
+        measurements_goal_attributes: nested_model_attributes(FimMeasurement),
+        measurements_finish_attributes: nested_model_attributes(FimMeasurement),
+        measurements_90day_attributes: nested_model_attributes(FimMeasurement),
+        measurements_1year_attributes: nested_model_attributes(FimMeasurement),
       )
     end
 end
