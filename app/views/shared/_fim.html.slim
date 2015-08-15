@@ -1,0 +1,52 @@
+.nested-fields
+  .instrument
+    h4
+    h4 FIM
+    hr
+    .row
+      .col-md-4
+        label Self Care
+        .table-responsive
+          table.table.table-bordered.table-striped
+            thead
+              tr
+                th 
+                  = f.input :admission_class
+                  = f.simple_fields_for :measurements_start do |start_fim|
+                    = f.simple_fields_for :measurement_goal do |goal_fim|
+                      = start_fim.input :eating
+                      = start_fim.input :grooming
+                      = goal_fim.input :eating
+                      = goal_fim.input :grooming
+
+                th title
+                th title
+            tbody
+              tr
+                th scope="row"  title
+                td thing
+                td thing
+              tr
+                th scope="row"  title
+                td thing
+                td thing
+      .col-md-4
+        label Middle Column
+      .col-md-4
+        label Right Column
+        .table-responsive
+          table.table.table-bordered.table-striped
+            thead
+              tr
+                th title
+                th title
+                th title
+            tbody
+              tr
+                th scope="row"  title
+                td thing
+                td thing
+              tr
+                th scope="row"  title
+                td thing
+                td thing

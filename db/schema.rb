@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814064609) do
+ActiveRecord::Schema.define(version: 20150814214027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 20150814064609) do
     t.boolean  "is_inpatient"
     t.integer  "bmi"
     t.string   "cyh"
-    t.string   "fim"
     t.string   "kurtzke_edss"
     t.integer  "bladder_drainage_method"
+    t.integer  "fim_id"
   end
 
   create_table "asia", force: true do |t|
@@ -280,16 +280,16 @@ ActiveRecord::Schema.define(version: 20150814064609) do
     t.boolean  "is_program_interrupted"
     t.integer  "impairment_category"
     t.integer  "impairment_group"
-    t.integer  "measurements_start"
-    t.integer  "measurements_goal"
-    t.integer  "measurements_finish"
-    t.integer  "measurements_90day"
-    t.integer  "measurements_1year"
     t.integer  "locomotion_type"
     t.integer  "communication_comprehension_type"
     t.integer  "communication_expression_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "measurements_start_id"
+    t.integer  "measurements_goal_id"
+    t.integer  "measurements_finish_id"
+    t.integer  "measurements_90day_id"
+    t.integer  "measurements_1year_id"
   end
 
   create_table "omrs", force: true do |t|
@@ -404,6 +404,7 @@ ActiveRecord::Schema.define(version: 20150814064609) do
   add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_residence_type_fk", column: "discharge_location"
 
   add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_fk", column: "bladder_drainage_method"
+  add_foreign_key "annual_evaluations", "fims", name: "annual_evaluations_fim_id_fk", dependent: :delete
 
   add_foreign_key "asia", "domain_asia_classifications", name: "asia_classification_fk", column: "classification"
   add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_left_fk", column: "neurological_motor_level_left"
@@ -450,11 +451,11 @@ ActiveRecord::Schema.define(version: 20150814064609) do
   add_foreign_key "fims", "domain_fim_impairment_categories", name: "fims_impairment_category_fk", column: "impairment_category"
   add_foreign_key "fims", "domain_fim_impairment_groups", name: "fims_impairment_group_fk", column: "impairment_group"
   add_foreign_key "fims", "domain_fim_locomotion_types", name: "fims_locomotion_type_fk", column: "locomotion_type"
-  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_1year_fk", column: "measurements_1year"
-  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_90day_fk", column: "measurements_90day"
-  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_finish_fk", column: "measurements_finish"
-  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_fk", column: "measurements_goal"
-  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_fk", column: "measurements_start"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_1year_id_fk", column: "measurements_1year_id"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_90day_id_fk", column: "measurements_90day_id"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_finish_id_fk", column: "measurements_finish_id"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_id_fk", column: "measurements_goal_id"
+  add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_id_fk", column: "measurements_start_id"
 
   add_foreign_key "omrs", "domain_residence_types", name: "omrs_discharge_location_fk", column: "discharge_location"
 

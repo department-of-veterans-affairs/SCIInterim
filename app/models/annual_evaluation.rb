@@ -5,6 +5,10 @@ class AnnualEvaluation < ActiveRecord::Base
   accepts_nested_attributes_for :asia_assessment
   validates_associated :asia_assessment
 
+  belongs_to :fim, class_name: 'Fim'
+  accepts_nested_attributes_for :fim
+  validates_associated :fim
+
   def self.collections
     {
       is_inpatient: [ ["Inpatient", true], ["Outpatient", false] ],
