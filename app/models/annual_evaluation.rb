@@ -9,6 +9,10 @@ class AnnualEvaluation < ActiveRecord::Base
   accepts_nested_attributes_for :fim
   validates_associated :fim
 
+  belongs_to :kurtzke_edss, class_name: 'KurtzkeEdss'
+  accepts_nested_attributes_for :kurtzke_edss
+  validates_associated :kurtzke_edss
+
   def episode_date
     if eval_completed.nil?
       eval_offered

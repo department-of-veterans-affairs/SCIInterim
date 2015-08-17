@@ -4,6 +4,8 @@ class FimId < ActiveRecord::Migration
     add_column :annual_evaluations, :fim_id, :integer
     add_foreign_key :annual_evaluations, :fims, column: :fim_id, dependent: :delete
 
+    # Fix missing episode_date.
+
     reversible do |dir|
       dir.up do
         remove_foreign_key :fims, column: :measurements_start
