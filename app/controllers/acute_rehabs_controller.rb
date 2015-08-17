@@ -28,10 +28,11 @@ class AcuteRehabsController < ApplicationController
   end
 
   def create
+    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
     @acute_rehab = AcuteRehab.new(acute_rehab_params)
     @acute_rehab.assign_attributes(acute_rehab_params)
     @acute_rehab.save
-    @patient.episode_of_cares << @acute_rehab
+    @patient.acute_rehabs << @acute_rehab
     @patient.save
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
   end

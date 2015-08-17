@@ -1,5 +1,9 @@
 class Omr < ActiveRecord::Base
-  acts_as :episode_of_care
+  belongs_to :patient
+
+  def episode_date
+    admission_date
+  end
 
   def self.collections
     {

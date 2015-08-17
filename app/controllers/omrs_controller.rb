@@ -24,10 +24,10 @@ class OmrsController < ApplicationController
   end
 
   def create
+    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
     @omr = Omr.new(omr_params)
     @omr.save
-    puts omr_params
-    @patient.episode_of_cares << @omr
+    @patient.omrs << @omr
     @patient.save
     respond_with(@omr, location: edit_patient_path(@patient))
   end

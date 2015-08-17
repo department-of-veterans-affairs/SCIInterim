@@ -1,7 +1,9 @@
 require 'csv'
 
 class Patient < ActiveRecord::Base
-  has_many :episode_of_cares
+  has_many :annual_evaluations
+  has_many :omrs
+  has_many :acute_rehabs
 
   belongs_to :address, class_name: 'Address'
   accepts_nested_attributes_for :address
@@ -18,6 +20,27 @@ class Patient < ActiveRecord::Base
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
+
+  def episode_of_cares
+    all_episodes = []
+    all_episodes.push(*annual_evaluations)
+    all_episodes.push(*acute_rehabs)
+    all_episodes.push(*omrs)
+    all_episodes.sort! do |a, b|
+      # TODO(awong): Remove the nil? checks by enforcing non-nill in DB.
+      if a.episode_date.nil?
+        if b.episode_date.nil?
+          0
+        else
+          -1
+        end
+      elsif b.episode_date.nil?
+        1
+      else
+        a.episode_date <=> b.episode_date
+      end
+    end
+  end
 
   def self.collections
     {

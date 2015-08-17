@@ -1,5 +1,6 @@
 class AcuteRehab < ActiveRecord::Base
-  acts_as :episode_of_care
+  belongs_to :patient
+
   has_many :transfers, dependent: :destroy
 
   has_one :start_asia_assessment, class_name: 'Asia', as: :has_asia
@@ -9,6 +10,10 @@ class AcuteRehab < ActiveRecord::Base
   has_one :finish_asia_assessment, class_name: 'Asia', as: :has_asia
   accepts_nested_attributes_for :finish_asia_assessment
   validates_associated :finish_asia_assessment
+
+  def episode_date
+    acute_rehab_admission
+  end
 
   def self.collections
     {
