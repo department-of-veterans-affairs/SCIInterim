@@ -23,9 +23,9 @@
           .tr
             th Recent Episodes of Care
           - for episode in @patient.episode_of_cares do
-            tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode.specific])
+            tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
               .col-md-12
-                td = episode.specific.class.name
+                td = episode.class.name
         .panel.panel-default.patient-sidebar
           .panel-body.row
             .col-md-12

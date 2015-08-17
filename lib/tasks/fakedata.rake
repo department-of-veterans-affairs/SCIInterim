@@ -7,14 +7,9 @@ namespace :app do
       for i in 1..50
         patient = FactoryGirl.create(:patient)
 
-        acute_rehab = FactoryGirl.create(:acute_rehab)
-        patient.episode_of_cares << acute_rehab
-
-        annual_eval = FactoryGirl.create(:annual_evaluation)
-        patient.episode_of_cares << annual_eval
-
-        omr = FactoryGirl.create(:omr)
-        patient.episode_of_cares << omr
+        patient.acute_rehabs << FactoryGirl.create(:acute_rehab)
+        patient.annual_evaluations << FactoryGirl.create(:annual_evaluation)
+        patient.omrs << FactoryGirl.create(:omr)
 
         patient.save!
       end
