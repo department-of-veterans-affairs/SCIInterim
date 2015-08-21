@@ -1,0 +1,13 @@
+.nested-fields
+  .instrument
+    h4
+    h4 Kurtzke EDSS
+    hr
+    .row
+      .col-md-4
+        = f.input :care_type
+      .col-md-4
+        = f.input :score_type
+      .col-md-4
+        = f.input :scale_value,
+        collection: KurtzkeEdss.collections[:scale_value]

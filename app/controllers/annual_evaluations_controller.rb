@@ -22,6 +22,7 @@ class AnnualEvaluationsController < ApplicationController
     @annual_evaluation.fim.build_measurements_finish
     @annual_evaluation.fim.build_measurements_90day
     @annual_evaluation.fim.build_measurements_1year
+    @annual_evaluation.build_kurtzke_edss
     respond_with(@annual_evaluation)
   end
 
@@ -33,10 +34,12 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def create
+    # TODO(awong): This pattern seems wrong. Use build_?
+    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
     @annual_evaluation = AnnualEvaluation.new(annual_evaluation_params)
     @annual_evaluation.assign_attributes(annual_evaluation_params)
     @annual_evaluation.save
-    @patient.episode_of_cares << @annual_evaluation
+    @patient.annual_evaluations << @annual_evaluation
     @patient.save
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end

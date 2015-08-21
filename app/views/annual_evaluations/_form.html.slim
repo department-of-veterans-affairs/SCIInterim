@@ -37,7 +37,8 @@
       = f.simple_fields_for :fim do |fim|
         = render 'shared/fim', f: fim
       .instrument
-          h4 = link_to "+ add Kurtzke EDSS assessment", "#"
+        = f.simple_fields_for :kurtzke_edss do |fields|
+            = render 'shared/kurtzke_edss_fields', :f => fields
 
       .pull-right
           = f.submit "Save Annual Evaluation", class: "btn btn-lg btn-primary"

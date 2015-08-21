@@ -31,6 +31,6 @@ feature 'Acute Rehab' do
     click_button("Create Acute rehab")
     expect(current_url).to eql edit_patient_url(patient1)
 
-    # TODO(awong.dev): Verify Acute Rehab shows.
+    # TODO(awong.dev): Verify Acute Rehab is added to patient.
   end
 end
