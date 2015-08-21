@@ -69,11 +69,13 @@ class AnnualEvaluationsController < ApplicationController
         :eval_completed,
         :is_inpatient,
         asia_assessment_attributes: nested_model_attributes(Asia),
-        measurements_start_attributes: nested_model_attributes(FimMeasurement),
-        measurements_goal_attributes: nested_model_attributes(FimMeasurement),
-        measurements_finish_attributes: nested_model_attributes(FimMeasurement),
-        measurements_90day_attributes: nested_model_attributes(FimMeasurement),
-        measurements_1year_attributes: nested_model_attributes(FimMeasurement),
+        fim_attributes: nested_model_attributes(Fim).concat([
+          {"measurements_start_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_goal_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_finish_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_90day_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_1year_attributes" => nested_model_attributes(FimMeasurement)},
+          ]),
       )
     end
 end

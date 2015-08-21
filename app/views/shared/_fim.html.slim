@@ -1,52 +1,350 @@
 .nested-fields
   .instrument
-    h4
-    h4 FIM
-    hr
     .row
-      .col-md-4
-        label Self Care
-        .table-responsive
-          table.table.table-bordered.table-striped
-            thead
-              tr
-                th 
-                  = f.input :admission_class
-                  = f.simple_fields_for :measurements_start do |start_fim|
-                    = f.simple_fields_for :measurement_goal do |goal_fim|
-                      = start_fim.input :eating
-                      = start_fim.input :grooming
-                      = goal_fim.input :eating
-                      = goal_fim.input :grooming
-
-                th title
-                th title
-            tbody
-              tr
-                th scope="row"  title
-                td thing
-                td thing
-              tr
-                th scope="row"  title
-                td thing
-                td thing
-      .col-md-4
-        label Middle Column
-      .col-md-4
-        label Right Column
-        .table-responsive
-          table.table.table-bordered.table-striped
-            thead
-              tr
-                th title
-                th title
-                th title
-            tbody
-              tr
-                th scope="row"  title
-                td thing
-                td thing
-              tr
-                th scope="row"  title
-                td thing
-                td thing
+      h4 FIM Administrative Information
+      .col-md-3
+        / TODO: @emilyville Remove this from database
+        / = fims.input :is_active_duty
+        = f.input :admission_class,
+        collection: Fim.collections[:admission_class]
+      .col-md-3
+        = f.input :is_program_interrupted,
+          label: "Check if program is interrupted"
+      .col-md-3
+        = f.input :impairment_category,
+        collection: Fim.collections[:impairment_category]
+      .col-md-3
+        = f.input :impairment_group,
+        collection: Fim.collections[:impairment_group]
+          / TODO: @emilyville don't know if we need these
+          / = fims.input :created_at
+          / = fims.input :updated_at
+          / = fims.input :measurements_start_id
+          / = fims.input :measurements_goal_id
+          / = fims.input :measurements_finish_id
+          / = fims.input :measurements_90day_id
+          / = fims.input :measurements_1year_id
+    .row
+      .col-md-6.crazy-table
+        label.category FIM type 
+        label.category Self Care
+        / TODO @emilyville Verify Admission_class is supposed to capture record date
+        label Record Date
+        label Eating
+        label Grooming 
+        label Bathing
+        label Dressing - Upper
+        label Dressing - Lower
+        label Toileting
+        label.category Sphincter Control
+        label Bladder Management
+        label Bowel 
+        label.category Transfers
+        label Bed Chair Wheelchair
+        label Toilet
+        label Tub Shower
+        label.category Locomotion
+        / #todo fix misspelling of wheelchair
+        label Walk Wheelchair
+        .row
+          .col-md-6
+            label Walk/Wheelchair/Both
+          .col-md-12
+            = f.input :locomotion_type,
+            label: false,
+            collection: Fim.collections[:locomotion_type],
+            :as => :radio_buttons, 
+            :item_wrapper_class => 'radio-inline'        
+        label Stairs
+        label.category Communication
+        label Comprehension
+        .row
+          .col-md-6
+            label Auditory/Visual/Both
+          .col-md-12
+            = f.input :communication_comprehension_type,
+            label: false,
+            collection: Fim.collections[:communication_comprehension_type],
+            :as => :radio_buttons,    
+            :item_wrapper_class => 'radio-inline'  
+        label Expression
+        .row
+          .col-md-6
+            label Vocal/NonVocal/Both
+          .col-md-12
+            = f.input :communication_expression_type,
+            label: false,
+            collection: Fim.collections[:communication_expression_type],
+            :as => :radio_buttons, 
+            :item_wrapper_class => 'radio-inline'  
+        label.category Social Cognition
+        label Social Interaction
+        label Problem Solving
+        label Memory
+      .col-md-1.crazy-table
+        label.top Start
+        label.category 
+        = f.input :admission_class,
+        label: false
+        = f.simple_fields_for :measurements_start do |start_fim|
+          = start_fim.input :eating, 
+          label: false
+          = start_fim.input :grooming, 
+          label: false
+          = start_fim.input :bathing,
+          label: false
+          = start_fim.input :dressing_upper,
+          label: false
+          = start_fim.input :dressing_lower,
+          label: false
+          = start_fim.input :toileting,
+          label: false
+          label.category 
+          = start_fim.input :bladder_management,
+          label: false
+          = start_fim.input :bowel_management,
+          label: false
+          label.category 
+          = start_fim.input :transfer_bed_chair_wheelchair,
+          label: false
+          = start_fim.input :transfer_toilet,
+          label: false
+          = start_fim.input :transfer_tub_shower,
+          label: false
+          label.category 
+          = start_fim.input :locomotion_walk_wheelchar,
+          label: false
+          label.category 
+          label.category 
+          = start_fim.input :locomotion_stairs,
+          label: false
+          label.category 
+          = start_fim.input :communication_comprehension,
+          label: false
+          label.category 
+          label.category 
+          = start_fim.input :communication_expression,
+          label: false
+          label.category 
+          label.category 
+          label.category 
+          = start_fim.input :social_cognition_social_interaction,
+          label: false
+          = start_fim.input :social_cognition_problem_solving,
+          label: false
+          = start_fim.input :social_cognition_memory,
+          label: false
+      .col-md-1.crazy-table
+        label.top Goal
+        label.category 
+        = f.input :admission_class, 
+          label: false
+        = f.simple_fields_for :measurements_goal do |goal_fim|
+          = goal_fim.input :eating, 
+          label: false
+          = goal_fim.input :grooming, 
+          label: false
+          = goal_fim.input :bathing, 
+          label: false
+          = goal_fim.input :dressing_upper, 
+          label: false
+          = goal_fim.input :dressing_lower, 
+          label: false
+          = goal_fim.input :toileting, 
+          label: false
+          label.category 
+          = goal_fim.input :bladder_management, 
+          label: false
+          = goal_fim.input :bowel_management, 
+          label: false
+          label.category 
+          = goal_fim.input :transfer_bed_chair_wheelchair, 
+          label: false
+          = goal_fim.input :transfer_toilet, 
+          label: false
+          = goal_fim.input :transfer_tub_shower, 
+          label: false
+          label.category 
+          = goal_fim.input :locomotion_walk_wheelchar, 
+          label: false
+          label.category 
+          label.category 
+          = goal_fim.input :locomotion_stairs, 
+          label: false
+          label.category 
+          = goal_fim.input :communication_comprehension, 
+          label: false
+          label.category 
+          label.category 
+          = goal_fim.input :communication_expression, 
+          label: false
+          label.category 
+          label.category 
+          label.category 
+          = goal_fim.input :social_cognition_social_interaction, 
+          label: false
+          = goal_fim.input :social_cognition_problem_solving, 
+          label: false
+          = goal_fim.input :social_cognition_memory, 
+          label: false
+      .col-md-1.crazy-table
+        label.top Finish
+        label.category 
+        = f.input :admission_class, 
+        label: false
+        = f.simple_fields_for :measurements_finish do |finish_fim|
+          = finish_fim.input :eating, 
+          label: false
+          = finish_fim.input :grooming, 
+          label: false
+          = finish_fim.input :bathing, 
+          label: false
+          = finish_fim.input :dressing_upper, 
+          label: false
+          = finish_fim.input :dressing_lower, 
+          label: false
+          = finish_fim.input :toileting, 
+          label: false
+          label.category 
+          = finish_fim.input :bladder_management, 
+          label: false
+          = finish_fim.input :bowel_management, 
+          label: false
+          label.category 
+          = finish_fim.input :transfer_bed_chair_wheelchair, 
+          label: false
+          = finish_fim.input :transfer_toilet, 
+          label: false
+          = finish_fim.input :transfer_tub_shower, 
+          label: false
+          label.category 
+          = finish_fim.input :locomotion_walk_wheelchar, 
+          label: false
+          label.category 
+          label.category 
+          = finish_fim.input :locomotion_stairs, 
+          label: false
+          label.category 
+          = finish_fim.input :communication_comprehension, 
+          label: false
+          label.category 
+          label.category 
+          = finish_fim.input :communication_expression, 
+          label: false
+          label.category 
+          label.category 
+          label.category 
+          = finish_fim.input :social_cognition_social_interaction, 
+          label: false
+          = finish_fim.input :social_cognition_problem_solving, 
+          label: false
+          = finish_fim.input :social_cognition_memory, 
+          label: false 
+      .col-md-1.crazy-table
+        label 90 day
+        label.category 
+        / todo: @emilyville change 90 to ninety everywhere it needs to be changed
+        = f.input :admission_class, 
+        label: false
+        = f.simple_fields_for :measurements_90day do |ninetyday_fim|
+          = ninetyday_fim.input :eating, 
+          label: false
+          = ninetyday_fim.input :grooming, 
+          label: false
+          = ninetyday_fim.input :bathing, 
+          label: false
+          = ninetyday_fim.input :dressing_upper, 
+          label: false
+          = ninetyday_fim.input :dressing_lower, 
+          label: false
+          = ninetyday_fim.input :toileting, 
+          label: false
+          label.category 
+          = ninetyday_fim.input :bladder_management, 
+          label: false
+          = ninetyday_fim.input :bowel_management, 
+          label: false
+          label.category 
+          = ninetyday_fim.input :transfer_bed_chair_wheelchair, 
+          label: false
+          = ninetyday_fim.input :transfer_toilet, 
+          label: false
+          = ninetyday_fim.input :transfer_tub_shower, 
+          label: false
+          label.category 
+          = ninetyday_fim.input :locomotion_walk_wheelchar, 
+          label: false
+          label.category 
+          label.category 
+          = ninetyday_fim.input :locomotion_stairs, 
+          label: false
+          label.category 
+          = ninetyday_fim.input :communication_comprehension, 
+          label: false
+          label.category 
+          label.category 
+          = ninetyday_fim.input :communication_expression, 
+          label: false
+          label.category 
+          label.category 
+          label.category 
+          = ninetyday_fim.input :social_cognition_social_interaction, 
+          label: false
+          = ninetyday_fim.input :social_cognition_problem_solving, 
+          label: false
+          = ninetyday_fim.input :social_cognition_memory, 
+          label: false   
+      .col-md-1.crazy-table
+        label 1 Year
+        label.category 
+        / todo: @emilyville change 90 to ninety everywhere it needs to be changed
+        = f.input :admission_class, 
+        label: false
+        = f.simple_fields_for :measurements_1year do |oneyear_fim|
+          = oneyear_fim.input :eating, 
+          label: false
+          = oneyear_fim.input :grooming, 
+          label: false
+          = oneyear_fim.input :bathing, 
+          label: false
+          = oneyear_fim.input :dressing_upper, 
+          label: false
+          = oneyear_fim.input :dressing_lower, 
+          label: false
+          = oneyear_fim.input :toileting, 
+          label: false
+          label.category 
+          = oneyear_fim.input :bladder_management, 
+          label: false
+          = oneyear_fim.input :bowel_management, 
+          label: false
+          label.category 
+          = oneyear_fim.input :transfer_bed_chair_wheelchair, 
+          label: false
+          = oneyear_fim.input :transfer_toilet, 
+          label: false
+          = oneyear_fim.input :transfer_tub_shower, 
+          label: false
+          label.category 
+          = oneyear_fim.input :locomotion_walk_wheelchar, 
+          label: false
+          label.category 
+          label.category 
+          = oneyear_fim.input :locomotion_stairs, 
+          label: false
+          label.category 
+          = oneyear_fim.input :communication_comprehension, 
+          label: false
+          label.category 
+          label.category 
+          = oneyear_fim.input :communication_expression, 
+          label: false
+          label.category 
+          label.category 
+          label.category 
+          = oneyear_fim.input :social_cognition_social_interaction, 
+          label: false
+          = oneyear_fim.input :social_cognition_problem_solving, 
+          label: false
+          = oneyear_fim.input :social_cognition_memory, 
+          label: false   

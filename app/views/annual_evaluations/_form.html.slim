@@ -34,8 +34,8 @@
           / - make instruments work, see above
       .instrument
           h4 = link_to "+ add CYH assessment", "#"
-      / = f.simple_fields_for :fim do |fim|
-      /   = render 'shared/fim', f: fim
+      = f.simple_fields_for :fim do |fim|
+        = render 'shared/fim', f: fim
       .instrument
           h4 = link_to "+ add Kurtzke EDSS assessment", "#"
 
