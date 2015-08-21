@@ -34,12 +34,8 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def create
-    # TODO(awong): This pattern seems wrong. Use build_?
-    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
-    @annual_evaluation = AnnualEvaluation.new(annual_evaluation_params)
+    @annual_evaluation = @patient.annual_evaluations.build
     @annual_evaluation.assign_attributes(annual_evaluation_params)
-    @annual_evaluation.save
-    @patient.annual_evaluations << @annual_evaluation
     @patient.save
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end
@@ -79,6 +75,7 @@ class AnnualEvaluationsController < ApplicationController
           {"measurements_90day_attributes" => nested_model_attributes(FimMeasurement)},
           {"measurements_1year_attributes" => nested_model_attributes(FimMeasurement)},
           ]),
+        kurtzke_edss_attributes: nested_model_attributes(KurtzkeEdss),
       )
     end
 end
