@@ -34,12 +34,8 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def create
-    # TODO(awong): This pattern seems wrong. Use build_?
-    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
-    @annual_evaluation = AnnualEvaluation.new(annual_evaluation_params)
+    @annual_evaluation = @patient.annual_evaluations.build
     @annual_evaluation.assign_attributes(annual_evaluation_params)
-    @annual_evaluation.save
-    @patient.annual_evaluations << @annual_evaluation
     @patient.save
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))
   end
@@ -72,11 +68,13 @@ class AnnualEvaluationsController < ApplicationController
         :eval_completed,
         :is_inpatient,
         asia_assessment_attributes: nested_model_attributes(Asia),
-        measurements_start_attributes: nested_model_attributes(FimMeasurement),
-        measurements_goal_attributes: nested_model_attributes(FimMeasurement),
-        measurements_finish_attributes: nested_model_attributes(FimMeasurement),
-        measurements_90day_attributes: nested_model_attributes(FimMeasurement),
-        measurements_1year_attributes: nested_model_attributes(FimMeasurement),
+        fim_attributes: nested_model_attributes(Fim).concat([
+          {"measurements_start_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_goal_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_finish_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_90day_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_1year_attributes" => nested_model_attributes(FimMeasurement)},
+          ]),
         kurtzke_edss_attributes: nested_model_attributes(KurtzkeEdss),
       )
     end

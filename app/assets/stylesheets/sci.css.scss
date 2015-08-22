@@ -1,7 +1,6 @@
 // Place all the styles special to the SCI app here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .navbar-inverse#sci-nav {
   background-color: #1D3D46;
   border-color: #12252B;
@@ -54,6 +53,12 @@
     font-weight: normal;
     font-size: 14px;
   }
+  .instrument, .callout, .callout-blank {
+    label {
+      font-weight: normal;
+    }
+  }
+
   .callout-blank {
     background-color: #fff;
     margin: 0px 10px;
@@ -64,6 +69,30 @@
     border: 1px dashed #ccc;
     margin: 35px 10px;
     padding: 20px 20px 20px 20px;
+    .crazy-table {
+      label, .form-group {
+        display: block;
+        clear: both;
+        text-align: right;
+        height: 20px;
+        margin-bottom: 10px;
+      }
+      label {
+        padding-top: 5px;
+      }
+      label.category {
+        color: #808E8E;
+        text-transform: uppercase;
+      }
+      label.top {
+        text-align: center;
+      }
+      // TODO FIX
+      &.col-md-1 {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
   }
 
   .instrument:hover, .callout:hover {
