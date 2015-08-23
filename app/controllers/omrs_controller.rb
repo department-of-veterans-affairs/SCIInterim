@@ -24,10 +24,9 @@ class OmrsController < ApplicationController
   end
 
   def create
-    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
-    @omr = Omr.new(omr_params)
-    @omr.save
-    @patient.omrs << @omr
+    @omr = @patient.omrs.build
+    # TODO(awong): Should this use assign_attributes?
+    @omr.assign_attributes(omr_params)
     @patient.save
     respond_with(@omr, location: edit_patient_path(@patient))
   end

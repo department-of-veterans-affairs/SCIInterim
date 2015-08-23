@@ -19,6 +19,13 @@
                 = f.input :acute_rehab_admission, as: :date_picker, :label => "Acute rehab admission date"
 
     .callout
+        h4 Transfers
+        .row
+            .col-md-12
+              = f.simple_fields_for :transfers do |transfer_builder|
+                  = render 'transfer', :f => transfer_builder
+
+    .callout
         h4 Discharge
         .row
             .col-md-4

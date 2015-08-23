@@ -35,6 +35,7 @@ class AnnualEvaluationsController < ApplicationController
 
   def create
     @annual_evaluation = @patient.annual_evaluations.build
+    # TODO(awong): Should this use assign_attributes?
     @annual_evaluation.assign_attributes(annual_evaluation_params)
     @patient.save
     respond_with(@annual_evaluation, location: edit_patient_path(@patient))

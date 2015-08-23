@@ -17,10 +17,13 @@ class AcuteRehabsController < ApplicationController
     @acute_rehab = AcuteRehab.new
     @acute_rehab.build_start_asia_assessment
     @acute_rehab.build_finish_asia_assessment
+    3.times { @acute_rehab.transfers.build }
     respond_with(@acute_rehab)
   end
 
   def edit
+    # Always give an option for adding a new transfer.
+    @acute_rehab.transfers.build
   end
 
   def show
@@ -28,17 +31,14 @@ class AcuteRehabsController < ApplicationController
   end
 
   def create
-    # TODO(awong): This pattern seems wrong. Use build_? catch error on save?
-    @acute_rehab = AcuteRehab.new(acute_rehab_params)
+    @acute_rehab = @patient.acute_rehabs.build
+    # TODO(awong): Should this use assign_attributes?
     @acute_rehab.assign_attributes(acute_rehab_params)
-    @acute_rehab.save
-    @patient.acute_rehabs << @acute_rehab
     @patient.save
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
   end
 
   def update
-    @acute_rehab.assign_attributes(acute_rehab_params)
     @acute_rehab.update(acute_rehab_params)
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
   end
@@ -71,6 +71,7 @@ class AcuteRehabsController < ApplicationController
         :acute_rehab_discharge,
         :residence_type,
         :discharge_to_community,
+        :discharge_location,
         :start_sf8,
         :finish_swls,
         :finish_sf8,
@@ -86,6 +87,7 @@ class AcuteRehabsController < ApplicationController
         :followup_1yr_sf8,
         start_asia_assessment_attributes: nested_model_attributes(Asia),
         finish_asia_assessment_attributes: nested_model_attributes(Asia),
+        transfers_attributes: nested_model_attributes(Transfer),
       )
     end
 end
