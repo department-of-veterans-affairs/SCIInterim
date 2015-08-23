@@ -170,8 +170,12 @@
         .col-md-4
           = f.input :caregiver_last_name
       .row
-        = f.simple_fields_for :caregiver_address do |caregiver_address|
-          = render 'shared/address_fields', :f => caregiver_address
+        .col-md-12
+          .row
+            Transfers
+          .row
+            = f.simple_fields_for :caregiver_address do |caregiver_address|
+              = render 'shared/address_fields', :f => caregiver_address
       hr
       .row
         .col-md-6

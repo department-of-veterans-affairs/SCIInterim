@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817125734) do
+ActiveRecord::Schema.define(version: 20150823055936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -384,14 +384,15 @@ ActiveRecord::Schema.define(version: 20150817125734) do
   add_index "patients", ["caregiver_address_id"], name: "index_patients_on_caregiver_address_id", unique: true, using: :btree
 
   create_table "transfers", force: true do |t|
-    t.integer  "acute_rehabs_id"
     t.date     "in"
     t.date     "out"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "acute_rehab_id"
+    t.string   "location"
   end
 
-  add_index "transfers", ["acute_rehabs_id"], name: "index_transfers_on_acute_rehabs_id", using: :btree
+  add_index "transfers", ["acute_rehab_id"], name: "index_transfers_on_acute_rehab_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -491,5 +492,7 @@ ActiveRecord::Schema.define(version: 20150817125734) do
   add_foreign_key "patients", "domain_va_medical_centers", name: "patients_assigned_vamc_fk", column: "assigned_vamc"
   add_foreign_key "patients", "domain_va_medical_centers", name: "patients_va_facility_fk", column: "va_facility"
   add_foreign_key "patients", "domain_va_statuses", name: "patients_va_status_fk", column: "va_status"
+
+  add_foreign_key "transfers", "acute_rehabs", name: "transfers_acute_rehab_id_fk"
 
 end
