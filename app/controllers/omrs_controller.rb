@@ -1,4 +1,6 @@
 class OmrsController < ApplicationController
+  include AttributeParam 
+
   layout 'patient_edit'
 
   before_action :authenticate_user!
