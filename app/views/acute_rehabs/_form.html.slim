@@ -42,6 +42,10 @@
         h4 START
     = f.simple_fields_for :start_asia_assessment do |asia_assessment|
         = render 'shared/asia_fields', :f => asia_assessment
+    .callout
+        h4 Start SF8
+        = f.simple_fields_for :start_sf8 do |sf8_builder|
+            = render 'shared/sf8_fields', :f => sf8_builder
 
     .callout-blank
         h4 GOAL
@@ -54,7 +58,11 @@
     .callout-blank
         = f.input :finish_fim
         = f.input :finish_swls
-        = f.input :finish_sf8
+
+    .callout
+        h4 Finish SF8
+        = f.simple_fields_for :finish_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
 
     .callout-blank
         h4 Followup 90 Days
@@ -62,7 +70,11 @@
         = f.input :followup_90day_fim
         = f.input :followup_90day_swls
         = f.input :followup_90day_chart_sf
-        = f.input :followup_90day_sf8
+
+    .callout
+        h4 Followup 90 Days SF8
+        = f.simple_fields_for :followup_90day_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
 
     .callout-blank
         h4 Followup 1 Year
@@ -70,7 +82,11 @@
         = f.input :followup_1yr_fim
         = f.input :followup_1yr_swls
         = f.input :followup_1yr_chart_sf
-        = f.input :followup_1yr_sf8
+
+    .callout
+        h4 Followup 1 Year SF8
+        = f.simple_fields_for :followup_1yr_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
 
   .row
     .col-sm-offset-3.col-sm-9.form-actions

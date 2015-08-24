@@ -10,7 +10,7 @@ FactoryGirl.define do
     start_fam { rand(18..126) }
     start_swls { rand(5..35) }
     start_chart_sf { rand(5..35) }
-    start_sf_8 { rand(5..35) }
+    start_sf8 { create(:sf8) }
     dusoi "bye"
     goal_fim { rand(18..126) }
     goal_fam { rand(18..126) }
@@ -20,7 +20,7 @@ FactoryGirl.define do
     finish_fam { rand(18..126) }
     finish_swls { rand(5..35) }
     finish_chart_sf { rand(5..35) }
-    finish_sf_8 { rand(5..35) }
+    finish_sf8 { create(:sf8) }
     discharge_location "hi"
   end
 end

@@ -13,6 +13,8 @@ class OmrsController < ApplicationController
 
   def new
     @omr = Omr.new
+    @omr.build_start_sf8
+    @omr.build_finish_sf8
     respond_with(@omr)
   end
 
@@ -58,7 +60,6 @@ class OmrsController < ApplicationController
         :start_fam,
         :start_swls,
         :start_chart_sf,
-        :start_sf_8,
         :dusoi,
 
         # GOAL
@@ -72,8 +73,10 @@ class OmrsController < ApplicationController
         :finish_fam,
         :finish_swls,
         :finish_chart_sf,
-        :finish_sf_8,
         :finish_uspeq,
-        :discharge_location)
+        :discharge_location,
+        start_sf8_attributes: nested_model_attributes(Sf8),
+        finish_sf8_attributes: nested_model_attributes(Sf8),
+      )
     end
 end

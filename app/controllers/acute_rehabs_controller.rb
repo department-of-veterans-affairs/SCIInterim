@@ -17,6 +17,10 @@ class AcuteRehabsController < ApplicationController
     @acute_rehab = AcuteRehab.new
     @acute_rehab.build_start_asia_assessment
     @acute_rehab.build_finish_asia_assessment
+    @acute_rehab.build_start_sf8
+    @acute_rehab.build_finish_sf8
+    @acute_rehab.build_followup_1year_sf8
+    @acute_rehab.build_followup_90day_sf8
     3.times { @acute_rehab.transfers.build }
     respond_with(@acute_rehab)
   end
@@ -88,6 +92,10 @@ class AcuteRehabsController < ApplicationController
         start_asia_assessment_attributes: nested_model_attributes(Asia),
         finish_asia_assessment_attributes: nested_model_attributes(Asia),
         transfers_attributes: nested_model_attributes(Transfer),
+        start_sf8_attributes: nested_model_attributes(Sf8),
+        finish_sf8_attributes: nested_model_attributes(Sf8),
+        followup_90day_sf8_attributes: nested_model_attributes(Sf8),
+        followup_1year_sf8_attributes: nested_model_attributes(Sf8),
       )
     end
 end

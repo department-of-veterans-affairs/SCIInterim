@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823055936) do
+ActiveRecord::Schema.define(version: 20150824061036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,20 +31,20 @@ ActiveRecord::Schema.define(version: 20150823055936) do
     t.date     "acute_rehab_discharge"
     t.integer  "discharge_location"
     t.boolean  "discharge_to_community"
-    t.string   "start_sf8"
     t.string   "finish_swls"
-    t.string   "finish_sf8"
     t.date     "followup_90day_date"
     t.string   "followup_90day_fim"
     t.string   "followup_90day_swls"
     t.string   "followup_90day_chart_sf"
-    t.string   "followup_90day_sf8"
     t.date     "followup_1yr_date"
     t.string   "followup_1yr_fim"
     t.string   "followup_1yr_swls"
     t.string   "followup_1yr_chart_sf"
-    t.string   "followup_1yr_sf8"
     t.integer  "patient_id"
+    t.integer  "start_sf8_id"
+    t.integer  "finish_sf8_id"
+    t.integer  "followup_90day_sf8_id"
+    t.integer  "followup_1year_sf8_id"
   end
 
   add_index "acute_rehabs", ["patient_id"], name: "index_acute_rehabs_on_patient_id", using: :btree
@@ -309,7 +309,6 @@ ActiveRecord::Schema.define(version: 20150823055936) do
     t.string   "start_fam"
     t.string   "start_swls"
     t.string   "start_chart_sf"
-    t.string   "start_sf_8"
     t.string   "dusoi"
     t.string   "goal_fim"
     t.string   "goal_fam"
@@ -319,10 +318,11 @@ ActiveRecord::Schema.define(version: 20150823055936) do
     t.string   "finish_fam"
     t.string   "finish_swls"
     t.string   "finish_chart_sf"
-    t.string   "finish_sf_8"
     t.string   "finish_uspeq"
     t.integer  "discharge_location"
     t.integer  "patient_id"
+    t.integer  "start_sf8_id"
+    t.integer  "finish_sf8_id"
   end
 
   add_index "omrs", ["patient_id"], name: "index_omrs_on_patient_id", using: :btree
@@ -382,6 +382,20 @@ ActiveRecord::Schema.define(version: 20150823055936) do
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
   add_index "patients", ["caregiver_address_id"], name: "index_patients_on_caregiver_address_id", unique: true, using: :btree
+
+  create_table "sf8s", force: true do |t|
+    t.integer  "q1_overall_health",                                               limit: 2
+    t.integer  "q2a_physical_activities_limited_by_physical",                     limit: 2
+    t.integer  "q2b_physical_activities_limited_by_physical_mobility_restricted", limit: 2
+    t.integer  "q3_occupational_difficulty_by_physical_health",                   limit: 2
+    t.integer  "q4_bodily_pain",                                                  limit: 2
+    t.integer  "q5_energy",                                                       limit: 2
+    t.integer  "q6_social_activities_limited_by_physical_or_emotional",           limit: 2
+    t.integer  "q7_emotional_problems",                                           limit: 2
+    t.integer  "q8_activities_limited_by_personal_or_emotional_problems",         limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "transfers", force: true do |t|
     t.date     "in"
