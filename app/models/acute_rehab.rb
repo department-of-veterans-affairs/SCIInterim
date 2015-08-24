@@ -13,6 +13,30 @@ class AcuteRehab < ActiveRecord::Base
   accepts_nested_attributes_for :finish_asia_assessment
   validates_associated :finish_asia_assessment
 
+  belongs_to :start_sf8, class_name: 'Sf8'
+  accepts_nested_attributes_for :start_sf8
+  validates_associated :start_sf8
+
+  belongs_to :finish_sf8, class_name: 'Sf8'
+  accepts_nested_attributes_for :finish_sf8
+  validates_associated :finish_sf8
+
+  belongs_to :followup_90day_sf8, class_name: 'Sf8'
+  accepts_nested_attributes_for :followup_90day_sf8
+  validates_associated :followup_90day_sf8
+
+  belongs_to :followup_1year_sf8, class_name: 'Sf8'
+  accepts_nested_attributes_for :followup_1year_sf8
+  validates_associated :followup_1year_sf8
+
+  belongs_to :followup_90day_chart_sf, class_name: 'ChartSf'
+  accepts_nested_attributes_for :followup_90day_chart_sf
+  validates_associated :followup_90day_chart_sf
+
+  belongs_to :followup_1year_chart_sf, class_name: 'ChartSf'
+  accepts_nested_attributes_for :followup_1year_chart_sf
+  validates_associated :followup_1year_chart_sf
+
   def episode_date
     acute_rehab_admission
   end

@@ -7,8 +7,17 @@
     = f.input :start_fim
     = f.input :start_fam
     = f.input :start_swls
-    = f.input :start_chart_sf
-    = f.input :start_sf_8
+
+    .callout
+        h4 Start Chart SF
+        = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+    .callout
+        h4 Start SF8
+        = f.simple_fields_for :start_sf8 do |sf8_builder|
+            = render 'shared/sf8_fields', :f => sf8_builder
+
     = f.input :dusoi
 
       # GOAL
@@ -21,8 +30,17 @@
     = f.input :finish_fim
     = f.input :finish_fam
     = f.input :finish_swls
-    = f.input :finish_chart_sf
-    = f.input :finish_sf_8
+
+    .callout
+        h4 Finish Chart SF
+        = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+    .callout
+        h4 Finish SF8
+        = f.simple_fields_for :finish_sf_8 do |sf8_builder|
+            = render 'shared/sf8_fields', :f => sf8_builder
+
     = f.input :finish_uspeq
     = f.input :discharge_location,
     collection: Omr.collections[:discharge_location],
