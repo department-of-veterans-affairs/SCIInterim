@@ -21,6 +21,8 @@ class AcuteRehabsController < ApplicationController
     @acute_rehab.build_finish_sf8
     @acute_rehab.build_followup_1year_sf8
     @acute_rehab.build_followup_90day_sf8
+    @acute_rehab.build_followup_1year_chart_sf
+    @acute_rehab.build_followup_90day_chart_sf
     3.times { @acute_rehab.transfers.build }
     respond_with(@acute_rehab)
   end
@@ -96,6 +98,8 @@ class AcuteRehabsController < ApplicationController
         finish_sf8_attributes: nested_model_attributes(Sf8),
         followup_90day_sf8_attributes: nested_model_attributes(Sf8),
         followup_1year_sf8_attributes: nested_model_attributes(Sf8),
+        followup_90day_chart_sf_attributes: nested_model_attributes(ChartSf),
+        followup_1year_chart_sf_attributes: nested_model_attributes(ChartSf),
       )
     end
 end

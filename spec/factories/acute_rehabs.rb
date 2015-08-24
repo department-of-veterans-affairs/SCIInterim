@@ -25,12 +25,12 @@ FactoryGirl.define do
     followup_90day_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_90day_fim { rand(18..126) }
     followup_90day_swls { rand(5..35) }
-    followup_90day_chart_sf { rand(5..35) }
+    followup_90day_chart_sf { create(:chart_sf) }
     followup_90day_sf8 { create(:sf8) }
     followup_1yr_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_1yr_fim { rand(18..126) }
     followup_1yr_swls { rand(5..35) }
-    followup_1yr_chart_sf { rand(5..35) }
+    followup_1year_chart_sf { create(:chart_sf) }
     followup_1year_sf8 { create(:sf8) }
   end
 end

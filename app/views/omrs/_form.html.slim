@@ -7,7 +7,11 @@
     = f.input :start_fim
     = f.input :start_fam
     = f.input :start_swls
-    = f.input :start_chart_sf
+
+    .callout
+        h4 Start Chart SF
+        = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
     .callout
         h4 Start SF8
@@ -26,10 +30,14 @@
     = f.input :finish_fim
     = f.input :finish_fam
     = f.input :finish_swls
-    = f.input :finish_chart_sf
 
     .callout
-        h4 Start SF8
+        h4 Finish Chart SF
+        = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+    .callout
+        h4 Finish SF8
         = f.simple_fields_for :finish_sf_8 do |sf8_builder|
             = render 'shared/sf8_fields', :f => sf8_builder
 

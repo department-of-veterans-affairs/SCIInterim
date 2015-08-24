@@ -29,6 +29,14 @@ class AcuteRehab < ActiveRecord::Base
   accepts_nested_attributes_for :followup_1year_sf8
   validates_associated :followup_1year_sf8
 
+  belongs_to :followup_90day_chart_sf, class_name: 'ChartSf'
+  accepts_nested_attributes_for :followup_90day_chart_sf
+  validates_associated :followup_90day_chart_sf
+
+  belongs_to :followup_1year_chart_sf, class_name: 'ChartSf'
+  accepts_nested_attributes_for :followup_1year_chart_sf
+  validates_associated :followup_1year_chart_sf
+
   def episode_date
     acute_rehab_admission
   end

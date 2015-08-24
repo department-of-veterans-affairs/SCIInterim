@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824061036) do
+ActiveRecord::Schema.define(version: 20150824075017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,16 +35,16 @@ ActiveRecord::Schema.define(version: 20150824061036) do
     t.date     "followup_90day_date"
     t.string   "followup_90day_fim"
     t.string   "followup_90day_swls"
-    t.string   "followup_90day_chart_sf"
     t.date     "followup_1yr_date"
     t.string   "followup_1yr_fim"
     t.string   "followup_1yr_swls"
-    t.string   "followup_1yr_chart_sf"
     t.integer  "patient_id"
     t.integer  "start_sf8_id"
     t.integer  "finish_sf8_id"
     t.integer  "followup_90day_sf8_id"
     t.integer  "followup_1year_sf8_id"
+    t.integer  "followup_1year_chart_sf_id"
+    t.integer  "followup_90day_chart_sf_id"
   end
 
   add_index "acute_rehabs", ["patient_id"], name: "index_acute_rehabs_on_patient_id", using: :btree
@@ -308,7 +308,6 @@ ActiveRecord::Schema.define(version: 20150824061036) do
     t.string   "start_fim"
     t.string   "start_fam"
     t.string   "start_swls"
-    t.string   "start_chart_sf"
     t.string   "dusoi"
     t.string   "goal_fim"
     t.string   "goal_fam"
@@ -317,12 +316,13 @@ ActiveRecord::Schema.define(version: 20150824061036) do
     t.string   "finish_fim"
     t.string   "finish_fam"
     t.string   "finish_swls"
-    t.string   "finish_chart_sf"
     t.string   "finish_uspeq"
     t.integer  "discharge_location"
     t.integer  "patient_id"
     t.integer  "start_sf8_id"
     t.integer  "finish_sf8_id"
+    t.integer  "start_chart_sf_id"
+    t.integer  "finish_chart_sf_id"
   end
 
   add_index "omrs", ["patient_id"], name: "index_omrs_on_patient_id", using: :btree
