@@ -1,6 +1,6 @@
 .row
-	h3
-		|New OMR
-        = link_to '&laquo; back to patient profile'.html_safe, edit_patient_path(@patient), { class: "button btn btn-link " }
-	hr
-== render 'form'
+  .panel-form.panel.panel-default
+    .panel-heading
+      .panel-title OMR
+    .panel-body 
+      == render 'form'
