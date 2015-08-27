@@ -10,6 +10,10 @@
     color: #BFC5C6;
   }
 
+  .navbar-brand {
+    opacity: 0.7;
+  }
+
   .navbar-text {
     opacity: .5;
   }
@@ -63,10 +67,6 @@
     opacity: .8;
     display: block;
     width: 100%;
-  }
-
-  .border-left{
-    border-left: 1px solid #999;
   }
 }
 
@@ -176,7 +176,7 @@
   border: none;
   box-shadow: none;
 }
-.radio.radio-inline {
+.radio.radio-inline, .checkbox-inline {
   padding-left: 0px;
   margin-top: 0px;
   height: 35px;
@@ -191,4 +191,7 @@
   &:hover {
     text-decoration: underline;
   }
+}
+.border-left{
+  border-left: 1px solid #999;
 }

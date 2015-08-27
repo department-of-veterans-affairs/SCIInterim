@@ -53,7 +53,8 @@
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
     .callout
-      h4 Assigned SCI Hub and Physician
+      h4 SCI Hub and Physician
+      h4 Assigned 
       .row
         .col-md-6
           = f.input :assigned_sci_hub, label: "Location"
@@ -61,29 +62,37 @@
           = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
         .col-md-3
           = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
-    .callout
-      h4 Preferred SCI Hub and Physician
+      h4 Preferred (if different)
       .row
         .col-md-6
-          = f.input :preferred_sci_hub, label: "Location name"
+          = f.input :preferred_sci_hub, label: "Location"
         .col-md-3
           = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
         .col-md-3
           = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
-    .callout-blank
-      / This could be in a later flow displaying the information (w/ address and physician)
-      h4 Primary Care
-      label.control-label.radio.radio-inline Primary Care Physician
-      = f.input_field :principle_pcp_va_nonva,
-        label: "Primary Care Physician",
-        collection: Patient.collections[:principle_pcp_va_nonva],
-        as: :radio_buttons,
-        item_wrapper_class: 'radio-inline'
     .callout
+      h4 Primary Care
+      .row
+        .col-md-12
+          / This could be in a later flow displaying the information (w/ address and physician)
+          label.control-label.radio.radio-inline Primary Care Physician
+          = f.input_field :principle_pcp_va_nonva,
+          label: "Primary Care Physician",
+          collection: Patient.collections[:principle_pcp_va_nonva],
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
+      h4 VA Facility
+      .row
+        .col-md-6
+          = f.input :va_facility, label: "Facility"
+        .col-md-3
+          = f.input :va_facility_pcp_first_name, label: "Physician first name"
+        .col-md-3
+          = f.input :va_facility_pcp_last_name, label: "Physician last name", inline_label: 'Yes, remember me'
       h4 Non VA Facility
       .row
         .col-md-6
-          = f.input :non_va_facility_name, label: "Facility name"
+          = f.input :non_va_facility_name, label: "Facility"
           = f.input :non_va_facility_phone_number, label: "Phone Number"
         .col-md-6
           = f.input :non_va_facility_fax_number, label: "Fax number"
@@ -91,15 +100,6 @@
           = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
         .col-md-3
           = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
-    .callout
-      h4 VA Facility
-      .row
-        .col-md-6
-          = f.input :va_facility, label: "Facility name"
-        .col-md-3
-          = f.input :va_facility_pcp_first_name, label: "Physician first name"
-        .col-md-3
-          = f.input :va_facility_pcp_last_name, label: "Physician last name", inline_label: 'Yes, remember me'
     .callout-blank
       h4 SCI/D Information
       .row
@@ -182,7 +182,7 @@
           = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
           / TODO: Should be conditional if prev is answered
         .col-md-6
-          = f.input :is_receiving_hhha, label: "Check if receiving HHH/A"
+          = f.input :is_receiving_hhha, label: "Receiving HHH/A"
       .row
         .col-md-6
           = f.input :non_va_care_hours_per_month, label: "Care hours per month"
