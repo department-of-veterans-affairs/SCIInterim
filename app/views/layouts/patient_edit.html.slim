@@ -8,56 +8,63 @@
       .col-md-9
         == content_for?(:form) ? yield(:form) : yield
       .col-md-3
-        h2.btn-group.btn-block
-          .btn.btn-default.btn-lg.btn-block.btn-block-nav.dropdown-toggle aria-expanded="false" data-toggle="dropdown" type="button"
-            | Add Patient Evaluation 
-            span.caret
-          ul.dropdown-menu.btn-block role="menu"
-            li
-              = link_to 'Annual Eval', new_patient_annual_evaluation_path(@patient), { class: "" }
-            li
-              = link_to 'OMR', new_patient_omr_path(@patient), { class: "" }
-            li
-              = link_to 'Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
+        table.table.table-bordered
+          tr
+            th Add a Patient Evaluation
+            tr 
+              td = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "" }
+            tr
+              td = link_to '+ OMR', new_patient_omr_path(@patient), { class: "" }
+            tr
+              td = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
         table.table.table-bordered.table-striped
-          .tr
-            th Recent Episodes of Care
+          tr
+            th Episodes of Care History
           - for episode in @patient.episode_of_cares do
             tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
               .col-md-12
-                td = episode.class.name
-        .panel.panel-default.patient-sidebar
-          .panel-body.row
-            .col-md-12
-              h5 Summary of Assessments
-            .col-md-5
-              p ASIA B - C7
-            .col-md-7
-              p.pull-left
-                a 3/25/2015
-          .panel-body.row
-            .col-md-5
-              p FIM 1: 87
-              p FIM 2: 82
-              p FIM 3: 80
-            .col-md-7
-              p.pull-left
-                a 3/25/2015
-              p.pull-left
-                a 3/25/2015
-              p.pull-left
-                a 3/25/2015
-          .panel-body.row
-            .col-md-5
-              p CHART - SF
-            .col-md-7
-              p.pull-left
-                a 3/25/2015
-          .panel-body.row
-            .col-md-5
-              p SWLS 6-10
-            .col-md-7
-              p.pull-left
-                a 3/25/2015
-
+                td 
+                  = episode.class.name
+                  .small
+                    | completion date: 
+                    = episode.eval_completed
+          - if @patient.episode_of_cares.size < 1 
+            tr
+              td There are no recorded episodes of care for this patient  
+  
+        table.table.table-bordered.table-striped
+          tr
+            th Summary of Assessments
+          tr
+            td 
+              | Asia: LOI
+              .small
+                | completion date: DATE
+          tr
+            td 
+              | FIM: SCORE
+              .small
+                | completion date: DATE
+          tr
+            td 
+              | CHART SF: SCORE
+              .small
+                | completion date: DATE
+          tr
+            td 
+              | SF8: SCORE
+              .small
+                | completion date: DATE
+          tr
+            td 
+              | SWLS: SCORE
+              .small
+                | completion date: DATE
+          tr
+            td 
+              | KURTZ EDSS: SCORE
+              .small
+                | completion date: DATE
+        / TODO: - add actual values here
+        / TODO: - add conditional messages for no records
 = render template: "layouts/application"
