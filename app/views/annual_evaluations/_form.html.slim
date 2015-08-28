@@ -7,7 +7,7 @@
         .col-md-4
           = f.input :bmi, label: "BMI", :placeholder => "00"
         .col-md-4
-          = f.input :bladder_drainage_method,
+          = f.association :bladder_drainage_method,
           label: "Bladder Drainage Method",
           collection: AnnualEvaluation.collections[:bladder_drainage_method],
           prompt: "Select one"

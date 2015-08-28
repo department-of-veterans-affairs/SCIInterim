@@ -37,14 +37,17 @@ class AcuteRehab < ActiveRecord::Base
   accepts_nested_attributes_for :followup_1year_chart_sf
   validates_associated :followup_1year_chart_sf
 
+  belongs_to :discharge_location, class_name: Domain::ResidenceType
+  belongs_to :reason_for_admission, class_name: Domain::ReasonForAdmission
+
   def episode_date
     acute_rehab_admission
   end
 
   def self.collections
     {
-      reason_for_admission: Domain::ReasonForAdmission.collection,
       discharge_location: Domain::ResidenceType.collection,
+      reason_for_admission: Domain::ReasonForAdmission.collection,
     }.with_indifferent_access
   end
 end

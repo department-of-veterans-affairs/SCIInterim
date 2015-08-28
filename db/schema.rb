@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824075017) do
+ActiveRecord::Schema.define(version: 20150828003623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,11 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.string   "start_swls"
     t.string   "goal_fim"
     t.string   "finish_fim"
-    t.integer  "reason_for_admission"
     t.string   "reason_for_admission_other"
     t.date     "hospital_admission"
     t.date     "acute_rehab_admission"
     t.date     "hospital_discharge"
     t.date     "acute_rehab_discharge"
-    t.integer  "discharge_location"
     t.boolean  "discharge_to_community"
     t.string   "finish_swls"
     t.date     "followup_90day_date"
@@ -45,6 +43,8 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.integer  "followup_1year_sf8_id"
     t.integer  "followup_1year_chart_sf_id"
     t.integer  "followup_90day_chart_sf_id"
+    t.integer  "reason_for_admission_id"
+    t.integer  "discharge_location_id"
   end
 
   add_index "acute_rehabs", ["patient_id"], name: "index_acute_rehabs_on_patient_id", using: :btree
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.boolean  "is_inpatient"
     t.integer  "bmi"
     t.string   "cyh"
-    t.integer  "bladder_drainage_method"
     t.integer  "fim_id"
     t.integer  "patient_id"
     t.integer  "kurtzke_edss_id"
+    t.integer  "bladder_drainage_method_id"
   end
 
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
@@ -81,18 +81,18 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.integer  "classification"
     t.boolean  "is_complete"
     t.boolean  "has_motor_or_sensory_asymmetry"
-    t.integer  "neurological_sensory_level_left"
-    t.integer  "neurological_sensory_level_right"
-    t.integer  "neurological_motor_level_left"
-    t.integer  "neurological_motor_level_right"
-    t.integer  "preservation_sensory_left"
-    t.integer  "preservation_sensory_right"
-    t.integer  "preservation_motor_left"
-    t.integer  "preservation_motor_right"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "has_asia_id"
     t.string   "has_asia_type"
+    t.integer  "neurological_sensory_level_left_id"
+    t.integer  "neurological_sensory_level_right_id"
+    t.integer  "neurological_motor_level_left_id"
+    t.integer  "neurological_motor_level_right_id"
+    t.integer  "preservation_sensory_level_left_id"
+    t.integer  "preservation_sensory_level_right_id"
+    t.integer  "preservation_motor_level_left_id"
+    t.integer  "preservation_motor_level_right_id"
   end
 
   add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
@@ -100,11 +100,8 @@ ActiveRecord::Schema.define(version: 20150824075017) do
   create_table "chart_sfs", force: true do |t|
     t.integer  "q1a_hours_paid"
     t.integer  "q1b_hours_unpaid"
-    t.integer  "q2_at_home_assisted_cognitive"
-    t.integer  "q3_not_home_assisted_cognitive"
     t.integer  "q4_hours_out_of_bed_per_day"
     t.integer  "q5_days_out_of_house_per_week"
-    t.integer  "q6_nights_not_home_per_year"
     t.integer  "q7a_hours_paid_for_job_per_week"
     t.integer  "q7b_occupation"
     t.integer  "q8_hours_in_school_per_week"
@@ -112,15 +109,18 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.integer  "q10_hours_in_home_maintenance_per_week"
     t.integer  "q11_hours_in_recreation_per_week"
     t.integer  "q12_num_people_cohabiting"
-    t.integer  "q13_living_with_spouse"
     t.integer  "q14_num_relatives_cohabiting"
     t.integer  "q15_num_associates_visited_per_month"
     t.integer  "q16_num_friends_visited_per_month"
-    t.integer  "q17_num_initiated_stranger_conversations_per_month"
-    t.integer  "q18_household_combined_income"
-    t.integer  "q19_total_medical_expenses_last_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "q2_at_home_assisted_cognitive_id"
+    t.integer  "q3_not_home_assisted_cognitive_id"
+    t.integer  "q6_nights_not_home_per_year_id"
+    t.integer  "q13_living_with_spouse_id"
+    t.integer  "q17_num_initiated_stranger_conversations_per_month_id"
+    t.integer  "q18_household_combined_income_id"
+    t.integer  "q19_total_medical_expenses_last_year_id"
   end
 
   create_table "domain_asia_classifications", force: true do |t|
@@ -276,13 +276,7 @@ ActiveRecord::Schema.define(version: 20150824075017) do
 
   create_table "fims", force: true do |t|
     t.boolean  "is_active_duty"
-    t.integer  "admission_class"
     t.boolean  "is_program_interrupted"
-    t.integer  "impairment_category"
-    t.integer  "impairment_group"
-    t.integer  "locomotion_type"
-    t.integer  "communication_comprehension_type"
-    t.integer  "communication_expression_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "measurements_start_id"
@@ -290,14 +284,20 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.integer  "measurements_finish_id"
     t.integer  "measurements_90day_id"
     t.integer  "measurements_1year_id"
+    t.integer  "impairment_category_id"
+    t.integer  "impairment_group_id"
+    t.integer  "admission_class_id"
+    t.integer  "locomotion_type_id"
+    t.integer  "communication_comprehension_type_id"
+    t.integer  "communication_expression_type_id"
   end
 
   create_table "kurtzke_edsses", force: true do |t|
     t.string   "care_type"
     t.string   "score_type"
-    t.integer  "scale_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scale_value_id"
   end
 
   create_table "omrs", force: true do |t|
@@ -317,12 +317,12 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.string   "finish_fam"
     t.string   "finish_swls"
     t.string   "finish_uspeq"
-    t.integer  "discharge_location"
     t.integer  "patient_id"
     t.integer  "start_sf8_id"
     t.integer  "finish_sf8_id"
     t.integer  "start_chart_sf_id"
     t.integer  "finish_chart_sf_id"
+    t.integer  "discharge_location_id"
   end
 
   add_index "omrs", ["patient_id"], name: "index_omrs_on_patient_id", using: :btree
@@ -334,15 +334,10 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.date     "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "highest_level_of_education"
     t.string   "last_name"
-    t.integer  "gender"
     t.boolean  "my_healthevet_messaging"
     t.boolean  "sci_service_connected"
-    t.integer  "travel_status"
     t.date     "benefits_waiver_exemption_date"
-    t.integer  "va_status"
-    t.integer  "assigned_vamc"
     t.integer  "assigned_sci_hub"
     t.string   "assigned_sci_hub_physician_first_name"
     t.string   "assigned_sci_hub_physician_last_name"
@@ -356,28 +351,33 @@ ActiveRecord::Schema.define(version: 20150824075017) do
     t.string   "non_va_facility_pcp_last_name"
     t.string   "va_facility_pcp_first_name"
     t.string   "va_facility_pcp_last_name"
-    t.integer  "theater_of_service"
     t.date     "sci_arrival_date"
     t.boolean  "is_on_active_duty"
-    t.integer  "sci_type"
     t.date     "date_of_injury"
-    t.integer  "residence_type"
     t.boolean  "is_receiving_non_va_care"
     t.integer  "non_va_care_hours_per_month"
     t.date     "last_fee_basis_evaluation_date"
     t.boolean  "is_receiving_hhha"
     t.integer  "address_id",                             null: false
     t.integer  "caregiver_address_id",                   null: false
-    t.integer  "principle_pcp_va_nonva"
-    t.integer  "scid_eligibility"
     t.string   "scid_eligibility_other"
-    t.integer  "scid_etiology"
-    t.integer  "occupation_at_time_of_injury"
-    t.integer  "current_occupation"
-    t.integer  "has_caregiver"
     t.string   "caregiver_first_name"
     t.string   "caregiver_last_name"
-    t.integer  "va_facility"
+    t.integer  "va_status_id"
+    t.integer  "assigned_vamc_id"
+    t.integer  "current_occupation_id"
+    t.integer  "gender_id"
+    t.integer  "has_caregiver_id"
+    t.integer  "highest_level_of_education_id"
+    t.integer  "occupation_at_time_of_injury_id"
+    t.integer  "principle_pcp_va_nonva_id"
+    t.integer  "residence_type_id"
+    t.integer  "sci_type_id"
+    t.integer  "scid_eligibility_id"
+    t.integer  "scid_etiology_id"
+    t.integer  "theater_of_service_id"
+    t.integer  "travel_status_id"
+    t.integer  "va_facility_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -426,32 +426,32 @@ ActiveRecord::Schema.define(version: 20150824075017) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "acute_rehabs", "domain_reason_for_admissions", name: "acute_rehabs_reason_for_admission_fk", column: "reason_for_admission"
-  add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_residence_type_fk", column: "discharge_location"
+  add_foreign_key "acute_rehabs", "domain_reason_for_admissions", name: "acute_rehabs_reason_for_admission_id_fk", column: "reason_for_admission_id"
+  add_foreign_key "acute_rehabs", "domain_residence_types", name: "acute_rehabs_discharge_location_id_fk", column: "discharge_location_id"
   add_foreign_key "acute_rehabs", "patients", name: "acute_rehabs_patient_id_fk", dependent: :delete
 
-  add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_fk", column: "bladder_drainage_method"
+  add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", name: "annual_evaluations_bladder_drainage_method_id_fk", column: "bladder_drainage_method_id"
   add_foreign_key "annual_evaluations", "fims", name: "annual_evaluations_fim_id_fk", dependent: :delete
   add_foreign_key "annual_evaluations", "kurtzke_edsses", name: "annual_evaluations_kurtzke_edss_id_fk"
   add_foreign_key "annual_evaluations", "patients", name: "annual_evaluations_patient_id_fk", dependent: :delete
 
   add_foreign_key "asia", "domain_asia_classifications", name: "asia_classification_fk", column: "classification"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_left_fk", column: "neurological_motor_level_left"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_right_fk", column: "neurological_motor_level_right"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_left_fk", column: "neurological_sensory_level_left"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_right_fk", column: "neurological_sensory_level_right"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_left_fk", column: "preservation_motor_left"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_right_fk", column: "preservation_motor_right"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_left_fk", column: "preservation_sensory_left"
-  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_right_fk", column: "preservation_sensory_right"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_left_id_fk", column: "neurological_motor_level_left_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_motor_level_right_id_fk", column: "neurological_motor_level_right_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_left_id_fk", column: "neurological_sensory_level_left_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_neurological_sensory_level_right_id_fk", column: "neurological_sensory_level_right_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_level_left_id_fk", column: "preservation_motor_level_left_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_motor_level_right_id_fk", column: "preservation_motor_level_right_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_level_left_id_fk", column: "preservation_sensory_level_left_id"
+  add_foreign_key "asia", "domain_level_of_injuries", name: "asia_preservation_sensory_level_right_id_fk", column: "preservation_sensory_level_right_id"
 
-  add_foreign_key "chart_sfs", "domain_chart_sf_at_home_cognitives", name: "chart_sfs_q2_at_home_assisted_cognitive_fk", column: "q2_at_home_assisted_cognitive"
-  add_foreign_key "chart_sfs", "domain_chart_sf_away_nights", name: "chart_sfs_q6_nights_not_home_per_year_fk", column: "q6_nights_not_home_per_year"
-  add_foreign_key "chart_sfs", "domain_chart_sf_household_incomes", name: "chart_sfs_q18_household_combined_income_fk", column: "q18_household_combined_income"
-  add_foreign_key "chart_sfs", "domain_chart_sf_initiated_stranger_conversations", name: "chart_sfs_q17_num_initiated_stranger_conversations_per_month_fk", column: "q17_num_initiated_stranger_conversations_per_month"
-  add_foreign_key "chart_sfs", "domain_chart_sf_medical_expenses", name: "chart_sfs_q19_total_medical_expenses_last_year_fk", column: "q19_total_medical_expenses_last_year"
-  add_foreign_key "chart_sfs", "domain_chart_sf_not_home_cognitives", name: "chart_sfs_q3_not_home_assisted_cognitive_fk", column: "q3_not_home_assisted_cognitive"
-  add_foreign_key "chart_sfs", "domain_chart_sf_spouse_resident_options", name: "chart_sfs_q13_living_with_spouse_fk", column: "q13_living_with_spouse"
+  add_foreign_key "chart_sfs", "domain_chart_sf_at_home_cognitives", name: "chart_sfs_q2_at_home_assisted_cognitive_id_fk", column: "q2_at_home_assisted_cognitive_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_away_nights", name: "chart_sfs_q6_nights_not_home_per_year_id_fk", column: "q6_nights_not_home_per_year_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_household_incomes", name: "chart_sfs_q18_household_combined_income_id_fk", column: "q18_household_combined_income_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_initiated_stranger_conversations", name: "chart_sfs_q17_num_initiated_stranger_conversations_per_month_id", column: "q17_num_initiated_stranger_conversations_per_month_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_medical_expenses", name: "chart_sfs_q19_total_medical_expenses_last_year_id_fk", column: "q19_total_medical_expenses_last_year_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_not_home_cognitives", name: "chart_sfs_q3_not_home_assisted_cognitive_id_fk", column: "q3_not_home_assisted_cognitive_id"
+  add_foreign_key "chart_sfs", "domain_chart_sf_spouse_resident_options", name: "chart_sfs_q13_living_with_spouse_id_fk", column: "q13_living_with_spouse_id"
 
   add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_bathing_fk", column: "bathing"
   add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_bladder_management_fk", column: "bladder_management"
@@ -472,40 +472,40 @@ ActiveRecord::Schema.define(version: 20150824075017) do
   add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_transfer_toilet_fk", column: "transfer_toilet"
   add_foreign_key "fim_measurements", "domain_fim_measurements", name: "fim_measurements_transfer_tub_shower_fk", column: "transfer_tub_shower"
 
-  add_foreign_key "fims", "domain_fim_admission_classes", name: "fims_admission_class_fk", column: "admission_class"
-  add_foreign_key "fims", "domain_fim_communication_comprehension_types", name: "fims_communication_comprehension_type_fk", column: "communication_comprehension_type"
-  add_foreign_key "fims", "domain_fim_communication_expression_types", name: "fims_communication_expression_type_fk", column: "communication_expression_type"
-  add_foreign_key "fims", "domain_fim_impairment_categories", name: "fims_impairment_category_fk", column: "impairment_category"
-  add_foreign_key "fims", "domain_fim_impairment_groups", name: "fims_impairment_group_fk", column: "impairment_group"
-  add_foreign_key "fims", "domain_fim_locomotion_types", name: "fims_locomotion_type_fk", column: "locomotion_type"
+  add_foreign_key "fims", "domain_fim_admission_classes", name: "fims_admission_class_id_fk", column: "admission_class_id"
+  add_foreign_key "fims", "domain_fim_communication_comprehension_types", name: "fims_communication_comprehension_type_id_fk", column: "communication_comprehension_type_id"
+  add_foreign_key "fims", "domain_fim_communication_expression_types", name: "fims_communication_expression_type_id_fk", column: "communication_expression_type_id"
+  add_foreign_key "fims", "domain_fim_impairment_categories", name: "fims_impairment_category_id_fk", column: "impairment_category_id"
+  add_foreign_key "fims", "domain_fim_impairment_groups", name: "fims_impairment_group_id_fk", column: "impairment_group_id"
+  add_foreign_key "fims", "domain_fim_locomotion_types", name: "fims_locomotion_type_id_fk", column: "locomotion_type_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_1year_id_fk", column: "measurements_1year_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_90day_id_fk", column: "measurements_90day_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_finish_id_fk", column: "measurements_finish_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_goal_id_fk", column: "measurements_goal_id"
   add_foreign_key "fims", "fim_measurements", name: "fims_measurements_start_id_fk", column: "measurements_start_id"
 
-  add_foreign_key "kurtzke_edsses", "domain_kurtzke_edss_scores", name: "kurtzke_edsses_scale_value_fk", column: "scale_value"
+  add_foreign_key "kurtzke_edsses", "domain_kurtzke_edss_scores", name: "kurtzke_edsses_scale_value_id_fk", column: "scale_value_id"
 
-  add_foreign_key "omrs", "domain_residence_types", name: "omrs_discharge_location_fk", column: "discharge_location"
+  add_foreign_key "omrs", "domain_residence_types", name: "omrs_discharge_location_id_fk", column: "discharge_location_id"
   add_foreign_key "omrs", "patients", name: "omrs_patient_id_fk", dependent: :delete
 
   add_foreign_key "patients", "addresses", name: "patients_address_id_fk", dependent: :delete
   add_foreign_key "patients", "addresses", name: "patients_caregiver_address_id_fk", column: "caregiver_address_id", dependent: :delete
-  add_foreign_key "patients", "domain_caregiver_types", name: "patients_has_caregiver_fk", column: "has_caregiver"
-  add_foreign_key "patients", "domain_genders", name: "patients_gender_fk", column: "gender"
-  add_foreign_key "patients", "domain_highest_level_of_educations", name: "patients_highest_level_of_education_fk", column: "highest_level_of_education"
-  add_foreign_key "patients", "domain_occupations", name: "patients_current_occupation_fk", column: "current_occupation"
-  add_foreign_key "patients", "domain_occupations", name: "patients_occupation_at_time_of_injury_fk", column: "occupation_at_time_of_injury"
-  add_foreign_key "patients", "domain_principle_pcp_types", name: "patients_principle_pcp_va_nonva_fk", column: "principle_pcp_va_nonva"
-  add_foreign_key "patients", "domain_residence_types", name: "patients_residence_type_fk", column: "residence_type"
-  add_foreign_key "patients", "domain_sci_types", name: "patients_sci_type_fk", column: "sci_type"
-  add_foreign_key "patients", "domain_scid_eligibilities", name: "patients_scid_eligibility_fk", column: "scid_eligibility"
-  add_foreign_key "patients", "domain_scid_etiologies", name: "patients_scid_etiology_fk", column: "scid_etiology"
-  add_foreign_key "patients", "domain_theater_of_services", name: "patients_theater_of_service_fk", column: "theater_of_service"
-  add_foreign_key "patients", "domain_travel_statuses", name: "patients_travel_status_fk", column: "travel_status"
-  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_assigned_vamc_fk", column: "assigned_vamc"
-  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_va_facility_fk", column: "va_facility"
-  add_foreign_key "patients", "domain_va_statuses", name: "patients_va_status_fk", column: "va_status"
+  add_foreign_key "patients", "domain_caregiver_types", name: "patients_has_caregiver_id_fk", column: "has_caregiver_id"
+  add_foreign_key "patients", "domain_genders", name: "patients_gender_id_fk", column: "gender_id"
+  add_foreign_key "patients", "domain_highest_level_of_educations", name: "patients_highest_level_of_education_id_fk", column: "highest_level_of_education_id"
+  add_foreign_key "patients", "domain_occupations", name: "patients_current_occupation_id_fk", column: "current_occupation_id"
+  add_foreign_key "patients", "domain_occupations", name: "patients_occupation_at_time_of_injury_id_fk", column: "occupation_at_time_of_injury_id"
+  add_foreign_key "patients", "domain_principle_pcp_types", name: "patients_principle_pcp_va_nonva_id_fk", column: "principle_pcp_va_nonva_id"
+  add_foreign_key "patients", "domain_residence_types", name: "patients_residence_type_id_fk", column: "residence_type_id"
+  add_foreign_key "patients", "domain_sci_types", name: "patients_sci_type_id_fk", column: "sci_type_id"
+  add_foreign_key "patients", "domain_scid_eligibilities", name: "patients_scid_eligibility_id_fk", column: "scid_eligibility_id"
+  add_foreign_key "patients", "domain_scid_etiologies", name: "patients_scid_etiology_id_fk", column: "scid_etiology_id"
+  add_foreign_key "patients", "domain_theater_of_services", name: "patients_theater_of_service_id_fk", column: "theater_of_service_id"
+  add_foreign_key "patients", "domain_travel_statuses", name: "patients_travel_status_id_fk", column: "travel_status_id"
+  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_assigned_vamc_id_fk", column: "assigned_vamc_id"
+  add_foreign_key "patients", "domain_va_medical_centers", name: "patients_va_facility_id_fk", column: "va_facility_id"
+  add_foreign_key "patients", "domain_va_statuses", name: "patients_va_status_id_fk", column: "va_status_id"
 
   add_foreign_key "transfers", "acute_rehabs", name: "transfers_acute_rehab_id_fk"
 

@@ -6,7 +6,7 @@
         h4 Admission
         .row
             .col-md-8
-                = f.input :reason_for_admission,
+                = f.association :reason_for_admission,
                 collection: AcuteRehab.collections[:reason_for_admission],
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
@@ -34,7 +34,7 @@
                 = f.input :acute_rehab_discharge, as: :date_picker, :label => "Acute rehab discharge date"
         .row
             .col-md-4
-                = f.input :discharge_location,
+                = f.association :discharge_location,
                 collection: AcuteRehab.collections[:discharge_location],
                 :prompt => "Select one"
 

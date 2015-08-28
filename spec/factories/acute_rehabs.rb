@@ -14,13 +14,13 @@ FactoryGirl.define do
     finish_fim { rand(18..126) }
     finish_swls { rand(5..35) }
     finish_sf8 { create(:sf8) }
-    reason_for_admission { AcuteRehab.collections[:reason_for_admission].sample.id }
+    reason_for_admission { AcuteRehab.collections[:reason_for_admission].sample }
     reason_for_admission_other { Faker::Lorem.sentence(3, false, 10) }
     hospital_admission { Faker::Date.between(20.years.ago, Date.today) }
     acute_rehab_admission { Faker::Date.between(20.years.ago, Date.today) }
     acute_rehab_discharge { Faker::Date.between(20.years.ago, Date.today) }
     hospital_discharge { Faker::Date.between(20.years.ago, Date.today) }
-    discharge_location { AcuteRehab.collections[:discharge_location].sample.id }
+    discharge_location { AcuteRehab.collections[:discharge_location].sample }
     discharge_to_community { [true, false].sample }
     followup_90day_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_90day_fim { rand(18..126) }

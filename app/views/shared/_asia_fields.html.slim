@@ -64,18 +64,18 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :preservation_sensory_left,
-                  collection: Asia.collections[:preservation_sensory_left]
+                  = f.input_field :preservation_sensory_level_left,
+                  collection: Asia.collections[:preservation_sensory_level_left]
                 td 
-                  = f.input_field :preservation_sensory_right,
-                  collection: Asia.collections[:preservation_sensory_right]
+                  = f.input_field :preservation_sensory_level_right,
+                  collection: Asia.collections[:preservation_sensory_level_right]
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :preservation_motor_left,
+                  = f.input_field :preservation_motor_level_left,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_left]
+                  collection: Asia.collections[:preservation_motor_level_left]
                 td 
-                  = f.input_field :preservation_motor_right,
+                  = f.input_field :preservation_motor_level_right,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_right]
+                  collection: Asia.collections[:preservation_motor_level_right]

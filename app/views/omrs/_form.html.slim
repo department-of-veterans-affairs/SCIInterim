@@ -42,7 +42,7 @@
             = render 'shared/sf8_fields', :f => sf8_builder
 
     = f.input :finish_uspeq
-    = f.input :discharge_location,
+    = f.association :discharge_location,
     collection: Omr.collections[:discharge_location],
     label_method: :name,
     value_method: :id,

@@ -490,6 +490,12 @@ module DomainSeeds
       seed_domain_chart_sf_not_home_cognitives
       seed_domain_chart_sf_spouse_resident_options
       seed_domain_fim_admission_classes
+      seed_domain_fim_communication_comprehension_types
+      seed_domain_fim_communication_expression_types
+      seed_domain_fim_impairment_categories
+      seed_domain_fim_impairment_groups
+      seed_domain_fim_locomotion_types
+      seed_domain_fim_measurements
       seed_domain_genders
       seed_domain_highest_level_of_educations
       seed_domain_kurtzke_edss_scores

@@ -17,6 +17,8 @@ class Omr < ActiveRecord::Base
   accepts_nested_attributes_for :finish_chart_sf
   validates_associated :finish_chart_sf
 
+  belongs_to :discharge_location, class_name: Domain::ResidenceType
+
   def episode_date
     admission_date
   end
