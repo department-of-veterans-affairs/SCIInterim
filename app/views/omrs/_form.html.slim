@@ -15,13 +15,10 @@
           = f.input :start_fam
         .col-md-4
           = f.input :start_swls
-            .row 
-    .callout-blank 
-      h4 Start Chart SF
+    h4.instrument-title Start Chart SF
     = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
       = render 'shared/chart_sf_fields', :f => chart_sf_builder
-    .callout-blank 
-      h4 Start SF8
+    h4.instrument-title Start SF8
     = f.simple_fields_for :start_sf8 do |sf8_builder|
       = render 'shared/sf8_fields', :f => sf8_builder
 
@@ -49,12 +46,11 @@
         .col-md-4     
           = f.input :finish_swls
 
-    .callout-blank 
-      h4 Finish Chart SF
+    h4.instrument-title Finish Chart SF
     = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
       = render 'shared/chart_sf_fields', :f => chart_sf_builder
-    .callout-blank 
-      h4 Finish SF8
+
+    h4.instrument-title Finish SF8
     = f.simple_fields_for :finish_sf_8 do |sf8_builder|
       = render 'shared/sf8_fields', :f => sf8_builder
     .callout-blank 
@@ -67,6 +63,5 @@
           label_method: :name,
           value_method: :id,
           :prompt => "Select one"
-    .row
-      .col-sm-offset-3.col-sm-9.form-actions
-        = f.submit class:"btn btn-success"
+    .pull-right 
+      = f.submit class:"btn btn-lg btn-primary"
