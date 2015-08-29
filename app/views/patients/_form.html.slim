@@ -104,6 +104,11 @@
       h4 SCI/D Information
       .row
         .col-md-4
+          = f.input :sci_type,
+          collection: Patient.collections[:sci_type],
+          prompt: "Select one",
+          label: "SCI Type"
+        .col-md-4
           = f.input :scid_eligibility,
           collection: Patient.collections[:scid_eligibility],
           prompt: "Select one",

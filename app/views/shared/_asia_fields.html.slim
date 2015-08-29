@@ -34,11 +34,6 @@
                   label: false,
                   collection: Asia.collections[:neurological_motor_level_right]
       .col-md-4
-        = wrapped_form_for(@patient) do |f|
-          = f.input :sci_type,
-          collection: Patient.collections[:sci_type],
-          prompt: "Select one",
-          label: "SCI Type"
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc
         / TODO: when these are functional we won't need breaks

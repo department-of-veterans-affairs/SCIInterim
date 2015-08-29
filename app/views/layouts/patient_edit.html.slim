@@ -29,7 +29,7 @@
                     | completion date: 
                     / TODO: Make sure this always exists
                     / = episode.eval_completed
-          - if @patient.episode_of_cares.size < 1 
+          - if @patient.episode_of_cares.empty?
             tr
               td There are no recorded episodes of care for this patient  
   
