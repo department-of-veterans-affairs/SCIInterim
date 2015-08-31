@@ -78,7 +78,7 @@ class OmrsController < ApplicationController
         :finish_swls,
         :finish_chart_sf,
         :finish_uspeq,
-        :discharge_location,
+        :discharge_location_id,
         start_sf8_attributes: nested_model_attributes(Sf8),
         finish_sf8_attributes: nested_model_attributes(Sf8),
         start_chart_sf_attributes: nested_model_attributes(ChartSf),

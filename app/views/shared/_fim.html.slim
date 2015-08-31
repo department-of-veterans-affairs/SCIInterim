@@ -6,16 +6,16 @@
         / TODO: @emilyville Remove this from database
         / = fims.input :is_active_duty
         = f.input :admission_class,
-        collection: Domain::FimAdmissionClass.all,
+        collection: Domain::FimAdmissionClass.all
       .col-md-3
         = f.input :is_program_interrupted,
           label: "Check if program is interrupted"
       .col-md-3
         = f.input :impairment_category,
-        collection: Domain::FimImpairmentCategory.all,
+        collection: Domain::FimImpairmentCategory.all
       .col-md-3
         = f.input :impairment_group,
-        collection: Domain::FimImpairmentGroup.all,
+        collection: Domain::FimImpairmentGroup.all
           / TODO: @emilyville don't know if we need these
           / = fims.input :created_at
           / = fims.input :updated_at
