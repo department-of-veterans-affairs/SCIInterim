@@ -43,7 +43,6 @@
 
     = f.input :finish_uspeq
     = f.association :discharge_location,
-    collection: Omr.collections[:discharge_location],
     label_method: :name,
     value_method: :id,
     :prompt => "Select one"

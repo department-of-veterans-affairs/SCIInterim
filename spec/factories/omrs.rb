@@ -21,7 +21,7 @@ FactoryGirl.define do
     finish_swls { rand(5..35) }
     finish_chart_sf { create(:chart_sf) }
     finish_sf8 { create(:sf8) }
-    discharge_location { Omr.collections[:discharge_location].sample }
+    discharge_location { Domain::ResidenceType.all.sample }
   end
 end
 

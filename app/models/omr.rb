@@ -22,10 +22,4 @@ class Omr < ActiveRecord::Base
   def episode_date
     admission_date
   end
-
-  def self.collections
-    {
-      discharge_location: Domain::ResidenceType.collection,
-    }.with_indifferent_access
-  end
 end

@@ -7,7 +7,6 @@
         .row
             .col-md-8
                 = f.association :reason_for_admission,
-                collection: AcuteRehab.collections[:reason_for_admission],
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
             .col-md-4
@@ -35,7 +34,6 @@
         .row
             .col-md-4
                 = f.association :discharge_location,
-                collection: AcuteRehab.collections[:discharge_location],
                 :prompt => "Select one"
 
     .callout-blank

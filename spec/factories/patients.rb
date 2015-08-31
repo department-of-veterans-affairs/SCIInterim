@@ -12,18 +12,18 @@ FactoryGirl.define do
     assigned_sci_hub { rand(10) }
     assigned_sci_hub_physician_first_name { Faker::Name.first_name }
     assigned_sci_hub_physician_last_name { Faker::Name.last_name }
-    assigned_vamc { Patient.collections[:assigned_vamc].sample }
+    assigned_vamc { Domain::VaMedicalCenter.all.sample }
     benefits_waiver_exemption_date { Faker::Date.between(100.years.ago, Date.today) }
     caregiver_address { create(:address) }
     caregiver_first_name { Faker::Name.first_name }
     caregiver_last_name { Faker::Name.last_name }    
-    current_occupation { Patient.collections[:current_occupation].sample }
+    current_occupation { Domain::Occupation.all.sample }
     date_of_injury { Faker::Date.between(100.years.ago, Date.today) }
     dob { Faker::Date.between(100.years.ago, Date.today) }
     first_name { Faker::Name.first_name }
-    gender { Patient.collections[:gender].sample }
-    has_caregiver { Patient.collections[:has_caregiver].sample }
-    highest_level_of_education { Patient.collections[:highest_level_of_education].sample }
+    gender { Domain::Gender.all.sample }
+    has_caregiver { Domain::CaregiverType.all.sample }
+    highest_level_of_education { Domain::HighestLevelOfEducation.all.sample }
     is_on_active_duty { [true, false].sample }
     is_receiving_hhha { [true, false].sample }
     is_receiving_non_va_care { [true, false].sample }
@@ -36,24 +36,24 @@ FactoryGirl.define do
     non_va_facility_pcp_first_name { Faker::Name.first_name }
     non_va_facility_pcp_last_name { Faker::Name.last_name }
     non_va_facility_phone_number { Faker::PhoneNumber.phone_number }
-    #omrs { rand(1..3).times.map { create(:omr) } }
-    occupation_at_time_of_injury { Patient.collections[:occupation_at_time_of_injury].sample }
+    omrs { rand(1..3).times.map { create(:omr) } }
+    occupation_at_time_of_injury { Domain::Occupation.all.sample }
     preferred_sci_hub { rand(10) }
     preferred_sci_hub_physician_first_name { Faker::Name.first_name }
     preferred_sci_hub_physician_last_name { Faker::Name.last_name }
-    principle_pcp_va_nonva { Patient.collections[:principle_pcp_va_nonva].sample }
-    residence_type { Patient.collections[:residence_type].sample }
+    principle_pcp_va_nonva { Domain::PrinciplePcpType.all.sample }
+    residence_type { Domain::ResidenceType.all.sample }
     sci_arrival_date { Faker::Date.between(100.years.ago, Date.today) }
     sci_service_connected { [true, false].sample }
-    sci_type { Patient.collections[:sci_type].sample }
-    scid_eligibility { Patient.collections[:scid_eligibility].sample }
+    sci_type { Domain::SciType.all.sample }
+    scid_eligibility { Domain::ScidEligibility.all.sample }
     scid_eligibility_other { Faker::Lorem.sentence(4) }
-    scid_etiology { Patient.collections[:scid_etiology].sample }
+    scid_etiology { Domain::ScidEtiology.all.sample }
     scido_id 1
     ssn "123-45-6789"
-    theater_of_service { Patient.collections[:theater_of_service].sample }
-    travel_status { Patient.collections[:travel_status].sample }
-    va_facility { Patient.collections[:va_facility].sample }
+    theater_of_service { Domain::TheaterOfService.all.sample }
+    travel_status { Domain::TravelStatus.all.sample }
+    va_facility { Domain::VaMedicalCenter.all.sample }
     va_facility_pcp_first_name { Faker::Name.first_name }
     va_facility_pcp_last_name { Faker::Name.last_name }
     va_status { Domain::VaStatus.all.sample }

@@ -22,11 +22,4 @@ class AnnualEvaluation < ActiveRecord::Base
       eval_completed
     end
   end
-
-  def self.collections
-    {
-      bladder_drainage_method: Domain::BladderDrainageMethod.collection,
-      is_inpatient: [ ["Inpatient", true], ["Outpatient", false] ],
-    }.with_indifferent_access
-  end
 end

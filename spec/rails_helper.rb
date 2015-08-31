@@ -65,7 +65,7 @@ def modify_value_for_test(data, options = {})
 end
 
 def collection_for_attribute(model, attribute_name)
-  collection = model.class.collections[attribute_name]
+  collection = model.class.respond_to?(:collections) ? model.class.collections[attribute_name] : nil
   if collection.nil?
     association = model.class.reflect_on_association(attribute_name)
     collection = association.klass.all if !association.nil?

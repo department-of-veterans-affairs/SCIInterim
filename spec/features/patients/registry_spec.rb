@@ -54,7 +54,7 @@ feature 'Patient Registry' do
 
     visit edit_patient_path(patient)
 
-    writable_attributes.each { |attribute_name| modify_for_test(patient, Patient.collections, attribute_name) }
+    writable_attributes.each { |attribute_name| modify_for_test(patient, {}, attribute_name) }
     patient.ssn = '000-12-1111'  # Override the default modify_for_test since it doesn't understand ssn format.
     writable_attributes.each { |attribute_name| model_to_form('patient', attribute_name, patient) }
 

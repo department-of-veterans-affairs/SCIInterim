@@ -12,7 +12,7 @@ FactoryGirl.define do
     cyh { Faker::Lorem.word }
     fim { create(:fim)}
     kurtzke_edss { create(:kurtzke_edss) }
-    bladder_drainage_method { AnnualEvaluation.collections[:bladder_drainage_method].sample }
+    bladder_drainage_method { Domain::BladderDrainageMethod.all.sample }
     asia_assessment { create(:asia) }
   end
 end

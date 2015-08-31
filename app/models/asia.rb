@@ -27,18 +27,4 @@ class Asia < ActiveRecord::Base
       errors.add(:preservation_sensory_level_right, "does not match left") unless preservation_sensory_level_left == preservation_sensory_level_right
     end
   end
-
-  def self.collections
-    {
-      classification: Domain::AsiaClassification.collection,
-      neurological_sensory_level_left: Domain::LevelOfInjury.collection,
-      neurological_sensory_level_right: Domain::LevelOfInjury.collection,
-      neurological_motor_level_left: Domain::LevelOfInjury.collection,
-      neurological_motor_level_right: Domain::LevelOfInjury.collection,
-      preservation_sensory_level_left: Domain::LevelOfInjury.collection,
-      preservation_sensory_level_right: Domain::LevelOfInjury.collection,
-      preservation_motor_level_left: Domain::LevelOfInjury.collection,
-      preservation_motor_level_right: Domain::LevelOfInjury.collection,
-    }.with_indifferent_access
-  end
 end

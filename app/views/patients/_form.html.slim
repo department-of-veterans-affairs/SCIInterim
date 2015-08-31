@@ -15,7 +15,7 @@
         .col-md-8
           label.control-label.radio.radio-inline Gender
           = f.input_field :gender_id,
-          collection: Patient.collections[:gender],
+          collection: Domain::Gender.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       hr
@@ -51,7 +51,7 @@
         .col-md-12
           label.control-label.radio.radio-inline Travel status
           = f.input_field :travel_status_id,
-            collection: Patient.collections[:travel_status],
+            collection: Domain::TravelStatus.all,
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
     .callout
@@ -78,7 +78,7 @@
       label.control-label.radio.radio-inline Primary Care Physician
       = f.input_field :principle_pcp_va_nonva_id,
         label: "Primary Care Physician",
-        collection: Patient.collections[:principle_pcp_va_nonva],
+        collection: Domain::PrinciplePcpType.all,
         as: :radio_buttons,
         item_wrapper_class: 'radio-inline'
     .callout
@@ -107,7 +107,6 @@
       .row
         .col-md-6
           = f.association :sci_type,
-          collection: Patient.collections[:sci_type],
           prompt: "Select one",
           label: "SCI Type"
           = f.association :scid_eligibility,
@@ -121,7 +120,7 @@
         .col-md-12
           label.control-label.radio.radio-inline Theater of service
           = f.input_field :theater_of_service_id,
-          collection: Patient.collections[:theater_of_service],
+          collection: Domain::TheaterOfService.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       / TODO conditional only if SCI is selected above
@@ -158,7 +157,7 @@
         .col-md-12
           label.control-label.radio.radio-inline Caregiver type
           = f.input_field :has_caregiver_id, label: "Caregiver type",
-          collection: Patient.collections[:has_caregiver],
+          collection: Domain::CaregiverType.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
         .col-md-4

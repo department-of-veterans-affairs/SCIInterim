@@ -25,12 +25,12 @@
     .row
       .col-md-12
         = f.input :q2_at_home_assisted_cognitive, 
-        collection: ChartSf.collections[:q2_at_home_assisted_cognitive],
+        collection: Domain::ChartSfAtHomeCognitive.all,
         label: "How much time is someone with you in your home to assist you with activities that require remembering, decision-making, or judgment?"
     .row
       .col-md-12
         = f.input :q3_not_home_assisted_cognitive,
-        collection: ChartSf.collections[:q3_not_home_assisted_cognitive],
+        collection: Domain::ChartSfNotHomeCognitive.all,
         label: "How much of the time is someone with you to help you with remembering, decision-making, or judgment when you go away from your home?"
 
     .row
@@ -43,7 +43,7 @@
         p In a typical week, how many days do you get out of your house and go somewhere?
         = f.input :q5_days_out_of_house_per_week, label: "Days"
         = f.input :q6_nights_not_home_per_year, 
-        collection: ChartSf.collections[:q6_nights_not_home_per_year],
+        collection: Domain::ChartSfNotHomeCognitive.all,
         label: "In the last year, how many nights have you spent away from your home (excluding hospitalizations)?"
 
     .row
@@ -74,7 +74,7 @@
         = f.input :q12_num_people_cohabiting, label: "People"
         p Is one of them your spouse or significant other?
         = f.input :q13_living_with_spouse,
-        collection: ChartSf.collections[:q13_living_with_spouse],
+        collection: Domain::ChartSfSpouseResidentOption.all,
         label: "Is one of them your spouse or significant other?"
         p Of the people you live with how many are relatives?
         = f.input :q14_num_relatives_cohabiting, label: "Relatives"
@@ -83,7 +83,7 @@
         p How many friends (non-relatives contacted outside business or organizational settings) do you visit, phone, or write to at least once a month?
         = f.input :q16_num_friends_visited_per_month, label: "Friends"
         = f.input :q17_num_initiated_stranger_conversations_per_month,
-        collection: ChartSf.collections[:q17_num_initiated_stranger_conversations_per_month],
+        collection: Domain::ChartSfInitiatedStrangerConversation.all,
         label: "With how many strangers have you initiated a conversation in the last month (for example, to ask information or place an order)?"
 
 
@@ -93,8 +93,8 @@
       .col-md-12
         p What financial resources do you have?
         = f.input :q18_household_combined_income,
-        collection: ChartSf.collections[:q18_household_combined_income],
+        collection: Domain::ChartSfHouseholdIncome.all, 
         label: "Approximately what was the combined annual income, in the last year, of all family members in your household? (consider all sources including wages and earnings, disability benefits, pensions and retirement income, income from court settlements, investments and trust funds, child support and alimony, contributions from relatives, and any other source.)"
         = f.input :q19_total_medical_expenses_last_year,
-        collection: ChartSf.collections[:q19_total_medical_expenses_last_year],
+        collection: Domain::ChartSfMedicalExpense.all,
         label: 'Approximately, how much did you pay last year for medical care expenses? (Consider any amounts paid by yourself or the family members in your household and not reimbursed by insurance or benefits.) "Would you say your unreimbursed medical expenses are....?"'

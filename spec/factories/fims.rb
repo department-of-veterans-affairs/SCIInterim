@@ -7,11 +7,11 @@ FactoryGirl.define do
     measurements_finish { create(:fim_measurement) } 
     measurements_90day { create(:fim_measurement) } 
     measurements_1year { create(:fim_measurement) } 
-    impairment_category { Fim.collections[:impairment_category].sample }
-    impairment_group { Fim.collections[:impairment_group].sample }
-    admission_class { Fim.collections[:admission_class].sample }
-    locomotion_type { Fim.collections[:locomotion_type].sample }
-    communication_comprehension_type { Fim.collections[:communication_comprehension_type].sample }
-    communication_expression_type { Fim.collections[:communication_expression_type].sample }
+    impairment_category { Domain::FimImpairmentCategory.all.sample }
+    impairment_group { Domain::FimImpairmentGroup.all.sample }
+    admission_class { Domain::FimAdmissionClass.all.sample }
+    locomotion_type { Domain::FimLocomotionType.all.sample }
+    communication_comprehension_type { Domain::FimCommunicationComprehensionType.all.sample }
+    communication_expression_type { Domain::FimCommunicationExpressionType.all.sample }
   end
 end

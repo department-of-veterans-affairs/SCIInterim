@@ -25,15 +25,4 @@ class Fim < ActiveRecord::Base
   belongs_to :locomotion_type, class_name: Domain::FimLocomotionType
   belongs_to :communication_comprehension_type, class_name: Domain::FimCommunicationComprehensionType
   belongs_to :communication_expression_type, class_name: Domain::FimCommunicationExpressionType
-
-  def self.collections
-    {
-      "impairment_category" => Domain::FimImpairmentCategory.collection,
-      "impairment_group" => Domain::FimImpairmentGroup.collection,
-      "admission_class" => Domain::FimAdmissionClass.collection,
-      "locomotion_type" => Domain::FimLocomotionType.collection,
-      "communication_comprehension_type" => Domain::FimCommunicationComprehensionType.collection,
-      "communication_expression_type" => Domain::FimCommunicationExpressionType.collection,
-    }.with_indifferent_access
-  end
 end

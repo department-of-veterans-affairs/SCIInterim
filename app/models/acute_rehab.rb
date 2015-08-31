@@ -43,11 +43,4 @@ class AcuteRehab < ActiveRecord::Base
   def episode_date
     acute_rehab_admission
   end
-
-  def self.collections
-    {
-      discharge_location: Domain::ResidenceType.collection,
-      reason_for_admission: Domain::ReasonForAdmission.collection,
-    }.with_indifferent_access
-  end
 end

@@ -58,26 +58,6 @@ class Patient < ActiveRecord::Base
     end
   end
 
-  def self.collections
-    {
-      is_complete: [ ["Complete", false], ["Incomplete", true] ],
-      assigned_vamc: Domain::VaMedicalCenter.collection,
-      current_occupation: Domain::Occupation.collection,
-      gender: Domain::Gender.collection,
-      has_caregiver: Domain::CaregiverType.collection,
-      highest_level_of_education: Domain::HighestLevelOfEducation.collection,
-      occupation_at_time_of_injury: Domain::Occupation.collection,
-      principle_pcp_va_nonva: Domain::PrinciplePcpType.collection,
-      residence_type: Domain::ResidenceType.collection,
-      sci_type: Domain::SciType.collection,
-      scid_eligibility: Domain::ScidEligibility.collection,
-      scid_etiology: Domain::ScidEtiology.collection,
-      theater_of_service: Domain::TheaterOfService.collection,
-      travel_status: Domain::TravelStatus.collection,
-      va_facility: Domain::VaMedicalCenter.collection,
-    }.with_indifferent_access
-  end
-
   def computed_age
     age = Date.today.year - dob.year
     age -= 1 if Date.today < dob + age.years

@@ -9,7 +9,6 @@
         .col-md-4
           = f.association :bladder_drainage_method,
           label: "Bladder Drainage Method",
-          collection: AnnualEvaluation.collections[:bladder_drainage_method],
           prompt: "Select one"
     = f.simple_fields_for :asia_assessment do |asia_assessment|
         = render 'shared/asia_fields', :f => asia_assessment
@@ -18,7 +17,7 @@
       .row
         .col-md-12
           = f.input :is_inpatient,
-            collection: AnnualEvaluation.collections[:is_inpatient], 
+            collection: [ ["Inpatient", true], ["Outpatient", false] ],
             label: false,
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'

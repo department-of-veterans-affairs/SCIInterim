@@ -59,27 +59,27 @@ expect{  subject.save!  }.to raise_exception(/not present in table "domain_level
 
   it "Enforces symmetry" do
     # Ensure everything is symmetric.
-    subject.neurological_motor_level_left = Asia.collections[:neurological_motor_level_left][1]
-    subject.neurological_motor_level_right = Asia.collections[:neurological_motor_level_right][1]
-    subject.neurological_sensory_level_left = Asia.collections[:neurological_sensory_level_left][1]
-    subject.neurological_sensory_level_right = Asia.collections[:neurological_sensory_level_right][1]
-    subject.preservation_motor_level_left = Asia.collections[:preservation_motor_level_left][1]
-    subject.preservation_motor_level_right = Asia.collections[:preservation_motor_level_right][1]
-    subject.preservation_sensory_level_left = Asia.collections[:preservation_sensory_level_left][1]
-    subject.preservation_sensory_level_right = Asia.collections[:preservation_sensory_level_right][1]
+    subject.neurological_motor_level_left = Domain::LevelOfInjury.first
+    subject.neurological_motor_level_right = Domain::LevelOfInjury.first
+    subject.neurological_sensory_level_left = Domain::LevelOfInjury.first
+    subject.neurological_sensory_level_right = Domain::LevelOfInjury.first
+    subject.preservation_motor_level_left = Domain::LevelOfInjury.first
+    subject.preservation_motor_level_right = Domain::LevelOfInjury.first
+    subject.preservation_sensory_level_left = Domain::LevelOfInjury.first
+    subject.preservation_sensory_level_right = Domain::LevelOfInjury.first
     subject.has_motor_or_sensory_asymmetry = false
 
     # Ensure assymmetric values per pair
-    subject.neurological_motor_level_right = Asia.collections[:neurological_motor_level_right][2]
+    subject.neurological_motor_level_right = Domain::LevelOfInjury.last
     expect{ subject.save! }.to raise_exception(/Neurological motor level right does not match left/)
 
-    subject.neurological_sensory_level_right = Asia.collections[:neurological_sensory_level_right][2]
+    subject.neurological_sensory_level_right = Domain::LevelOfInjury.last
     expect{ subject.save! }.to raise_exception(/Neurological sensory level right does not match left/)
 
-    subject.preservation_motor_level_right = Asia.collections[:preservation_motor_level_right][2]
+    subject.preservation_motor_level_right = Domain::LevelOfInjury.last
     expect{ subject.save! }.to raise_exception(/Preservation motor level right does not match left/)
 
-    subject.preservation_sensory_level_right = Asia.collections[:preservation_sensory_level_right][2]
+    subject.preservation_sensory_level_right = Domain::LevelOfInjury.last
     expect{ subject.save! }.to raise_exception(/Preservation sensory level right does not match left/)
   end
 end
