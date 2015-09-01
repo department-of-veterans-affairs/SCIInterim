@@ -1,0 +1,30 @@
+.row
+  .panel-form.panel.panel-default
+    .panel-heading
+      .panel-title OMR
+    .panel-body 
+      div
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist" 
+          li.active role="presentation" 
+            a aria-controls="start" data-toggle="tab" href="#start" role="tab"  Start
+          li role="presentation" 
+            a aria-controls="finish" data-toggle="tab" href="#finish" role="tab"  Finish
+          li role="presentation" 
+            a aria-controls="ninety-day" data-toggle="tab" href="#ninety-day" role="tab"  90 Day
+          li role="presentation" 
+            a aria-controls="one-year" data-toggle="tab" href="#one-year" role="tab"  1 year  
+        /! Tab panes
+        .tab-content
+          #start.tab-pane.active role="tabpanel"  
+            .callout-blank
+              == render 'formstart'
+          #finish.tab-pane role="tabpanel"  
+            .callout-blank
+              == render 'formfinish'
+          #ninety-day.tab-pane role="tabpanel"  
+            .callout-blank
+              == render 'form90day'
+          #one-year.tab-pane role="tabpanel"  
+            .callout-blank
+              == render 'form1year'

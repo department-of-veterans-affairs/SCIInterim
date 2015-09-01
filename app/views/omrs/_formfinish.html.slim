@@ -1,0 +1,32 @@
+= wrapped_form_for([@patient, @omr]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .callout-blank
+      h4 Finish OMR
+      .row 
+        .col-md-4
+          / TODO: Need to add this field
+          p Date of Completion: datepicker
+        .col-md-4
+          = f.association :discharge_location,
+          label_method: :name,
+          value_method: :id,
+          :prompt => "Select one"
+
+    / TODO: Need to add ASIA to controller
+    = f.simple_fields_for :start_asia_assessment do |asia_assessment|
+        = render 'shared/asia_fields', :f => asia_assessment
+
+    / TODO: Need to add this instrument
+    .instrument 
+      h4 SWLS
+
+    = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+      = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+    = f.simple_fields_for :start_sf8 do |sf8_builder|
+      = render 'shared/sf8_fields', :f => sf8_builder
+
+    .pull-right 
+      = f.submit class:"btn btn-lg btn-primary"
