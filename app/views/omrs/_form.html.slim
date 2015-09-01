@@ -58,8 +58,7 @@
         .col-md-4
           = f.input :finish_uspeq
         .col-md-4
-          = f.input :discharge_location,
-          collection: Omr.collections[:discharge_location],
+          = f.association :discharge_location,
           label_method: :name,
           value_method: :id,
           :prompt => "Select one"

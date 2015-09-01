@@ -63,10 +63,10 @@ class AnnualEvaluationsController < ApplicationController
     def annual_evaluation_params
       params.require(:annual_evaluation).permit(
         :patient_id,
+        :bladder_drainage_method_id,
         :bmi,
-        :bladder_drainage_method,
-        :eval_offered,
         :eval_completed,
+        :eval_offered,
         :is_inpatient,
         asia_assessment_attributes: nested_model_attributes(Asia),
         fim_attributes: nested_model_attributes(Fim).concat([

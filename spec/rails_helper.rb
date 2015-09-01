@@ -45,13 +45,7 @@ def modify_value_for_test(data, options = {})
   if options[:collection].present? and !options[:collection].empty?
     left_over = options[:collection].reject { |item| item == data }
     raise "Not enough options for unique value" if left_over.length == 0
-    new_value = left_over[-1]
-    # Handle domain tables.
-    if new_value.is_a?(ActiveRecord::Base)
-      return new_value.id
-    else
-      return new_value
-    end
+    return left_over[-1]
   else
     case data
     when String, NilClass
@@ -70,10 +64,19 @@ def modify_value_for_test(data, options = {})
   end
 end
 
+def collection_for_attribute(model, attribute_name)
+  collection = model.class.respond_to?(:collections) ? model.class.collections[attribute_name] : nil
+  if collection.nil?
+    association = model.class.reflect_on_association(attribute_name)
+    collection = association.klass.all if !association.nil?
+  end
+  collection
+end
+
 # Modifies the attribute_name in model with a new, different, value.
 def modify_for_test(model, collection_map, attribute_name)
   new_value = modify_value_for_test(model.send(attribute_name),
-                                    collection: collection_map[attribute_name])
+                                    collection: collection_for_attribute(model, attribute_name))
   model.send("#{attribute_name}=", new_value)
 end
 
@@ -92,10 +95,14 @@ end
 
 # Takes a model object and fills out a form with all the values in that
 # object. Useful for testing create and update operations.
-def model_to_form(model_name, field_name, model_object)
-  form_name_attribute = "#{model_name}[#{field_name}]"
-  new_value = model_object.send(field_name)
-  raise "#{field_name} must not be nil. form's can't do that." if new_value.nil?
+def model_to_form(model_name, attribute_name, model_object)
+  effective_attribute_name = attribute_name
+  association = model_object.class.reflect_on_association(attribute_name)
+  effective_attribute_name = association.foreign_key if !association.nil?
+  form_name_attribute = "#{model_name}[#{effective_attribute_name}]"
+  new_value = model_object.send(attribute_name)
+  raise "#{attribute_name} must not be filled with nil. form's can't do that." if new_value.nil?
+
 
   begin
     # Find the control type in the webform and execute appropriate
@@ -103,15 +110,10 @@ def model_to_form(model_name, field_name, model_object)
     tags = all(:xpath, "//*[@name='#{form_name_attribute}']")
     case
     when tags.length == 0
-      raise "Attribute #{field_name} not on form" if tags.size == 0
+      raise "Attribute #{effective_attribute_name} not on form" if tags.size == 0
     when tags.length == 1
       # Finding one entry that is a select is a drop-down.
       if tags[0].tag_name == 'select'
-        collection_obj_type = model_object.class.collections[field_name].first
-        if collection_obj_type.is_a?(ActiveRecord::Base)
-          # Reverse map the domain object.
-          new_value = collection_obj_type.class.find(new_value).name
-        end
         select(new_value, from: form_name_attribute)
       else
         fill_in(form_name_attribute, with: new_value)
@@ -121,10 +123,7 @@ def model_to_form(model_name, field_name, model_object)
       when TrueClass, FalseClass
         check_or_uncheck(form_name_attribute, new_value)
       else
-        # Assume radio button if there is a bag of inputs with the same name
-        # and the underlying datatype is not a boolean.
-        new_choice = new_value.to_s.downcase.tr(" ", "_").delete("^a-zA-Z0-9_\-")
-        choose("#{model_name}_#{field_name}_#{new_choice}")
+        choose("#{model_name}_#{effective_attribute_name}_#{new_value.id}")
       end
     end
   rescue

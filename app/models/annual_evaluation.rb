@@ -13,18 +13,13 @@ class AnnualEvaluation < ActiveRecord::Base
   accepts_nested_attributes_for :kurtzke_edss
   validates_associated :kurtzke_edss
 
+  belongs_to :bladder_drainage_method, class_name: Domain::BladderDrainageMethod
+
   def episode_date
     if eval_completed.nil?
       eval_offered
     else
       eval_completed
     end
-  end
-
-  def self.collections
-    {
-      is_inpatient: [ ["Inpatient", true], ["Outpatient", false] ],
-      bladder_drainage_method: Domain::BladderDrainageMethod.collection,
-    }.with_indifferent_access
   end
 end

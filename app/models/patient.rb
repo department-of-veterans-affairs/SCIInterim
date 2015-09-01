@@ -15,6 +15,22 @@ class Patient < ActiveRecord::Base
   accepts_nested_attributes_for :asia_assessment
   validates_associated :asia_assessment
 
+  belongs_to :va_status, class_name: Domain::VaStatus
+  belongs_to :assigned_vamc, class_name: Domain::VaMedicalCenter
+  belongs_to :current_occupation, class_name: Domain::Occupation
+  belongs_to :gender, class_name: Domain::Gender
+  belongs_to :has_caregiver, class_name: Domain::CaregiverType
+  belongs_to :highest_level_of_education, class_name: Domain::HighestLevelOfEducation
+  belongs_to :occupation_at_time_of_injury, class_name: Domain::Occupation
+  belongs_to :principle_pcp_va_nonva, class_name: Domain::PrinciplePcpType
+  belongs_to :residence_type, class_name: Domain::ResidenceType
+  belongs_to :sci_type, class_name: Domain::SciType
+  belongs_to :scid_eligibility, class_name: Domain::ScidEligibility
+  belongs_to :scid_etiology, class_name: Domain::ScidEtiology
+  belongs_to :theater_of_service, class_name: Domain::TheaterOfService
+  belongs_to :travel_status, class_name: Domain::TravelStatus
+  belongs_to :va_facility, class_name: Domain::VaMedicalCenter
+
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
@@ -40,27 +56,6 @@ class Patient < ActiveRecord::Base
         a.episode_date <=> b.episode_date
       end
     end
-  end
-
-  def self.collections
-    {
-      is_complete: [ ["Complete", false], ["Incomplete", true] ],
-      assigned_vamc: Domain::VaMedicalCenter.collection,
-      current_occupation: Domain::Occupation.collection,
-      gender: Domain::Gender.collection,
-      has_caregiver: Domain::CaregiverType.collection,
-      highest_level_of_education: Domain::HighestLevelOfEducation.collection,
-      occupation_at_time_of_injury: Domain::Occupation.collection,
-      principle_pcp_va_nonva: Domain::PrinciplePcpType.collection,
-      residence_type: Domain::ResidenceType.collection,
-      sci_type: Domain::SciType.collection,
-      scid_eligibility: Domain::ScidEligibility.collection,
-      scid_etiology: Domain::ScidEtiology.collection,
-      theater_of_service: Domain::TheaterOfService.collection,
-      travel_status: Domain::TravelStatus.collection,
-      va_facility: Domain::VaMedicalCenter.collection,
-      va_status: Domain::VaStatus.collection,
-    }.with_indifferent_access
   end
 
   def computed_age

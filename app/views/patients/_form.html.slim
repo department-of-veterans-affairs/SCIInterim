@@ -14,8 +14,8 @@
           = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
         .col-md-8
           label.control-label.radio Gender
-          = f.input_field :gender,
-          collection: Patient.collections[:gender],
+          = f.input_field :gender_id,
+          collection: Domain::Gender.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       hr
@@ -38,18 +38,20 @@
     .callout
       h4 VA Status and Travel Eligibility
       .row
-        .col-md-6
-          = f.input :assigned_vamc, :label => "Assigned VAMC",
-          collection: Patient.collections[:assigned_vamc],
+        .col-md-4
+          = f.association :va_status, :label => "Status",
           prompt: "Select one"
-        .col-md-6
+        .col-md-4
+          = f.association :assigned_vamc, :label => "Assigned VAMC",
+          prompt: "Select one"
+        .col-md-4
           / TOODO: Should be conditional on last radio selected
           = f.input :benefits_waiver_exemption_date, as: :date_picker, placeholder: "will be conditional upon travel status"
       .row
         .col-md-12
           label.control-label.radio Travel status
-          = f.input_field :travel_status,
-            collection: Patient.collections[:travel_status],
+          = f.input_field :travel_status_id,
+            collection: Domain::TravelStatus.all,
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
     .callout
@@ -76,15 +78,15 @@
         .col-md-12
           / This could be in a later flow displaying the information (w/ address and physician)
           label.control-label.radio.radio-inline Primary Care Physician
-          = f.input_field :principle_pcp_va_nonva,
+          = f.input_field :principle_pcp_va_nonva_id,
           label: "Primary Care Physician",
-          collection: Patient.collections[:principle_pcp_va_nonva],
+          collection: Domain::PrinciplePcpType.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       h4 VA Facility
       .row
         .col-md-6
-          = f.input :va_facility, label: "Facility"
+          = f.association :va_facility, label: "Facility"
         .col-md-3
           = f.input :va_facility_pcp_first_name, label: "Physician first name"
         .col-md-3
@@ -104,13 +106,11 @@
       h4 SCI/D Information
       .row
         .col-md-4
-          = f.input :sci_type,
-          collection: Patient.collections[:sci_type],
+          = f.association :sci_type,
           prompt: "Select one",
           label: "SCI Type"
         .col-md-4
-          = f.input :scid_eligibility,
-          collection: Patient.collections[:scid_eligibility],
+          = f.association :scid_eligibility,
           prompt: "Select one",
           label: "SCI/D Eligibility"
           / only if other is selected above
@@ -120,8 +120,7 @@
         .col-md-4
           = f.input :sci_arrival_date, as: :date_picker, label: "SCI Arrival Date"
         .col-md-4
-          = f.input :scid_etiology,
-          collection: Patient.collections[:scid_etiology],
+          = f.association :scid_etiology,
           prompt: "Select one",
           label: "SCI/D Etiology"
         .col-md-4
@@ -130,8 +129,8 @@
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
         .col-md-8
           label.control-label.radio Theater of service
-          = f.input_field :theater_of_service,
-          collection: Patient.collections[:theater_of_service],
+          = f.input_field :theater_of_service_id,
+          collection: Domain::TheaterOfService.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
     = f.simple_fields_for :asia_assessment do |asia_assessment|
@@ -141,30 +140,26 @@
       h4 Psychosocial Assessment
       .row
         .col-md-6
-          = f.input :highest_level_of_education,
-          collection: Patient.collections[:highest_level_of_education],
+          = f.association :highest_level_of_education,
           prompt: "Select one"
         .col-md-6
-          = f.input :occupation_at_time_of_injury,
-          collection: Patient.collections[:occupation_at_time_of_injury],
+          = f.association :occupation_at_time_of_injury,
           prompt: "Select one"
       .row
         .col-md-6
-          = f.input :current_occupation,
-          collection: Patient.collections[:current_occupation],
+          = f.association :current_occupation,
           prompt: "Select one"
     .callout
       h4 Discharge Information
       .row
         .col-md-12
           label.control-label.radio Caregiver type
-          = f.input_field :has_caregiver, label: "Caregiver type",
-          collection: Patient.collections[:has_caregiver],
+          = f.input_field :has_caregiver_id, label: "Caregiver type",
+          collection: Domain::CaregiverType.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
         .col-md-4
-          = f.input :residence_type,
-          collection: Patient.collections[:residence_type],
+          = f.association :residence_type,
           prompt: "Select one"
         .col-md-4
           = f.input :caregiver_first_name

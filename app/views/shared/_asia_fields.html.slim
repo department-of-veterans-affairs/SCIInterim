@@ -18,21 +18,21 @@
                 td 
                   = f.input_field :neurological_sensory_level_left,
                   label: false,
-                  collection: Asia.collections[:neurological_sensory_level_left]
+                  collection: Domain::LevelOfInjury.all
                 td 
                   = f.input_field :neurological_sensory_level_right,
                   label: false,
-                  collection: Asia.collections[:neurological_sensory_level_right]
+                  collection: Domain::LevelOfInjury.all
               tr
                 th scope="row"  Motor
                 td 
                   = f.input_field :neurological_motor_level_left,
                   label: false,
-                  collection: Asia.collections[:neurological_motor_level_left]
+                  collection: Domain::LevelOfInjury.all
                 td 
                   = f.input_field :neurological_motor_level_right,
                   label: false,
-                  collection: Asia.collections[:neurological_motor_level_right]
+                  collection: Domain::LevelOfInjury.all
       .col-md-4
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc
@@ -45,7 +45,7 @@
           .checkbox-inline
             = f.input :has_motor_or_sensory_asymmetry
         = f.input :is_complete, 
-        collection: Patient.collections[:is_complete], 
+        collection: [["Complete", true], ["Incomplete", false] ],
         label: false,
         as: :radio_buttons, 
         item_wrapper_class: 'radio-inline'
@@ -62,18 +62,18 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :preservation_sensory_left,
-                  collection: Asia.collections[:preservation_sensory_left]
+                  = f.input_field :preservation_sensory_level_left,
+                  collection: Domain::LevelOfInjury.all
                 td 
-                  = f.input_field :preservation_sensory_right,
-                  collection: Asia.collections[:preservation_sensory_right]
+                  = f.input_field :preservation_sensory_level_right,
+                  collection: Domain::LevelOfInjury.all
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :preservation_motor_left,
+                  = f.input_field :preservation_motor_level_left,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_left]
+                  collection: Domain::LevelOfInjury.all
                 td 
-                  = f.input_field :preservation_motor_right,
+                  = f.input_field :preservation_motor_level_right,
                   label: false,
-                  collection: Asia.collections[:preservation_motor_right]
+                  collection: Domain::LevelOfInjury.all

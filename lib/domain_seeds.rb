@@ -15,14 +15,12 @@ module DomainSeeds
   end
 
   ASIA_CLASSIFICATION_MAP = {
-    0 => "",
     1 => "A",
     2 => "B",
     3 => "C",
     4 => "D",
   }
   BLADDER_DRAINAGE_METHOD_MAP = {
-    0 => "",
     1 => "BA - Bladder Augmentation",
     2 => "EC - Condom/External Catheter",
     3 => "IC - Intermittent Catheterization",
@@ -33,7 +31,6 @@ module DomainSeeds
     8 => "VV - Voluntary Voiding",
   }
   CAREGIVER_TYPE_MAP = {
-    0 => "",
     1 => "No Caregiver",
     2 => "Paid Family",
     3 => "Unpaid Family",
@@ -41,7 +38,6 @@ module DomainSeeds
     5 => "Unpaid Non-family",
   }
   CHART_SF_AT_HOME_COGNITIVE_MAP = {
-    0 => "",
     1 => "Someone else is always with me to observer or supervise",
     2 => "Someone else is always around, but they only check on me now and then",
     3 => "Sometimes I am left alone for an hour or two",
@@ -50,14 +46,12 @@ module DomainSeeds
     6 => "I am left alone without anyone checking on me",
   }
   CHART_SF_AWAY_NIGHT_MAP = {
-    0 => "",
     1 => "None",
     2 => "1-2",
     3 => "3-4",
     4 => "5 or more",
   }
   CHART_SF_HOUSEHOLD_INCOME_MAP = {
-    0 => "",
     1 => "Less than 10,000",
     2 => "10,000 - 14,999",
     3 => "15,000 - 19,999",
@@ -70,15 +64,12 @@ module DomainSeeds
     10 => "Refused",
   }
   CHART_SF_INITIATED_STRANGER_CONVERSATION_MAP = {
-    0 => "",
-    0 => "",
     1 => "None",
     2 => "1-2",
     3 => "3-5",
     4 => "6 or more",
   }
   CHART_SF_MEDICAL_EXPENSE_MAP = {
-    0 => "",
     1 => "Less than 1,000",
     2 => "1,000 - 2,499",
     3 => "2,500 - 4,999",
@@ -88,20 +79,17 @@ module DomainSeeds
     10 => "Refused",
   }
   CHART_SF_NOT_HOME_COGNITIVE_MAP = {
-    0 => "",
     1 => "I am restricted from leaving, even with someone else",
     2 => "Someone is always with me to help with remembering, decision-making or judgement when I go anywhere",
     3 => "I go to place on my own as long as they are familiar",
     4 => "I do not need help going anywhere",
   }
   CHART_SF_SPOUSE_RESIDENT_OPTION_MAP = {
-    0 => "",
     1 => "Yes",
     2 => "No",
     3 => "Not applicable (subject lives alone)",
   }
   FIM_ADMISSION_CLASS_MAP = {
-    0 => "",
     1 => "Initial Rehabilitation",
     2 => "Short Stay Eval",
     3 => "Unplanned D/C",
@@ -109,12 +97,10 @@ module DomainSeeds
     5 => "Continuing Rehab",
   }
   FIM_IMPAIRMENT_CATEGORY_MAP = {
-    0 => "",
     1 => "4.1 SCD - Non-Traumatic Spinal Cord Dysfunction",
     2 => "4.2 SCD - Traumatic Spinal Cord Dysfunction",
   }
   FIM_IMPAIRMENT_GROUP_MAP = {
-    0 => "",
     1 => "4.11 Non-Traumatic Paraplegia, Unspecified",
     2 => "4.111 Non-Traumatic Incomplete Paraplegia",
     3 => "4.112 Non-Traumatic Complete Paraplegia",
@@ -135,25 +121,21 @@ module DomainSeeds
     18 => "4.23 Other Traumatic SC",
   }
   FIM_LOCOMOTION_TYPE_MAP = {
-    0 => "",
     1 => "Walk",
     2 => "Wheelchair",
     3 => "Both"
   }
   FIM_COMMUNICATION_COMPREHENSION_TYPE_MAP = {
-    0 => "",
     1 => "Auditory",
     2 => "Visual",
     3 => "Both",
   }
   FIM_COMMUNICATION_EXPRESSION_TYPE_MAP = {
-    0 => "",
     1 => "Vocal",
     2 => "Non-vocal",
     3 => "Both",
   }
   FIM_MEASUREMENT_MAP = {
-    0 => "",
     1 => "Total Assistance (performs less than 25% of task)",
     2 => "Maximal Assistance (performs 25%-49% of task)",
     3 => "Moderate Assistance (performs 50%-74% of task)",
@@ -167,13 +149,11 @@ module DomainSeeds
     # stuck this way because we need to reconcile with a legacy system.
     # Find a way to extend the list to encompass the full complexity of
     # gender identity.
-    0 => "",
     1 => "Female",
     2 => "Male",
     3 => "Unknown",
   }
   HIGHEST_LEVEL_OF_EDUCATION_MAP = {
-    0 => "",
     1 => "No Diploma",
     2 => "High School",
     3 => "Trade School",
@@ -182,7 +162,6 @@ module DomainSeeds
     6 => "Graduate School",
   }
   KURTZKE_EDSS_SCORE_MAP = {
-    0 => "",
     1 => "0.0 - Normal neurologic examination (all grade 0 in Functional Systems [FS]; Cerebral grade 1 acceptable).",
     2 => "1.0 - No disability, minimal signs in one FS (i.e., grade 1 excluding Cerebral grade 1).",
     3 => "1.5 - No disability, minimal signs in more than one FS (more than one grade 1 excluding Cerebral grade 1).",
@@ -205,7 +184,6 @@ module DomainSeeds
     20 => "10 - Death due to MS.",
   }
   LEVEL_OF_INJURIES_MAP = {
-    0 => "",
     1 => "C1",
     2 => "C2",
     3 => "C3",
@@ -237,7 +215,6 @@ module DomainSeeds
     29 => "S4-5",
   }
   OCCUPATION_MAP = {
-    0 => "",
     1 => "Working (competitive labor market, includes military)",
     2 => "Homemaker",
     3 => "On-th-job training",
@@ -248,20 +225,17 @@ module DomainSeeds
     8 => "Unknown",
   }
   PRINCIPLE_PCP_VA_NONVA_MAP = {
-    0 => "",
     1 => "VA",
     2 => "NonVA",
     3 => "Other",
   }
   REASON_FOR_ADMISSION = {
-    0 => "",
     1 => "Newly injured",
     2 => "Deconditioned",
     3 => "Transition to home",
     4 => "Other",
   }
   RESIDENCE_TYPE_MAP = {
-    0 => "",
     1 => "01 Private residence",
     2 => "02 Hospital",
     3 => "03 Nursing home",
@@ -275,21 +249,18 @@ module DomainSeeds
    99 => "99 Unknown",
   }
   SCI_TYPE_MAP = {
-    0 => "",
     1 => "Unknown",
     2 => "High Tetraplegic",
     3 => "Low Tetraplegic",
     4 => "Paraplegic",
   }
   SCID_ELIGIBILITY_MAP = {
-    0 => "",
     1 => "SCI",
     2 => "MS",
     3 => "ALS",
     4 => "Other",
   }
   SCID_ETIOLOGY_MAP = {
-    0 => "",
     1 => "Sports",
     2 => "Assault",
     3 => "Transport",
@@ -299,20 +270,17 @@ module DomainSeeds
     7 => "Unspecified or Unknown",
   }
   THEATER_OF_SERVICE_MAP = {
-    0 => "",
     1 => "NONE",
     2 => "OEF/OIF",
     3 => "OND",
   }
   TRAVEL_STATUS_MAP = {
-    0 => "",
     1 => "Not Eligible",
     2 => ">=30% more",
     3 => "VA pension",
     4 => "Benefit Travel Waiver",
   }
   VA_MEDICAL_CENTER_MAP = {
-    0 => "",
     # This is here as a placeholder until we have a real list
     1 => "VAMC Name 1",
     2 => "VAMC Name 2",
@@ -327,7 +295,6 @@ module DomainSeeds
     11 => "VAMC Name 11",
   }
   VA_STATUS_MAP = {
-    0 => "",
     1 => "Active",
     2 => "Deactivate",
     3 => "On-Hold",
@@ -490,6 +457,12 @@ module DomainSeeds
       seed_domain_chart_sf_not_home_cognitives
       seed_domain_chart_sf_spouse_resident_options
       seed_domain_fim_admission_classes
+      seed_domain_fim_communication_comprehension_types
+      seed_domain_fim_communication_expression_types
+      seed_domain_fim_impairment_categories
+      seed_domain_fim_impairment_groups
+      seed_domain_fim_locomotion_types
+      seed_domain_fim_measurements
       seed_domain_genders
       seed_domain_highest_level_of_educations
       seed_domain_kurtzke_edss_scores

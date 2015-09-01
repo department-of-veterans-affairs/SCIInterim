@@ -13,14 +13,19 @@ feature 'Patient Registry' do
   let (:read_only_attributes) {
     [
       'scido_id',
-      'va_status',  # TODO(emilyville): We're missing this field!
-      'address_id',  # TODO(awong): Nested attribute needs to be handled.
-      'caregiver_address_id',  # TODO(awong): Nested attribute needs to be handled.
+      'address',  # TODO(awong): Nested attribute needs to be handled.
+      'caregiver_address',  # TODO(awong): Nested attribute needs to be handled.
     ]
   }
 
+  let (:nested_attributes) {
+    Patient.nested_attributes_options.map { |k,v| k.to_s }
+  }
+
   let (:writable_attributes) {
-    (remove_read_only_attributes(Patient.attribute_names) - read_only_attributes)
+    belongs_to_fks = Patient.reflect_on_all_associations(:belongs_to).map { |a| a.foreign_key }
+    belongs_to_names = Patient.reflect_on_all_associations(:belongs_to).map { |a| a.name.to_s }
+    (remove_read_only_attributes(Patient.attribute_names) - belongs_to_fks + belongs_to_names - nested_attributes - read_only_attributes)
   }
 
   # Scenario: See all patients in the database
@@ -49,7 +54,7 @@ feature 'Patient Registry' do
 
     visit edit_patient_path(patient)
 
-    writable_attributes.each { |attribute_name| modify_for_test(patient, Patient.collections, attribute_name) }
+    writable_attributes.each { |attribute_name| modify_for_test(patient, {}, attribute_name) }
     patient.ssn = '000-12-1111'  # Override the default modify_for_test since it doesn't understand ssn format.
     writable_attributes.each { |attribute_name| model_to_form('patient', attribute_name, patient) }
 

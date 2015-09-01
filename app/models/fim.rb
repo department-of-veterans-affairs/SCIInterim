@@ -19,14 +19,10 @@ class Fim < ActiveRecord::Base
   accepts_nested_attributes_for :measurements_1year
   validates_associated :measurements_1year
 
-  def self.collections
-    {
-      "impairment_category" => Domain::FimImpairmentCategory.collection,
-      "impairment_group" => Domain::FimImpairmentGroup.collection,
-      "admission_class" => Domain::FimAdmissionClass.collection,
-      "locomotion_type" => Domain::FimLocomotionType.collection,
-      "communication_comprehension_type" => Domain::FimCommunicationComprehensionType.collection,
-      "communication_expression_type" => Domain::FimCommunicationExpressionType.collection,
-    }.with_indifferent_access
-  end
+  belongs_to :impairment_category, class_name: Domain::FimImpairmentCategory
+  belongs_to :impairment_group, class_name: Domain::FimImpairmentGroup
+  belongs_to :admission_class, class_name: Domain::FimAdmissionClass
+  belongs_to :locomotion_type, class_name: Domain::FimLocomotionType
+  belongs_to :communication_comprehension_type, class_name: Domain::FimCommunicationComprehensionType
+  belongs_to :communication_expression_type, class_name: Domain::FimCommunicationExpressionType
 end
