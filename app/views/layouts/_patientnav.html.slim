@@ -2,45 +2,44 @@ nav.navbar.navbav-default#patient-nav
   .container
     .row
       .col-md-8
-        h4 = "#{@patient.last_name}, #{@patient.first_name}"
-      .col-md-4
-        h4 Facilities and Providers
+        a href="#{edit_patient_path(@patient)}"
+          .patient-name = "#{@patient.last_name}, #{@patient.first_name}" 
+        / TODO: @emilyville make this display value of enum, not just integer
+        / span.label.label-default = @patient.va_status
+        span.label.label-default active
     .row
-      .col-md-3
+      .col-md-2
         ul.nav.nav-pills 
-          li 
-            | Age/DOB: 
-            strong = @patient.computed_age
-            | / 
-            strong = localize(@patient.dob)
           li
             | SSN: 
             strong = @patient.ssn
           li
+            | DOB:
+            strong = localize(@patient.dob)
+      .col-md-2
+        ul.nav.nav-pills 
+          li          
             | Gender:
             strong = @patient.gender
+          li 
+            | Age: 
+            strong = @patient.computed_age  
       .col-md-3
         ul.nav.nav-pills 
-          li 
+          li
             | SCI Type:
             strong = @patient.sci_type
           li
-            | Onset:
-            strong = @patient.va_status
-          li
             | Active Duty:
             strong = @patient.is_on_active_duty
-      .col-md-1
+      .col-md-2
         ul.nav.nav-pills 
-      .col-md-1
-      .col-md-2.border-left
-        ul.nav.nav-pills 
-          li 
-            | Facility:
-            strong = @patient.assigned_sci_hub
           li
             | Assigned VAMC:
             strong = @patient.assigned_vamc
+          li 
+            | SCI PCP: 
+            strong = @patient.assigned_sci_hub_physician_first_name 
       .col-md-2
         ul.nav.nav-pills 
           li 

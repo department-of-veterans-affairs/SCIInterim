@@ -23,7 +23,7 @@ feature 'Acute Rehab' do
     expect(page).to have_content "Patient Basic Information"
     expect(page).to have_content patient1.ssn
 
-    click_link("Acute Rehab")
+    click_link("+ Acute Rehab")
     expect(page).to have_content "New Acute Rehab"
 
     fill_in "Hospital admission", with: Time.now

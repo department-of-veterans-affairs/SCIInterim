@@ -2,51 +2,65 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :admission_date, as: :string, input_html: { class: "datepicker" }
-    = f.input :start_asia
-    = f.input :start_fim
-    = f.input :start_fam
-    = f.input :start_swls
+    .callout-blank
+      h4 New OMR
+      .row 
+        .col-md-4
+          = f.input :admission_date, as: :string, input_html: { class: "datepicker" }
+        .col-md-4
+          = f.input :start_asia
+        .col-md-4
+          = f.input :start_fim
+        .col-md-4
+          = f.input :start_fam
+        .col-md-4
+          = f.input :start_swls
+    h4.instrument-title Start Chart SF
+    = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+      = render 'shared/chart_sf_fields', :f => chart_sf_builder
+    h4.instrument-title Start SF8
+    = f.simple_fields_for :start_sf8 do |sf8_builder|
+      = render 'shared/sf8_fields', :f => sf8_builder
 
-    .callout
-        h4 Start Chart SF
-        = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
-          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+    .callout-blank 
+      .row 
+        .col-md-4
+          = f.input :dusoi
+        .col-md-4
+      .row 
+        h4 GOAL
+        .col-md-4
+          = f.input :goal_fim
+        .col-md-4
+          = f.input :goal_fam
+      .row 
+        h4 FINISH
+        .col-md-4
+          = f.input :omb_completed, as: :string, input_html: { class: "datepicker" }
+        .col-md-4
+          = f.input :finish_asia
+        .col-md-4  
+          = f.input :finish_fim
+        .col-md-4
+          = f.input :finish_fam
+        .col-md-4     
+          = f.input :finish_swls
 
-    .callout
-        h4 Start SF8
-        = f.simple_fields_for :start_sf8 do |sf8_builder|
-            = render 'shared/sf8_fields', :f => sf8_builder
+    h4.instrument-title Finish Chart SF
+    = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
+      = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
-    = f.input :dusoi
-
-      # GOAL
-    = f.input :goal_fim
-    = f.input :goal_fam
-
-      # FINISH
-    = f.input :omb_completed, as: :string, input_html: { class: "datepicker" }
-    = f.input :finish_asia
-    = f.input :finish_fim
-    = f.input :finish_fam
-    = f.input :finish_swls
-
-    .callout
-        h4 Finish Chart SF
-        = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
-          = render 'shared/chart_sf_fields', :f => chart_sf_builder
-
-    .callout
-        h4 Finish SF8
-        = f.simple_fields_for :finish_sf_8 do |sf8_builder|
-            = render 'shared/sf8_fields', :f => sf8_builder
-
-    = f.input :finish_uspeq
-    = f.association :discharge_location,
-    label_method: :name,
-    value_method: :id,
-    :prompt => "Select one"
-
-  .row
-    .col-sm-offset-3.col-sm-9.form-actions
-      = f.submit class:"btn btn-success"
+    h4.instrument-title Finish SF8
+    = f.simple_fields_for :finish_sf_8 do |sf8_builder|
+      = render 'shared/sf8_fields', :f => sf8_builder
+    .callout-blank 
+      .row 
+        .col-md-4
+          = f.input :finish_uspeq
+        .col-md-4
+          = f.association :discharge_location,
+          label_method: :name,
+          value_method: :id,
+          :prompt => "Select one"
+    .pull-right 
+      = f.submit class:"btn btn-lg btn-primary"

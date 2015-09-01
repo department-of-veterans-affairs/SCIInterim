@@ -6,9 +6,12 @@
   border-color: #12252B;
   border-radius: 0px;
 
-// .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus
   li a, .navbar-brand, .navbar-text {
     color: #BFC5C6;
+  }
+
+  .navbar-brand {
+    opacity: 0.7;
   }
 
   .navbar-text {
@@ -21,6 +24,49 @@
 
   .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     background-color: #12252B;
+  }
+}
+
+#patient-nav {
+  background: #EDF1F2;
+  padding: 10px;
+  border-radius: 0;
+  margin-top: -20px;
+  border-top: 1px solid #999;
+  min-height: 90px;
+  border-bottom: 1px solid #ddd;
+
+  .row {
+    padding-top: 10px;
+  }
+
+  a .patient-name {
+    display: inline;
+    float: left;
+    font-size: 20px;
+    color: #1D3D46;    
+    &:hover {
+      color: #428bca;
+      text-decoration: underline;
+    }
+  }
+
+  .label {
+    margin: 10px;
+    vertical-align: bottom;
+  }
+
+  h4 {
+    color: #1D3D46;
+    } 
+
+  li {
+    margin-right: 30px;
+    color: #1D3D46;
+    font-size: 12px;
+    opacity: .8;
+    display: block;
+    width: 100%;
   }
 }
 
@@ -40,8 +86,6 @@
   h4 {
     color: #808E8E;
     font-size: 14px;
-    margin: 25px 0px;
-    clear: both;
   }
 
   .panel-title {
@@ -53,6 +97,11 @@
     font-weight: normal;
     font-size: 14px;
   }
+
+  .instrument-title {
+    margin-left: 10px;
+  }
+
   .instrument, .callout, .callout-blank {
     label {
       font-weight: normal;
@@ -67,7 +116,7 @@
   .instrument, .callout {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
-    margin: 35px 10px;
+    margin: 0px 10px 35px 10px;
     padding: 20px 20px 20px 20px;
     .crazy-table {
       label, .form-group {
@@ -108,32 +157,7 @@
     background-color: #EDF1F2;
 }
 
-#patient-nav {
-  background: #EDF1F2;
-  padding: 10px;
-  border-radius: 0;
-  margin-top: -20px;
-  border-top: 1px solid #999;
-  min-height: 90px;
-  border-bottom: 1px solid #ddd;
 
-  h4 {
-    color: #1D3D46;
-    } 
-
-  li {
-    margin-right: 30px;
-    color: #1D3D46;
-    font-size: 12px;
-    opacity: .8;
-    display: block;
-    width: 100%;
-  }
-
-  .border-left{
-    border-left: 1px solid #999;
-  }
-}
 .btn.btn-default.btn-lg.btn-block.btn-block-nav.dropdown-toggle {
   margin-top: -20px;
   height: 60px;
@@ -149,15 +173,15 @@
 }
 
 // Some hacks for simple form
-.checkbox {
-  float: left;
+.radio + .radio, .checkbox + .checkbox {
+    margin-top: 0px;
 }
 .radio_buttons.form-control {
   height: auto;
   border: none;
   box-shadow: none;
 }
-.radio.radio-inline {
+.radio.radio-inline, .checkbox-inline {
   padding-left: 0px;
   margin-top: 0px;
   height: 35px;
@@ -165,4 +189,14 @@
   label {
     margin-left: 10px;
   }
+}
+
+.clickable-row {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.border-left{
+  border-left: 1px solid #999;
 }

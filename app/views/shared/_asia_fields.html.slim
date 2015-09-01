@@ -2,7 +2,6 @@
   .instrument
     h4
     h4 ASIA Assessment Score
-    hr
     .row
       .col-md-4
         label Neurological Level
@@ -37,20 +36,19 @@
       .col-md-4
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc
-        hr
-
+        / TODO: when these are functional we won't need breaks
+        br
         label Neurological Level of Injury
         .form-control.input Missing JS auto-calc
+        / TODO: when these are functional we won't need breaks
+        label
+          .checkbox-inline
+            = f.input :has_motor_or_sensory_asymmetry
         = f.input :is_complete, 
         collection: [["Complete", true], ["Incomplete", false] ],
         label: false,
         as: :radio_buttons, 
         item_wrapper_class: 'radio-inline'
-        label
-          .checkbox-inline
-            = f.input_field :has_motor_or_sensory_asymmetry
-            | Has motor or sensory asymmetry
-
       .col-md-4
         label Zone of Partial Preservation
         .table-responsive

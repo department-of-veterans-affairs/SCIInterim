@@ -23,7 +23,7 @@ feature 'Annual Evaluations' do
     expect(page).to have_content "Patient Basic Information"
     expect(page).to have_content patient1.ssn
 
-    click_link("Annual Eval")
+    click_link("+ Annual Evaluation")
     expect(page).to have_content "New Annual Evaluation"
 
     click_button("Save Annual Evaluation")
