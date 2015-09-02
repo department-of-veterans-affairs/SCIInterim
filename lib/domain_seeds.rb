@@ -674,7 +674,7 @@ module DomainSeeds
     if value.is_a?(Hash) then
       value.each { |key, value| set_expr << "#{key}=#{ActiveRecord::Base.connection.quote(value)}" }
     else
-      set_expr << "SET name = #{ActiveRecord::Base.connection.quote(value)}"
+      set_expr << "name = #{ActiveRecord::Base.connection.quote(value)}"
     end
     "SET #{set_expr.join(",")}"
   end

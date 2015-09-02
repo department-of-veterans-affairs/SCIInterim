@@ -58,7 +58,7 @@ class MigratePatientEnums < ActiveRecord::Migration
         enum_to_domain(:patients, :domain_occupations, :current_occupation, seed_entries: false)
         enum_to_domain(:patients, :domain_scid_etiologies, :scid_etiology)
         enum_to_domain(:patients, :domain_scid_eligibilities, :scid_eligibility)
-        enum_to_domain(:patients, :domain_va_medical_centers, :assigned_vamc)
+        enum_to_domain(:patients, :domain_va_medical_centers, :assigned_vamc, seed_entries: false)
         enum_to_domain(:patients, :domain_principle_pcp_types, :principle_pcp_va_nonva)
       end
       dir.down do

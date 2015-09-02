@@ -15,13 +15,14 @@ class Patient < ActiveRecord::Base
   accepts_nested_attributes_for :asia_assessment
   validates_associated :asia_assessment
 
-  belongs_to :va_status, class_name: Domain::VaStatus
   belongs_to :assigned_vamc, class_name: Domain::VaMedicalCenter
+  belongs_to :assigned_sci_hub, class_name: Domain::SciHub
   belongs_to :current_occupation, class_name: Domain::Occupation
   belongs_to :gender, class_name: Domain::Gender
   belongs_to :has_caregiver, class_name: Domain::CaregiverType
   belongs_to :highest_level_of_education, class_name: Domain::HighestLevelOfEducation
   belongs_to :occupation_at_time_of_injury, class_name: Domain::Occupation
+  belongs_to :preferred_sci_hub, class_name: Domain::SciHub
   belongs_to :principle_pcp_va_nonva, class_name: Domain::PrinciplePcpType
   belongs_to :residence_type, class_name: Domain::ResidenceType
   belongs_to :sci_type, class_name: Domain::SciType
@@ -30,6 +31,7 @@ class Patient < ActiveRecord::Base
   belongs_to :theater_of_service, class_name: Domain::TheaterOfService
   belongs_to :travel_status, class_name: Domain::TravelStatus
   belongs_to :va_facility, class_name: Domain::VaMedicalCenter
+  belongs_to :va_status, class_name: Domain::VaStatus
 
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
