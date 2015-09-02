@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828003623) do
+ActiveRecord::Schema.define(version: 20150901003607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,15 @@ ActiveRecord::Schema.define(version: 20150828003623) do
     t.string "name"
   end
 
+  create_table "domain_sci_hubs", force: true do |t|
+    t.string  "name"
+    t.string  "station"
+    t.integer "visn"
+    t.text    "city"
+  end
+
+  add_index "domain_sci_hubs", ["station"], name: "index_domain_sci_hubs_on_station", unique: true, using: :btree
+
   create_table "domain_sci_types", force: true do |t|
     t.string "name"
   end
@@ -244,8 +253,12 @@ ActiveRecord::Schema.define(version: 20150828003623) do
   end
 
   create_table "domain_va_medical_centers", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.string  "station"
+    t.integer "visn"
   end
+
+  add_index "domain_va_medical_centers", ["station"], name: "index_domain_va_medical_centers_on_station", unique: true, using: :btree
 
   create_table "domain_va_statuses", force: true do |t|
     t.string "name"
