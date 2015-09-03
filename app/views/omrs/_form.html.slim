@@ -5,15 +5,15 @@
     .callout-blank
       h4 New OMR
       .row 
-        .col-md-4
+        .medium-4.columns
           = f.input :admission_date, as: :string, input_html: { class: "datepicker" }
-        .col-md-4
+        .medium-4.columns
           = f.input :start_asia
-        .col-md-4
+        .medium-4.columns
           = f.input :start_fim
-        .col-md-4
+        .medium-4.columns
           = f.input :start_fam
-        .col-md-4
+        .medium-4.columns
           = f.input :start_swls
     h4.instrument-title Start Chart SF
     = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
@@ -24,26 +24,26 @@
 
     .callout-blank 
       .row 
-        .col-md-4
+        .medium-4.columns
           = f.input :dusoi
-        .col-md-4
+        .medium-4.columns
       .row 
         h4 GOAL
-        .col-md-4
+        .medium-4.columns
           = f.input :goal_fim
-        .col-md-4
+        .medium-4.columns
           = f.input :goal_fam
       .row 
         h4 FINISH
-        .col-md-4
+        .medium-4.columns
           = f.input :omb_completed, as: :string, input_html: { class: "datepicker" }
-        .col-md-4
+        .medium-4.columns
           = f.input :finish_asia
-        .col-md-4  
+        .medium-4.columns  
           = f.input :finish_fim
-        .col-md-4
+        .medium-4.columns
           = f.input :finish_fam
-        .col-md-4     
+        .medium-4.columns     
           = f.input :finish_swls
 
     h4.instrument-title Finish Chart SF
@@ -55,9 +55,9 @@
       = render 'shared/sf8_fields', :f => sf8_builder
     .callout-blank 
       .row 
-        .col-md-4
+        .medium-4.columns
           = f.input :finish_uspeq
-        .col-md-4
+        .medium-4.columns
           = f.association :discharge_location,
           label_method: :name,
           value_method: :id,

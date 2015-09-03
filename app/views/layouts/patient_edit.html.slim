@@ -5,9 +5,9 @@
 
   .container 
     .row
-      .col-md-9
+      .medium-9.columns
         == content_for?(:form) ? yield(:form) : yield
-      .col-md-3
+      .medium-3.columns
         table.table.table-bordered
           tr
             th Add a Patient Evaluation
@@ -22,7 +22,7 @@
             th Episodes of Care History
           - for episode in @patient.episode_of_cares do
             tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
-              .col-md-12
+              .medium-12.columns
                 td 
                   = episode.class.name
                   .small

@@ -2,57 +2,57 @@
   .instrument
     h4 SF8
     .row
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 1. Overall, how would you rate your health during the past 4 weeks?
-      .col-md-4
+      .medium-4.columns
         = f.input :q1_overall_health,
         collection: Sf8.collections[:q1_overall_health],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 2a. During the past 4 weeks, how much did physical health problems limit your usual physical activities(such as walking or climbing stairs)?
-      .col-md-4
+      .medium-4.columns
         = f.input :q2a_physical_activities_limited_by_physical,
         collection: Sf8.collections[:q2a_physical_activities_limited_by_physical],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 2b. If you could not walk or climb stairs during the past 4 weeks, how much did physical health problems limit your other usual physical activities?
-      .col-md-4
+      .medium-4.columns
         = f.input :q2b_physical_activities_limited_by_physical_mobility_restricted,
         collection: Sf8.collections[:q2b_physical_activities_limited_by_physical_mobility_restricted],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 3. During the past 4 weeks, how much difficulty did you have doing your daily work, both at home and away from home, because of your physical health?
-      .col-md-4
+      .medium-4.columns
         = f.input :q3_occupational_difficulty_by_physical_health,
         collection: Sf8.collections[:q3_occupational_difficulty_by_physical_health],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 4. How much bodily pain have you had during the past 4 weeks?
-      .col-md-4
+      .medium-4.columns
         = f.input :q4_bodily_pain,
         collection: Sf8.collections[:q4_bodily_pain],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 5. During the past 4 weeks, how much energy did you have?
-      .col-md-4
+      .medium-4.columns
         = f.input :q5_energy,
         collection: Sf8.collections[:q5_energy],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 6. During the past 4 weeks, how much did your physical health or emotional problems limit your usual social activities with family or friends?
-      .col-md-4
+      .medium-4.columns
         = f.input :q6_social_activities_limited_by_physical_or_emotional,
         collection: Sf8.collections[:q6_social_activities_limited_by_physical_or_emotional],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 7. During the past 4 weeks, how much have you been bothered by emotional problems (such as feeling anxious, depressed, or irritable)?
-      .col-md-4
+      .medium-4.columns
         = f.input :q7_emotional_problems,
         collection: Sf8.collections[:q7_emotional_problems],
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 8. During the past 4 weeks, how much did personal or emotional problems keep you from doing your work, school, or other daily activities?
-      .col-md-4
+      .medium-4.columns
         = f.input :q8_activities_limited_by_personal_or_emotional_problems,
         collection: Sf8.collections[:q8_activities_limited_by_personal_or_emotional_problems],
         label: false

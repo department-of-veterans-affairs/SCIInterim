@@ -2,18 +2,18 @@
   .instrument
     h4 FIM Administrative Information
     .row
-      .col-md-3
+      .medium-3.columns
         / TODO: @emilyville Remove this from database
         / = fims.input :is_active_duty
         = f.input :admission_class,
         collection: Domain::FimAdmissionClass.all
-      .col-md-3
+      .medium-3.columns
         = f.input :is_program_interrupted,
           label: "Check if program is interrupted"
-      .col-md-3
+      .medium-3.columns
         = f.input :impairment_category,
         collection: Domain::FimImpairmentCategory.all
-      .col-md-3
+      .medium-3.columns
         = f.input :impairment_group,
         collection: Domain::FimImpairmentGroup.all
           / TODO: @emilyville don't know if we need these
@@ -25,7 +25,7 @@
           / = fims.input :measurements_90day_id
           / = fims.input :measurements_1year_id
     .row
-      .col-md-6.crazy-table
+      .medium-6.columns.crazy-table
         label.category FIM type 
         label.category Self Care
         / TODO @emilyville Verify Admission_class is supposed to capture record date
@@ -47,9 +47,9 @@
         / #todo fix misspelling of wheelchair
         label Walk Wheelchair
         .row
-          .col-md-6
+          .medium-6.columns
             label Walk/Wheelchair/Both
-          .col-md-12
+          .medium-12.columns
             = f.input :locomotion_type,
             label: false,
             collection: Domain::FimLocomotionType.all,
@@ -59,9 +59,9 @@
         label.category Communication
         label Comprehension
         .row
-          .col-md-6
+          .medium-6.columns
             label Auditory/Visual/Both
-          .col-md-12
+          .medium-12.columns
             = f.input :communication_comprehension_type,
             label: false,
             collection: Domain::FimCommunicationComprehensionType.all,
@@ -69,9 +69,9 @@
             :item_wrapper_class => 'radio-inline'  
         label Expression
         .row
-          .col-md-6
+          .medium-6.columns
             label Vocal/NonVocal/Both
-          .col-md-12
+          .medium-12.columns
             = f.input :communication_expression_type,
             label: false,
             collection: Domain::FimCommunicationExpressionType.all,
@@ -81,7 +81,7 @@
         label Social Interaction
         label Problem Solving
         label Memory
-      .col-md-1.crazy-table
+      .medium-1.columns.crazy-table
         label.top Start
         label.category 
         = f.input :admission_class,
@@ -134,7 +134,7 @@
           label: false
           = start_fim.input :social_cognition_memory,
           label: false
-      .col-md-1.crazy-table
+      .medium-1.columns.crazy-table
         label.top Goal
         label.category 
         = f.input :admission_class, 
@@ -187,7 +187,7 @@
           label: false
           = goal_fim.input :social_cognition_memory, 
           label: false
-      .col-md-1.crazy-table
+      .medium-1.columns.crazy-table
         label.top Finish
         label.category 
         = f.input :admission_class, 
@@ -240,7 +240,7 @@
           label: false
           = finish_fim.input :social_cognition_memory, 
           label: false 
-      .col-md-1.crazy-table
+      .medium-1.columns.crazy-table
         label 90 day
         label.category 
         / todo: @emilyville change 90 to ninety everywhere it needs to be changed
@@ -294,7 +294,7 @@
           label: false
           = ninetyday_fim.input :social_cognition_memory, 
           label: false   
-      .col-md-1.crazy-table
+      .medium-1.columns.crazy-table
         label 1 Year
         label.category 
         / todo: @emilyville change 90 to ninety everywhere it needs to be changed
