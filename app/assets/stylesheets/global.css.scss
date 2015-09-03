@@ -1,28 +1,28 @@
 // Place all the styles special to the SCI app here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.navbar-inverse#sci-nav {
+.top-bar#sci-nav {
   background-color: #1D3D46;
   border-color: #12252B;
   border-radius: 0px;
 
-  li a, .navbar-brand, .navbar-text {
+  li a, .name, .topbar-text {
     color: #BFC5C6;
   }
 
-  .navbar-brand {
+  li.name {
     opacity: 0.7;
   }
 
-  .navbar-text {
+  .topbar-text {
     opacity: .5;
   }
 
-  .active a, .navbar-brand.active a {
+  .active a, .name.active a {
       color: #DFEDF1;
   }
 
-  .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  .section > .active > a, .top-bar .section > .active > a:hover, .top-bar .section > .active > a:focus {
     background-color: #12252B;
   }
 }
