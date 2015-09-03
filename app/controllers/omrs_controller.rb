@@ -56,33 +56,30 @@ class OmrsController < ApplicationController
     end
 
     def omr_params
+      params.require(:patient_id)
       params.require(:omr).permit(
-        :patient_id, # TODO(awong.dev): Required?
-        :admission_date,
-        :start_asia,
-        :start_fim,
-        :start_fam,
-        :start_swls,
-        :start_chart_sf,
-        :dusoi,
-
-        # GOAL
-        :goal_fim,
-        :goal_fam,
-
-        # FINISH
-        :omb_completed,
-        :finish_asia,
-        :finish_fim,
-        :finish_fam,
-        :finish_swls,
-        :finish_chart_sf,
-        :finish_uspeq,
         :discharge_location_id,
-        start_sf8_attributes: nested_model_attributes(Sf8),
-        finish_sf8_attributes: nested_model_attributes(Sf8),
-        start_chart_sf_attributes: nested_model_attributes(ChartSf),
+        :finish_date,
+        :finish_swls,
+        :followup_1yr_date,
+        :followup_90day_date,
+        :start_date,
+        :start_swls,
+        goal_fim_attributes: nested_model_attributes(Fim),
+        finish_asia_attributes: nested_model_attributes(Asia),
         finish_chart_sf_attributes: nested_model_attributes(ChartSf),
+        finish_fim_attributes: nested_model_attributes(Fim),
+        finish_sf8_attributes: nested_model_attributes(Sf8),
+        followup_1yr_chart_sf_attributes: nested_model_attributes(ChartSf),
+        followup_1yr_fim_attributes: nested_model_attributes(Fim),
+        followup_1yr_sf8_attributes: nested_model_attributes(Sf8),
+        followup_90day_chart_sf_attributes: nested_model_attributes(ChartSf),
+        followup_90day_fim_attributes: nested_model_attributes(Fim),
+        followup_90day_sf8_attributes: nested_model_attributes(Sf8),
+        start_asia_attributes: nested_model_attributes(Asia),
+        start_chart_sf_attributes: nested_model_attributes(ChartSf),
+        start_fim_attributes: nested_model_attributes(Fim),
+        start_sf8_attributes: nested_model_attributes(Sf8),
       )
     end
 end

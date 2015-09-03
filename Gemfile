@@ -10,8 +10,6 @@ gem 'country_select'
 gem 'devise'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'factory_girl_rails'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
-gem 'foreigner'
-gem 'immigrant'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'pg'
