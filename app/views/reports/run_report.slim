@@ -1,9 +1,0 @@
-ol.breadcrumb
-  li: a href="/reports" Reports
-  li: a href="/reports/entity/#{@entity}" #{@entity}
-  - if @entity_name and @entity_id
-    li: a href="/reports/entity/#{@entity}/#{@entity_id}" #{@entity_name}
-  /li.active #{@report[0][:name]}
-ol
-
-div == @data

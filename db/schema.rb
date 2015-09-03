@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901003607) do
+ActiveRecord::Schema.define(version: 20150902230444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,10 +351,8 @@ ActiveRecord::Schema.define(version: 20150901003607) do
     t.boolean  "my_healthevet_messaging"
     t.boolean  "sci_service_connected"
     t.date     "benefits_waiver_exemption_date"
-    t.integer  "assigned_sci_hub"
     t.string   "assigned_sci_hub_physician_first_name"
     t.string   "assigned_sci_hub_physician_last_name"
-    t.integer  "preferred_sci_hub"
     t.string   "preferred_sci_hub_physician_first_name"
     t.string   "preferred_sci_hub_physician_last_name"
     t.string   "non_va_facility_name"
@@ -391,6 +389,8 @@ ActiveRecord::Schema.define(version: 20150901003607) do
     t.integer  "theater_of_service_id"
     t.integer  "travel_status_id"
     t.integer  "va_facility_id"
+    t.integer  "assigned_sci_hub_id"
+    t.integer  "preferred_sci_hub_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -511,6 +511,8 @@ ActiveRecord::Schema.define(version: 20150901003607) do
   add_foreign_key "patients", "domain_occupations", name: "patients_occupation_at_time_of_injury_id_fk", column: "occupation_at_time_of_injury_id"
   add_foreign_key "patients", "domain_principle_pcp_types", name: "patients_principle_pcp_va_nonva_id_fk", column: "principle_pcp_va_nonva_id"
   add_foreign_key "patients", "domain_residence_types", name: "patients_residence_type_id_fk", column: "residence_type_id"
+  add_foreign_key "patients", "domain_sci_hubs", name: "patients_assigned_sci_hub_id_fk", column: "assigned_sci_hub_id"
+  add_foreign_key "patients", "domain_sci_hubs", name: "patients_preferred_sci_hub_id_fk", column: "preferred_sci_hub_id"
   add_foreign_key "patients", "domain_sci_types", name: "patients_sci_type_id_fk", column: "sci_type_id"
   add_foreign_key "patients", "domain_scid_eligibilities", name: "patients_scid_eligibility_id_fk", column: "scid_eligibility_id"
   add_foreign_key "patients", "domain_scid_etiologies", name: "patients_scid_etiology_id_fk", column: "scid_etiology_id"

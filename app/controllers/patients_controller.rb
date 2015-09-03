@@ -72,7 +72,7 @@ class PatientsController < ApplicationController
 
     def patient_params
       params.require(:patient).permit(
-        :assigned_sci_hub,
+        :assigned_sci_hub_id,
         :assigned_sci_hub_physician_first_name,
         :assigned_sci_hub_physician_last_name,
         :assigned_vamc_id,
@@ -100,7 +100,7 @@ class PatientsController < ApplicationController
         :non_va_facility_pcp_last_name,
         :non_va_facility_phone_number,
         :occupation_at_time_of_injury_id,
-        :preferred_sci_hub,
+        :preferred_sci_hub_id,
         :preferred_sci_hub_physician_first_name,
         :preferred_sci_hub_physician_last_name,
         :principle_pcp_va_nonva_id,

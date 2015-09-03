@@ -9,7 +9,7 @@ FactoryGirl.define do
     acute_rehabs { rand(1..3).times.map { create(:acute_rehab) } }
     annual_evaluations { rand(1..3).times.map { create(:annual_evaluation) } }
     asia_assessment { create(:asia) }
-    assigned_sci_hub { rand(10) }
+    assigned_sci_hub { Domain::SciHub.all.sample }
     assigned_sci_hub_physician_first_name { Faker::Name.first_name }
     assigned_sci_hub_physician_last_name { Faker::Name.last_name }
     assigned_vamc { Domain::VaMedicalCenter.all.sample }
@@ -38,7 +38,7 @@ FactoryGirl.define do
     non_va_facility_phone_number { Faker::PhoneNumber.phone_number }
     omrs { rand(1..3).times.map { create(:omr) } }
     occupation_at_time_of_injury { Domain::Occupation.all.sample }
-    preferred_sci_hub { rand(10) }
+    preferred_sci_hub { Domain::SciHub.all.sample }
     preferred_sci_hub_physician_first_name { Faker::Name.first_name }
     preferred_sci_hub_physician_last_name { Faker::Name.last_name }
     principle_pcp_va_nonva { Domain::PrinciplePcpType.all.sample }

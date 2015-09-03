@@ -1,9 +1,43 @@
-h3 SCI Registry Reports
+.row
+  .panel.panel-default
+    .callout
+      h2 Make UR r3p0r+ here.
+      = form_tag("/reports", method: "GET", enforce_utf8: false)
+        .row
+          .col-md-8
+            | Hub: 
+            = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
+          .col-md-4
+            = submit_tag "Get Data"
 
-- unless @categories.empty?
-  - for category in @categories do
-    h3: a href="/reports/entity/#{category}" #{category}
-  end
-- else
-  p
-    | No reports found.
+    .callout
+     - if results.empty?
+       .row
+         .col-md-12
+           p Nothing searched. Nothing found.
+     - else
+       .row
+         .col-md-12
+           h4 Download as 
+           a href="#" csv
+           |  
+           a href="#" xls
+         .row
+           .col-md-3
+             p First Name:
+           .col-md-3
+             p Last Name:
+           .col-md-3
+             p Date of Birth:
+           .col-md-3
+             p SSN:
+       - for patient in results
+         .row
+           .col-md-3
+             = patient.first_name
+           .col-md-3
+             = patient.last_name
+           .col-md-3
+             = patient.dob
+           .col-md-3
+             = patient.ssn
