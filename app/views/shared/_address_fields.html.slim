@@ -1,15 +1,15 @@
 .nested-fields
-  .col-md-8
+  .medium-8.columns
     = f.input :address1, label: "Address"
-  .col-md-4
+  .medium-4.columns
     = f.input :city, :placeholder => "City Name"
-  .col-md-8
+  .medium-8.columns
     = f.input :address2, label: "Address, line 2"
-  .col-md-4
-    = f.input :state, :placeholder => "Select one", collection: Country['US'].states.map { |key, value| value["name"] }
-  .col-md-4
+  .medium-4.columns
+/    = f.input :state, :placeholder => "Select one", collection: Country['US'].states.map { |key, value| value["name"] }
+  .medium-4.columns
     = f.input :zip, :placeholder => "12345"
-  .col-md-4 
+  .medium-4.columns 
     = f.input :country, :prompt => "Select one", priority: [ "United States", "United States Minor Outlying Islands", "Canada", "Mexico" ], selected: "US"
-  .col-md-4
+  .medium-4.columns
     = f.input :phone_number, :placeholder => "111-222-3333"

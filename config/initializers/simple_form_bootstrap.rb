@@ -6,7 +6,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'control-label'
 
     b.wrapper tag: 'div' do |ba|
-      ba.wrapper tag: 'div', class: 'input-group col-sm-12' do |append|
+      ba.wrapper tag: 'div', class: 'input-group twelve.columns' do |append|
         append.use :input, class: 'form-control'
       end
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
@@ -54,12 +54,12 @@ SimpleForm.setup do |config|
   config.wrappers :horizontal_input_group, tag: 'div', class: 'form-group input-sm', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.wrapper tag: 'div', class: 'col-sm-3 text-right' do |ba|
+    b.wrapper tag: 'div', class: 'three.columns text-right' do |ba|
       ba.use :label, class: 'control-label'
     end
 
-    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
-      ba.wrapper tag: 'div', class: 'input-group col-sm-12' do |append|
+    b.wrapper tag: 'div', class: 'nine.columns' do |ba|
+      ba.wrapper tag: 'div', class: 'input-group twelve.columns' do |append|
         append.use :input, class: 'form-control'
       end
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }

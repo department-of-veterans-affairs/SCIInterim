@@ -12,11 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
-//= require bootstrap-sprockets
-//= require bootstrap-datepicker
 //= require_tree .
 
-$(function() {
-      $('input.datepicker').data({behaviour: "datepicker"}).datepicker();
-});
+$(function(){ $(document).foundation(); });
