@@ -43,7 +43,6 @@ group :test, :darwin do
 end
 
 group :development, :test do
-  gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara-webkit'
   gem 'coveralls', require: false
