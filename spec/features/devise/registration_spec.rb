@@ -57,6 +57,6 @@ feature "Registration" do
     within('.actions') do
       click_on 'Sign up'
     end
-    expect(page).to have_content('Signed in mail@mail.com')
+    expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 end
