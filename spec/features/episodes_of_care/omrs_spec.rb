@@ -24,7 +24,7 @@ feature 'OMR' do
     expect(page).to have_content patient1.ssn
 
     click_link("+ OMR")
-    expect(page).to have_content "New OMR"
+    expect(page).to have_content "OMR"
 
     # fill_in "Episode date", with: Time.now
 
