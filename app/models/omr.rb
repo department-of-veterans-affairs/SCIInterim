@@ -1,25 +1,16 @@
 class Omr < ActiveRecord::Base
+  include ModelNestable
+
   belongs_to :patient
 
-  belongs_to :start_sf8, class_name: 'Sf8'
-  accepts_nested_attributes_for :start_sf8
-  validates_associated :start_sf8
-
-  belongs_to :finish_sf8, class_name: 'Sf8'
-  accepts_nested_attributes_for :finish_sf8
-  validates_associated :finish_sf8
-
-  belongs_to :start_chart_sf, class_name: 'ChartSf'
-  accepts_nested_attributes_for :start_chart_sf
-  validates_associated :start_chart_sf
-
-  belongs_to :finish_chart_sf, class_name: 'ChartSf'
-  accepts_nested_attributes_for :finish_chart_sf
-  validates_associated :finish_chart_sf
+  add_nested_model [:start_asia, :finish_asia], 'Asia'
+  add_nested_model [:start_chart_sf, :finish_chart_sf, :followup_90day_chart_sf, :followup_1yr_chart_sf], 'ChartSf'
+  add_nested_model [:start_fim, :goal_fim, :finish_fim, :followup_90day_fim, :followup_1yr_fim], 'Fim'
+  add_nested_model [:start_sf8, :finish_sf8, :followup_90day_sf8, :followup_1yr_sf8], 'Sf8'
 
   belongs_to :discharge_location, class_name: Domain::ResidenceType
 
   def episode_date
-    admission_date
+    start_date
   end
 end

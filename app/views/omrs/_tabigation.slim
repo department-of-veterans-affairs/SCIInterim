@@ -1,30 +1,30 @@
 .row
-  .panel-form.panel.panel-default
-    .panel-heading
-      .panel-title OMR
+  .panel
+    h3 OMR
     .panel-body 
-      div
+      = wrapped_form_for([@patient, @omr]) do |f|
+        = f.error_notification
         /! Nav tabs
-        ul.nav.nav-tabs role="tablist" 
-          li.active role="presentation" 
+        ul.tabs(role="tablist" data-tab)
+          li.tab-title.active role="presentation" 
             a aria-controls="start" data-toggle="tab" href="#start" role="tab"  Start
-          li role="presentation" 
+          li.tab-title role="presentation" 
             a aria-controls="finish" data-toggle="tab" href="#finish" role="tab"  Finish
-          li role="presentation" 
+          li.tab-title role="presentation" 
             a aria-controls="ninety-day" data-toggle="tab" href="#ninety-day" role="tab"  90 Day
-          li role="presentation" 
+          li.tab-title role="presentation" 
             a aria-controls="one-year" data-toggle="tab" href="#one-year" role="tab"  1 year  
         /! Tab panes
-        .tab-content
-          #start.tab-pane.active role="tabpanel"  
+        .tabs-content
+          section#start.content.active role="tabpanel"  
             .callout-blank
-              == render 'formstart'
-          #finish.tab-pane role="tabpanel"  
+              = render 'formstart', f: f
+          section#finish.content role="tabpanel"  
             .callout-blank
-              == render 'formfinish'
-          #ninety-day.tab-pane role="tabpanel"  
+              = render 'formfinish', f: f
+          section#ninety-day.content role="tabpanel"  
             .callout-blank
-              == render 'form90day'
-          #one-year.tab-pane role="tabpanel"  
+              = render 'form90day', f: f
+          section#one-year.content role="tabpanel"  
             .callout-blank
-              == render 'form1year'
+              = render 'form1year', f: f

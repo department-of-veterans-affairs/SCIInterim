@@ -15,10 +15,22 @@ class OmrsController < ApplicationController
 
   def new
     @omr = Omr.new
-    @omr.build_start_sf8
-    @omr.build_finish_sf8
-    @omr.build_start_chart_sf
+
+    @omr.build_finish_asia
     @omr.build_finish_chart_sf
+    @omr.build_finish_fim
+    @omr.build_finish_sf8
+    @omr.build_followup_1yr_chart_sf
+    @omr.build_followup_1yr_fim
+    @omr.build_followup_1yr_sf8
+    @omr.build_followup_90day_chart_sf
+    @omr.build_followup_90day_fim
+    @omr.build_followup_90day_sf8
+    @omr.build_goal_fim
+    @omr.build_start_asia
+    @omr.build_start_chart_sf
+    @omr.build_start_fim
+    @omr.build_start_sf8
     respond_with(@omr)
   end
 

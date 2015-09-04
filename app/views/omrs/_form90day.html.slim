@@ -1,27 +1,21 @@
-= wrapped_form_for([@patient, @omr]) do |f|
-  = f.error_notification
+.form-inputs
+  .callout-blank
+    h4 90 Day OMR
+    .row 
+      .medium-4.columns
+        = f.input :followup_90day_date, as: :date_picker, label: "Date of 90 Day Follow Up"
 
-  .form-inputs
-    .callout-blank
-      h4 90 Day OMR
-      .row 
-        .col-md-4
-          / TODO: Need to add this field
-          p Follow up 90 day Date: datepicker
+  / TODO: Need to add this instrument
+  .instrument 
+    h4 SWLS
 
-    / TODO: Need to add ASIA to controller
-    = f.simple_fields_for :start_asia_assessment do |asia_assessment|
-        = render 'shared/asia_fields', :f => asia_assessment
+  = f.simple_fields_for :followup_90day_fim do |fim_builder|
+    = render 'shared/fim', :f => fim_builder
 
-    / TODO: Need to add this instrument
-    .instrument 
-      h4 SWLS
+  = f.simple_fields_for :followup_90day_chart_sf do |chart_sf_builder|
+    = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
-    = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
-      = render 'shared/chart_sf_fields', :f => chart_sf_builder
+  = f.simple_fields_for :followup_90day_sf8 do |sf8_builder|
+    = render 'shared/sf8_fields', :f => sf8_builder
 
-    = f.simple_fields_for :start_sf8 do |sf8_builder|
-      = render 'shared/sf8_fields', :f => sf8_builder
-
-    .pull-right 
-      = f.submit class:"btn btn-lg btn-primary"
+  = f.submit class:"button large"
