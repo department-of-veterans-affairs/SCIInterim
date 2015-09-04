@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby "2.1.2"
 
-gem 'humanize'
 gem 'active_record-acts_as'
 gem 'autoprefixer-rails'  # We want this for handling vender prefix on css.
 gem 'bcrypt'
