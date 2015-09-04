@@ -6,6 +6,10 @@
   border-color: #12252B;
   border-radius: 0px;
 
+  .has-form {
+    background-color: #1D3D46;
+  }
+  
   li a, .name, .topbar-text {
     color: #BFC5C6;
   }
@@ -27,17 +31,28 @@
   }
 }
 
+.table {
+  width: 100%;
+}
+
 #patient-nav {
   background: #EDF1F2;
-  padding: 10px;
   border-radius: 0;
-  margin-top: -20px;
-  border-top: 1px solid #999;
   min-height: 90px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  padding-top: 5px;
+  height: auto;
 
-  .row {
-    padding-top: 10px;
+  .list-container, .panel.callout {
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+
+
+  .label {
+    color: #fff;
+    margin: 7px;
   }
 
   a .patient-name {
@@ -50,32 +65,24 @@
       text-decoration: underline;
     }
   }
-
-  .label {
-    margin: 10px;
-    vertical-align: bottom;
-  }
-
   h4 {
     color: #1D3D46;
     } 
 
   li {
-    margin-right: 30px;
     color: #1D3D46;
     font-size: 12px;
     opacity: .8;
-    display: block;
-    width: 100%;
-  }
+  }  
+  
 }
 
 .panel { 
   border-radius: 0px;
   border-color: #ddd;
+  background-color: #fff;
   
   h3 {
-    background-color: #EDF1F2;
     color: #1D3D46;
     size: 14px;
     margin: 10px;
@@ -106,7 +113,6 @@
   .callout-blank {
     background-color: #fff;
     margin: 0px 10px;
-    padding: 0px 20px 20px 20px;
   }
   .instrument, .callout {
     background-color: #EDF1F2;
@@ -114,7 +120,7 @@
     margin: 0px 10px 35px 10px;
     padding: 20px 20px 20px 20px;
     .crazy-table {
-      label, .form-group {
+      label, .input {
         display: block;
         clear: both;
         text-align: right;
@@ -132,7 +138,7 @@
         text-align: center;
       }
       // TODO FIX
-      &.one.columns {
+      &.columns {
         padding-left: 5px;
         padding-right: 5px;
       }
@@ -152,7 +158,6 @@
     background-color: #EDF1F2;
 }
 
-
 .button.large.dropdown-toggle {
   margin-top: -20px;
   height: 60px;
@@ -160,9 +165,6 @@
 }
 
 // Some hacks for simple form
-.radio + .radio, .checkbox + .checkbox {
-    margin-top: 0px;
-}
 .radio_buttons.form-control {
   height: auto;
   border: none;
@@ -179,10 +181,9 @@
   }
 }
 
-.clickable-row {
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
+.radio.radio-inline, .checkbox {
+  input {
+    margin-right: 7px;
   }
 }
 .border-left{
