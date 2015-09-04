@@ -1,58 +1,50 @@
-nav.navbar.navbav-default#patient-nav
+.top-bar#patient-nav
   .container
     .row
-      .col-md-8
-        a href="#{edit_patient_path(@patient)}"
-          .patient-name = "#{@patient.last_name}, #{@patient.first_name}" 
-        / TODO: @emilyville make this display value of enum, not just integer
-        / span.label.label-default = @patient.va_status
-        span.label.label-default active
-    .row
-      .col-md-2
-        ul.nav.nav-pills 
-          li
-            | SSN: 
-            strong = @patient.ssn
-          li
-            | DOB:
-            strong = localize(@patient.dob)
-      .col-md-2
-        ul.nav.nav-pills 
-          li          
-            | Gender:
-            strong = @patient.gender
-          li 
-            | Age: 
-            strong = @patient.computed_age  
-      .col-md-3
-        ul.nav.nav-pills 
-          li
-            | SCI Type:
-            strong = @patient.sci_type
-          li
-            | Active Duty:
-            strong = @patient.is_on_active_duty
-      .col-md-2
-        ul.nav.nav-pills 
-          li
-            | Assigned VAMC:
-            strong = @patient.assigned_vamc
-          li 
-            | SCI PCP: 
-            strong = @patient.assigned_sci_hub_physician_first_name 
-      .col-md-2
-        ul.nav.nav-pills 
-          li 
-            | SCI PCP: 
-            strong = @patient.assigned_sci_hub_physician_first_name 
-            |  
-            strong = @patient.assigned_sci_hub_physician_last_name
-          li 
-            | VA PCP: 
-            strong = @patient.va_facility_pcp_first_name 
-            |  
-            strong = @patient.va_facility_pcp_last_name
-
-
-
-
+      ul.inline-list
+        li
+          ul
+            li
+              a href="#{edit_patient_path(@patient)}"
+                .patient-name = "#{@patient.last_name}, #{@patient.first_name}" 
+              .label.label-default
+                = @patient.va_status
+        li
+          ul.list-container
+            li 
+              = @patient.gender
+              |, 
+              = @patient.computed_age 
+              |   
+              | years
+            li
+              | SSN: 
+              = @patient.ssn  
+            li 
+              | DOB: 
+              = localize(@patient.dob)
+        li
+          ul.panel.callout
+            li
+              strong SCI/D
+            li
+              = @patient.sci_type
+              | ,  
+              = @patient.is_on_active_duty
+            / TODO: Add SCI Hub
+            li
+              | SCI Physician:
+              |   
+              = @patient.assigned_sci_hub_physician_first_name 
+              |   
+              = @patient.assigned_sci_hub_physician_last_name 
+        li
+          ul.list-container
+            li
+              strong Assigned VAMC: 
+              = @patient.assigned_vamc
+            li 
+              strong VA PCP: 
+              = @patient.va_facility_pcp_first_name   
+              |   
+              = @patient.va_facility_pcp_last_name

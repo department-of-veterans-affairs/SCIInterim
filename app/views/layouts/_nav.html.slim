@@ -1,27 +1,30 @@
-/ navbar
-nav.navbar.navbar-inverse#sci-nav
-  .container
-    /! Brand and toggle get grouped for better mobile display
-    .navbar-header
-      button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand href="/" SCI Interim
-    /! Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li role="presentation"
-          = link_to "Add new Patient", new_patient_path
-        li
-          = link_to 'SCI Patient Registry', patients_path
+- if user_signed_in?
+  nav#sci-nav.top-bar data-topbar="" role="navigation" 
+    ul.title-area
+      li.name
+        h1
+          a href="/" SCI Interim
+      /! Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+      li.toggle-topbar.menu-icon
+        a href="#" 
+          span Menu
+    section.top-bar-section
+      /! Right Nav Section
+      ul.right
+        li.active
+          = link_to "Add New Patient", new_patient_path
         li
           = link_to 'Reports', reports_path
-      ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          li role="presentation"
-            p.navbar-text
-              = "Signed in #{current_user.email}"
-          li
-            = link_to 'Logout', destroy_user_session_path, :method => :delete
+          li.has-dropdown
+            a href="#"  #{current_user.email}
+            ul.dropdown
+              li
+                = link_to 'Logout', destroy_user_session_path, :method => :delete 
+      /! Left Nav Section
+      ul.left
+        li.has-form
+          .row.collapse
+            .large-8.small-9.columns
+              input placeholder=("Find a patient") type="text" /
+            .large-4.small-3.columns
+              a.button.expand href="#"  Search

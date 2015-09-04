@@ -1,159 +1,159 @@
 .nested-fields
   .instrument
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Physical Independence
         p People with disabilities often need assistance. We would like to differentiate between personal care for physical disabilities and supervision for cognitive problems. First, focus on physical "hands on" assistance: This includes help with eating, grooming, bathing, dressing, management of a ventilator or other equipment, transfers, etc. Keeping in mind these daily activities...
     .row
-      .col-md-12
+      .medium-12.columns
         p How many hours in a typical 24-hour day do you have someone with you to provide physical assistance for personal care activities such as eating, bathing, dressing, toileting, and mobility?
     .row
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Hours Paid Assistance
-      .col-md-4
+      .medium-4.columns
         = f.input :q1a_hours_paid, label: false
     .row
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Hours Unpaid Assistance (Family, Others)
-      .col-md-4
+      .medium-4.columns
         = f.input :q1b_hours_unpaid, label: false
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Cognitive Independence
         p Now, focus on supervision for cognitive problems instead of physical assistance. This includes remembering, decision-making, judgment, etc.
     .row
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p How much time is someone with you in your home to assist you with activities that require remembering, decision-making, or judgment?"
-      .col-md-4
+      .medium-4.columns
         = f.association :q2_at_home_assisted_cognitive, 
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p How much of the time is someone with you to help you with remembering, decision-making, or judgment when you go away from your home?
-      .col-md-4
+      .medium-4.columns
         = f.association :q3_not_home_assisted_cognitive,
         label: false
 
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Mobility
         p Now, I have a series of questions about your typical activities. Are you up and about regularly?
         / TODO: We are not providing anywhere to answer this question...
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | On a typical day, 
           strong how many hours 
           | are you out of bed?
-      .col-md-4
+      .medium-4.columns
         = f.input :q4_hours_out_of_bed_per_day, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | In a typical week, 
           strong how many days 
           | do you get out of your house and go somewhere?
-      .col-md-4
+      .medium-4.columns
         = f.input :q5_days_out_of_house_per_week, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | In the last year, 
           strong how many nights 
           | have you spent away from your home (excluding hospitalizations)?
-      .col-md-4
+      .medium-4.columns
         = f.association :q6_nights_not_home_per_year,
           label: false
 
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Occupation
         p How do you spend your time?
         / TODO: We are not providing anywhere to answer this question...
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | How 
           strong many hours per week 
           | do you spend working in a job for which you get paid?
-      .col-md-4
+      .medium-4.columns
         = f.input :q7a_hours_paid_for_job_per_week, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p What is your occupation?
-      .col-md-4
+      .medium-4.columns
         = f.input :q7b_occupation, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | How 
           strong many hours per week 
           | do you spend in school working toward a degree or in an accredited technical training program? (including hours in class and studying)
-      .col-md-4
+      .medium-4.columns
         = f.input :q8_hours_in_school_per_week, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
         | How 
         strong many hours per week 
         | do you spend in active homemaking including parenting, housekeeping, and food preparation?
-      .col-md-4
+      .medium-4.columns
         = f.input :q9_hours_homemaking_per_week, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | How 
           strong many hours per week 
           | do you spend in home maintenance activities such as gardening, house repairs, or home improvement?
-      .col-md-4
+      .medium-4.columns
         = f.input :q10_hours_in_home_maintenance_per_week, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
         | How 
         strong many hours per week 
         | do you spend in recreational activities such as sports, exercise, playing cards, or going to movies? Please do not include time spent watching TV or listening to the radio.
-      .col-md-4
+      .medium-4.columns
         = f.input :q11_hours_in_recreation_per_week, label: false
 
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Social Integration
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p With whom do you spend time?
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p 
           | How 
           strong many people 
           | do you live with?
-      .col-md-4
+      .medium-4.columns
         = f.input :q12_num_people_cohabiting, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Is one of them your spouse or significant other?
-      .col-md-4
+      .medium-4.columns
         = f.association :q13_living_with_spouse,
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Of the people you live with how many are relatives?
-      .col-md-4
+      .medium-4.columns
         = f.input :q14_num_relatives_cohabiting, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p How many business or organizational associates do you visit, phone, or write to at least once a month?
-      .col-md-4
+      .medium-4.columns
         = f.input :q15_num_associates_visited_per_month, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p How many friends (non-relatives contacted outside business or organizational settings) do you visit, phone, or write to at least once a month?
-      .col-md-4
+      .medium-4.columns
         = f.input :q16_num_friends_visited_per_month, label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p With how many strangers have you initiated a conversation in the last month (for example, to ask information or place an order)?
-      .col-md-4
+      .medium-4.columns
         = f.association :q17_num_initiated_stranger_conversations_per_month,
         label: false
 
 
     .row
-      .col-md-12
+      .medium-12.columns
         h4 Economic Self-Sufficiency
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p What financial resources do you have?
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Approximately what was the combined annual income, in the last year, of all family members in your household? (consider all sources including wages and earnings, disability benefits, pensions and retirement income, income from court settlements, investments and trust funds, child support and alimony, contributions from relatives, and any other source.)
-      .col-md-4
+      .medium-4.columns
         = f.association :q18_household_combined_income,
         label: false
-      .col-md-8.text-right
+      .medium-8.columns.text-right
         p Approximately, how much did you pay last year for medical care expenses? (Consider any amounts paid by yourself or the family members in your household and not reimbursed by insurance or benefits.) "Would you say your unreimbursed medical expenses are....?"
-      .col-md-4
+      .medium-4.columns
         = f.association :q19_total_medical_expenses_last_year,
         label: false

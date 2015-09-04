@@ -4,15 +4,15 @@
     .callout-blank
       h4 Patient Basic Information
       .row
-        .col-md-4
+        .medium-4.columns
           = f.input :first_name
-        .col-md-4
+        .medium-4.columns
           = f.input :last_name
-        .col-md-4
+        .medium-4.columns
           = f.input :dob, as: :date_picker, label: "Date of Birth"
-        .col-md-4
+        .medium-4.columns
           = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
-        .col-md-8
+        .medium-8.columns
           label.control-label.radio Gender
           = f.input_field :gender_id,
           collection: Domain::Gender.all,
@@ -21,34 +21,34 @@
       hr
       h4 Basic SCI Information
       .row
-        .col-md-4
+        .medium-4.columns
           = f.input :scido_id, label: "SCIDO ID"
-        .col-md-4
+        .medium-4.columns
           = f.input :sci_service_connected, label: "SCI is service connected"
-        .col-md-4
+        .medium-4.columns
           = f.input :my_healthevet_messaging
       hr
       h4 Patient Address Information
       .row
-        .col-md-3
-        .col-md-3
+        .medium-3.columns
+        .medium-3.columns
       .row
         = f.simple_fields_for :address do |address|
           = render 'shared/address_fields', :f => address
     .callout
       h4 VA Status and Travel Eligibility
       .row
-        .col-md-4
+        .medium-4.columns
           = f.association :va_status, :label => "Status",
           prompt: "Select one"
-        .col-md-4
+        .medium-4.columns
           = f.association :assigned_vamc, :label => "Assigned VAMC",
           prompt: "Select one"
-        .col-md-4
+        .medium-4.columns
           / TOODO: Should be conditional on last radio selected
           = f.input :benefits_waiver_exemption_date, as: :date_picker, placeholder: "will be conditional upon travel status"
       .row
-        .col-md-12
+        .medium-12.columns
           label.control-label.radio Travel status
           = f.input_field :travel_status_id,
             collection: Domain::TravelStatus.all,
@@ -58,24 +58,24 @@
       h4 SCI Hub and Physician
       h4 Assigned 
       .row
-        .col-md-6
+        .medium-6.columns
           = f.association :assigned_sci_hub, label: "Location"
-        .col-md-3
+        .medium-3.columns
           = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
-        .col-md-3
+        .medium-3.columns
           = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
       h4 Preferred (if different)
       .row
-        .col-md-6
+        .medium-6.columns
           = f.association :preferred_sci_hub, label: "Location"
-        .col-md-3
+        .medium-3.columns
           = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
-        .col-md-3
+        .medium-3.columns
           = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
     .callout
       h4 Primary Care
       .row
-        .col-md-12
+        .medium-12.columns
           / This could be in a later flow displaying the information (w/ address and physician)
           label.control-label.radio.radio-inline Primary Care Physician
           = f.input_field :principle_pcp_va_nonva_id,
@@ -85,49 +85,49 @@
           item_wrapper_class: 'radio-inline'
       h4 VA Facility
       .row
-        .col-md-6
+        .medium-6.columns
           = f.association :va_facility, label: "Facility"
-        .col-md-3
+        .medium-3.columns
           = f.input :va_facility_pcp_first_name, label: "Physician first name"
-        .col-md-3
+        .medium-3.columns
           = f.input :va_facility_pcp_last_name, label: "Physician last name", inline_label: 'Yes, remember me'
       h4 Non VA Facility
       .row
-        .col-md-6
+        .medium-6.columns
           = f.input :non_va_facility_name, label: "Facility"
           = f.input :non_va_facility_phone_number, label: "Phone Number"
-        .col-md-6
+        .medium-6.columns
           = f.input :non_va_facility_fax_number, label: "Fax number"
-        .col-md-3
+        .medium-3.columns
           = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
-        .col-md-3
+        .medium-3.columns
           = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
     .callout-blank
       h4 SCI/D Information
       .row
-        .col-md-4
+        .medium-4.columns
           = f.association :sci_type,
           prompt: "Select one",
           label: "SCI Type"
-        .col-md-4
+        .medium-4.columns
           = f.association :scid_eligibility,
           prompt: "Select one",
           label: "SCI/D Eligibility"
           / only if other is selected above
-        .col-md-4
+        .medium-4.columns
           / TODO conditional only if SCI is selected above
           = f.input :scid_eligibility_other, label: "Other"
-        .col-md-4
+        .medium-4.columns
           = f.input :sci_arrival_date, as: :date_picker, label: "SCI Arrival Date"
-        .col-md-4
+        .medium-4.columns
           = f.association :scid_etiology,
           prompt: "Select one",
           label: "SCI/D Etiology"
-        .col-md-4
+        .medium-4.columns
           = f.input :date_of_injury, as: :date_picker
-        .col-md-4
+        .medium-4.columns
           = f.input :is_on_active_duty, label: "Currently on Active Duty"
-        .col-md-8
+        .medium-8.columns
           label.control-label.radio Theater of service
           = f.input_field :theater_of_service_id,
           collection: Domain::TheaterOfService.all,
@@ -139,49 +139,48 @@
     .callout-blank
       h4 Psychosocial Assessment
       .row
-        .col-md-6
+        .medium-6.columns
           = f.association :highest_level_of_education,
           prompt: "Select one"
-        .col-md-6
+        .medium-6.columns
           = f.association :occupation_at_time_of_injury,
           prompt: "Select one"
       .row
-        .col-md-6
+        .medium-6.columns
           = f.association :current_occupation,
           prompt: "Select one"
     .callout
       h4 Discharge Information
       .row
-        .col-md-12
+        .medium-12.columns
           label.control-label.radio Caregiver type
           = f.input_field :has_caregiver_id, label: "Caregiver type",
           collection: Domain::CaregiverType.all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
-        .col-md-4
+        .medium-4.columns
           = f.association :residence_type,
           prompt: "Select one"
-        .col-md-4
+        .medium-4.columns
           = f.input :caregiver_first_name
-        .col-md-4
+        .medium-4.columns
           = f.input :caregiver_last_name
       .row
-        .col-md-12
+        .medium-12.columns
           .row
             Transfers
           .row
             = f.simple_fields_for :caregiver_address do |caregiver_address|
               = render 'shared/address_fields', :f => caregiver_address
       .row
-        .col-md-6
+        .medium-6.columns
           = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
           / TODO: Should be conditional if prev is answered
-        .col-md-6
+        .medium-6.columns
           = f.input :is_receiving_hhha, label: "Receiving HHH/A"
       .row
-        .col-md-6
+        .medium-6.columns
           = f.input :non_va_care_hours_per_month, label: "Care hours per month"
-        .col-md-6
+        .medium-6.columns
           = f.input :last_fee_basis_evaluation_date, as: :date_picker, label: "Date of last bowel/bladder non VA care evaluation"
-    .pull-right 
-      = f.submit class:"btn btn-lg btn-primary"
+    = f.submit class:"button large"

@@ -17,13 +17,13 @@ html
         / Main
         .container
             .row
-              .col-xs-12
+              .medium-12.columns
                 p.text-warning.text-right
                   = notice
                 p.text-error.text-right
                   = alert
             .row
-              .col-xs-12
+              .medium-12.columns
                   = content_for?(:application_body) ? yield(:application_body) : yield
 
     javascript:
@@ -42,7 +42,7 @@ html
         }
       })();
 
-      $('.detail-btn').on('click', function(e) {
+      $('.detail-button').on('click', function(e) {
           e.preventDefault();
           var $this = $(this);
           var $collapse = $this.closest('.collapse-group').find('.collapse');

@@ -1,43 +1,58 @@
 // Place all the styles special to the SCI app here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.navbar-inverse#sci-nav {
+.top-bar#sci-nav {
   background-color: #1D3D46;
   border-color: #12252B;
   border-radius: 0px;
 
-  li a, .navbar-brand, .navbar-text {
+  .has-form {
+    background-color: #1D3D46;
+  }
+  
+  li a, .name, .topbar-text {
     color: #BFC5C6;
   }
 
-  .navbar-brand {
+  li.name {
     opacity: 0.7;
   }
 
-  .navbar-text {
+  .topbar-text {
     opacity: .5;
   }
 
-  .active a, .navbar-brand.active a {
+  .active a, .name.active a {
       color: #DFEDF1;
   }
 
-  .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  .section > .active > a, .top-bar .section > .active > a:hover, .top-bar .section > .active > a:focus {
     background-color: #12252B;
   }
 }
 
+.table {
+  width: 100%;
+}
+
 #patient-nav {
   background: #EDF1F2;
-  padding: 10px;
   border-radius: 0;
-  margin-top: -20px;
-  border-top: 1px solid #999;
   min-height: 90px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  padding-top: 5px;
+  height: auto;
 
-  .row {
-    padding-top: 10px;
+  .list-container, .panel.callout {
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+
+
+  .label {
+    color: #fff;
+    margin: 7px;
   }
 
   a .patient-name {
@@ -50,47 +65,34 @@
       text-decoration: underline;
     }
   }
-
-  .label {
-    margin: 10px;
-    vertical-align: bottom;
-  }
-
   h4 {
     color: #1D3D46;
     } 
 
   li {
-    margin-right: 30px;
     color: #1D3D46;
     font-size: 12px;
     opacity: .8;
-    display: block;
-    width: 100%;
-  }
+  }  
+  
 }
 
-.panel.panel-default { 
+.panel { 
   border-radius: 0px;
   border-color: #ddd;
+  background-color: #fff;
   
-  .panel-heading {
-    background-color: #EDF1F2;
-  }
-  .panel-title {
+  h3 {
     color: #1D3D46;
     size: 14px;
     margin: 10px;
     border: #1D3D46;
+    font-weight: 500;
   }
   h4 {
     color: #808E8E;
     font-size: 14px;
   }
-
-  .panel-title {
-    font-weight: 500;
-  } 
 
   .form-horizontal .control-label {
     color: #4d4d4d;
@@ -111,7 +113,6 @@
   .callout-blank {
     background-color: #fff;
     margin: 0px 10px;
-    padding: 0px 20px 20px 20px;
   }
   .instrument, .callout {
     background-color: #EDF1F2;
@@ -119,7 +120,7 @@
     margin: 0px 10px 35px 10px;
     padding: 20px 20px 20px 20px;
     .crazy-table {
-      label, .form-group {
+      label, .input {
         display: block;
         clear: both;
         text-align: right;
@@ -137,7 +138,7 @@
         text-align: center;
       }
       // TODO FIX
-      &.col-md-1 {
+      &.columns {
         padding-left: 5px;
         padding-right: 5px;
       }
@@ -153,29 +154,17 @@
   }
 } 
 
-.panel.panel-default.patient-sidebar {
+.panel.patient-sidebar {
     background-color: #EDF1F2;
 }
 
-
-.btn.btn-default.btn-lg.btn-block.btn-block-nav.dropdown-toggle {
+.button.large.dropdown-toggle {
   margin-top: -20px;
   height: 60px;
   padding: 16px;
 }
 
-// some usability accordion stuff
-.panel-heading {
-    cursor: pointer;
-}
-.panel-group .panel.panel-default {
-  border-radius: 0px;
-}
-
 // Some hacks for simple form
-.radio + .radio, .checkbox + .checkbox {
-    margin-top: 0px;
-}
 .radio_buttons.form-control {
   height: auto;
   border: none;
@@ -185,16 +174,16 @@
   padding-left: 0px;
   margin-top: 0px;
   height: 35px;
+  float: left;
 
   label {
     margin-left: 10px;
   }
 }
 
-.clickable-row {
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
+.radio.radio-inline, .checkbox {
+  input {
+    margin-right: 7px;
   }
 }
 .border-left{

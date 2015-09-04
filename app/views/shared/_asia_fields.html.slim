@@ -3,7 +3,7 @@
     h4
     h4 ASIA Assessment Score
     .row
-      .col-md-4
+      .medium-6.columns
         label Neurological Level
         .table-responsive
           table.table.table-bordered.table-striped
@@ -33,23 +33,7 @@
                   = f.input_field :neurological_motor_level_right,
                   label: false,
                   collection: Domain::LevelOfInjury.all
-      .col-md-4
-        label ASIA Impairment Scale
-        .form-control.input Missing JS auto-calc
-        / TODO: when these are functional we won't need breaks
-        br
-        label Neurological Level of Injury
-        .form-control.input Missing JS auto-calc
-        / TODO: when these are functional we won't need breaks
-        label
-          .checkbox-inline
-            = f.input :has_motor_or_sensory_asymmetry
-        = f.input :is_complete, 
-        collection: [["Complete", true], ["Incomplete", false] ],
-        label: false,
-        as: :radio_buttons, 
-        item_wrapper_class: 'radio-inline'
-      .col-md-4
+      .medium-6.columns
         label Zone of Partial Preservation
         .table-responsive
           table.table.table-bordered.table-striped
@@ -77,3 +61,21 @@
                   = f.input_field :preservation_motor_level_right,
                   label: false,
                   collection: Domain::LevelOfInjury.all
+      .medium-6.columns
+        label ASIA Impairment Scale
+        .form-control.input Missing JS auto-calc
+        / TODO: when these are functional we won't need breaks
+        br
+        label
+          .checkbox-inline
+            = f.input :has_motor_or_sensory_asymmetry
+      .medium-6.columns
+        label Neurological Level of Injury
+        .form-control.input Missing JS auto-calc
+        br
+        / TODO: when these are functional we won't need breaks
+        = f.input :is_complete, 
+        collection: [["Complete", true], ["Incomplete", false] ],
+        label: false,
+        as: :radio_buttons, 
+        item_wrapper_class: 'radio-inline'

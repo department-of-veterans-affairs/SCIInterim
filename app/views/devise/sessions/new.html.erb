@@ -1,5 +1,5 @@
 <h2 class="col-md-offset-4">Log in</h2>
-<div class="well col-md-4 col-md-offset-4">
+<div class="well medium-4.columns col-md-offset-4">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
       <%= f.label :email %><br />
@@ -19,7 +19,7 @@
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-info" %>
+      <%= f.submit "Log in", class: "button info" %>
     </div>
   <% end %>
 

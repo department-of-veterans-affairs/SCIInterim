@@ -5,34 +5,34 @@
     .callout-blank
         h4 Admission
         .row
-            .col-md-8
+            .medium-8.columns
                 = f.association :reason_for_admission,
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
-            .col-md-4
+            .medium-4.columns
                 = f.input :reason_for_admission_other
         .row
-            .col-md-4
+            .medium-4.columns
                 = f.input :hospital_admission, as: :date_picker, :label => "Hospital admission date"
-            .col-md-4
+            .medium-4.columns
                 = f.input :acute_rehab_admission, as: :date_picker, :label => "Acute rehab admission date"
 
     .callout
         h4 Transfers
         .row
-            .col-md-12
+            .medium-12.columns
               = f.simple_fields_for :transfers do |transfer_builder|
                   = render 'transfer', :f => transfer_builder
 
     .callout
         h4 Discharge
         .row
-            .col-md-4
+            .medium-4.columns
                 = f.input :hospital_discharge, as: :date_picker, :label => "Hospital discharge date"
-            .col-md-4
+            .medium-4.columns
                 = f.input :acute_rehab_discharge, as: :date_picker, :label => "Acute rehab discharge date"
         .row
-            .col-md-4
+            .medium-4.columns
                 = f.association :discharge_location,
                 :prompt => "Select one"
 
@@ -87,5 +87,4 @@
     = f.simple_fields_for :followup_1yr_sf8 do |sf8_builder|
       = render 'shared/sf8_fields', :f => sf8_builder
       
-    .pull-right 
-      = f.submit class:"btn btn-lg btn-primary"
+    = f.submit class:"button large"
