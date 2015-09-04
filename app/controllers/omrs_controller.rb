@@ -1,3 +1,5 @@
+require 'benchmark'
+
 class OmrsController < ApplicationController
   include AttributeParam 
 
@@ -60,7 +62,16 @@ class OmrsController < ApplicationController
 
   private
     def set_omr
-      @omr = Omr.find(params[:id])
+      #@omr = Omr.find(params[:id])
+      @omr = Omr.includes(
+        :start_asia, :finish_asia,
+        :start_chart_sf, :finish_chart_sf, :followup_90day_chart_sf, :followup_1yr_chart_sf,
+        {start_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
+        {goal_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
+        {finish_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
+        {followup_90day_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
+        {followup_1yr_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
+        :start_sf8, :finish_sf8, :followup_90day_sf8, :followup_1yr_sf8).find(params[:id])
     end
 
     def set_patient

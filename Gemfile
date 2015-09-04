@@ -24,6 +24,7 @@ gem 'uglifier'
 gem 'render_csv'
 gem 'acts_as_xlsx'
 gem 'axlsx_rails'
+gem 'goldiloader'
 
 # For Heroku asset compilation.
 group :production do

@@ -23,6 +23,7 @@
           = f.input :bmi, label: "BMI", :placeholder => "00"
         .medium-4.columns
           = f.association :bladder_drainage_method,
+          collection: Domain::BladderDrainageMethod.cached_all,
           label: "Bladder Drainage Method",
           prompt: "Select one"
     = f.simple_fields_for :asia_assessment do |asia_assessment|

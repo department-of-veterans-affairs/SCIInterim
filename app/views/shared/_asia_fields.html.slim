@@ -15,23 +15,23 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :neurological_sensory_level_left,
+                  = f.input_field :neurological_sensory_level_left_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
                 td 
-                  = f.input_field :neurological_sensory_level_right,
+                  = f.input_field :neurological_sensory_level_right_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :neurological_motor_level_left,
+                  = f.input_field :neurological_motor_level_left_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
                 td 
-                  = f.input_field :neurological_motor_level_right,
+                  = f.input_field :neurological_motor_level_right_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
       .medium-6.columns
         label Zone of Partial Preservation
         .table-responsive
@@ -45,21 +45,21 @@
               tr
                 th scope="row"  Sensory
                 td 
-                  = f.input_field :preservation_sensory_level_left,
-                  collection: Domain::LevelOfInjury.all
+                  = f.input_field :preservation_sensory_level_left_id,
+                  collection: Domain::LevelOfInjury.cached_all
                 td 
-                  = f.input_field :preservation_sensory_level_right,
-                  collection: Domain::LevelOfInjury.all
+                  = f.input_field :preservation_sensory_level_right_id,
+                  collection: Domain::LevelOfInjury.cached_all
               tr
                 th scope="row"  Motor
                 td 
-                  = f.input_field :preservation_motor_level_left,
+                  = f.input_field :preservation_motor_level_left_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
                 td 
-                  = f.input_field :preservation_motor_level_right,
+                  = f.input_field :preservation_motor_level_right_id,
                   label: false,
-                  collection: Domain::LevelOfInjury.all
+                  collection: Domain::LevelOfInjury.cached_all
       .medium-6.columns
         label ASIA Impairment Scale
         .form-control.input Missing JS auto-calc

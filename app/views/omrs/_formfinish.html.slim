@@ -6,6 +6,7 @@
         = f.input :finish_date, as: :date_picker, label: "Date of Completion"
       .medium-4.columns
         = f.association :discharge_location,
+        collection: Domain::ResidenceType.cached_all,
         label_method: :name,
         value_method: :id,
         :prompt => "Select one"
