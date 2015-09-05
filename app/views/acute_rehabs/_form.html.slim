@@ -7,6 +7,7 @@
         .row
             .medium-8.columns
                 = f.association :reason_for_admission,
+                collection: Domain::ReasonForAdmission.cached_all,
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
             .medium-4.columns
@@ -34,6 +35,7 @@
         .row
             .medium-4.columns
                 = f.association :discharge_location,
+                collection: Domain::ResidenceType.cached_all,
                 :prompt => "Select one"
 
     h4.instrument-title START

@@ -6,7 +6,7 @@
         .row
           .medium-8.columns
             | Hub: 
-            = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
+            = select_tag("report[hub]", options_for_select(Domain::SciHub.cached_all.map{|obj| [obj.to_s, obj.id]}))
           .medium-4.columns
             = submit_tag "Get Data"
 

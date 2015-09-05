@@ -1,0 +1,31 @@
+.row
+  .panel
+    h3 OMR
+    .panel-body 
+      = wrapped_form_for([@patient, @omr]) do |f|
+        = f.error_notification
+        /! Nav tabs
+        ul.tabs(role="tablist" data-tab)
+          li.tab-title.active role="presentation" 
+            a aria-controls="start" data-toggle="tab" href="#start" role="tab"  Start
+          li.tab-title role="presentation" 
+            a aria-controls="finish" data-toggle="tab" href="#finish" role="tab"  Finish
+          li.tab-title role="presentation" 
+            a aria-controls="ninety-day" data-toggle="tab" href="#ninety-day" role="tab"  90 Day
+          li.tab-title role="presentation" 
+            a aria-controls="one-year" data-toggle="tab" href="#one-year" role="tab"  1 year  
+        /! Tab panes
+        .tabs-content
+          section#start.content.active role="tabpanel"  
+            .callout-blank
+              = render 'formstart', f: f
+          section#finish.content role="tabpanel"  
+            .callout-blank
+              = render 'formfinish', f: f
+          section#ninety-day.content role="tabpanel"  
+            .callout-blank
+              = render 'form90day', f: f
+          section#one-year.content role="tabpanel"  
+            .callout-blank
+              = render 'form1year', f: f
+        = f.submit class:"button large"
