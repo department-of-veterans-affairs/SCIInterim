@@ -1,43 +1,53 @@
-.row
-  .panel
-    .callout
-      h2 Make UR r3p0r+ here.
-      = form_tag("/reports", method: "GET", enforce_utf8: false)
-        .row
-          .medium-8.columns
-            | Hub: 
-            = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
-          .medium-4.columns
-            = submit_tag "Get Data"
 
-    .callout
-     - if results.empty?
-       .row
-         .medium-12.columns
-           p Nothing searched. Nothing found.
-     - else
-       .row
-         .medium-12.columns
-           h4 Download as 
-           a href="#" csv
-           |  
-           a href="#" xls
+ul.tabs data-tab="" 
+  li.tab-title.active
+    a href="#panel1"  Reports
+  li.tab-title
+    a href="#panel2"  SCI Registry
+.tabs-content
+  #panel1.content.active
+    h3 Make UR r3p0r+ here.
+    = form_tag("/reports", method: "GET", enforce_utf8: false)
+      .row
+        .large-12.columns
+          .row.collapse
+            .small-10.columns
+              / | Hub: 
+              = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
+            .small-2.columns
+              = submit_tag "Get Data", class: "button postfix"
+
+    .row
+      .large-12.columns
+       - if results.empty?
          .row
-           .medium-3.columns
-             p First Name:
-           .medium-3.columns
-             p Last Name:
-           .medium-3.columns
-             p Date of Birth:
-           .medium-3.columns
-             p SSN:
-       - for patient in results
+           .medium-12.columns
+             p Nothing searched. Nothing found.
+       - else
          .row
-           .medium-3.columns
-             = patient.first_name
-           .medium-3.columns
-             = patient.last_name
-           .medium-3.columns
-             = patient.dob
-           .medium-3.columns
-             = patient.ssn
+           .medium-12.columns
+             h4 Download as 
+             a href="#" csv
+             |  
+             a href="#" xls
+           .row
+             .medium-3.columns
+               p First Name:
+             .medium-3.columns
+               p Last Name:
+             .medium-3.columns
+               p Date of Birth:
+             .medium-3.columns
+               p SSN:
+         - for patient in results
+           .row
+             .medium-3.columns
+               = patient.first_name
+             .medium-3.columns
+               = patient.last_name
+             .medium-3.columns
+               = patient.dob
+             .medium-3.columns
+               = patient.ssn
+  #panel2.content
+    p This is the second panel of the basic tab example. This is the second panel of the basic tab example.

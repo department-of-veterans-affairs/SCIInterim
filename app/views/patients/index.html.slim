@@ -3,23 +3,24 @@
   .row
   .large-12.columns
     .row.collapse
-      .small-10.columns
-        input.form-control placeholder=("Name or patient ID") last_name="query" type="text" value="#{@query}"
-      .small-2.columns
-        a.button.postfix href="#"  Search
+      form method="GET"
+        .small-10.columns
+          = text_field_tag :query, placeholder=("Name or patient ID")
+        .small-2.columns
+          = submit_tag "Search", class: "button expand"
 table class='table'
   thead
     tr
       th Patient
       th First Name
       th Last Name
-      th Ssn
       th Dob
+      th Status
   tbody
     - @patients.each do |patient|
         tr class="clickable-row" data-href=edit_patient_path(patient)
           td = patient.id
           td: a href="#{edit_patient_path(patient)}"  = patient.first_name
           td: a href="#{edit_patient_path(patient)}"  = patient.last_name
-          td = patient.ssn
           td = localize(patient.dob) if patient.dob
+          td = patient.va_status

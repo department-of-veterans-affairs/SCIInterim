@@ -10,9 +10,9 @@ class PatientsController < ApplicationController
     @query = params[:query]
 
     if (@query)
-      @patients = Patient.where(patient_id: params[:query])
+      @patients = Patient.where(id: params[:query])
       if @patients.empty?
-        @patients = Patient.where("name LIKE :query or ssn LIKE :query", query: "%#{params[:query]}%")
+        @patients = Patient.where("first_name LIKE :query or last_name LIKE :query or ssn LIKE :query", query: "%#{params[:query]}%")
       end
     else
       @patients = Patient.all
@@ -20,6 +20,7 @@ class PatientsController < ApplicationController
     respond_to do |format|
         format.html {respond_with(@patients)}
         format.csv { send_data @patients.as_csv }
+        format.json { send_data @patients.to_json }
     end
   end
 
