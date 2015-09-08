@@ -20,4 +20,12 @@
             ul.dropdown
               li
                 = link_to 'Logout', destroy_user_session_path, :method => :delete 
-
+      /! Left Nav Section
+      / ul.left
+      /   li.has-form
+      /     .row.collapse
+      /       form method="GET"
+      /         .large-8.small-9.columns
+      /           = text_field_tag :query, placeholder=("Name or patient ID")
+      /         .large-4.small-3.columns
+      /           = submit_tag "Search", class: "button expand"

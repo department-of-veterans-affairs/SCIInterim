@@ -8,4 +8,5 @@
       .medium-4.columns
         = f.input :score_type
       .medium-4.columns
-        = f.association :scale_value
+        = f.association :scale_value,
+        collection: Domain::KurtzkeEdssScore.cached_all

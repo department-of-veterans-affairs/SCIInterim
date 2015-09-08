@@ -6,16 +6,16 @@
         / TODO: @emilyville Remove this from database
         / = fims.input :is_active_duty
         = f.input :admission_class,
-        collection: Domain::FimAdmissionClass.all
+        collection: Domain::FimAdmissionClass.cached_all
       .medium-3.columns
         = f.input :is_program_interrupted,
           label: "Check if program is interrupted"
       .medium-3.columns
         = f.input :impairment_category,
-        collection: Domain::FimImpairmentCategory.all
+        collection: Domain::FimImpairmentCategory.cached_all
       .medium-3.columns
         = f.input :impairment_group,
-        collection: Domain::FimImpairmentGroup.all
+        collection: Domain::FimImpairmentGroup.cached_all
           / TODO: @emilyville don't know if we need these
           / = fims.input :created_at
           / = fims.input :updated_at
@@ -52,7 +52,7 @@
           .medium-12.columns
             = f.input :locomotion_type,
             label: false,
-            collection: Domain::FimLocomotionType.all,
+            collection: Domain::FimLocomotionType.cached_all,
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'        
         label Stairs
@@ -64,7 +64,7 @@
           .medium-12.columns
             = f.input :communication_comprehension_type,
             label: false,
-            collection: Domain::FimCommunicationComprehensionType.all,
+            collection: Domain::FimCommunicationComprehensionType.cached_all,
             :as => :radio_buttons,    
             :item_wrapper_class => 'radio-inline'  
         label Expression
@@ -74,7 +74,7 @@
           .medium-12.columns
             = f.input :communication_expression_type,
             label: false,
-            collection: Domain::FimCommunicationExpressionType.all,
+            collection: Domain::FimCommunicationExpressionType.cached_all,
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'  
         label.category Social Cognition

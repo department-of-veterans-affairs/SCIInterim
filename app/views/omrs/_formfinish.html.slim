@@ -1,0 +1,28 @@
+.form-inputs
+  .callout-blank
+    h4 Finish OMR
+    .row 
+      .medium-4.columns
+        = f.input :finish_date, as: :date_picker, label: "Date of Completion"
+      .medium-4.columns
+        = f.association :discharge_location,
+        collection: Domain::ResidenceType.cached_all,
+        label_method: :name,
+        value_method: :id,
+        :prompt => "Select one"
+
+  = f.simple_fields_for :finish_asia do |asia_assessment|
+      = render 'shared/asia_fields', :f => asia_assessment
+
+  / TODO: Need to add this instrument
+  .instrument 
+    h4 SWLS
+
+  = f.simple_fields_for :finish_fim do |fim_builder|
+    = render 'shared/fim', :f => fim_builder
+
+  = f.simple_fields_for :finish_chart_sf do |chart_sf_builder|
+    = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+  = f.simple_fields_for :finish_sf8 do |sf8_builder|
+    = render 'shared/sf8_fields', :f => sf8_builder

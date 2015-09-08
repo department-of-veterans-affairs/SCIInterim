@@ -10,8 +10,6 @@ gem 'country_select'
 gem 'devise'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
 gem 'factory_girl_rails'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
-gem 'foreigner'
-gem 'immigrant'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'pg'
@@ -26,6 +24,7 @@ gem 'uglifier'
 gem 'render_csv'
 gem 'acts_as_xlsx'
 gem 'axlsx_rails'
+gem 'goldiloader'
 
 # For Heroku asset compilation.
 group :production do
@@ -44,7 +43,6 @@ group :test, :darwin do
 end
 
 group :development, :test do
-  gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara-webkit'
   gem 'coveralls', require: false
