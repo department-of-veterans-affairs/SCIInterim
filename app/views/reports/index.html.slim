@@ -1,14 +1,11 @@
-.row
-  .panel
-    .callout
-      h2 Make UR r3p0r+ here.
-      = form_tag("/reports", method: "GET", enforce_utf8: false)
-        .row
-          .medium-8.columns
-            | Hub: 
-            = select_tag("report[hub]", options_for_select(Domain::SciHub.cached_all.map{|obj| [obj.to_s, obj.id]}))
-          .medium-4.columns
-            = submit_tag "Get Data"
+h3 Make UR r3p0r+ here.
+p Please select a hub and filter criteria to generate a report.
+= form_tag("/reports", method: "GET", enforce_utf8: false)
+  .row.collapse
+    .small-10.columns
+      = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
+    .small-2.columns
+      = submit_tag "Get Data", class: "button postfix"
 
     .callout
      - if results.empty?
