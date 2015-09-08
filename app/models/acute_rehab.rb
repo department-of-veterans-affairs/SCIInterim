@@ -40,6 +40,8 @@ class AcuteRehab < ActiveRecord::Base
   belongs_to :discharge_location, class_name: Domain::ResidenceType
   belongs_to :reason_for_admission, class_name: Domain::ReasonForAdmission
 
+  validates :acute_rehab_admission, presence: true
+
   def episode_date
     acute_rehab_admission
   end

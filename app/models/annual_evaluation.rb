@@ -15,6 +15,8 @@ class AnnualEvaluation < ActiveRecord::Base
 
   belongs_to :bladder_drainage_method, class_name: Domain::BladderDrainageMethod
 
+  validates :eval_offered, presence: true
+
   def episode_date
     if eval_completed.nil?
       eval_offered

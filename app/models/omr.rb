@@ -10,6 +10,8 @@ class Omr < ActiveRecord::Base
 
   belongs_to :discharge_location, class_name: Domain::ResidenceType
 
+  validates :start_date, presence: true
+
   def episode_date
     start_date
   end

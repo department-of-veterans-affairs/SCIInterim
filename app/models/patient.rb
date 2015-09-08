@@ -45,7 +45,8 @@ class Patient < ActiveRecord::Base
     all_episodes.push(*acute_rehabs)
     all_episodes.push(*omrs)
     all_episodes.sort! do |a, b|
-      # TODO(awong): Remove the nil? checks by enforcing non-nill in DB.
+      # TODO(awong): Only one should ever be nil. This occurs if
+      # data validation fails. Try to simplify this logic for nil.
       if a.episode_date.nil?
         if b.episode_date.nil?
           0
@@ -55,7 +56,7 @@ class Patient < ActiveRecord::Base
       elsif b.episode_date.nil?
         1
       else
-        a.episode_date <=> b.episode_date
+        b.episode_date <=> a.episode_date
       end
     end
   end
