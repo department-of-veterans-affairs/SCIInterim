@@ -1,0 +1,11 @@
+require 'export'
+wb = xlsx_package.workbook
+fill_in_workbook(wb, 
+    # TODO(awong): Actually tie in the UI to the configuration struct.
+    {
+      id: 1, first_name: 1, last_name: 1, ssn: 1,
+      annual_evaluations: { id: 1, eval_offered: 1, updated_at: 1 },
+      acute_rehabs: { id: 1, followup_1yr_date: 1, followup_90day_date: 1 },
+      omrs: { id: 1, followup_1yr_date: 1, followup_90day_date: 1 },
+    },
+    results)

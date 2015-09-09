@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/plataformatec/simple_form.git
+  revision: 2e808f0bcf988a402e5154836dcd3339fee6bbe1
+  specs:
+    simple_form (3.2.0.dev)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,6 +67,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -94,6 +104,7 @@ GEM
       thor (~> 0.19.1)
     currencies (0.4.2)
     database_cleaner (1.5.0)
+    debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -276,9 +287,6 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
     shellany (0.0.1)
-    simple_form (3.1.1)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -345,6 +353,7 @@ DEPENDENCIES
   axlsx_rails
   bcrypt
   better_errors
+  binding_of_caller
   byebug
   capybara-webkit
   coffee-rails
@@ -373,7 +382,7 @@ DEPENDENCIES
   rspec-rails
   sass
   sass-rails
-  simple_form
+  simple_form!
   slim-rails
   spring-commands-rspec
   timecop

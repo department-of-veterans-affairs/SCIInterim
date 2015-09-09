@@ -17,7 +17,7 @@ gem 'puma'
 gem 'rails'
 gem 'sass'
 gem 'sass-rails'
-gem 'simple_form'
+gem 'simple_form', :git => 'https://github.com/plataformatec/simple_form.git'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -34,6 +34,7 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'guard-bundler'
   gem 'pry'
 end
