@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903201623) do
+ActiveRecord::Schema.define(version: 20150908192812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150903201623) do
     t.string   "finish_fim"
     t.string   "reason_for_admission_other"
     t.date     "hospital_admission"
-    t.date     "acute_rehab_admission"
+    t.date     "acute_rehab_admission",      null: false
     t.date     "hospital_discharge"
     t.date     "acute_rehab_discharge"
     t.boolean  "discharge_to_community"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150903201623) do
   create_table "annual_evaluations", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "eval_offered"
+    t.date     "eval_offered",               null: false
     t.date     "eval_completed"
     t.boolean  "is_inpatient"
     t.integer  "bmi"
@@ -316,7 +316,7 @@ ActiveRecord::Schema.define(version: 20150903201623) do
   create_table "omrs", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "start_date"
+    t.date     "start_date",                 null: false
     t.string   "start_swls"
     t.date     "finish_date"
     t.string   "finish_swls"

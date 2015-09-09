@@ -24,11 +24,9 @@
             tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
               .medium-12.columns
                 td 
+                  = episode.episode_date
+                  | : 
                   = episode.class.name
-                  .small
-                    | completion date: 
-                    / TODO: Make sure this always exists
-                    / = episode.eval_completed
           - if @patient.episode_of_cares.empty?
             tr
               td There are no recorded episodes of care for this patient  

@@ -26,6 +26,8 @@ feature 'Annual Evaluations' do
     click_link("+ Annual Evaluation")
     expect(page).to have_content "New Annual Evaluation"
 
+    fill_in "annual_evaluation[eval_offered]", with: Time.now
+
     click_button("Save Annual Evaluation")
     expect(current_url).to eql edit_patient_url(patient1)
 
