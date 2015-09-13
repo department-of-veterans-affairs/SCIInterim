@@ -1,4 +1,6 @@
 class Asia < ActiveRecord::Base
+  include AttributeExportable
+
   belongs_to :has_asia, polymorphic: true
 
   belongs_to :neurological_sensory_level_left, class_name: Domain::LevelOfInjury

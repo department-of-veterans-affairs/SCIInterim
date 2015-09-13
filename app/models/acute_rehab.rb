@@ -1,5 +1,5 @@
 class AcuteRehab < ActiveRecord::Base
-  include ModelNestable
+  include AttributeExportable, ModelNestable
 
   belongs_to :patient
 

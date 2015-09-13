@@ -1,5 +1,5 @@
 class Fim < ActiveRecord::Base
-  include ModelNestable
+  include AttributeExportable, ModelNestable
 
   add_nested_model [:measurements_start, :measurements_goal, :measurements_finish,
                     :measurements_90day, :measurements_1year], 'FimMeasurement'

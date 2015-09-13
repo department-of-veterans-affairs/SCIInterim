@@ -13,4 +13,3 @@ module ModelNestable
     end
   end
 end
-

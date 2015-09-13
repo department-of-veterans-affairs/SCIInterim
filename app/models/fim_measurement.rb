@@ -1,4 +1,6 @@
 class FimMeasurement < ActiveRecord::Base
+  include AttributeExportable
+
   validates :eating, numericality: { greater_than: 0, less_than: 8, allow_blank: true }
   validates :grooming, numericality: { greater_than: 0, less_than: 8, allow_blank: true }
   validates :bathing, numericality: { greater_than: 0, less_than: 8, allow_blank: true }

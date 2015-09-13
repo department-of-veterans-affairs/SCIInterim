@@ -1,5 +1,5 @@
 class AnnualEvaluation < ActiveRecord::Base
-  include ModelNestable
+  include AttributeExportable, ModelNestable
 
   belongs_to :patient
 

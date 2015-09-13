@@ -1,7 +1,7 @@
 require 'csv'
 
 class Patient < ActiveRecord::Base
-  include ModelNestable
+  include AttributeExportable, ModelNestable
 
   has_many :annual_evaluations
   has_many :omrs
