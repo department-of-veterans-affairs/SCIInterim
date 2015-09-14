@@ -7,8 +7,8 @@
       .medium-4.columns
         = f.association :start_hub, label: "Name of Hub"
 
-  = f.simple_fields_for :start_asia do |asia_assessment|
-      = render 'shared/asia_fields', :f => asia_assessment
+  = f.simple_fields_for :start_asia do |asia|
+      = render 'shared/asia_fields', :f => asia
 
   / TODO: Need to add this instrument
   .instrument 

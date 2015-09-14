@@ -7,15 +7,9 @@ class Patient < ActiveRecord::Base
   has_many :omrs
   has_many :acute_rehabs
 
-  belongs_to :address, class_name: 'Address'
-  accepts_nested_attributes_for :address
+  add_nested_model [:address, :caregiver_address], 'Address'
 
-  belongs_to :caregiver_address, class_name: 'Address', foreign_key: 'caregiver_address_id'
-  accepts_nested_attributes_for :caregiver_address
-
-  has_one :asia_assessment, class_name: 'Asia', as: :has_asia
-  accepts_nested_attributes_for :asia_assessment
-  validates_associated :asia_assessment
+  add_nested_model :asia, 'Asia'
 
   belongs_to :assigned_vamc, class_name: Domain::VaMedicalCenter
   belongs_to :assigned_sci_hub, class_name: Domain::SciHub

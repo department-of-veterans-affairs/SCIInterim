@@ -15,7 +15,7 @@ class AnnualEvaluationsController < ApplicationController
 
   def new
     @annual_evaluation = AnnualEvaluation.new
-    @annual_evaluation.build_asia_assessment
+    @annual_evaluation.build_asia
     @annual_evaluation.build_fim
     @annual_evaluation.fim.build_measurements_start
     @annual_evaluation.fim.build_measurements_goal
@@ -70,7 +70,7 @@ class AnnualEvaluationsController < ApplicationController
         :is_inpatient,
         :offered_hub_id,
         :patient_id,
-        asia_assessment_attributes: nested_model_attributes(Asia),
+        asia_attributes: nested_model_attributes(Asia),
         fim_attributes: nested_model_attributes(Fim).concat([
           {"measurements_start_attributes" => nested_model_attributes(FimMeasurement)},
           {"measurements_goal_attributes" => nested_model_attributes(FimMeasurement)},

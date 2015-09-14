@@ -15,8 +15,8 @@ class AcuteRehabsController < ApplicationController
 
   def new
     @acute_rehab = AcuteRehab.new
-    @acute_rehab.build_start_asia_assessment
-    @acute_rehab.build_finish_asia_assessment
+    @acute_rehab.build_start_asia
+    @acute_rehab.build_finish_asia
     @acute_rehab.build_start_sf8
     @acute_rehab.build_finish_sf8
     @acute_rehab.build_followup_1year_sf8
@@ -92,8 +92,8 @@ class AcuteRehabsController < ApplicationController
         :start_hub_id,
         :start_sf8,
         :start_swls,
-        start_asia_assessment_attributes: nested_model_attributes(Asia),
-        finish_asia_assessment_attributes: nested_model_attributes(Asia),
+        start_asia_attributes: nested_model_attributes(Asia),
+        finish_asia_attributes: nested_model_attributes(Asia),
         transfers_attributes: nested_model_attributes(Transfer),
         start_sf8_attributes: nested_model_attributes(Sf8),
         finish_sf8_attributes: nested_model_attributes(Sf8),

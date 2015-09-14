@@ -5,7 +5,7 @@ FactoryGirl.define do
     created_at Time.now
     updated_at Time.now
 
-    asia_assessment { create(:asia) }
+    asia { create(:asia) }
     bladder_drainage_method { Domain::BladderDrainageMethod.cached_all.sample }
     completed_hub { Domain::SciHub.cached_all.sample }
     cyh { Faker::Lorem.word }
