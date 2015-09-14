@@ -89,6 +89,7 @@ class AcuteRehabsController < ApplicationController
         :reason_for_admission_other,
         :residence_type,
         :start_fim,
+        :start_hub_id,
         :start_sf8,
         :start_swls,
         start_asia_assessment_attributes: nested_model_attributes(Asia),

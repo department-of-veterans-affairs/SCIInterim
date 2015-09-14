@@ -1,6 +1,8 @@
 class AcuteRehab < ActiveRecord::Base
   belongs_to :patient
 
+  belongs_to :start_hub, class_name: Domain::SciHub
+
   has_many :transfers, dependent: :destroy
   accepts_nested_attributes_for :transfers, :reject_if => lambda { |t| t[:in].blank? && t[:out].blank? && t[:location].blank? }, :allow_destroy => true
   validates_associated :transfers

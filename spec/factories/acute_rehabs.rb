@@ -14,13 +14,13 @@ FactoryGirl.define do
     finish_fim { rand(18..126) }
     finish_swls { rand(5..35) }
     finish_sf8 { create(:sf8) }
-    reason_for_admission { Domain::ReasonForAdmission.all.sample }
+    reason_for_admission { Domain::ReasonForAdmission.cached_all.sample }
     reason_for_admission_other { Faker::Lorem.sentence(3, false, 10) }
     hospital_admission { Faker::Date.between(20.years.ago, Date.today) }
     acute_rehab_admission { Faker::Date.between(20.years.ago, Date.today) }
     acute_rehab_discharge { Faker::Date.between(20.years.ago, Date.today) }
     hospital_discharge { Faker::Date.between(20.years.ago, Date.today) }
-    discharge_location { Domain::ResidenceType.all.sample }
+    discharge_location { Domain::ResidenceType.cached_all.sample }
     discharge_to_community { [true, false].sample }
     followup_90day_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_90day_fim { rand(18..126) }
@@ -32,5 +32,6 @@ FactoryGirl.define do
     followup_1yr_swls { rand(5..35) }
     followup_1year_chart_sf { create(:chart_sf) }
     followup_1year_sf8 { create(:sf8) }
+    start_hub { Domain::SciHub.cached_all.sample }
   end
 end

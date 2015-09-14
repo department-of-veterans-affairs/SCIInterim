@@ -20,18 +20,13 @@ class OmrsController < ApplicationController
 
     @omr.build_finish_asia
     @omr.build_finish_chart_sf
-    @omr.build_finish_fim
     @omr.build_finish_sf8
     @omr.build_followup_1yr_chart_sf
-    @omr.build_followup_1yr_fim
     @omr.build_followup_1yr_sf8
     @omr.build_followup_90day_chart_sf
-    @omr.build_followup_90day_fim
     @omr.build_followup_90day_sf8
-    @omr.build_goal_fim
     @omr.build_start_asia
     @omr.build_start_chart_sf
-    @omr.build_start_fim
     @omr.build_start_sf8
     respond_with(@omr)
   end
@@ -66,11 +61,6 @@ class OmrsController < ApplicationController
       @omr = Omr.includes(
         :start_asia, :finish_asia,
         :start_chart_sf, :finish_chart_sf, :followup_90day_chart_sf, :followup_1yr_chart_sf,
-        {start_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
-        {goal_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
-        {finish_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
-        {followup_90day_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
-        {followup_1yr_fim: [:measurements_start, :measurements_goal, :measurements_finish, :measurements_90day, :measurements_1year, :impairment_category, :impairment_group, :admission_class, :locomotion_type, :communication_comprehension_type, :communication_expression_type]},
         :start_sf8, :finish_sf8, :followup_90day_sf8, :followup_1yr_sf8).find(params[:id])
     end
 
@@ -87,21 +77,17 @@ class OmrsController < ApplicationController
         :followup_1yr_date,
         :followup_90day_date,
         :start_date,
+        :start_hub_id,
         :start_swls,
-        goal_fim_attributes: nested_model_attributes(Fim),
         finish_asia_attributes: nested_model_attributes(Asia),
         finish_chart_sf_attributes: nested_model_attributes(ChartSf),
-        finish_fim_attributes: nested_model_attributes(Fim),
         finish_sf8_attributes: nested_model_attributes(Sf8),
         followup_1yr_chart_sf_attributes: nested_model_attributes(ChartSf),
-        followup_1yr_fim_attributes: nested_model_attributes(Fim),
         followup_1yr_sf8_attributes: nested_model_attributes(Sf8),
         followup_90day_chart_sf_attributes: nested_model_attributes(ChartSf),
-        followup_90day_fim_attributes: nested_model_attributes(Fim),
         followup_90day_sf8_attributes: nested_model_attributes(Sf8),
         start_asia_attributes: nested_model_attributes(Asia),
         start_chart_sf_attributes: nested_model_attributes(ChartSf),
-        start_fim_attributes: nested_model_attributes(Fim),
         start_sf8_attributes: nested_model_attributes(Sf8),
       )
     end
