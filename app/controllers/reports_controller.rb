@@ -19,6 +19,14 @@ class ReportsController < ApplicationController
   end
   helper_method :results
 
+  def export_sections
+  end
+  helper_method :export_sections
+
+  def all_export_options
+    @all_export_options ||= Patient.all_attributes
+  end
+
  private
  def report_params
    params.permit(:filter).permit(
