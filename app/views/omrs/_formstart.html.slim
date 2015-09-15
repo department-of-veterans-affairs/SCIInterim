@@ -3,10 +3,9 @@
     h4 Start OMR
     .row 
       .medium-4.columns
-        = f.input :start_date, as: :date_picker, label: "Date of Start"
-      / TODO: Need to add this field
-      / .medium-4.columns
-        / = f.association :va_facility, label: "Facility"
+        = f.input :start_date, as: :date_picker, label: "Date of Admission"
+      .medium-4.columns
+        = f.association :start_hub, label: "Name of Hub"
 
   = f.simple_fields_for :start_asia do |asia_assessment|
       = render 'shared/asia_fields', :f => asia_assessment
@@ -14,13 +13,6 @@
   / TODO: Need to add this instrument
   .instrument 
     h4 SWLS
-
-  = f.simple_fields_for :start_fim do |fim_builder|
-    = render 'shared/fim', :f => fim_builder
-
-  / TODO: Where should Goal FIM go?
-  = f.simple_fields_for :goal_fim do |fim_builder|
-    = render 'shared/fim', :f => fim_builder
 
   = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
     = render 'shared/chart_sf_fields', :f => chart_sf_builder

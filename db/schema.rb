@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908192812) do
+ActiveRecord::Schema.define(version: 20150914220230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150908192812) do
     t.integer  "followup_90day_chart_sf_id"
     t.integer  "reason_for_admission_id"
     t.integer  "discharge_location_id"
+    t.integer  "start_hub_id"
   end
 
   add_index "acute_rehabs", ["patient_id"], name: "index_acute_rehabs_on_patient_id", using: :btree
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(version: 20150908192812) do
     t.integer  "patient_id"
     t.integer  "kurtzke_edss_id"
     t.integer  "bladder_drainage_method_id"
+    t.integer  "offered_hub_id"
+    t.integer  "completed_hub_id"
   end
 
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
@@ -330,15 +333,11 @@ ActiveRecord::Schema.define(version: 20150908192812) do
     t.date     "followup_1yr_date"
     t.integer  "start_asia_id"
     t.integer  "finish_asia_id"
-    t.integer  "start_fim_id"
-    t.integer  "goal_fim_id"
-    t.integer  "finish_fim_id"
-    t.integer  "followup_90day_fim_id"
-    t.integer  "followup_1yr_fim_id"
     t.integer  "followup_1yr_chart_sf_id"
     t.integer  "followup_90day_chart_sf_id"
     t.integer  "followup_90day_sf8_id"
     t.integer  "followup_1yr_sf8_id"
+    t.integer  "start_hub_id"
   end
 
   add_index "omrs", ["patient_id"], name: "index_omrs_on_patient_id", using: :btree
@@ -444,8 +443,11 @@ ActiveRecord::Schema.define(version: 20150908192812) do
 
   add_foreign_key "acute_rehabs", "domain_reason_for_admissions", column: "reason_for_admission_id"
   add_foreign_key "acute_rehabs", "domain_residence_types", column: "discharge_location_id"
+  add_foreign_key "acute_rehabs", "domain_sci_hubs", column: "start_hub_id"
   add_foreign_key "acute_rehabs", "patients"
   add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", column: "bladder_drainage_method_id"
+  add_foreign_key "annual_evaluations", "domain_sci_hubs", column: "completed_hub_id"
+  add_foreign_key "annual_evaluations", "domain_sci_hubs", column: "offered_hub_id"
   add_foreign_key "annual_evaluations", "fims"
   add_foreign_key "annual_evaluations", "kurtzke_edsses"
   add_foreign_key "annual_evaluations", "patients"
@@ -500,11 +502,7 @@ ActiveRecord::Schema.define(version: 20150908192812) do
   add_foreign_key "omrs", "chart_sfs", column: "followup_1yr_chart_sf_id"
   add_foreign_key "omrs", "chart_sfs", column: "followup_90day_chart_sf_id"
   add_foreign_key "omrs", "domain_residence_types", column: "discharge_location_id"
-  add_foreign_key "omrs", "fims", column: "finish_fim_id"
-  add_foreign_key "omrs", "fims", column: "followup_1yr_fim_id"
-  add_foreign_key "omrs", "fims", column: "followup_90day_fim_id"
-  add_foreign_key "omrs", "fims", column: "goal_fim_id"
-  add_foreign_key "omrs", "fims", column: "start_fim_id"
+  add_foreign_key "omrs", "domain_sci_hubs", column: "start_hub_id"
   add_foreign_key "omrs", "patients"
   add_foreign_key "omrs", "sf8s", column: "followup_1yr_sf8_id"
   add_foreign_key "omrs", "sf8s", column: "followup_90day_sf8_id"

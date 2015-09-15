@@ -14,6 +14,8 @@ class AnnualEvaluation < ActiveRecord::Base
   validates_associated :kurtzke_edss
 
   belongs_to :bladder_drainage_method, class_name: Domain::BladderDrainageMethod
+  belongs_to :offered_hub, class_name: Domain::SciHub
+  belongs_to :completed_hub, class_name: Domain::SciHub
 
   validates :eval_offered, presence: true
 

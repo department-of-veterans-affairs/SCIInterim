@@ -9,9 +9,6 @@
   .instrument 
     h4 SWLS
 
-  = f.simple_fields_for :followup_90day_fim do |fim_builder|
-    = render 'shared/fim', :f => fim_builder
-
   = f.simple_fields_for :followup_90day_chart_sf do |chart_sf_builder|
     = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
