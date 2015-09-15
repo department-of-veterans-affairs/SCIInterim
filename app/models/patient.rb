@@ -1,6 +1,8 @@
 require 'csv'
 
 class Patient < ActiveRecord::Base
+  include ModelNestable
+
   has_many :annual_evaluations
   has_many :omrs
   has_many :acute_rehabs

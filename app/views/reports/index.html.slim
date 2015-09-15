@@ -1,40 +1,56 @@
-h3 Make UR r3p0r+ here.
-p Please select a hub and filter criteria to generate a report.
-= form_tag("/reports", method: "GET", enforce_utf8: false)
-  .row.collapse
-    .small-10.columns
-      = select_tag("report[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
-    .small-2.columns
-      = submit_tag "Get Data", class: "button postfix"
-
-    .callout
-     - if results.empty?
-       .row
-         .medium-12.columns
-           p Nothing searched. Nothing found.
-     - else
-       .row
-         .medium-12.columns
-           h4 Download as 
-           a href="#" csv
-           |  
-           a href="#" xls
-         .row
-           .medium-3.columns
-             p First Name:
-           .medium-3.columns
-             p Last Name:
-           .medium-3.columns
-             p Date of Birth:
-           .medium-3.columns
-             p SSN:
-       - for patient in results
-         .row
-           .medium-3.columns
-             = patient.first_name
-           .medium-3.columns
-             = patient.last_name
-           .medium-3.columns
-             = patient.dob
-           .medium-3.columns
-             = patient.ssn
+.row
+  h3 Make a report
+  .panel
+    .panel-body 
+      = form_tag("/reports", method: "POST", enforce_utf8: false)
+        ul.accordion data-accordion="" 
+          li.accordion-navigation
+            a href="#patient-fields"  Patient Fields
+            #patient-fields.content.active
+              - i = 0
+              - for name in Patient.attribute_names
+                - if i % 3 == 0
+                  .row
+                - i = i +1
+                .small-4.columns
+                  = check_box_and_label_tag("export[patient][#{name}]", name)
+              .row
+          li.accordion-navigation
+            a href="#annual-eval-fields"  Annual Evaluation Fields
+            #annual-eval-fields.content
+              - i = 0
+              - for name in AnnualEvaluation.attribute_names
+                - if i % 3 == 0
+                  .row
+                - i = i +1
+                .small-4.columns
+                  = check_box_and_label_tag("export[annual_evaluation][#{name}]", name)
+              .row
+          li.accordion-navigation
+            a href="#acute-rehab-fields"  Acute Rehab Fields
+            #acute-rehab-fields.content
+              - i = 0
+              - for name in AcuteRehab.attribute_names
+                - if i % 3 == 0
+                  .row
+                - i = i +1
+                .small-4.columns
+                  = check_box_and_label_tag("export[acute_rehab][#{name}]", name)
+              .row
+          li.accordion-navigation
+            a href="#omr-fields"  OMR Fields
+            #omr-fields.content
+              - i = 0
+              - for name in Omr.attribute_names
+                - if i % 3 == 0
+                  .row
+                - i = i +1
+                .small-4.columns
+                  = check_box_and_label_tag("export[omr][#{name}]", name)
+              .row
+          hr
+          .row
+            .small-10.columns
+              = select_tag("filter[hub]", options_for_select(Domain::SciHub.all.map{|obj| [obj.to_s, obj.id]}))
+            .small-2.columns
+              = submit_tag "Get Data", class: "button postfix"

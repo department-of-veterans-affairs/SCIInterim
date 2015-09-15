@@ -1,4 +1,5 @@
 require 'factory_girl'
+require 'export'
 
 namespace :app do
   desc "Generate fake data for database."
@@ -14,6 +15,10 @@ namespace :app do
         patient.save!
       end
     end
+  end
+
+  task :make_workbook => :environment do
+    make_workbook
   end
 end
 
