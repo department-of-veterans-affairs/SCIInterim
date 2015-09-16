@@ -6,5 +6,14 @@ $(document).on "page:change", ->
 	$('#all-link').click -> 
 		$('#patients-section').fadeToggle()
 
-$(document).ready ->
-  showWhenValueEquals "[name='patient[travel_status_id]']", 4, "#benefitsOther"
+root = exports ? this
+root.showWhenValueEquals = (selector, toggleValue, toggleSelector) ->
+  $(selector).click ->
+    clicked = this
+    exemptionField = $(toggleSelector)
+    if clicked.value is toggleValue.toString()
+      exemptionField.show()
+    else
+      exemptionField.hide()
+    return
+  return

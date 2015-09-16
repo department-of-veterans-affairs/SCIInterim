@@ -42,13 +42,12 @@
           = f.association :va_status, :label => "Status",
           collection: Domain::VaStatus.cached_all,
           prompt: "Select one"
-        .medium-4.columns
+        .medium-4.columns.left
           = f.association :assigned_vamc, :label => "Assigned VAMC",
           collection: Domain::VaMedicalCenter.cached_all,
           prompt: "Select one"
-        .medium-4.columns
-          / TOODO: Should be conditional on last radio selected
-          = f.input :benefits_waiver_exemption_date, as: :date_picker, placeholder: "will be conditional upon travel status"
+
+
       .row
         .medium-12.columns
           label.control-label.radio Travel status
@@ -56,6 +55,12 @@
             collection: Domain::TravelStatus.cached_all,
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
+        .medium-8.left.columns#benefitsOther.hide
+          / TOODO: Should be conditional on last radio selected
+          = f.input :benefits_waiver_exemption_date, 
+            as: :date_picker, 
+            placeholder: "will be conditional upon travel status"
+
     .callout
       h4 SCI Hub and Physician
       h4 Assigned 
