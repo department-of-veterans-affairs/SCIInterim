@@ -7,11 +7,11 @@ $(document).on "page:change", ->
 		$('#patients-section').fadeToggle()
 
 root = exports ? this
-root.showWhenValueEquals = (selector, toggleValue, toggleSelector) ->
-  $(selector).click ->
-    clicked = this
+root.showWhenValueEquals = (selector, toggleValue, toggleSelector, action = 'change') ->
+  $(selector).on action, ->
+    selected = this
     exemptionField = $(toggleSelector)
-    if clicked.value is toggleValue.toString()
+    if selected.value is toggleValue.toString()
       exemptionField.show()
     else
       exemptionField.hide()

@@ -8,3 +8,4 @@ $(document).on "page:change", ->
 
 $(document).ready ->
   showWhenValueEquals "[name='patient[travel_status_id]']", 4, "#benefitsOther"
+  showWhenValueEquals "[name='patient[scid_eligibility_id]']", 1, "#sciDetails"
