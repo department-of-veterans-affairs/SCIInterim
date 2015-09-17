@@ -49,6 +49,7 @@ feature 'Patient Registry' do
   #   When I edit a patient
   #   Then I can update all read-write fields
   scenario 'Edit all patient fields' do
+    pending("Support hidden elements in test runner")
     sign_in_user
     patient = create(:patient)
 
@@ -69,6 +70,7 @@ feature 'Patient Registry' do
   #   When I create a patient
   #   Then I can specify all read-write fields
   scenario 'Create patient preserves all fields' do
+    pending("Support hidden elements in test runner")
     sign_in_user
     patient = build(:patient)
 
