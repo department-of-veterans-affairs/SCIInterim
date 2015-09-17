@@ -5,3 +5,9 @@
 $(document).on "page:change", -> 
 	$('#all-link').click -> 
 		$('#patients-section').fadeToggle()
+
+$(document).ready ->
+  showWhenValueEquals "[name='patient[travel_status_id]']", 4, "#benefitsOther"
+  showWhenValueEquals "[name='patient[scid_eligibility_id]']", 1, "#sciDetails"
+  showWhenValueEquals "[name='patient[scid_eligibility_id]']", 4, "#sciOther"
+  showWhenValueEquals "[name='patient[is_receiving_non_va_care]']", "true", "#bowelBladderDetails"

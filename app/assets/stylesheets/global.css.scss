@@ -40,6 +40,12 @@
   width: 100%;
 }
 
+.clickable-row:hover, tr.clickable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: #EDF1F2;
+}
+
 #patient-nav {
   background: #EDF1F2;
   border-radius: 0;
@@ -90,7 +96,6 @@
   h3 {
     color: #1D3D46;
     size: 14px;
-    margin: 10px;
     border: #1D3D46;
     font-weight: 500;
   }
@@ -115,14 +120,20 @@
     }
   }
 
+  .hide .instrument {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
   .callout-blank {
     background-color: #fff;
-    margin: 0px 10px;
+    margin-bottom: 10px;
   }
   .instrument, .callout {
     background-color: #EDF1F2;
     border: 1px dashed #ccc;
-    margin: 0px 10px 35px 10px;
+    margin-bottom: 35px;
     padding: 20px 20px 20px 20px;
     .crazy-table {
       label, .input {
@@ -149,10 +160,6 @@
       }
     }
   }
-
-  .instrument:hover, .callout:hover {
-    border: 1px dashed #ddd;
-  } 
   
   a {
     color: #808E8E;

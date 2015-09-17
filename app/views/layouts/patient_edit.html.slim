@@ -11,11 +11,11 @@
         table.table.table-bordered
           tr
             th Add a Patient Evaluation
-            tr 
+            tr.clickable
               td = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "" }
-            tr
+            tr.clickable
               td = link_to '+ OMR', new_patient_omr_path(@patient), { class: "" }
-            tr
+            tr.clickable
               td = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
         table.table.table-bordered.table-striped
           tr
@@ -24,46 +24,12 @@
             tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
               .medium-12.columns
                 td 
-                  = episode.episode_date
-                  | : 
-                  = episode.class.name
+                  = episode.class.name 
+                  small.right
+                    |   
+                    = episode.episode_date
           - if @patient.episode_of_cares.empty?
             tr
               td There are no recorded episodes of care for this patient  
   
-        table.table.table-bordered.table-striped
-          tr
-            th Summary of Assessments
-          tr
-            td 
-              | Asia: LOI
-              .small
-                | completion date: DATE
-          tr
-            td 
-              | FIM: SCORE
-              .small
-                | completion date: DATE
-          tr
-            td 
-              | CHART SF: SCORE
-              .small
-                | completion date: DATE
-          tr
-            td 
-              | SF8: SCORE
-              .small
-                | completion date: DATE
-          tr
-            td 
-              | SWLS: SCORE
-              .small
-                | completion date: DATE
-          tr
-            td 
-              | KURTZ EDSS: SCORE
-              .small
-                | completion date: DATE
-        / TODO: - add actual values here
-        / TODO: - add conditional messages for no records
 = render template: "layouts/application"

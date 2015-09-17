@@ -1,5 +1,6 @@
 = wrapped_form_for(@patient) do |f|
   = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
   .form-inputs
     .callout-blank
       h4 Patient Basic Information
@@ -23,6 +24,15 @@
       .row
         .medium-4.columns
           = f.input :scido_id, label: "SCIDO ID"
+        .medium-8.columns
+          label.control-label.radio Theater of service
+          = f.input_field :theater_of_service_id,
+          collection: Domain::TheaterOfService.cached_all,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
+      .row
+        .medium-4.columns
+          = f.input :is_on_active_duty, label: "Currently on Active Duty"
         .medium-4.columns
           = f.input :sci_service_connected, label: "SCI is service connected"
         .medium-4.columns
@@ -42,13 +52,10 @@
           = f.association :va_status, :label => "Status",
           collection: Domain::VaStatus.cached_all,
           prompt: "Select one"
-        .medium-4.columns
+        .medium-4.columns.left
           = f.association :assigned_vamc, :label => "Assigned VAMC",
           collection: Domain::VaMedicalCenter.cached_all,
           prompt: "Select one"
-        .medium-4.columns
-          / TOODO: Should be conditional on last radio selected
-          = f.input :benefits_waiver_exemption_date, as: :date_picker, placeholder: "will be conditional upon travel status"
       .row
         .medium-12.columns
           label.control-label.radio Travel status
@@ -56,6 +63,10 @@
             collection: Domain::TravelStatus.cached_all,
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
+        .medium-8.left.columns#benefitsOther.hide
+          /Will show conditionally on last radio selected
+          = f.input :benefits_waiver_exemption_date, 
+            as: :date_picker
     .callout
       h4 SCI Hub and Physician
       h4 Assigned 
@@ -82,7 +93,6 @@
       h4 Primary Care
       .row
         .medium-12.columns
-          / This could be in a later flow displaying the information (w/ address and physician)
           label.control-label.radio.radio-inline Primary Care Physician
           = f.input_field :principle_pcp_va_nonva_id,
           label: "Primary Care Physician",
@@ -92,13 +102,12 @@
       h4 VA Facility
       .row
         .medium-6.columns
-          / TODO: Should this be actually facility?
           = f.association :va_facility, label: "Facility"
-          collection: Domain::VaMedicalCenter.cached_all,
+          collection: Domain::VaMedicalCenter.cached_all
         .medium-3.columns
           = f.input :va_facility_pcp_first_name, label: "Physician first name"
         .medium-3.columns
-          = f.input :va_facility_pcp_last_name, label: "Physician last name", inline_label: 'Yes, remember me'
+          = f.input :va_facility_pcp_last_name, label: "Physician last name"
       h4 Non VA Facility
       .row
         .medium-6.columns
@@ -110,43 +119,38 @@
           = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
         .medium-3.columns
           = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
-    .callout-blank
+    .callout
       h4 SCI/D Information
       .row
-        .medium-4.columns
-          = f.association :sci_type,
-          collection: Domain::SciType.cached_all,
-          prompt: "Select one",
-          label: "SCI Type"
         .medium-4.columns
           = f.association :scid_eligibility,
           collection: Domain::ScidEligibility.cached_all,
           prompt: "Select one",
           label: "SCI/D Eligibility"
-          / only if other is selected above
-        .medium-4.columns
-          / TODO conditional only if SCI is selected above
-          = f.input :scid_eligibility_other, label: "Other"
-        .medium-4.columns
-          = f.input :sci_arrival_date, as: :date_picker, label: "SCI Arrival Date"
-        .medium-4.columns
-          = f.association :scid_etiology,
-          collection: Domain::ScidEtiology.cached_all,
-          prompt: "Select one",
-          label: "SCI/D Etiology"
-        .medium-4.columns
-          = f.input :date_of_injury, as: :date_picker
-        .medium-4.columns
-          = f.input :is_on_active_duty, label: "Currently on Active Duty"
-        .medium-8.columns
-          label.control-label.radio Theater of service
-          = f.input_field :theater_of_service_id,
-          collection: Domain::TheaterOfService.cached_all,
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline'
-    = f.simple_fields_for :asia_assessment do |asia_assessment|
-      = render 'shared/asia_fields', :f => asia_assessment
-      / end conditional only if SCI is selected above
+        #sciOther.hide
+          / shows only if other is selected above
+          .medium-4.columns
+            = f.input :scid_eligibility_other, label: "Other"
+      #sciDetails.hide
+        / shows only if SCI is selected above
+        hr
+        .row
+          .medium-4.columns
+            = f.association :sci_type,
+            collection: Domain::SciType.cached_all,
+            prompt: "Select one",
+            label: "SCI Type"
+          .medium-4.columns
+            = f.input :sci_arrival_date, as: :date_picker, label: "SCI Arrival Date"
+          .medium-4.columns
+            = f.association :scid_etiology,
+            collection: Domain::ScidEtiology.cached_all,
+            prompt: "Select one",
+            label: "SCI/D Etiology"
+          .medium-4.columns
+            = f.input :date_of_injury, as: :date_picker
+        = f.simple_fields_for :asia_assessment do |asia_assessment|
+          = render 'shared/asia_fields', :f => asia_assessment
     .callout-blank
       h4 Psychosocial Assessment
       .row
@@ -187,15 +191,25 @@
           .row
             = f.simple_fields_for :caregiver_address do |caregiver_address|
               = render 'shared/address_fields', :f => caregiver_address
+      hr
+      h4 Bowel/Bladder Care
       .row
-        .medium-6.columns
-          = f.input :is_receiving_non_va_care, label: "Receiving bowel/bladder non VA care"
-          / TODO: Should be conditional if prev is answered
-        .medium-6.columns
-          = f.input :is_receiving_hhha, label: "Receiving HHH/A"
-      .row
-        .medium-6.columns
-          = f.input :non_va_care_hours_per_month, label: "Care hours per month"
-        .medium-6.columns
-          = f.input :last_fee_basis_evaluation_date, as: :date_picker, label: "Date of last bowel/bladder non VA care evaluation"
+        .medium-12.columns
+          label.control-label.radio Is the patient is receiving bowel/bladder non VA care?
+          = f.input_field :is_receiving_non_va_care,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
+      / Conditional if prev is answered
+      #bowelBladderDetails.hide
+        .row
+          .medium-6.columns
+            label.control-label.radio Is the patient HHH/A?
+            = f.input_field :is_receiving_hhha,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
+        .row
+          .medium-8.columns
+            = f.input :last_fee_basis_evaluation_date, as: :date_picker, label: "Date of last bowel/bladder non VA care evaluation"
+          .medium-4.columns
+            = f.input :non_va_care_hours_per_month, label: "Care hours per month"
     = f.submit class:"button large"
