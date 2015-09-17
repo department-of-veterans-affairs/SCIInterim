@@ -11,3 +11,5 @@ $(document).ready ->
   showWhenValueEquals "[name='patient[scid_eligibility_id]']", 1, "#sciDetails"
   showWhenValueEquals "[name='patient[scid_eligibility_id]']", 4, "#sciOther"
   showWhenValueEquals "[name='patient[is_receiving_non_va_care]']", "true", "#bowelBladderDetails"
+  showWhenValueEquals "[name='patient[principle_pcp_va_nonva_id]']", 1, "#principleVa"
+  showWhenValueEquals "[name='patient[principle_pcp_va_nonva_id]']", 2, "#principleNonVa"

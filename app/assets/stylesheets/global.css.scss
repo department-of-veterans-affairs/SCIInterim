@@ -201,3 +201,26 @@
 .border-left{
   border-left: 1px solid #999;
 }
+
+.form-expander {
+  background-color: rgba(0, 23, 78, 0.0470588);
+  padding: 20px 0 20px 0;
+  border: 1px dashed #ccc;
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.form-expander-small {
+  display: inline-block;
+  background-color: rgba(0, 23, 78, 0.0470588);
+  padding: 10px;
+  border: 1px dashed #ccc;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 18px;
+  width: 100%;
+}
+

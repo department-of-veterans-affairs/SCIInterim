@@ -71,26 +71,28 @@
           collection: Domain::PrinciplePcpType.cached_all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
-      h4 VA Facility
-      .row
-        .medium-6.columns
-          = f.association :va_facility, label: "Facility"
-          collection: Domain::VaMedicalCenter.cached_all
-        .medium-3.columns
-          = f.input :va_facility_pcp_first_name, label: "Physician first name"
-        .medium-3.columns
-          = f.input :va_facility_pcp_last_name, label: "Physician last name"
-      h4 Non VA Facility
-      .row
-        .medium-6.columns
-          = f.input :non_va_facility_name, label: "Facility"
-          = f.input :non_va_facility_phone_number, label: "Phone Number"
-        .medium-6.columns
-          = f.input :non_va_facility_fax_number, label: "Fax number"
-        .medium-3.columns
-          = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
-        .medium-3.columns
-          = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
+      #principleVa.hide
+        h4 VA Facility
+        .row
+          .medium-6.columns
+            = f.association :va_facility, label: "Facility"
+            collection: Domain::VaMedicalCenter.cached_all
+          .medium-3.columns
+            = f.input :va_facility_pcp_first_name, label: "Physician first name"
+          .medium-3.columns
+            = f.input :va_facility_pcp_last_name, label: "Physician last name"
+      #principleNonVa.hide
+        h4 Non VA Facility
+        .row
+          .medium-6.columns
+            = f.input :non_va_facility_name, label: "Facility"
+            = f.input :non_va_facility_phone_number, label: "Phone Number"
+          .medium-6.columns
+            = f.input :non_va_facility_fax_number, label: "Fax number"
+          .medium-3.columns
+            = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
+          .medium-3.columns
+            = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
     .callout
       h4 SCI Hub
       .row
