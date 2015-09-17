@@ -40,7 +40,7 @@
   width: 100%;
 }
 
-.clickable-row:hover {
+.clickable-row:hover, tr.clickable:hover {
   text-decoration: underline;
   cursor: pointer;
   background-color: #EDF1F2;

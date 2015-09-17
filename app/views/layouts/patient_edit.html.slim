@@ -11,11 +11,11 @@
         table.table.table-bordered
           tr
             th Add a Patient Evaluation
-            tr class="clickable-row" 
+            tr.clickable
               td = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "" }
-            tr class="clickable-row" 
+            tr.clickable
               td = link_to '+ OMR', new_patient_omr_path(@patient), { class: "" }
-            tr class="clickable-row" 
+            tr.clickable
               td = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
         table.table.table-bordered.table-striped
           tr
