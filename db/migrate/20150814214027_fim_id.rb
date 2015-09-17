@@ -32,11 +32,6 @@ class FimId < ActiveRecord::Migration
         add_foreign_key :fims, :fim_measurements, column: :measurements_90day_id
         add_foreign_key :fims, :fim_measurements, column: :measurements_1year_id
 
-        AnnualEvaluation.all.each do |annual_evaluation|
-          annual_evaluation.build_fim
-          annual_evaluation.fim.build_measurements_start
-          annual_evaluation.save!
-        end
         ActiveRecord::Base.transaction do
           annual_evaluations = ActiveRecord::Base.connection.execute(
             "SELECT id FROM annual_evaluations")

@@ -344,12 +344,12 @@ ActiveRecord::Schema.define(version: 20150914220230) do
 
   create_table "patients", force: :cascade do |t|
     t.integer  "scido_id"
-    t.string   "first_name"
     t.string   "ssn"
     t.date     "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_name"
+    t.string   "first_name"
     t.boolean  "my_healthevet_messaging"
     t.boolean  "sci_service_connected"
     t.date     "benefits_waiver_exemption_date"
