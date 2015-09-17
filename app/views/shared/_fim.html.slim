@@ -2,20 +2,21 @@
   .instrument
     h4 FIM Administrative Information
     .row
-      .medium-3.columns
+      .medium-4.columns
         / TODO: @emilyville Remove this from database
         / = fims.input :is_active_duty
         = f.input :admission_class,
         collection: Domain::FimAdmissionClass.cached_all
-      .medium-3.columns
-        = f.input :is_program_interrupted,
-          label: "Check if program is interrupted"
-      .medium-3.columns
+      .medium-4.columns
         = f.input :impairment_category,
         collection: Domain::FimImpairmentCategory.cached_all
-      .medium-3.columns
+      .medium-4.columns
         = f.input :impairment_group,
         collection: Domain::FimImpairmentGroup.cached_all
+    .row
+      .medium-12.columns
+        = f.input :is_program_interrupted,
+          label: "Check if program is interrupted"
           / TODO: @emilyville don't know if we need these
           / = fims.input :created_at
           / = fims.input :updated_at

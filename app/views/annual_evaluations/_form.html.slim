@@ -5,15 +5,16 @@
       h4 Administrative
       .row
         .medium-4.columns
+          = f.association :offered_hub, label: "Evaluation offered at"
+        .medium-4.columns
+          = f.association :completed_hub, label: "Evaluation completed at"
+        .medium-4.columns
+          label Patient is:
           = f.input :is_inpatient,
             collection: [ ["Inpatient", true], ["Outpatient", false] ],
             label: false,
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'
-        .medium-4.columns
-          = f.association :offered_hub, label: "Evaluation offered at"
-        .medium-4.columns
-          = f.association :completed_hub, label: "Evaluation completed at"
       .row
         .medium-4.columns
           = f.input :eval_offered, label: "Date Offered", as: :date_picker
@@ -25,8 +26,15 @@
       h4 Clinical
       .row
         .medium-4.columns
-          = f.input :bmi, label: "BMI", :placeholder => "00"
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :bmi, label: "Weight", :placeholder => "000"
         .medium-4.columns
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :bmi, label: "Height", :placeholder => "00"        
+        .medium-4.columns
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :bmi, label: "Computed BMI", :placeholder => "BMI goes here", disabled: true
+        .medium-4.columns.left
           = f.association :bladder_drainage_method,
           collection: Domain::BladderDrainageMethod.cached_all,
           label: "Bladder Drainage Method",

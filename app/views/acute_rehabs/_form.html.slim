@@ -10,6 +10,7 @@
                 collection: Domain::ReasonForAdmission.cached_all,
                 as: :radio_buttons,
                 item_wrapper_class: 'radio-inline'
+        .row#acuteRehabAdmissionOther.hide
             .medium-4.columns
                 = f.input :reason_for_admission_other
         .row
@@ -34,7 +35,6 @@
                 = f.input :hospital_discharge, as: :date_picker, :label => "Hospital discharge date"
             .medium-4.columns
                 = f.input :acute_rehab_discharge, as: :date_picker, :label => "Acute rehab discharge date"
-        .row
             .medium-4.columns
                 = f.association :discharge_location,
                 collection: Domain::ResidenceType.cached_all,
