@@ -3,92 +3,64 @@
     .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
   .form-inputs
     .callout-blank
-      h4 Patient Basic Information
+      h4 Patient Personal Information
       .row
         .medium-4.columns
           = f.input :first_name
         .medium-4.columns
           = f.input :last_name
         .medium-4.columns
-          = f.input :dob, as: :date_picker, label: "Date of Birth"
+          = f.association :va_status, :label => "SCI/D Status",
+          collection: Domain::VaStatus.cached_all,
+          prompt: "Select one"
+      .row
         .medium-4.columns
+          = f.input :dob, as: :date_picker, label: "Date of Birth"
+        .medium-4.columns.left
           = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
-        .medium-8.columns
+        .medium-4.columns
+          = f.input :scido_id, label: "SCIDO ID", disabled: true
+      .row
+        .medium-8.columns.left
           label.control-label.radio Gender
           = f.input_field :gender_id,
           collection: Domain::Gender.cached_all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       hr
-      h4 Basic SCI Information
+      h4 Patient Address
       .row
-        .medium-4.columns
-          = f.input :scido_id, label: "SCIDO ID"
-        .medium-8.columns
+        = f.simple_fields_for :address do |address|
+          = render 'shared/address_fields', :f => address
+    .callout
+      h4 Patient Contact and Travel Eligibility
+      .row
+        .medium-6.columns
+          = f.input :is_on_active_duty, label: "Currently on Active Duty"
+          = f.input :sci_service_connected, label: "SCI is service connected"
+          = f.input :my_healthevet_messaging
+        .medium-6.columns
           label.control-label.radio Theater of service
           = f.input_field :theater_of_service_id,
           collection: Domain::TheaterOfService.cached_all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
       .row
-        .medium-4.columns
-          = f.input :is_on_active_duty, label: "Currently on Active Duty"
-        .medium-4.columns
-          = f.input :sci_service_connected, label: "SCI is service connected"
-        .medium-4.columns
-          = f.input :my_healthevet_messaging
-      hr
-      h4 Patient Address Information
-      .row
-        .medium-3.columns
-        .medium-3.columns
-      .row
-        = f.simple_fields_for :address do |address|
-          = render 'shared/address_fields', :f => address
-    .callout
-      h4 VA Status and Travel Eligibility
-      .row
-        .medium-4.columns
-          = f.association :va_status, :label => "Status",
-          collection: Domain::VaStatus.cached_all,
-          prompt: "Select one"
-        .medium-4.columns.left
+        hr
+        .medium-6.columns
           = f.association :assigned_vamc, :label => "Assigned VAMC",
           collection: Domain::VaMedicalCenter.cached_all,
           prompt: "Select one"
-      .row
         .medium-12.columns
           label.control-label.radio Travel status
           = f.input_field :travel_status_id,
             collection: Domain::TravelStatus.cached_all,
             as: :radio_buttons,
             item_wrapper_class: 'radio-inline'
-        .medium-8.left.columns#benefitsOther.hide
+        .medium-6.left.columns#benefitsOther.hide
           /Will show conditionally on last radio selected
           = f.input :benefits_waiver_exemption_date, 
             as: :date_picker
-    .callout
-      h4 SCI Hub and Physician
-      h4 Assigned 
-      .row
-        .medium-6.columns
-          = f.association :assigned_sci_hub,
-          collection: Domain::SciHub.cached_all,
-          label: "Location"
-        .medium-3.columns
-          = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
-        .medium-3.columns
-          = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
-      h4 Preferred (if different)
-      .row
-        .medium-6.columns
-          = f.association :preferred_sci_hub,
-          collection: Domain::SciHub.cached_all,
-          label: "Location"
-        .medium-3.columns
-          = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
-        .medium-3.columns
-          = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
     .callout
       h4 Primary Care
       .row
@@ -119,6 +91,27 @@
           = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
         .medium-3.columns
           = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
+    .callout
+      h4 SCI Hub
+      .row
+        .medium-6.columns
+          = f.association :assigned_sci_hub,
+          collection: Domain::SciHub.cached_all,
+          label: "Assigned SCI Center"
+          / todo: REMOVE
+          / .medium-3.columns
+          /   = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
+          / .medium-3.columns
+          /   = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
+        .medium-6.columns
+          = f.association :preferred_sci_hub,
+          collection: Domain::SciHub.cached_all,
+          label: "Preferred SCI Center (if different)"
+          / todo: REMOVE
+          / .medium-3.columns
+          /   = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
+          / .medium-3.columns
+          /   = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
     .callout
       h4 SCI/D Information
       .row
