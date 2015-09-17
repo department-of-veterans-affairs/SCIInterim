@@ -4,50 +4,21 @@
     .panel-body 
       = form_tag("/reports", method: "POST", enforce_utf8: false)
         ul.accordion data-accordion="" 
-          li.accordion-navigation
-            a href="#patient-fields"  Patient Fields
-            #patient-fields.content.active
-              - i = 0
-              - for name in Patient.attribute_names
-                - if i % 3 == 0
-                  .row
-                - i = i +1
-                .small-4.columns
-                  = check_box_and_label_tag("export[patient][#{name}]", name)
-              .row
-          li.accordion-navigation
-            a href="#annual-eval-fields"  Annual Evaluation Fields
-            #annual-eval-fields.content
-              - i = 0
-              - for name in AnnualEvaluation.attribute_names
-                - if i % 3 == 0
-                  .row
-                - i = i +1
-                .small-4.columns
-                  = check_box_and_label_tag("export[annual_evaluation][#{name}]", name)
-              .row
-          li.accordion-navigation
-            a href="#acute-rehab-fields"  Acute Rehab Fields
-            #acute-rehab-fields.content
-              - i = 0
-              - for name in AcuteRehab.attribute_names
-                - if i % 3 == 0
-                  .row
-                - i = i +1
-                .small-4.columns
-                  = check_box_and_label_tag("export[acute_rehab][#{name}]", name)
-              .row
-          li.accordion-navigation
-            a href="#omr-fields"  OMR Fields
-            #omr-fields.content
-              - i = 0
-              - for name in Omr.attribute_names
-                - if i % 3 == 0
-                  .row
-                - i = i +1
-                .small-4.columns
-                  = check_box_and_label_tag("export[omr][#{name}]", name)
-              .row
+          - first_section = true
+          - for config in export_config
+            - anchor_name = "#{config[0].gsub(/\s+/, "").underscore}-fields"
+            li.accordion-navigation
+              a href="##{anchor_name}" #{config[0]} Fields
+              div class="content #{returns_active_once}" id=anchor_name
+                - i = 0
+                - for name in config[1]
+                  - if i % 3 == 0
+                    .row
+                  - i = i +1
+                  .small-4.columns
+                    = check_box_and_label_tag(name, name)
+                .row
+
           hr
           .row
             .small-10.columns
