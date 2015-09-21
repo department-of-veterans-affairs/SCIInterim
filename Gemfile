@@ -5,7 +5,6 @@ gem 'active_record-acts_as'
 gem 'autoprefixer-rails'  # We want this for handling vender prefix on css.
 gem 'bcrypt'
 gem 'foundation-rails'
-gem 'coffee-rails'
 gem 'country_select'
 gem 'devise'
 gem 'faker'  # TODO(awong): Move to :development,:test after db/seeds.rb gets real data.
