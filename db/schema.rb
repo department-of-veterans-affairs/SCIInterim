@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914220230) do
+ActiveRecord::Schema.define(version: 20150921215536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20150914220230) do
     t.date     "eval_offered",               null: false
     t.date     "eval_completed"
     t.boolean  "is_inpatient"
-    t.integer  "bmi"
     t.string   "cyh"
     t.integer  "fim_id"
     t.integer  "patient_id"
@@ -76,6 +75,8 @@ ActiveRecord::Schema.define(version: 20150914220230) do
     t.integer  "bladder_drainage_method_id"
     t.integer  "offered_hub_id"
     t.integer  "completed_hub_id"
+    t.integer  "height_inches"
+    t.integer  "weight_lbs"
   end
 
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree

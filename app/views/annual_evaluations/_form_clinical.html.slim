@@ -6,13 +6,13 @@
       .row
         .medium-4.columns
           / TODO: Add field and calculations (this is just BMI 3 times)
-          = f.input :bmi, label: "Weight", :placeholder => "000"
+          = f.input :weight_lbs, label: "Weight", :placeholder => "000"
         .medium-4.columns
           / TODO: Add field and calculations (this is just BMI 3 times)
-          = f.input :bmi, label: "Height", :placeholder => "00"        
+          = f.input :height_inches, label: "Height", :placeholder => "00"        
         .medium-4.columns
           / TODO: Add field and calculations (this is just BMI 3 times)
-          = f.input :bmi, label: "Computed BMI", :placeholder => "BMI goes here", disabled: true
+          = f.input :bmi, label: "Computed BMI", :placeholder => "?", disabled: true
         .medium-4.columns.left
           / TODO: @kathypham do we need to add an other option and field?
           = f.association :bladder_drainage_method,

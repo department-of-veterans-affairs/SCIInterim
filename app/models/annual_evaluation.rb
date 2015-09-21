@@ -15,6 +15,17 @@ class AnnualEvaluation < ActiveRecord::Base
   belongs_to :completed_hub, class_name: Domain::SciHub
 
   validates :eval_offered, presence: true
+  validates :height_inches, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 999, only_integer: true, allow_blank: true }
+  validates :weight_lbs, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 99, only_integer: true, allow_blank: true }
+
+  # TODO(awong): Ensure virtual attributes like this show up in reports.
+  def bmi
+    if !height_inches.nil? && !weight_lbs.nil?
+      (weight_lbs * 703.0 / (height_inches * height_inches)).round(2)
+    else
+      nil
+    end
+  end
 
   def episode_date
     if eval_completed.nil?

@@ -10,6 +10,9 @@ feature 'Annual Evaluations' do
     Warden.test_reset!
   end
 
+  let (:patient) { create(:patient) }
+  let (:subject) { create(:annual_evaluation) }
+
   # Scenario: Add Annual Evaluation to a patient
   #   Given I am a user
   #   When I add an Annual Evaluation to a patient record
@@ -17,11 +20,10 @@ feature 'Annual Evaluations' do
   #        Evaluation
   scenario 'Add Annual Evaluation' do
     sign_in_user
-    patient1 = create(:patient)
-    visit edit_patient_path(patient1)
+    visit edit_patient_path(patient)
 
     expect(page).to have_content "Patient Personal Information"
-    expect(find_field('SSN').value).to eql patient1.ssn
+    expect(find_field('SSN').value).to eql patient.ssn
 
     click_link("+ Annual Evaluation")
     expect(page).to have_content "New Annual Evaluation"
@@ -29,8 +31,15 @@ feature 'Annual Evaluations' do
     fill_in "Date AE Offered", with: Time.now
 
     first(:button, "Save Annual Evaluation").click
-    expect(current_url).to eql edit_patient_url(patient1)
+    expect(current_url).to eql edit_patient_url(patient)
 
     # TODO(awong.dev): Verify annual evaluation shows.
+  end
+
+  scenario 'BMI is auto calculated on load and change' do
+    sign_in_user
+    visit edit_patient_annual_evaluation_path(patient, subject)
+    click_link("Clinical")
+    expect(field_labeled('Computed BMI', disabled: true).value.to_f).to eql subject.bmi
   end
 end
