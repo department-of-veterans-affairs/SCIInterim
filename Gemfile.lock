@@ -356,7 +356,6 @@ DEPENDENCIES
   binding_of_caller
   byebug
   capybara-webkit
-  coffee-rails
   country_select
   coveralls
   database_cleaner
