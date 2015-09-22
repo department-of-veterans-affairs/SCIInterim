@@ -13,21 +13,21 @@ ul.tabs data-tab=""
     .row
       .panel
         .panel-body
-          == render 'form_administrative'
+          = render 'form_administrative'
   #clinical.content
     .row
       .panel
         .panel-body
-          == render 'form_clinical'
+          = render 'form_clinical'
   #isncsci.content
     .row
       .panel
         .panel-body
-          == render 'form_isncsci'
+          = render 'form_isncsci'
   #standard.content
     .row
       .panel
         .panel-body
-          == render 'form_standard'
-== render 'shared/add_episodes'
+          = render 'form_standard'
+= render 'shared/add_episodes'
  
