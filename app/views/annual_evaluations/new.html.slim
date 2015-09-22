@@ -1,5 +1,43 @@
+h3 New Annual Evaluation
+ul.tabs data-tab="" 
+  li.tab-title.active
+    a href="#administrative"  Administrative
+  li.tab-title
+    a href="#clinical"  Clinical
+  li.tab-title
+    a href="#isncsci"  ISNCSCI
+  li.tab-title
+    a href="#standard"  Standard Instruments
+.tabs-content
+  #administrative.content.active
+    .row
+      .panel
+        .panel-body
+          == render 'form_administrative'
+  #clinical.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_clinical'
+  #isncsci.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_isncsci'
+  #standard.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_standard'
 .row
   .panel
-    h3 New Annual Evaluation
-    .panel-body 
-  	 == render 'form'
+    .panel-body
+      .row
+        .medium-12.columns
+          h4 Add Episodes of Care (this section needs a better home)
+        .medium-4.columns
+          = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "button secondary expand" }
+        .medium-4.columns
+          = link_to '+ OMR', new_patient_omr_path(@patient), { class: "button secondary expand" }
+        .medium-4.columns
+          = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "button secondary expand" }  

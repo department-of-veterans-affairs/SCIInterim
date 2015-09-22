@@ -26,6 +26,14 @@
           collection: Domain::Gender.cached_all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
+      .row
+        hr
+        .medium-4.columns
+          / TODO: @awong add
+          = f.input :scido_id, label: "Registration Date"
+        .medium-4.columns.left
+          / TODO: @awong add, this will be all VA facilities
+          = f.input :scido_id, label: "Registration Facility"
     = f.submit class:"button large"
 
 
