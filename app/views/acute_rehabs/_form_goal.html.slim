@@ -1,0 +1,7 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        h4 GOAL
+        = f.input :goal_fim
+    = f.submit class:"button large"

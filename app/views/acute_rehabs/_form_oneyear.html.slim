@@ -1,0 +1,17 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        h4 Followup 1 Year
+        = f.input :followup_1yr_date, as: :date_picker
+        = f.input :followup_1yr_fim
+        = f.input :followup_1yr_swls
+
+        h4.instrument-title Followup 1 Year Chart SF
+        = f.simple_fields_for :followup_1year_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+        h4.instrument-title Followup 1 Year SF8
+        = f.simple_fields_for :followup_1yr_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
+    = f.submit class:"button large"

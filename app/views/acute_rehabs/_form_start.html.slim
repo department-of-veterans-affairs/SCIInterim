@@ -1,0 +1,14 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        / TODO: @emilville put instruments in modals and go over ASIA
+        h4.instrument-title START
+        = f.simple_fields_for :start_asia_assessment do |asia_assessment|
+            = render 'shared/asia_fields', :f => asia_assessment
+        h4.instrument-title Start SF8
+        = f.simple_fields_for :start_sf8 do |sf8_builder|
+            = render 'shared/sf8_fields', :f => sf8_builder
+        = f.input :start_fim
+        = f.input :start_swls
+    = f.submit class:"button large"
