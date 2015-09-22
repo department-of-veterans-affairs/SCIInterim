@@ -26,7 +26,7 @@ feature 'Acute Rehab' do
     click_link("+ Acute Rehab")
     expect(page).to have_content "New Acute Rehab"
 
-    fill_in "Acute rehab admission date", with: Time.now
+    fill_in "Date of Rehab Admission", with: Time.now
 
     first(:button, "Create Acute rehab").click
     expect(current_url).to eql edit_patient_url(patient1)
