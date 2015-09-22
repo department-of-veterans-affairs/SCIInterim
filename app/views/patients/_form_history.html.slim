@@ -1,0 +1,49 @@
+.row
+  .medium-4.columns
+    = link_to 'Add New Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "button secondary small expand" }
+    table.table
+      tr
+        th Previous Annual Evaluations
+      - for episode in @patient.annual_evaluations do
+        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+          .medium-12.columns
+            td 
+              = episode.class.name 
+              small.right
+                |   
+                = episode.episode_date
+      - if @patient.episode_of_cares.empty?
+        tr
+          td There are no recorded episodes of care for this patient
+  .medium-4.columns
+    = link_to 'Add New Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "button secondary small expand" }    
+    table.table
+      tr
+        th Previous Acute Rehabs
+      - for episode in @patient.acute_rehabs do
+        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+          .medium-12.columns
+            td 
+              = episode.class.name 
+              small.right
+                |   
+                = episode.episode_date
+      - if @patient.episode_of_cares.empty?
+        tr
+          td There are no recorded episodes of care for this patient
+  .medium-4.columns
+    = link_to 'Add New OMR', new_patient_omr_path(@patient), { class: "button secondary small expand" }
+    table.table
+      tr
+        th Previous OMRs
+      - for episode in @patient.omrs do
+        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+          .medium-12.columns
+            td 
+              = episode.class.name 
+              small.right
+                |   
+                = episode.episode_date
+      - if @patient.episode_of_cares.empty?
+        tr
+          td There are no recorded episodes of care for this patient

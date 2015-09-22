@@ -1,9 +1,19 @@
 .top-bar#alternate
   .container
     .row
-      .medium-2.columns.right
-        = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "button secondary expand" }
-      .medium-2.columns.right
-        = link_to '+ OMR', new_patient_omr_path(@patient), { class: "button secondary expand" }
+      .medium-6.columns
+        ul.inline-list.right
+          li
+            a href="#{edit_patient_path(@patient)}"
+              .patient-name = "#{@patient.last_name}, #{@patient.first_name}" 
+          li.label.label-default
+            = @patient.va_status
       .medium-2.columns
-        = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "button secondary expand" }  
+        = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "button secondary expand" }
+      .medium-2.columns
+        = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "button secondary expand" }
+      .medium-2.columns
+        = link_to '+ OMR', new_patient_omr_path(@patient), { class: "button secondary expand" }
+
+
+  
