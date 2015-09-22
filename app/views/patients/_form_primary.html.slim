@@ -1,0 +1,56 @@
+= wrapped_form_for(@patient) do |f|
+  = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      h4 Primary Care
+      .row
+        .medium-12.columns
+          / TODO: @awong this list should be "Preferred SCI Center" "Another VA/CBOC" and "Non VA Facility"
+          / TODO: @emilyville find out the right conditional structure
+          label.control-label.radio.radio-inline Primary Care Facility
+          = f.input_field :principle_pcp_va_nonva_id,
+          label: false,
+          collection: Domain::PrinciplePcpType.cached_all,
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline'
+      #principleVa.hide
+        h4 VA Facility
+        .row
+          .medium-6.columns
+            = f.association :va_facility, label: "Facility"
+            collection: Domain::VaMedicalCenter.cached_all
+          .medium-3.columns
+            = f.input :va_facility_pcp_first_name, label: "Physician first name"
+          .medium-3.columns
+            = f.input :va_facility_pcp_last_name, label: "Physician last name"
+      #principleNonVa.hide
+        h4 Non VA Facility
+        .row
+          .medium-6.columns
+            = f.input :non_va_facility_name, label: "Facility"
+            = f.input :non_va_facility_phone_number, label: "Phone Number"
+          .medium-6.columns
+            = f.input :non_va_facility_fax_number, label: "Fax number"
+          .medium-3.columns
+            = f.input :non_va_facility_pcp_first_name, label: "Physician first name"
+          .medium-3.columns
+            = f.input :non_va_facility_pcp_last_name, label: "Physician last name"
+          .medium-3.columns
+            / TODO: @awong add
+            = f.input :non_va_facility_pcp_last_name, label: "Phone"
+          .medium-3.columns
+            / TODO: @awong add
+            = f.input :non_va_facility_pcp_last_name, label: "Fax"
+          .medium-3.columns
+            / TODO: @awong add
+            = f.input :non_va_facility_pcp_last_name, label: "Email"
+          .medium-3.columns
+            / TODO: @awong add
+            = f.input :non_va_facility_pcp_last_name, label: "City"
+          .medium-3.columns.left
+            / TODO: @awong add
+            = f.input :non_va_facility_pcp_last_name, label: "State"
+    = f.submit class:"button large"
+
+ 

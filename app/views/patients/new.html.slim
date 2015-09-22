@@ -1,5 +1,66 @@
-.row
-  .panel
-    h3 New patient
-    .panel-body
-      == render 'form'
+h3 New patient
+ul.tabs data-tab="" 
+  li.tab-title.active
+    a href="#personal"  Personal Info
+  li.tab-title
+    a href="#contact"  Contact Info
+  li.tab-title
+    a href="#travel"  Travel Eligibility
+  li.tab-title
+    a href="#status"  VA Status
+  li.tab-title
+    a href="#primary"  Primary Care
+  li.tab-title
+    a href="#scid"  SCI/D Info
+  li.tab-title
+    a href="#isncsci"  ISNCSCI
+  li.tab-title
+    a href="#psychosocial"  Psychosocial
+  li.tab-title
+    a href="#caregiver"  Caregiver
+.tabs-content
+  #personal.content.active
+    .row
+      .panel
+        .panel-body
+          == render 'form_personal'
+  #contact.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_contact'
+  #travel.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_travel'
+  #status.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_status'
+  #primary.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_primary'
+  #scid.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_scid'
+  #isncsci.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_isncsci'
+  #psychosocial.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_psychosocial'
+  #caregiver.content
+    .row
+      .panel
+        .panel-body
+          == render 'form_caregiver'

@@ -208,3 +208,18 @@
           .medium-4.columns
             = f.input :non_va_care_hours_per_month, label: "Care hours per month"
     = f.submit class:"button large"
+
+
+
+/ homeless
+        .medium-4.columns
+          = f.association :va_status, :label => "SCI/D Status",
+          collection: Domain::VaStatus.cached_all,
+          prompt: "Select one"
+
+        .medium-6.columns
+          = f.association :assigned_vamc, :label => "Assigned VAMC",
+          collection: Domain::VaMedicalCenter.cached_all,
+          prompt: "Select one"
+
+ 

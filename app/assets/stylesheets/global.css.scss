@@ -31,6 +31,23 @@
   }
 }
 
+.tabs {
+  margin-left: -14px;
+
+  dd.active a, .tab-title.active a {
+    outline: 1px solid #ddd;  
+  }
+
+  .tab-title > a {
+    font-size: .85rem;
+    padding: .5rem .5rem;
+  }
+}
+
+.tabs-content > .content.active {
+  padding-top: 0px;
+}
+
 .accordion-navigation .content {
   height: 250px;
   overflow: auto;

@@ -1,0 +1,18 @@
+= wrapped_form_for(@patient) do |f|
+  = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      h4 SCI/D Information
+      .row
+        .medium-12.columns
+          /TODO: @awong make asia changed yes/no
+          /TODO: @emilyville make show hide once exists
+          label.control-label.radio Has there been any change in SCI Classification/ASIA?
+          = f.input :is_on_active_duty, 
+          as: :radio_buttons,
+          item_wrapper_class: 'radio-inline',
+          label: false
+      = f.simple_fields_for :asia_assessment do |asia_assessment|
+        = render 'shared/asia_fields', :f => asia_assessment
+    = f.submit class:"button large"

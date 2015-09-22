@@ -1,15 +1,20 @@
 .nested-fields
-  .medium-8.columns
-    = f.input :address1, label: "Address"
-  .medium-4.columns
-    = f.input :city, :placeholder => "City Name"
-  .medium-8.columns
-    = f.input :address2, label: "Address, line 2"
-  .medium-4.columns
-    = f.input :state, :placeholder => "Select one", collection: ISO3166::Country['US'].states.map { |key, value| value["name"] }
-  .medium-4.columns
-    = f.input :zip, :placeholder => "12345"
-  .medium-4.columns 
-    = f.input :country, :prompt => "Select one", priority: [ "United States", "United States Minor Outlying Islands", "Canada", "Mexico" ], selected: "US"
-  .medium-4.columns
-    = f.input :phone_number, :placeholder => "111-222-3333"
+  .row
+    .medium-8.columns
+      = f.input :address1, label: "Street Address 1"
+    .medium-4.columns
+      = f.input :city, :placeholder => "City"
+    .medium-8.columns
+      = f.input :address2, label: "Street Address 2"
+    .medium-4.columns
+      = f.input :state, :placeholder => "Select one", collection: ISO3166::Country['US'].states.map { |key, value| value["name"] }
+    .medium-4.columns
+      = f.input :zip, :placeholder => "12345"
+    .medium-4.columns.left
+      = f.input :country, :prompt => "Select one", priority: [ "United States", "United States Minor Outlying Islands", "Canada", "Mexico" ], selected: "US"
+  .row
+    .medium-4.columns
+      = f.input :phone_number, :placeholder => "111-222-3333"
+    .medium-4.columns.left
+      / TODO: @awong Create email field in Address
+      = f.input :address2, label: "Email"
