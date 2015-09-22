@@ -1,0 +1,9 @@
+= wrapped_form_for([@patient, @annual_evaluation]) do |f|
+  = f.error_notification
+  .form-inputs
+    /TODO: @emilyville make modal!
+    = f.simple_fields_for :fim do |fim|
+      = render 'shared/fim', f: fim
+    = f.simple_fields_for :kurtzke_edss do |fields|
+        = render 'shared/kurtzke_edss_fields', :f => fields
+    = f.submit "Save Annual Evaluation", class: "button large"
