@@ -1,9 +1,11 @@
-/ - content_for :application_body do
-  
-/   .container 
-/     .row
-/       .medium-9.columns
-/         = content_for?(:form) ? yield(:form) : yield
+- content_for :application_body do
+
+- content_for :nav_patient do
+  = render partial: "layouts/patientnav_alternate"  
+  .container 
+    .row
+      .medium-12.columns
+        == content_for?(:form) ? yield(:form) : yield
 /       .medium-3.columns
 /         table.table.table-bordered
 /           tr
@@ -28,5 +30,5 @@
 /           - if @patient.episode_of_cares.empty?
 /             tr
 /               td There are no recorded episodes of care for this patient  
-  
+
 = render template: "layouts/application"
