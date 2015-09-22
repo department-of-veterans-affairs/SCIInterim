@@ -1,0 +1,40 @@
+= wrapped_form_for(@patient) do |f|
+  = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      .row
+        .medium-4.columns
+          = f.association :va_status, :label => "SCI/D Status",
+          collection: Domain::VaStatus.cached_all,
+          prompt: "Select one"
+        .medium-4.left.columns#expiredDate.hide
+          /Will show conditionally on last radio selected
+          /TOOD: @awong add patient expiration date
+          = f.input :benefits_waiver_exemption_date, 
+            as: :date_picker,
+            label: "Date of expired"
+      .row
+        .medium-4.columns
+          = f.association :preferred_sci_hub,
+          collection: Domain::SciHub.cached_all,
+          label: "Preferred SCI Center"
+          / todo: @awong REMOVE
+          / .medium-3.columns
+          /   = f.input :preferred_sci_hub_physician_first_name, label: "Physician first name"
+          / .medium-3.columns
+          /   = f.input :preferred_sci_hub_physician_last_name, label: "Physician last name"
+        .medium-4.columns.left
+          = f.association :assigned_vamc, :label => "Nearest VA in relation to residency",
+          collection: Domain::VaMedicalCenter.cached_all,
+          prompt: "Select one"
+        .medium-4.columns
+          = f.association :assigned_sci_hub,
+          collection: Domain::SciHub.cached_all,
+          label: "Assigned SCI Center in relation to residency"
+          / todo: @awong REMOVE
+          / .medium-3.columns
+          /   = f.input :assigned_sci_hub_physician_first_name, label: "Physician first name"
+          / .medium-3.columns
+          /   = f.input :assigned_sci_hub_physician_last_name, label: "Physician last name"
+  = f.submit class:"button large"

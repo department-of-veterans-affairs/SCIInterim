@@ -31,6 +31,23 @@
   }
 }
 
+.tabs {
+  margin-left: -14px;
+
+  dd.active a, .tab-title.active a {
+    outline: 1px solid #ddd;  
+  }
+
+  .tab-title > a {
+    font-size: .85rem;
+    padding: .5rem .5rem;
+  }
+}
+
+.tabs-content > .content.active {
+  padding-top: 0px;
+}
+
 .accordion-navigation .content {
   height: 250px;
   overflow: auto;
@@ -44,6 +61,11 @@
   text-decoration: underline;
   cursor: pointer;
   background-color: #EDF1F2;
+}
+
+// This is the alternate patient nav, eventually we'll only need outline
+#alternate {
+  margin-bottom: 30px;
 }
 
 #patient-nav {

@@ -1,0 +1,9 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        / TODO: @awong I don't know if we need generic ones for these since they aren't tied to a phase
+        = f.input :finish_fim
+        = f.input :finish_swls
+        = f.input :finish_sf8
+    = f.submit class:"button large"

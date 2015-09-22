@@ -1,35 +1,34 @@
 - content_for :application_body do
 
 - content_for :nav_patient do
-  = render partial: "layouts/patientnav"
-
+  = render partial: "layouts/patientnav_alternate"  
   .container 
     .row
-      .medium-9.columns
+      .medium-12.columns
         == content_for?(:form) ? yield(:form) : yield
-      .medium-3.columns
-        table.table.table-bordered
-          tr
-            th Add a Patient Evaluation
-            tr.clickable
-              td = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "" }
-            tr.clickable
-              td = link_to '+ OMR', new_patient_omr_path(@patient), { class: "" }
-            tr.clickable
-              td = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
-        table.table.table-bordered.table-striped
-          tr
-            th Episodes of Care History
-          - for episode in @patient.episode_of_cares do
-            tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
-              .medium-12.columns
-                td 
-                  = episode.class.name 
-                  small.right
-                    |   
-                    = episode.episode_date
-          - if @patient.episode_of_cares.empty?
-            tr
-              td There are no recorded episodes of care for this patient  
-  
+/       .medium-3.columns
+/         table.table.table-bordered
+/           tr
+/             th Add a Patient Evaluation
+/             tr.clickable
+/               td = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "" }
+/             tr.clickable
+/               td = link_to '+ OMR', new_patient_omr_path(@patient), { class: "" }
+/             tr.clickable
+/               td = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "" }    
+/         table.table.table-bordered.table-striped
+/           tr
+/             th Episodes of Care History
+/           - for episode in @patient.episode_of_cares do
+/             tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+/               .medium-12.columns
+/                 td 
+/                   = episode.class.name 
+/                   small.right
+/                     |   
+/                     = episode.episode_date
+/           - if @patient.episode_of_cares.empty?
+/             tr
+/               td There are no recorded episodes of care for this patient  
+
 = render template: "layouts/application"

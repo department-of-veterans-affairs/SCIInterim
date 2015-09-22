@@ -1,5 +1,31 @@
-.row
-  .panel
-    h3 New Annual Evaluation
-    .panel-body 
-  	 == render 'form'
+h3 New Annual Evaluation
+ul.tabs data-tab="" 
+  li.tab-title.active
+    a href="#administrative"  Administrative
+  li.tab-title
+    a href="#clinical"  Clinical
+  li.tab-title
+    a href="#isncsci"  ISNCSCI
+  li.tab-title
+    a href="#standard"  Standard Instruments
+.tabs-content
+  #administrative.content.active
+    .row
+      .panel
+        .panel-body
+          = render 'form_administrative'
+  #clinical.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_clinical'
+  #isncsci.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_isncsci'
+  #standard.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_standard'

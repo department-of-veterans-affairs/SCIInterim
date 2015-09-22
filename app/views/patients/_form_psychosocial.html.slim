@@ -1,0 +1,21 @@
+= wrapped_form_for(@patient) do |f|
+  = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      h4 Psychosocial Assessment
+      .row
+        .medium-6.columns
+          = f.association :highest_level_of_education,
+          collection: Domain::HighestLevelOfEducation.cached_all,
+          prompt: "Select one"
+        .medium-6.columns
+          = f.association :occupation_at_time_of_injury,
+          collection: Domain::Occupation.cached_all,
+          prompt: "Select one"
+      .row
+        .medium-6.columns
+          = f.association :current_occupation,
+          collection: Domain::Occupation.cached_all,
+          prompt: "Select one"
+    = f.submit class:"button large"

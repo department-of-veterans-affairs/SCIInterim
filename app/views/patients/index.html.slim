@@ -1,26 +1,35 @@
 .row
-  h1 SCI Patient Registry
-  .row
-  .large-12.columns
-    .row.collapse
+  .columns.large-8.large-offset-2
+    .row 
+      .small-12.columns  
+        h2 SCI Patient Registry
+    .panel.row 
       form method="GET"
-        .small-10.columns
-          = text_field_tag :query, placeholder=("Name or patient ID")
-        .small-2.columns
-          = submit_tag "Search", class: "button expand"
-table class='table'
-  thead
-    tr
-      th Patient
-      th First Name
-      th Last Name
-      th Dob
-      th Status
-  tbody
-    - @patients.each do |patient|
-        tr class="clickable-row" data-href=edit_patient_path(patient)
-          td = patient.id
-          td: a href="#{edit_patient_path(patient)}"  = patient.first_name
-          td: a href="#{edit_patient_path(patient)}"  = patient.last_name
-          td = localize(patient.dob) if patient.dob
-          td = patient.va_status
+        .small-8.columns
+          = text_field_tag :query, placeholder=("Search Patient Name")
+        .small-4.columns.left
+          = submit_tag "Search Registry", class: "button postfix"
+      / TODO: @awong or @emilyville convert to datalist dropdown
+      .small-12.columns  
+        table class='table'
+              thead
+                tr
+                  th Patient
+                  th First Name
+                  th Last Name
+                  th Dob
+                  th Status
+              tbody
+                - @patients.each do |patient|
+                    tr class="clickable-row" data-href=edit_patient_path(patient)
+                      td = patient.id
+                      td: a href="#{edit_patient_path(patient)}"  = patient.first_name
+                      td: a href="#{edit_patient_path(patient)}"  = patient.last_name
+                      td = localize(patient.dob) if patient.dob
+                      td = patient.va_status
+      .columns
+        hr
+        = link_to "Register New Patient", new_patient_path, class: "button success expand"
+
+
+      

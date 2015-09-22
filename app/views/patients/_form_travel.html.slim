@@ -1,0 +1,19 @@
+= wrapped_form_for(@patient) do |f|
+  = flash_messages
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      h4 Travel Eligibility
+      .row
+        .medium-12.columns
+          label.control-label.radio Travel status
+          / TODO: @awong combine pension and 30 percent or more to be one option
+          = f.input_field :travel_status_id,
+            collection: Domain::TravelStatus.cached_all,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
+        .medium-6.left.columns#benefitsOther.hide
+          /Will show conditionally on last radio selected
+          = f.input :benefits_waiver_exemption_date, 
+            as: :date_picker
+    = f.submit class:"button large"

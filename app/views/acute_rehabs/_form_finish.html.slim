@@ -1,0 +1,15 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        h4.instrument-title FINISH
+        = f.simple_fields_for :finish_asia_assessment do |asia_assessment|
+          = render 'shared/asia_fields', :f => asia_assessment
+
+        = f.input :finish_fim
+        = f.input :finish_swls
+
+        h4.instrument-title Finish SF8
+        = f.simple_fields_for :finish_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
+    = f.submit class:"button large"

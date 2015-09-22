@@ -48,6 +48,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'guard-rspec'
+  gem 'launchy'
   gem 'pry-byebug'
   gem 'resque_spec'
   gem 'rspec-rails'

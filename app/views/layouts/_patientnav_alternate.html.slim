@@ -1,0 +1,9 @@
+.top-bar#alternate
+  .container
+    .row
+      .medium-2.columns.right
+        = link_to '+ Annual Evaluation', new_patient_annual_evaluation_path(@patient), { class: "button secondary expand" }
+      .medium-2.columns.right
+        = link_to '+ OMR', new_patient_omr_path(@patient), { class: "button secondary expand" }
+      .medium-2.columns
+        = link_to '+ Acute Rehab', new_patient_acute_rehab_path(@patient), { class: "button secondary expand" }  
