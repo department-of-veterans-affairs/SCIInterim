@@ -1,0 +1,15 @@
+= wrapped_form_for([@patient, @acute_rehab]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+        h4 Followup 90 Days
+        = f.input :followup_90day_date, as: :date_picker, label: "Follow Up Date"
+        = f.input :followup_90day_fim
+        = f.input :followup_90day_swls
+
+        = f.simple_fields_for :followup_90day_chart_sf do |chart_sf_builder|
+          = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+        = f.simple_fields_for :followup_90day_sf8 do |sf8_builder|
+          = render 'shared/sf8_fields', :f => sf8_builder
+    = f.submit class:"button large"
