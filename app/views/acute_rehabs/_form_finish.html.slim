@@ -5,11 +5,33 @@
         h4.instrument-title FINISH
         = f.simple_fields_for :finish_asia_assessment do |asia_assessment|
           = render 'shared/asia_fields', :f => asia_assessment
+    .row
+      .medium-4.columns
+        .callout.center.text-center
+            a data-reveal-id="fimModal" href="#"  + FIM
 
+      .medium-4.columns
+        .callout.center.text-center
+            a data-reveal-id="swlsModal" href="#"  + SWLS
+
+      .medium-4.columns
+        .callout.center.text-center
+            a data-reveal-id="sf8Modal" href="#"  + SF8
+
+      #fimModal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+        h4 FIM
         = f.input :finish_fim
-        = f.input :finish_swls
+        a.close-reveal-modal aria-label="Close"  ×
 
-        h4.instrument-title Finish SF8
+      #swlsModal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+        h4 SWLS
+        = f.input :finish_swls
+        a.close-reveal-modal aria-label="Close"  ×
+
+      #sf8Modal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+        h4 Finish SF8
         = f.simple_fields_for :finish_sf8 do |sf8_builder|
           = render 'shared/sf8_fields', :f => sf8_builder
+        a.close-reveal-modal aria-label="Close"  ×
+
     = f.submit class:"button large"

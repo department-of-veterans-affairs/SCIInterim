@@ -1,9 +1,26 @@
 = wrapped_form_for([@patient, @annual_evaluation]) do |f|
   = f.error_notification
   .form-inputs
-    /TODO: @emilyville make modal!
-    = f.simple_fields_for :fim do |fim|
-      = render 'shared/fim', f: fim
-    = f.simple_fields_for :kurtzke_edss do |fields|
-        = render 'shared/kurtzke_edss_fields', :f => fields
-    = f.submit "Save Annual Evaluation", class: "button large"
+    .row
+      .medium-4.columns
+          .callout.center.text-center
+              a data-reveal-id="fimModal" href="#"  + FIM
+
+      / TODO: @emilyville make conditional for type of SCI
+      .medium-4.columns
+          .callout.center.text-center
+              a data-reveal-id="edssModal" href="#"  + Kurtzke EDSS
+
+      #fimModal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+        h4 FIM
+        = f.simple_fields_for :fim do |fim|
+          = render 'shared/fim', f: fim
+        a.close-reveal-modal aria-label="Close"  ×
+
+      #edssModal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+        h4 Kutzke EDSS
+        = f.simple_fields_for :kurtzke_edss do |fields|
+            = render 'shared/kurtzke_edss_fields', :f => fields
+        a.close-reveal-modal aria-label="Close"  ×
+
+  = f.submit "Save Annual Evaluation", class: "button large"
