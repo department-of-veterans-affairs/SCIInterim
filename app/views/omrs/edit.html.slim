@@ -1,1 +1,5 @@
-== render 'tabigation'
+= wrapped_form_for([@patient, @omr]) do |f|
+  = f.error_notification
+  == render 'tabigation'
+  .pull-right 
+    = f.submit class:"btn btn-lg btn-primary"

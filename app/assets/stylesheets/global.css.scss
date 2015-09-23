@@ -121,72 +121,73 @@
     border: #1D3D46;
     font-weight: 500;
   }
+
   h4 {
     color: #808E8E;
     font-size: 14px;
+
+  a {
+    color: #808E8E;
   }
+}
 
   .form-horizontal .control-label {
     color: #4d4d4d;
     font-weight: normal;
     font-size: 14px;
   }
+}
+.instrument-title {
+  margin-left: 10px;
+}
 
-  .instrument-title {
-    margin-left: 10px;
+.instrument, .callout, .callout-blank {
+  label {
+    font-weight: normal;
   }
+}
 
-  .instrument, .callout, .callout-blank {
+.hide .instrument {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.callout-blank {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.instrument, .callout {
+  background-color: #EDF1F2;
+  border: 1px dashed #ccc;
+  margin-bottom: 35px;
+  padding: 20px 20px 20px 20px;
+  .crazy-table {
+    label, .input {
+      display: block;
+      clear: both;
+      text-align: right;
+      height: 20px;
+      margin-bottom: 10px;
+    }
     label {
-      font-weight: normal;
+      padding-top: 5px;
+    }
+    label.category {
+      color: #808E8E;
+      text-transform: uppercase;
+    }
+    label.top {
+      text-align: center;
+    }
+    // TODO FIX
+    &.columns {
+      padding-left: 5px;
+      padding-right: 5px;
     }
   }
+}
 
-  .hide .instrument {
-    border: none;
-    padding: 0px;
-    margin: 0px;
-  }
-
-  .callout-blank {
-    background-color: #fff;
-    margin-bottom: 10px;
-  }
-  .instrument, .callout {
-    background-color: #EDF1F2;
-    border: 1px dashed #ccc;
-    margin-bottom: 35px;
-    padding: 20px 20px 20px 20px;
-    .crazy-table {
-      label, .input {
-        display: block;
-        clear: both;
-        text-align: right;
-        height: 20px;
-        margin-bottom: 10px;
-      }
-      label {
-        padding-top: 5px;
-      }
-      label.category {
-        color: #808E8E;
-        text-transform: uppercase;
-      }
-      label.top {
-        text-align: center;
-      }
-      // TODO FIX
-      &.columns {
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-    }
-  }
-  
-  a {
-    color: #808E8E;
-  }
-} 
 
 .panel.patient-sidebar {
     background-color: #EDF1F2;

@@ -5,12 +5,30 @@
       .medium-4.columns
         = f.input :followup_1yr_date, as: :date_picker, label: "Date of 1 Year Follow Up"
 
+<<<<<<< Updated upstream
   / TODO: Need to add this instrument
   .instrument 
     h4 SWLS
+=======
+  .form-inputs
+    .callout-blank
+      h4 1 Year OMR
+      .row 
+        .col-md-4
+          / TODO: Need to add OMR Follow Up Date field
+          p Follow up 1 Year Date: datepicker
+>>>>>>> Stashed changes
 
   = f.simple_fields_for :followup_1yr_chart_sf do |chart_sf_builder|
     = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
+<<<<<<< Updated upstream
   = f.simple_fields_for :followup_1yr_sf8 do |sf8_builder|
     = render 'shared/sf8_fields', :f => sf8_builder
+=======
+    = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+      = render 'shared/chart_sf_fields', :f => chart_sf_builder
+
+    = f.simple_fields_for :start_sf8 do |sf8_builder|
+      = render 'shared/sf8_fields', :f => sf8_builder
+>>>>>>> Stashed changes

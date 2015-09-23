@@ -24,7 +24,11 @@ feature 'OMR' do
     expect(page).to have_content patient1.ssn
 
     click_link("+ OMR")
+<<<<<<< Updated upstream
     expect(page).to have_content "OMR"
+=======
+    expect(page).to have_content "Start OMR"
+>>>>>>> Stashed changes
 
     fill_in "omr[start_date]", with: Time.now
 
