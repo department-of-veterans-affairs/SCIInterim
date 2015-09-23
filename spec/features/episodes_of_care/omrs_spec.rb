@@ -21,7 +21,7 @@ feature 'OMR' do
     visit edit_patient_path(patient1)
 
     expect(page).to have_content "Patient Personal Information"
-    expect(page).to have_content patient1.ssn
+    expect(find_field('SSN').value).to eql patient1.ssn
 
     click_link("+ OMR")
 <<<<<<< Updated upstream
@@ -30,9 +30,9 @@ feature 'OMR' do
     expect(page).to have_content "Start OMR"
 >>>>>>> Stashed changes
 
-    fill_in "omr[start_date]", with: Time.now
+    fill_in "Date of Admission", with: Time.now
 
-    click_button("Create Omr")
+    first(:button, "Create Omr").click
     expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify OMR shows.

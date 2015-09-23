@@ -66,6 +66,29 @@
 // This is the alternate patient nav, eventually we'll only need outline
 #alternate {
   margin-bottom: 30px;
+
+  .label {
+    color: #fff;
+    margin-top: 20px;
+  }
+
+  a .patient-name {
+    margin-top: 13px;
+    display: inline;
+    float: left;
+    font-size: 20px;
+    color: #ddd;    
+
+  &:hover {
+    color: #428bca;
+    text-decoration: underline;
+  }
+}
+h4 {
+  color: #1D3D46;
+  } 
+
+
 }
 
 #patient-nav {

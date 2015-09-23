@@ -21,14 +21,14 @@ feature 'Acute Rehab' do
     visit edit_patient_path(patient1)
 
     expect(page).to have_content "Patient Personal Information"
-    expect(page).to have_content patient1.ssn
+    expect(find_field('SSN').value).to eql patient1.ssn
 
     click_link("+ Acute Rehab")
     expect(page).to have_content "New Acute Rehab"
 
-    fill_in "acute_rehab[acute_rehab_admission]", with: Time.now
+    fill_in "Date of Rehab Admission", with: Time.now
 
-    click_button("Create Acute rehab")
+    first(:button, "Create Acute rehab").click
     expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify Acute Rehab is added to patient.

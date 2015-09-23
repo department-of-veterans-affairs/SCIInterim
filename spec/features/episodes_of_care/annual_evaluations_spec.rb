@@ -21,14 +21,14 @@ feature 'Annual Evaluations' do
     visit edit_patient_path(patient1)
 
     expect(page).to have_content "Patient Personal Information"
-    expect(page).to have_content patient1.ssn
+    expect(find_field('SSN').value).to eql patient1.ssn
 
     click_link("+ Annual Evaluation")
     expect(page).to have_content "New Annual Evaluation"
 
-    fill_in "annual_evaluation[eval_offered]", with: Time.now
+    fill_in "Date AE Offered", with: Time.now
 
-    click_button("Save Annual Evaluation")
+    first(:button, "Save Annual Evaluation").click
     expect(current_url).to eql edit_patient_url(patient1)
 
     # TODO(awong.dev): Verify annual evaluation shows.

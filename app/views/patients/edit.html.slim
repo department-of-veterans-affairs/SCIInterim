@@ -1,6 +1,8 @@
 h3 Edit patient
 ul.tabs data-tab="" 
   li.tab-title.active
+    a href="#history"  History
+  li.tab-title
     a href="#personal"  Personal Info
   li.tab-title
     a href="#contact"  Contact Info
@@ -19,48 +21,53 @@ ul.tabs data-tab=""
   li.tab-title
     a href="#caregiver"  Caregiver
 .tabs-content
-  #personal.content.active
+  #history.content.active
     .row
       .panel
         .panel-body
-          == render 'form_personal'
+          = render 'form_history'
+  #personal.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_personal'
   #contact.content
     .row
       .panel
         .panel-body
-          == render 'form_contact'
+          = render 'form_contact'
   #travel.content
     .row
       .panel
         .panel-body
-          == render 'form_travel'
+          = render 'form_travel'
   #status.content
     .row
       .panel
         .panel-body
-          == render 'form_status'
+          = render 'form_status'
   #primary.content
     .row
       .panel
         .panel-body
-          == render 'form_primary'
+          = render 'form_primary'
   #scid.content
     .row
       .panel
         .panel-body
-          == render 'form_scid'
+          = render 'form_scid'
   #isncsci.content
     .row
       .panel
         .panel-body
-          == render 'form_isncsci'
+          = render 'form_isncsci'
   #psychosocial.content
     .row
       .panel
         .panel-body
-          == render 'form_psychosocial'
+          = render 'form_psychosocial'
   #caregiver.content
     .row
       .panel
         .panel-body
-          == render 'form_caregiver'
+          = render 'form_caregiver'

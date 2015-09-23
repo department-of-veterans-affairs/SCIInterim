@@ -41,28 +41,6 @@ class Patient < ActiveRecord::Base
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
 
-  def episode_of_cares
-    all_episodes = []
-    all_episodes.push(*annual_evaluations)
-    all_episodes.push(*acute_rehabs)
-    all_episodes.push(*omrs)
-    all_episodes.sort! do |a, b|
-      # TODO(awong): Only one should ever be nil. This occurs if
-      # data validation fails. Try to simplify this logic for nil.
-      if a.episode_date.nil?
-        if b.episode_date.nil?
-          0
-        else
-          -1
-        end
-      elsif b.episode_date.nil?
-        1
-      else
-        b.episode_date <=> a.episode_date
-      end
-    end
-  end
-
   def computed_age
     age = Date.today.year - dob.year
     age -= 1 if Date.today < dob + age.years

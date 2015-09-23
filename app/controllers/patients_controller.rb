@@ -66,6 +66,23 @@ class PatientsController < ApplicationController
     render status: :forbidden, text: "Deleting a Patient is not allowed"
   end
 
+  def episode_of_care_sort_func(a, b)
+    # TODO(awong): Only one should ever be nil. This occurs if
+    # data validation fails. Try to simplify this logic for nil.
+    if a.episode_date.nil?
+      if b.episode_date.nil?
+        0
+      else
+        -1
+      end
+    elsif b.episode_date.nil?
+      1
+    else
+      b.episode_date <=> a.episode_date
+    end
+  end
+  helper_method :episode_of_care_sort_func
+
   private
     def set_patient
       @patient = Patient.find(params[:id])
