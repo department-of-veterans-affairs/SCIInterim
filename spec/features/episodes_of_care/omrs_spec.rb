@@ -24,11 +24,7 @@ feature 'OMR' do
     expect(find_field('SSN').value).to eql patient1.ssn
 
     click_link("+ OMR")
-<<<<<<< Updated upstream
     expect(page).to have_content "OMR"
-=======
-    expect(page).to have_content "Start OMR"
->>>>>>> Stashed changes
 
     fill_in "Date of Admission", with: Time.now
 
