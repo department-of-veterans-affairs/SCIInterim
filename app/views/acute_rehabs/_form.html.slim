@@ -1,0 +1,52 @@
+ul.tabs data-tab="" 
+  li.tab-title.active
+    a href="#administrative"  Administrative
+  li.tab-title
+    a href="#start"  Start
+  li.tab-title
+    a href="#goal"  Goal
+  li.tab-title
+    a href="#finish"  Finish
+  li.tab-title
+    a href="#standard"  Standard Instruments
+  li.tab-title
+    a href="#ninety"  Follow Up 90 Days
+  li.tab-title
+    a href="#oneyear"  Follow Up One Year
+.tabs-content
+  #administrative.content.active
+    .row
+      .panel
+        .panel-body
+          = render 'form_administrative'
+  #start.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_start'
+  #goal.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_goal'
+  #finish.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_finish'
+  #standard.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_standard' 
+  #ninety.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_ninety' 
+  #oneyear.content
+    .row
+      .panel
+        .panel-body
+          = render 'form_oneyear' 
+
