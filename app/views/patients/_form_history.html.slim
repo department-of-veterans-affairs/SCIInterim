@@ -5,7 +5,7 @@
       tr
         th Previous Annual Evaluations
       - for episode in @patient.annual_evaluations do
-        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+        tr class="clickable-row" data-href=edit_patient_annual_evaluation_url(@patient, episode)
           .medium-12.columns
             td 
               = episode.class.name 
@@ -21,7 +21,7 @@
       tr
         th Previous Acute Rehabs
       - for episode in @patient.acute_rehabs do
-        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+        tr class="clickable-row" data-href=edit_patient_acute_rehab_url(@patient, episode)
           .medium-12.columns
             td 
               = episode.class.name 
@@ -37,7 +37,7 @@
       tr
         th Previous OMRs
       - for episode in @patient.omrs do
-        tr class="clickable-row" data-href=edit_polymorphic_url([@patient, episode])
+        tr class="clickable-row" data-href=edit_patient_omr_url(@patient, episode)
           .medium-12.columns
             td 
               = episode.class.name 
