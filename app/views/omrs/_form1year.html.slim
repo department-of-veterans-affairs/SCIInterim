@@ -4,10 +4,13 @@
     .row 
       .medium-4.columns
         = f.input :followup_1yr_date, as: :date_picker, label: "Date of 1 Year Follow Up"
-
-  / TODO: Need to add this instrument
-  .instrument 
-    h4 SWLS
+  .form-inputs
+    .callout-blank
+      h4 1 Year OMR
+      .row 
+        .col-md-4
+          / TODO: Need to add OMR Follow Up Date field
+          p Follow up 1 Year Date: datepicker
 
   = f.simple_fields_for :followup_1yr_chart_sf do |chart_sf_builder|
     = render 'shared/chart_sf_fields', :f => chart_sf_builder

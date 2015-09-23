@@ -1,7 +1,12 @@
 = wrapped_form_for([@patient, @acute_rehab]) do |f|
   = f.error_notification
   .form-inputs
-    .callout-blank
-        h4 GOAL
-        = f.input :goal_fim
+    .row
+      .medium-4.columns
+        .callout.center.text-center
+            a data-reveal-id="fimModal" href="#"  + Goal FIM
+    #fimModal.reveal-modal aria-hidden="true" aria-labelledby="modalTitle" data-reveal="" role="dialog" 
+      h2 Goal FIM
+      = f.input :goal_fim
+      a.close-reveal-modal aria-label="Close"  ×
     = f.submit class:"button large"
