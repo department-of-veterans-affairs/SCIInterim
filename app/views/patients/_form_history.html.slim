@@ -8,10 +8,7 @@
         tr class="clickable-row" data-href=edit_patient_annual_evaluation_url(@patient, episode)
           .medium-12.columns
             td 
-              = episode.class.name 
-              small.right
-                |   
-                = episode.episode_date
+              = episode.episode_date
       - if @patient.annual_evaluations.empty?
         tr
           td There are no recorded Annual Evaluations for this patient
@@ -24,10 +21,7 @@
         tr class="clickable-row" data-href=edit_patient_acute_rehab_url(@patient, episode)
           .medium-12.columns
             td 
-              = episode.class.name 
-              small.right
-                |   
-                = episode.episode_date
+              = episode.episode_date
       - if @patient.acute_rehabs.empty?
         tr
           td There are no recorded Acute Rehabs for this patient
@@ -40,10 +34,7 @@
         tr class="clickable-row" data-href=edit_patient_omr_url(@patient, episode)
           .medium-12.columns
             td 
-              = episode.class.name 
-              small.right
-                |   
-                = episode.episode_date
+              = episode.episode_date
       - if @patient.omrs.empty?
         tr
           td There are no recorded OMRs for this patient
