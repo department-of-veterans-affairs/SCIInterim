@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921215536) do
+ActiveRecord::Schema.define(version: 20150933073249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,13 @@ ActiveRecord::Schema.define(version: 20150921215536) do
     t.integer  "reason_for_admission_id"
     t.integer  "discharge_location_id"
     t.integer  "start_hub_id"
+    t.integer  "start_asia_id"
+    t.integer  "finish_asia_id"
   end
 
+  add_index "acute_rehabs", ["finish_asia_id"], name: "index_acute_rehabs_on_finish_asia_id", using: :btree
   add_index "acute_rehabs", ["patient_id"], name: "index_acute_rehabs_on_patient_id", using: :btree
+  add_index "acute_rehabs", ["start_asia_id"], name: "index_acute_rehabs_on_start_asia_id", using: :btree
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -77,18 +81,18 @@ ActiveRecord::Schema.define(version: 20150921215536) do
     t.integer  "completed_hub_id"
     t.integer  "height_inches"
     t.integer  "weight_lbs"
+    t.integer  "asia_id"
   end
 
+  add_index "annual_evaluations", ["asia_id"], name: "index_annual_evaluations_on_asia_id", using: :btree
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
 
-  create_table "asia", force: :cascade do |t|
+  create_table "asias", force: :cascade do |t|
     t.integer  "classification"
     t.boolean  "is_complete"
     t.boolean  "has_motor_or_sensory_asymmetry"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "has_asia_id"
-    t.string   "has_asia_type"
     t.integer  "neurological_sensory_level_left_id"
     t.integer  "neurological_sensory_level_right_id"
     t.integer  "neurological_motor_level_left_id"
@@ -97,9 +101,10 @@ ActiveRecord::Schema.define(version: 20150921215536) do
     t.integer  "preservation_sensory_level_right_id"
     t.integer  "preservation_motor_level_left_id"
     t.integer  "preservation_motor_level_right_id"
+    t.integer  "patient_id"
   end
 
-  add_index "asia", ["has_asia_id"], name: "index_asia_on_has_asia_id", using: :btree
+  add_index "asias", ["patient_id"], name: "index_asias_on_patient_id", using: :btree
 
   create_table "chart_sfs", force: :cascade do |t|
     t.integer  "q1a_hours_paid"
@@ -394,9 +399,11 @@ ActiveRecord::Schema.define(version: 20150921215536) do
     t.integer  "va_facility_id"
     t.integer  "assigned_sci_hub_id"
     t.integer  "preferred_sci_hub_id"
+    t.integer  "asia_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
+  add_index "patients", ["asia_id"], name: "index_patients_on_asia_id", using: :btree
   add_index "patients", ["caregiver_address_id"], name: "index_patients_on_caregiver_address_id", unique: true, using: :btree
 
   create_table "sf8s", force: :cascade do |t|
@@ -442,25 +449,29 @@ ActiveRecord::Schema.define(version: 20150921215536) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "acute_rehabs", "asias", column: "finish_asia_id"
+  add_foreign_key "acute_rehabs", "asias", column: "start_asia_id"
   add_foreign_key "acute_rehabs", "domain_reason_for_admissions", column: "reason_for_admission_id"
   add_foreign_key "acute_rehabs", "domain_residence_types", column: "discharge_location_id"
   add_foreign_key "acute_rehabs", "domain_sci_hubs", column: "start_hub_id"
   add_foreign_key "acute_rehabs", "patients"
+  add_foreign_key "annual_evaluations", "asias"
   add_foreign_key "annual_evaluations", "domain_bladder_drainage_methods", column: "bladder_drainage_method_id"
   add_foreign_key "annual_evaluations", "domain_sci_hubs", column: "completed_hub_id"
   add_foreign_key "annual_evaluations", "domain_sci_hubs", column: "offered_hub_id"
   add_foreign_key "annual_evaluations", "fims"
   add_foreign_key "annual_evaluations", "kurtzke_edsses"
   add_foreign_key "annual_evaluations", "patients"
-  add_foreign_key "asia", "domain_asia_classifications", column: "classification"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "neurological_motor_level_left_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "neurological_motor_level_right_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "neurological_sensory_level_left_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "neurological_sensory_level_right_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "preservation_motor_level_left_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "preservation_motor_level_right_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "preservation_sensory_level_left_id"
-  add_foreign_key "asia", "domain_level_of_injuries", column: "preservation_sensory_level_right_id"
+  add_foreign_key "asias", "domain_asia_classifications", column: "classification"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_left_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_right_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_sensory_level_left_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_sensory_level_right_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "preservation_motor_level_left_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "preservation_motor_level_right_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "preservation_sensory_level_left_id"
+  add_foreign_key "asias", "domain_level_of_injuries", column: "preservation_sensory_level_right_id"
+  add_foreign_key "asias", "patients"
   add_foreign_key "chart_sfs", "domain_chart_sf_at_home_cognitives", column: "q2_at_home_assisted_cognitive_id"
   add_foreign_key "chart_sfs", "domain_chart_sf_away_nights", column: "q6_nights_not_home_per_year_id"
   add_foreign_key "chart_sfs", "domain_chart_sf_household_incomes", column: "q18_household_combined_income_id"
@@ -498,8 +509,8 @@ ActiveRecord::Schema.define(version: 20150921215536) do
   add_foreign_key "fims", "fim_measurements", column: "measurements_goal_id"
   add_foreign_key "fims", "fim_measurements", column: "measurements_start_id"
   add_foreign_key "kurtzke_edsses", "domain_kurtzke_edss_scores", column: "scale_value_id"
-  add_foreign_key "omrs", "asia", column: "finish_asia_id"
-  add_foreign_key "omrs", "asia", column: "start_asia_id"
+  add_foreign_key "omrs", "asias", column: "finish_asia_id"
+  add_foreign_key "omrs", "asias", column: "start_asia_id"
   add_foreign_key "omrs", "chart_sfs", column: "followup_1yr_chart_sf_id"
   add_foreign_key "omrs", "chart_sfs", column: "followup_90day_chart_sf_id"
   add_foreign_key "omrs", "domain_residence_types", column: "discharge_location_id"
@@ -509,6 +520,7 @@ ActiveRecord::Schema.define(version: 20150921215536) do
   add_foreign_key "omrs", "sf8s", column: "followup_90day_sf8_id"
   add_foreign_key "patients", "addresses"
   add_foreign_key "patients", "addresses", column: "caregiver_address_id"
+  add_foreign_key "patients", "asias"
   add_foreign_key "patients", "domain_caregiver_types", column: "has_caregiver_id"
   add_foreign_key "patients", "domain_genders", column: "gender_id"
   add_foreign_key "patients", "domain_highest_level_of_educations", column: "highest_level_of_education_id"

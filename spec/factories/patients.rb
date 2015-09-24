@@ -8,7 +8,7 @@ FactoryGirl.define do
     address { create(:address) }
     acute_rehabs { rand(1..3).times.map { create(:acute_rehab) } }
     annual_evaluations { rand(1..3).times.map { create(:annual_evaluation) } }
-    asia_assessment { create(:asia) }
+    asia { create(:asia) }
     assigned_sci_hub { Domain::SciHub.all.sample }
     assigned_sci_hub_physician_first_name { Faker::Name.first_name }
     assigned_sci_hub_physician_last_name { Faker::Name.last_name }

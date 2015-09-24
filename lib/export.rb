@@ -40,6 +40,7 @@ def convert_model(wb, worksheets, config_root, model, name)
       when :has_many
         model.send(attr).each { |nested_model| convert_model(wb, worksheets, value, nested_model, attr) }
       when :belongs_to, :has_one
+        # We need to put the model into our system
         convert_model(wb, worksheets, value, model.send(attr), attr)
       else
         raise "Unknown association type #{association.macro} for #{attr}."

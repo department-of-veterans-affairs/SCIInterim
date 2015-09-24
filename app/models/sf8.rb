@@ -1,4 +1,6 @@
 class Sf8 < ActiveRecord::Base
+  include AttributeExportable
+
   validates :q1_overall_health, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 6, allow_blank: true }
   validates :q2a_physical_activities_limited_by_physical, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5, allow_blank: true }
   validates :q2b_physical_activities_limited_by_physical_mobility_restricted, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5, allow_blank: true }

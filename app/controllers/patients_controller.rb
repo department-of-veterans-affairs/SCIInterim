@@ -31,7 +31,7 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     @patient.build_address
-    @patient.build_asia_assessment
+    @patient.build_asia
     @patient.build_caregiver_address
     respond_with(@patient)
   end
@@ -138,7 +138,7 @@ class PatientsController < ApplicationController
         :va_facility_pcp_last_name,
         :va_status_id,
         address_attributes: nested_model_attributes(Address),
-        asia_assessment_attributes: nested_model_attributes(Asia),
+        asia_attributes: nested_model_attributes(Asia),
         caregiver_address_attributes: nested_model_attributes(Address),
         )
     end

@@ -5,12 +5,12 @@ FactoryGirl.define do
     created_at Time.now
     updated_at Time.now
 
-    start_asia_assessment { create(:asia) }
+    start_asia { create(:asia) }
     start_fim { rand(18..126) }
     start_swls { rand(5..35) }
     start_sf8 { create(:sf8) }
     goal_fim { rand(18..126) }
-    finish_asia_assessment { create(:asia) }
+    finish_asia { create(:asia) }
     finish_fim { rand(18..126) }
     finish_swls { rand(5..35) }
     finish_sf8 { create(:sf8) }
