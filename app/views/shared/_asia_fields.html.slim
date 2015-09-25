@@ -62,9 +62,3 @@
         = f.input :preservation_motor_level_left_id,
         collection: Domain::LevelOfInjury.cached_all,
         label: "Motor Left"
-
-javascript:
-  $(document).ready(function() {
-    showWhenValueEquals("[name='patient[asia_assessment][has_motor_or_sensory_asymmetry]']", "true", "#asymmetry");
-    showWhenValueEquals("[name='patient[asia_assessment][is_complete]']", "true", "#complete");
-  });
