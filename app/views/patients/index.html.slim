@@ -1,3 +1,26 @@
+form method="post" 
+  input list="languages" name="language" type="text" value="" /
+  datalist#languages
+    /![if IE 9] <select disabled style="display:none"
+    - @patients.each do |patient|
+      option value=patient.first_name
+      /![if IE 9] </select
+
+label for="ajax"  Pick an HTML Element (options loaded using AJAX)
+input#ajax list="json-datalist" placeholder=("e.g. datalist") type="text" /
+datalist#json-datalist
+  datalist#json-datalist
+    /![if IE 9] <select disabled style="display:none"
+    - @patients.each do |patient|
+      option value=patient.first_name
+        tr class="clickable-row" data-href=edit_patient_path(patient)
+          td = patient.id
+          td: a href="#{edit_patient_path(patient)}"  = patient.first_name
+          td: a href="#{edit_patient_path(patient)}"  = patient.last_name
+          td = localize(patient.dob) if patient.dob
+          td = patient.va_status
+    /![if IE 9] </select
+
 .row
   .columns.large-8.large-offset-2
     .row 
