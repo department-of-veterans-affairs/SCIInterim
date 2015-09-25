@@ -9,4 +9,5 @@ $(document).ready(function() {
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 1, "#principleVa");
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 2, "#principleNonVa");
   showWhenValueEquals("[name='patient[va_status_id]']", 4, "#expiredDate");
+
 });
