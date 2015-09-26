@@ -1,80 +1,64 @@
 .nested-fields
-  .instrument
-    h4 ASIA Assessment Score
+  h4 ASIA Assessment Score
+  .row
+    .medium-4.columns
+      label Neurological Level of Injury
+      / TODO: @awong add field for overall NLOI
+      = f.input :neurological_sensory_level_right_id,
+      label: false,
+      collection: Domain::LevelOfInjury.cached_all
+    .medium-4.columns.left
+      / TODO: @awong I think this is backwards. False should be asymmetrical
+      label Sensory and Motor Levels Symmetrical?
+      = f.input :has_motor_or_sensory_asymmetry,
+      as: :radio_buttons,
+      item_wrapper_class: 'radio-inline',
+      label: false
+  .instrument#asymmetry.hide
+    h4 If Asymmetrical, Fill in Information for Neurological Level of Injury
     .row
-      .medium-6.columns
-        label Neurological Level
-        .table-responsive
-          table.table.table-bordered.table-striped
-            thead
-              tr
-                th 
-                th Left
-                th Right
-            tbody
-              tr
-                th scope="row"  Sensory
-                td 
-                  = f.input_field :neurological_sensory_level_left_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-                td 
-                  = f.input_field :neurological_sensory_level_right_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-              tr
-                th scope="row"  Motor
-                td 
-                  = f.input_field :neurological_motor_level_left_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-                td 
-                  = f.input_field :neurological_motor_level_right_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-      .medium-6.columns
-        label Zone of Partial Preservation
-        .table-responsive
-          table.table.table-bordered.table-striped
-            thead
-              tr
-                th 
-                th Left
-                th Right
-            tbody
-              tr
-                th scope="row"  Sensory
-                td 
-                  = f.input_field :preservation_sensory_level_left_id,
-                  collection: Domain::LevelOfInjury.cached_all
-                td 
-                  = f.input_field :preservation_sensory_level_right_id,
-                  collection: Domain::LevelOfInjury.cached_all
-              tr
-                th scope="row"  Motor
-                td 
-                  = f.input_field :preservation_motor_level_left_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-                td 
-                  = f.input_field :preservation_motor_level_right_id,
-                  label: false,
-                  collection: Domain::LevelOfInjury.cached_all
-      .medium-6.columns
-        label ASIA Impairment Scale
-        .form-control.input Missing JS auto-calc
-        / TODO: when these are functional we won't need breaks
-        br
-        label
-          .checkbox-inline
-            = f.input :has_motor_or_sensory_asymmetry
-      .medium-6.columns
-        label Neurological Level of Injury
-        .form-control.input Missing JS auto-calc
-        br
-        / TODO: when these are functional we won't need breaks
-        = f.input :is_complete, 
-        collection: [["Complete", true], ["Incomplete", false] ],
-        label: false,
-        as: :radio_buttons, 
-        item_wrapper_class: 'radio-inline'
+      .medium-4.columns
+        = f.input :neurological_sensory_level_right_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Sensory Right"
+        = f.input :neurological_sensory_level_left_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Sensory Left"
+      .medium-4.columns.left
+        = f.input :neurological_motor_level_right_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Motor Right"
+        = f.input :neurological_motor_level_left_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Motor Left"
+  .row
+    .medium-4.columns
+      label ASIA Impairment Scale
+      / TODO: @awong add field for ASIA impairment Scale
+      = f.input :neurological_sensory_level_right_id,
+      label: false,
+      collection: Domain::LevelOfInjury.cached_all
+    .medium-4.columns.left
+      label Injury Complete or Incomplete
+      = f.input :is_complete, 
+      collection: [["Complete", true], ["Incomplete", false] ],
+      label: false,
+      as: :radio_buttons, 
+      item_wrapper_class: 'radio-inline'
+  .instrument#complete.hide
+    h4 If Complete, Fill in Information for Zone of Partial Preservation
+    .row
+      .medium-4.columns
+        = f.input :preservation_sensory_level_right_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Sensory Right"
+        = f.input :preservation_sensory_level_left_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Sensory Left"
+      .medium-4.columns.left
+        = f.input :preservation_motor_level_right_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Motor Right"
+        = f.input :preservation_motor_level_left_id,
+        collection: Domain::LevelOfInjury.cached_all,
+        label: "Motor Left"

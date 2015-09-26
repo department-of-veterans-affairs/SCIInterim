@@ -38,3 +38,9 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
   });
   $(selector).trigger(action);
 }
+
+$(document).ready(function() {
+  // ASIA Conditional things
+  showWhenValueEquals("[name='patient[asia_assessment][has_motor_or_sensory_asymmetry]']", "true", "#asymmetry");
+  showWhenValueEquals("[name='patient[asia_assessment][is_complete]']", "true", "#complete");
+});
