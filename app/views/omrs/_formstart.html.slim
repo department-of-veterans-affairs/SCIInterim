@@ -1,21 +1,25 @@
-.form-inputs
-  .callout-blank
-    h4 Start OMR
-    .row 
-      .medium-4.columns
-        = f.input :start_date, as: :date_picker, label: "Date of Admission"
-      .medium-4.columns
-        = f.association :start_hub, label: "Name of Hub"
+= wrapped_form_for([@patient, @omr]) do |f|
+  = f.error_notification
+    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+  .form-inputs
+    .callout-blank
+      h4 Start OMR
+      .row 
+        .medium-4.columns
+          = f.input :start_date, as: :date_picker, label: "Date of Admission"
+        .medium-4.columns
+          = f.association :start_hub, label: "Name of Hub"
 
-  = f.simple_fields_for :start_asia do |asia|
-      = render 'shared/asia_fields', :f => asia
+    = f.simple_fields_for :start_asia do |asia|
+        = render 'shared/asia_fields', :f => asia
 
-  / TODO: Need to add this instrument
-  .instrument 
-    h4 SWLS
+    / TODO: Need to add this instrument
+    .instrument 
+      h4 SWLS
 
-  = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
-    = render 'shared/chart_sf_fields', :f => chart_sf_builder
+    = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+      = render 'shared/chart_sf_fields', :f => chart_sf_builder
 
-  = f.simple_fields_for :start_sf8 do |sf8_builder|
-    = render 'shared/sf8_fields', :f => sf8_builder
+    = f.simple_fields_for :start_sf8 do |sf8_builder|
+      = render 'shared/sf8_fields', :f => sf8_builder
+  = f.submit class:"button large"
