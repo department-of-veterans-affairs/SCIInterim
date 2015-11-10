@@ -10,6 +10,7 @@ class AnnualEvaluation < ActiveRecord::Base
   belongs_to :bladder_drainage_method, class_name: Domain::BladderDrainageMethod
   belongs_to :offered_hub, class_name: Domain::SciHub
   belongs_to :completed_hub, class_name: Domain::SciHub
+  belongs_to :notes, class_name: Domain::Notes
 
   validates :eval_offered, presence: true
   validates :height_inches, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 999, only_integer: true, allow_blank: true }

@@ -14,12 +14,19 @@
           / shows only if other is selected above
           .medium-4.columns
             = f.input :scid_eligibility_other, label: "Other"
-        #msDetails.hide
-          .medium-4.columns
-            = f.association :ms_specifics,
-            collection: Domain::MSSpecifics.cached_all,
-            prompt: "Select one",
-            label: "MS Specific Type"
+        .medium-4.columns
+          .form-inputs
+    	    = f.association :scid_eligibility,
+    	    collection: Domain::ScidEligibility.cached_all,
+    	    prompt: "Select one",
+            label: "MS Specification"
+	      = f.input :date_of_injury, as: :date_picker
+
+	  /! .medium-4.columns
+          /!  = f.association :ms_specifics,
+          /!  collection: Domain::MSSpecifics.cached_all,
+          /!  prompt: "Select one",
+          /!  label: "MS Specific Type"
       #sciDetails.hide
         / shows only if SCI is selected above
         hr
