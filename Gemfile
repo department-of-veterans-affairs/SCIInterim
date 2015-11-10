@@ -43,7 +43,7 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
   gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'guard-rspec'

@@ -22,12 +22,18 @@ class Patient < ActiveRecord::Base
   belongs_to :principle_pcp_va_nonva, class_name: Domain::PrinciplePcpType
   belongs_to :residence_type, class_name: Domain::ResidenceType
   belongs_to :sci_type, class_name: Domain::SciType
+  belongs_to :ms_specifics, class_name: Domain::MSSpecifics
   belongs_to :scid_eligibility, class_name: Domain::ScidEligibility
   belongs_to :scid_etiology, class_name: Domain::ScidEtiology
   belongs_to :theater_of_service, class_name: Domain::TheaterOfService
   belongs_to :travel_status, class_name: Domain::TravelStatus
   belongs_to :va_facility, class_name: Domain::VaMedicalCenter
   belongs_to :va_status, class_name: Domain::VaStatus
+  belongs_to :race, class_name: Domain::Race
+  belongs_to :ethnicity, class_name: Domain::Ethnicity
+  belongs_to :priority_status, class_name: Domain::PriorityStatus
+  belongs_to :notes, class_name: Domain::Notes
+
 
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"

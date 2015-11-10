@@ -20,6 +20,11 @@
         .medium-4.columns
           = f.input :scido_id, label: "CDW SID", disabled: true
       .row
+        .medium-4.columns
+          = f.input :race, label: "Race"
+        .medium-4.columns.left
+          = f.input :ethnicity, label: "Ethnicity"
+      .row
         .medium-8.columns.left
           label.control-label.radio Gender
           = f.input_field :gender_id,
@@ -31,9 +36,16 @@
         .medium-4.columns
           / TODO: @awong add
           = f.input :scido_id, label: "Registration Date"
-        .medium-4.columns.left
+        .medium-4.columns 
+	  / Old Code: .left - this is a comment
           / TODO: @awong add, this will be all VA facilities
           = f.input :scido_id, label: "Registration Facility"
+        .medium-4.columns
+          = f.input :priority_status, label: "Priority Status"
+      .row
+        hr
+        .medium-8.columns.left
+	  = f.input :notes, :input_html => {:maxlength => 40 }, label: "Notes"
     = f.submit class:"button large"
 
 

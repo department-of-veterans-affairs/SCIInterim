@@ -8,8 +8,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: sci_app
-  password: sci_app_sekure_password
-  host: localhost
+  #password: sci_app_sekure_password
+  host: 
   pool: 5
   timeout: 5000
 

@@ -133,6 +133,7 @@ class PatientsController < ApplicationController
         :ssn,
         :theater_of_service_id,
         :travel_status_id,
+        :ms_specifics,
         :va_facility_id,
         :va_facility_pcp_first_name,
         :va_facility_pcp_last_name,
