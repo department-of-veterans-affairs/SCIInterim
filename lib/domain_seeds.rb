@@ -296,6 +296,12 @@ module DomainSeeds
     6 => "Non-traumatic spinal cord dysfunction",
     7 => "Unspecified or Unknown",
   }
+  MS_SPECIFICS = {
+    1 => "relapsing-remitting",
+    2 => "secondary aggressive",
+    3 => "primary-progressive",
+    4 => "progressive relapsing"
+  }
   THEATER_OF_SERVICE_MAP = {
     1 => "NONE",
     2 => "OEF/OIF",
@@ -483,6 +489,11 @@ module DomainSeeds
     4 => "Expired",
   }
 
+  def self.seed_domain_ms_specifics 
+    update_domain_table(:ms_specifics,
+                        MS_SPECIFICS)
+  end
+
   def self.seed_domain_asia_classifications
     update_domain_table(:domain_asia_classifications,
                         ASIA_CLASSIFICATION_MAP)
@@ -632,6 +643,7 @@ module DomainSeeds
 
   def self.seed_all
     ActiveRecord::Base.transaction do
+      seed_domain_ms_specifics
       seed_domain_asia_classifications
       seed_domain_bladder_drainage_methods
       seed_domain_caregiver_types

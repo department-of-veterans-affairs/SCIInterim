@@ -32,10 +32,10 @@
         hr
         .row
           .medium-4.columns
-            = f.association :sci_type,
-            collection: Domain::SciType.cached_all,
+            = f.association :ms_specifics,
+            collection: Domain::MSSpecifics.cached_all,
             prompt: "Select one",
-            label: "SCI Type"
+            label: "MS Specific Type"
           .medium-4.columns.left
             = f.input :sci_arrival_date, as: :date_picker, label: "SCI Arrival Date"
         .row

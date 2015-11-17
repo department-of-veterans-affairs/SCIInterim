@@ -33,7 +33,7 @@ class Patient < ActiveRecord::Base
   belongs_to :ethnicity, class_name: Domain::Ethnicity
   belongs_to :priority_status, class_name: Domain::PriorityStatus
   belongs_to :notes, class_name: Domain::Notes
-
+  belongs_to :ms_specifics, class_name: Domain::MSSpecifics
 
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
