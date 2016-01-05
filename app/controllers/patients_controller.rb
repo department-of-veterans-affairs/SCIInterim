@@ -118,6 +118,7 @@ class PatientsController < ApplicationController
         :non_va_facility_pcp_first_name,
         :non_va_facility_pcp_last_name,
         :non_va_facility_phone_number,
+        :notes,
         :occupation_at_time_of_injury_id,
         :preferred_sci_hub_id,
         :preferred_sci_hub_physician_first_name,

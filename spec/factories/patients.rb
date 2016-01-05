@@ -37,6 +37,7 @@ FactoryGirl.define do
     non_va_facility_pcp_first_name { Faker::Name.first_name }
     non_va_facility_pcp_last_name { Faker::Name.last_name }
     non_va_facility_phone_number { Faker::PhoneNumber.phone_number }
+    notes { Faker::Lorem.paragraphs.join(" ") }
     omrs { rand(1..3).times.map { create(:omr) } }
     occupation_at_time_of_injury { Domain::Occupation.all.sample }
     preferred_sci_hub { Domain::SciHub.all.sample }

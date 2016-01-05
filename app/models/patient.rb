@@ -36,6 +36,7 @@ class Patient < ActiveRecord::Base
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
+  validates_presence_of :ethnic_id, :race_id
 
   def computed_age
     age = Date.today.year - dob.year

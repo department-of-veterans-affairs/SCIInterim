@@ -91,8 +91,9 @@ module DomainSeeds
   }
 
   ETHNIC_MAP = {
-    1 => "Hispanic or Latino",
-    2 => "Not Hispanic or Latino"
+    1 => "Not Provided",
+    2 => "Hispanic or Latino",
+    3 => "Not Hispanic or Latino"
   }
 
   FIM_ADMISSION_CLASS_MAP = {
@@ -238,11 +239,12 @@ module DomainSeeds
 
   # MPH Add race mapping
   RACE_MAP = {
-    1 => "American Indian or Alaskan Native",
-    2 => "Asian",
-    3 => "Black or African American",
-    4 => "Native Hawaiian or Other Pacific Islander",
-    5 => "White"
+    1 => "Not Provided",
+    2 => "American Indian or Alaskan Native",
+    3 => "Asian",
+    4 => "Black or African American",
+    5 => "Native Hawaiian or Other Pacific Islander",
+    6 => "White"
   }
 
   REASON_FOR_ADMISSION = {
