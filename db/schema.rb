@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105181956) do
+ActiveRecord::Schema.define(version: 20160105193940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,14 @@ ActiveRecord::Schema.define(version: 20160105181956) do
   create_table "domain_chart_sf_spouse_resident_options", force: :cascade do |t|
     t.string "name"
   end
+
+  create_table "domain_ethnics", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "domain_ethnics", ["name"], name: "index_domain_ethnics_on_name", unique: true, using: :btree
 
   create_table "domain_fim_admission_classes", force: :cascade do |t|
     t.string "name"
@@ -409,6 +417,7 @@ ActiveRecord::Schema.define(version: 20160105181956) do
     t.integer  "preferred_sci_hub_id"
     t.integer  "asia_id"
     t.integer  "race_id"
+    t.integer  "ethnic_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -531,6 +540,7 @@ ActiveRecord::Schema.define(version: 20160105181956) do
   add_foreign_key "patients", "addresses", column: "caregiver_address_id"
   add_foreign_key "patients", "asias"
   add_foreign_key "patients", "domain_caregiver_types", column: "has_caregiver_id"
+  add_foreign_key "patients", "domain_ethnics", column: "ethnic_id"
   add_foreign_key "patients", "domain_genders", column: "gender_id"
   add_foreign_key "patients", "domain_highest_level_of_educations", column: "highest_level_of_education_id"
   add_foreign_key "patients", "domain_occupations", column: "current_occupation_id"

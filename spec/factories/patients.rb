@@ -20,6 +20,7 @@ FactoryGirl.define do
     current_occupation { Domain::Occupation.all.sample }
     date_of_injury { Faker::Date.between(100.years.ago, Date.today) }
     dob { Faker::Date.between(100.years.ago, Date.today) }
+    ethnic { Domain::Ethnic.all.sample }
     first_name { Faker::Name.first_name }
     gender { Domain::Gender.all.sample }
     has_caregiver { Domain::CaregiverType.all.sample }
@@ -42,6 +43,7 @@ FactoryGirl.define do
     preferred_sci_hub_physician_first_name { Faker::Name.first_name }
     preferred_sci_hub_physician_last_name { Faker::Name.last_name }
     principle_pcp_va_nonva { Domain::PrinciplePcpType.all.sample }
+    race { Domain::Race.all.sample }
     residence_type { Domain::ResidenceType.all.sample }
     sci_arrival_date { Faker::Date.between(100.years.ago, Date.today) }
     sci_service_connected { [true, false].sample }

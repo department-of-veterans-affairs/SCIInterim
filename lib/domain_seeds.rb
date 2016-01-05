@@ -89,6 +89,12 @@ module DomainSeeds
     2 => "No",
     3 => "Not applicable (subject lives alone)",
   }
+
+  ETHNIC_MAP = {
+    1 => "Hispanic or Latino",
+    2 => "Not Hispanic or Latino"
+  }
+
   FIM_ADMISSION_CLASS_MAP = {
     1 => "Initial Rehabilitation",
     2 => "Short Stay Eval",
@@ -541,6 +547,10 @@ module DomainSeeds
                         CHART_SF_SPOUSE_RESIDENT_OPTION_MAP)
   end
 
+  def self.seed_domain_ethnics
+    update_domain_table(:domain_ethnics, ETHNIC_MAP)
+  end
+
   def self.seed_domain_fim_admission_classes
     update_domain_table(:domain_fim_admission_classes,
                         FIM_ADMISSION_CLASS_MAP)
@@ -657,6 +667,7 @@ module DomainSeeds
       seed_domain_chart_sf_medical_expenses
       seed_domain_chart_sf_not_home_cognitives
       seed_domain_chart_sf_spouse_resident_options
+      seed_domain_ethnics
       seed_domain_fim_admission_classes
       seed_domain_fim_communication_comprehension_types
       seed_domain_fim_communication_expression_types
@@ -670,7 +681,7 @@ module DomainSeeds
       seed_domain_level_of_injuries
       seed_domain_occupations
       seed_domain_principle_pcp_types
-      seed_domain_race
+      seed_domain_races
       seed_domain_reason_for_admissions
       seed_domain_residence_types
       seed_domain_sci_hubs

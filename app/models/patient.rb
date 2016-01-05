@@ -14,6 +14,7 @@ class Patient < ActiveRecord::Base
   belongs_to :assigned_vamc, class_name: Domain::VaMedicalCenter
   belongs_to :assigned_sci_hub, class_name: Domain::SciHub
   belongs_to :current_occupation, class_name: Domain::Occupation
+  belongs_to :ethnic, class_name: Domain::Ethnic
   belongs_to :gender, class_name: Domain::Gender
   belongs_to :has_caregiver, class_name: Domain::CaregiverType
   belongs_to :highest_level_of_education, class_name: Domain::HighestLevelOfEducation
@@ -28,6 +29,7 @@ class Patient < ActiveRecord::Base
   belongs_to :travel_status, class_name: Domain::TravelStatus
   belongs_to :va_facility, class_name: Domain::VaMedicalCenter
   belongs_to :va_status, class_name: Domain::VaStatus
+  belongs_to :race, class_name: Domain::Race
 
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
