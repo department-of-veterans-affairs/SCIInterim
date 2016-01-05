@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150933073249) do
+ActiveRecord::Schema.define(version: 20160105181956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,14 @@ ActiveRecord::Schema.define(version: 20150933073249) do
     t.string "name"
   end
 
+  create_table "domain_races", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "domain_races", ["name"], name: "index_domain_races_on_name", unique: true, using: :btree
+
   create_table "domain_reason_for_admissions", force: :cascade do |t|
     t.string "name"
   end
@@ -400,6 +408,7 @@ ActiveRecord::Schema.define(version: 20150933073249) do
     t.integer  "assigned_sci_hub_id"
     t.integer  "preferred_sci_hub_id"
     t.integer  "asia_id"
+    t.integer  "race_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -527,6 +536,7 @@ ActiveRecord::Schema.define(version: 20150933073249) do
   add_foreign_key "patients", "domain_occupations", column: "current_occupation_id"
   add_foreign_key "patients", "domain_occupations", column: "occupation_at_time_of_injury_id"
   add_foreign_key "patients", "domain_principle_pcp_types", column: "principle_pcp_va_nonva_id"
+  add_foreign_key "patients", "domain_races", column: "race_id"
   add_foreign_key "patients", "domain_residence_types", column: "residence_type_id"
   add_foreign_key "patients", "domain_sci_hubs", column: "assigned_sci_hub_id"
   add_foreign_key "patients", "domain_sci_hubs", column: "preferred_sci_hub_id"

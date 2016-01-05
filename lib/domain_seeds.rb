@@ -229,6 +229,16 @@ module DomainSeeds
     2 => "NonVA",
     3 => "Other",
   }
+
+  # MPH Add race mapping
+  RACE_MAP = {
+    1 => "American Indian or Alaskan Native",
+    2 => "Asian",
+    3 => "Black or African American",
+    4 => "Native Hawaiian or Other Pacific Islander",
+    5 => "White"
+  }
+
   REASON_FOR_ADMISSION = {
     1 => "Newly injured",
     2 => "Deconditioned",
@@ -590,6 +600,11 @@ module DomainSeeds
     update_domain_table(:domain_principle_pcp_types, PRINCIPLE_PCP_VA_NONVA_MAP)
   end
 
+  # MPH add race info 
+  def self.seed_domain_races
+    update_domain_table(:domain_races, RACE_MAP)
+  end
+
   def self.seed_domain_reason_for_admissions
     update_domain_table(:domain_reason_for_admissions, REASON_FOR_ADMISSION)
   end
@@ -655,6 +670,7 @@ module DomainSeeds
       seed_domain_level_of_injuries
       seed_domain_occupations
       seed_domain_principle_pcp_types
+      seed_domain_race
       seed_domain_reason_for_admissions
       seed_domain_residence_types
       seed_domain_sci_hubs
