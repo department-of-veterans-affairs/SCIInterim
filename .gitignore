@@ -19,3 +19,6 @@
 
 # Ignore Editor Files
 /.idea
+
+# Ignore root ds_store
+/.DS_Store
