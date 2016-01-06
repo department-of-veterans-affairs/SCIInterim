@@ -304,6 +304,7 @@ module DomainSeeds
     3 => "ALS",
     4 => "Other",
   }
+  
   SCID_ETIOLOGY_MAP = {
     1 => "Sports",
     2 => "Assault",
@@ -312,6 +313,8 @@ module DomainSeeds
     5 => "Other traumatic cause",
     6 => "Non-traumatic spinal cord dysfunction",
     7 => "Unspecified or Unknown",
+    8 => "Non-traumatic columnar disease(NCD)",
+    9 => "Non-traumatic autoimmune or inflammatory other than MS (NIM)"
   }
 
   SCID_MS_ELIGIBILITY_MAP = {
