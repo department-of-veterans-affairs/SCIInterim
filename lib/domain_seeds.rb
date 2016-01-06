@@ -89,6 +89,13 @@ module DomainSeeds
     2 => "No",
     3 => "Not applicable (subject lives alone)",
   }
+
+  ETHNIC_MAP = {
+    1 => "Not Provided",
+    2 => "Hispanic or Latino",
+    3 => "Not Hispanic or Latino"
+  }
+
   FIM_ADMISSION_CLASS_MAP = {
     1 => "Initial Rehabilitation",
     2 => "Short Stay Eval",
@@ -229,6 +236,16 @@ module DomainSeeds
     2 => "NonVA",
     3 => "Other",
   }
+
+  RACE_MAP = {
+    1 => "Not Provided",
+    2 => "American Indian or Alaskan Native",
+    3 => "Asian",
+    4 => "Black or African American",
+    5 => "Native Hawaiian or Other Pacific Islander",
+    6 => "White"
+  }
+
   REASON_FOR_ADMISSION = {
     1 => "Newly injured",
     2 => "Deconditioned",
@@ -531,6 +548,10 @@ module DomainSeeds
                         CHART_SF_SPOUSE_RESIDENT_OPTION_MAP)
   end
 
+  def self.seed_domain_ethnics
+    update_domain_table(:domain_ethnics, ETHNIC_MAP)
+  end
+
   def self.seed_domain_fim_admission_classes
     update_domain_table(:domain_fim_admission_classes,
                         FIM_ADMISSION_CLASS_MAP)
@@ -590,6 +611,10 @@ module DomainSeeds
     update_domain_table(:domain_principle_pcp_types, PRINCIPLE_PCP_VA_NONVA_MAP)
   end
 
+  def self.seed_domain_races
+    update_domain_table(:domain_races, RACE_MAP)
+  end
+
   def self.seed_domain_reason_for_admissions
     update_domain_table(:domain_reason_for_admissions, REASON_FOR_ADMISSION)
   end
@@ -642,6 +667,7 @@ module DomainSeeds
       seed_domain_chart_sf_medical_expenses
       seed_domain_chart_sf_not_home_cognitives
       seed_domain_chart_sf_spouse_resident_options
+      seed_domain_ethnics
       seed_domain_fim_admission_classes
       seed_domain_fim_communication_comprehension_types
       seed_domain_fim_communication_expression_types
@@ -655,6 +681,7 @@ module DomainSeeds
       seed_domain_level_of_injuries
       seed_domain_occupations
       seed_domain_principle_pcp_types
+      seed_domain_races
       seed_domain_reason_for_admissions
       seed_domain_residence_types
       seed_domain_sci_hubs

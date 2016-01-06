@@ -20,12 +20,25 @@
         .medium-4.columns
           = f.input :scido_id, label: "CDW SID", disabled: true
       .row
-        .medium-8.columns.left
+        .medium-4.columns
           label.control-label.radio Gender
           = f.input_field :gender_id,
           collection: Domain::Gender.cached_all,
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline'
+        .medium-4.columns
+          = f.association :race,
+          collection: Domain::Race.cached_all,
+          prompt: "Select one"
+        .medium-4.columns
+          = f.association :ethnic,
+          collection: Domain::Ethnic.cached_all,
+          prompt: "Select one",
+          label: "Ethnicity"
+      .row
+        hr
+        .medium-12.columns
+          = f.input :notes
       .row
         hr
         .medium-4.columns
