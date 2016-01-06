@@ -11,7 +11,5 @@ class CreateDomainRace < ActiveRecord::Migration
 
     add_reference :patients, :race, references: :domain_races
     add_foreign_key :patients, :domain_races, column: :race_id
-    
-   	DomainSeeds::seed_domain_races
   end
 end

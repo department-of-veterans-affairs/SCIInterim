@@ -237,7 +237,6 @@ module DomainSeeds
     3 => "Other",
   }
 
-  # MPH Add race mapping
   RACE_MAP = {
     1 => "Not Provided",
     2 => "American Indian or Alaskan Native",
@@ -612,7 +611,6 @@ module DomainSeeds
     update_domain_table(:domain_principle_pcp_types, PRINCIPLE_PCP_VA_NONVA_MAP)
   end
 
-  # MPH add race info 
   def self.seed_domain_races
     update_domain_table(:domain_races, RACE_MAP)
   end
