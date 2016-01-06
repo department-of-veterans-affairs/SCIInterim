@@ -132,6 +132,7 @@ class PatientsController < ApplicationController
         :scid_eligibility_id,
         :scid_eligibility_other,
         :scid_etiology_id,
+        :scid_ms_eligibility_id,
         :scido_id,
         :ssn,
         :theater_of_service_id,
