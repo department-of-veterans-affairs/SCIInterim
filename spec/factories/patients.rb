@@ -52,6 +52,7 @@ FactoryGirl.define do
     scid_eligibility { Domain::ScidEligibility.all.sample }
     scid_eligibility_other { Faker::Lorem.sentence(4) }
     scid_etiology { Domain::ScidEtiology.all.sample }
+    scid_ms_eligibility { Domain::ScidMsEligibility.all.sample }
     scido_id 1
     ssn "123-45-6789"
     theater_of_service { Domain::TheaterOfService.all.sample }
@@ -60,5 +61,9 @@ FactoryGirl.define do
     va_facility_pcp_first_name { Faker::Name.first_name }
     va_facility_pcp_last_name { Faker::Name.last_name }
     va_status { Domain::VaStatus.all.sample }
+
+    after(:build) do |patient|
+      patient.scid_ms_eligibility = nil unless patient.scid_eligibility_ms?
+    end
   end
 end
