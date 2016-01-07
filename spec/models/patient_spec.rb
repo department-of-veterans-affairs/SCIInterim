@@ -5,6 +5,11 @@ describe Patient do
     expect(create(:patient)).to be_valid
   end
 
+  let(:ms) { Domain::ScidEligibility.find_by_name("MS") }
+  let(:sci) { Domain::ScidEligibility.find_by_name("SCI") }
+  let(:ms_patient) { build :patient, scid_eligibility: ms }
+  let(:sci_patient) { build :patient, scid_eligibility: sci }
+
   it "validates firstname cannot have special chars or spaces" do
     expect(build(:patient, first_name: 'albert')).to be_valid
     expect(build(:patient, first_name: 'albert1')).to be_invalid
@@ -34,6 +39,20 @@ describe Patient do
     expect(build(:patient, ssn: "111-22-333")).to be_invalid
     expect(build(:patient, ssn: "11122-333")).to be_invalid
     expect(build(:patient, ssn: 1)).to be_invalid
+  end
+
+  it "validates ms eligibility when scid eligibility is ms" do
+    ms_patient.scid_ms_eligibility = Domain::ScidMsEligibility.first
+    expect(ms_patient).to be_valid
+
+    ms_patient.scid_ms_eligibility = nil
+    expect(ms_patient).not_to be_valid
+
+    sci_patient.scid_ms_eligibility = Domain::ScidMsEligibility.first
+    expect(sci_patient).to be_valid
+
+    sci_patient.scid_ms_eligibility = nil
+    expect(sci_patient).to be_valid  
   end
 
   it "correctly calculates age even with leap years" do

@@ -1,5 +1,3 @@
-require "domain_seeds"
-
 class CreateDomainEthnic < ActiveRecord::Migration
   def change
     create_table :domain_ethnics do |t|

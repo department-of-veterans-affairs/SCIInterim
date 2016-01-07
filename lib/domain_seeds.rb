@@ -304,6 +304,7 @@ module DomainSeeds
     3 => "ALS",
     4 => "Other",
   }
+  
   SCID_ETIOLOGY_MAP = {
     1 => "Sports",
     2 => "Assault",
@@ -312,7 +313,17 @@ module DomainSeeds
     5 => "Other traumatic cause",
     6 => "Non-traumatic spinal cord dysfunction",
     7 => "Unspecified or Unknown",
+    8 => "Non-traumatic columnar disease(NCD)",
+    9 => "Non-traumatic autoimmune or inflammatory other than MS (NIM)"
   }
+
+  SCID_MS_ELIGIBILITY_MAP = {
+    1 => "Relapsing-Remitting",
+    2 => "Secondary-Progressive",
+    3 => "Primary-Progressive",
+    4 => "Progressive-Relapsing"
+  }
+
   THEATER_OF_SERVICE_MAP = {
     1 => "NONE",
     2 => "OEF/OIF",
@@ -639,6 +650,10 @@ module DomainSeeds
     update_domain_table(:domain_scid_etiologies, SCID_ETIOLOGY_MAP)
   end
 
+  def self.seed_domain_scid_ms_eligibilities
+    update_domain_table(:domain_scid_ms_eligibilities, SCID_MS_ELIGIBILITY_MAP)
+  end
+
   def self.seed_domain_theater_of_services
     update_domain_table(:domain_theater_of_services, THEATER_OF_SERVICE_MAP)
   end
@@ -688,6 +703,7 @@ module DomainSeeds
       seed_domain_sci_types
       seed_domain_scid_eligibilities
       seed_domain_scid_etiologies
+      seed_domain_scid_ms_eligibilities
       seed_domain_theater_of_services
       seed_domain_travel_statuses
       seed_domain_va_medical_centers

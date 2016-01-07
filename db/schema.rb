@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105211851) do
+ActiveRecord::Schema.define(version: 20160106184139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,14 @@ ActiveRecord::Schema.define(version: 20160105211851) do
     t.string "name"
   end
 
+  create_table "domain_scid_ms_eligibilities", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "domain_scid_ms_eligibilities", ["name"], name: "index_domain_scid_ms_eligibilities_on_name", unique: true, using: :btree
+
   create_table "domain_theater_of_services", force: :cascade do |t|
     t.string "name"
   end
@@ -419,6 +427,7 @@ ActiveRecord::Schema.define(version: 20160105211851) do
     t.integer  "race_id"
     t.integer  "ethnic_id"
     t.text     "notes"
+    t.integer  "scid_ms_eligibility_id"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -554,6 +563,7 @@ ActiveRecord::Schema.define(version: 20160105211851) do
   add_foreign_key "patients", "domain_sci_types", column: "sci_type_id"
   add_foreign_key "patients", "domain_scid_eligibilities", column: "scid_eligibility_id"
   add_foreign_key "patients", "domain_scid_etiologies", column: "scid_etiology_id"
+  add_foreign_key "patients", "domain_scid_ms_eligibilities", column: "scid_ms_eligibility_id"
   add_foreign_key "patients", "domain_theater_of_services", column: "theater_of_service_id"
   add_foreign_key "patients", "domain_travel_statuses", column: "travel_status_id"
   add_foreign_key "patients", "domain_va_medical_centers", column: "assigned_vamc_id"

@@ -30,6 +30,7 @@ class Patient < ActiveRecord::Base
   belongs_to :va_facility, class_name: Domain::VaMedicalCenter
   belongs_to :va_status, class_name: Domain::VaStatus
   belongs_to :race, class_name: Domain::Race
+  belongs_to :scid_ms_eligibility, class_name: Domain::ScidMsEligibility
 
   validates_format_of :first_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's first name"
   validates_format_of :last_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/, message: "Enter the patient's last name"
@@ -37,6 +38,18 @@ class Patient < ActiveRecord::Base
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
   validates_presence_of :ethnic_id, :race_id
+  validates_presence_of :scid_ms_eligibility_id, :if => :scid_eligibility_ms?
+  
+  before_validation :ms_eligibility_for_ms_only
+
+  def ms_eligibility_for_ms_only
+    self.scid_ms_eligibility_id = nil unless scid_eligibility_ms?
+  end
+
+  def scid_eligibility_ms?
+    ms = Domain::ScidEligibility.find_by_name("MS")
+    ms.present? && ms.id == scid_eligibility_id
+  end
 
   def computed_age
     age = Date.today.year - dob.year

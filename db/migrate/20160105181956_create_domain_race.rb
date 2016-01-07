@@ -1,5 +1,3 @@
-require "domain_seeds"
-
 class CreateDomainRace < ActiveRecord::Migration
   def change
     create_table :domain_races do |t|
