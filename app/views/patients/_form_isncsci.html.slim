@@ -24,6 +24,6 @@
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline',
           label: false
-      = f.simple_fields_for :asia_assessment do |asia_assessment|
-        = render 'shared/asia_fields', :f => asia_assessment
+      = f.simple_fields_for :asia do |asia|
+        = render 'shared/asia_fields', :f => asia
     = f.submit class:"button large"

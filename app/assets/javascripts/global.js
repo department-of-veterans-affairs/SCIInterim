@@ -41,6 +41,6 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
 
 $(document).ready(function() {
   // ASIA Conditional things
-  showWhenValueEquals("[name='patient[asia_assessment][has_motor_or_sensory_asymmetry]']", "true", "#asymmetry");
-  showWhenValueEquals("[name='patient[asia_assessment][is_complete]']", "true", "#complete");
+  showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "false", "#asymmetry");
+  showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#complete");
 });
