@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106184139) do
+ActiveRecord::Schema.define(version: 20160108234057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20160106184139) do
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
 
   create_table "asias", force: :cascade do |t|
-    t.integer  "classification"
     t.boolean  "is_complete"
     t.boolean  "has_motor_or_sensory_asymmetry"
     t.datetime "created_at"
@@ -102,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.integer  "preservation_motor_level_left_id"
     t.integer  "preservation_motor_level_right_id"
     t.integer  "patient_id"
+    t.integer  "impairment_scale_id"
   end
 
   add_index "asias", ["patient_id"], name: "index_asias_on_patient_id", using: :btree
@@ -490,7 +490,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
   add_foreign_key "annual_evaluations", "fims"
   add_foreign_key "annual_evaluations", "kurtzke_edsses"
   add_foreign_key "annual_evaluations", "patients"
-  add_foreign_key "asias", "domain_asia_classifications", column: "classification"
+  add_foreign_key "asias", "domain_asia_classifications", column: "impairment_scale_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_left_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_right_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_sensory_level_left_id"

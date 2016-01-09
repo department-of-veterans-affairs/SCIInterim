@@ -8,7 +8,7 @@ describe Asia, type: :model do
   end
 
   it "Disallows invalid ASIA classification values" do
-    subject.classification = -1
+    subject.impairment_scale_id = -1
     expect{ subject.save! }.to raise_exception(/not present in table "domain_asia_classifications"/)
   end
 

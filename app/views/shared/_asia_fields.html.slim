@@ -35,9 +35,9 @@
     .medium-4.columns
       label ASIA Impairment Scale
       / TODO: @awong add field for ASIA impairment Scale
-      = f.input :neurological_sensory_level_right_id,
+      = f.input :impairment_scale_id,
       label: false,
-      collection: Domain::LevelOfInjury.cached_all
+      collection: Domain::AsiaClassification.cached_all
     .medium-4.columns.left
       label Injury Complete or Incomplete
       = f.input :is_complete, 

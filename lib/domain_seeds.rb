@@ -19,7 +19,9 @@ module DomainSeeds
     2 => "B",
     3 => "C",
     4 => "D",
+    5 => "E"
   }
+  
   BLADDER_DRAINAGE_METHOD_MAP = {
     1 => "BA - Bladder Augmentation",
     2 => "EC - Condom/External Catheter",
