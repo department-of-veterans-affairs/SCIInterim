@@ -39,8 +39,18 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
   $(selector).trigger(action);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// toggleCongrolLabel
+// Toggles a label's text based on the truthiness of the a radio control.
+///////////////////////////////////////////////////////////////////////////////
+function toggleLabel(labelSel, trueText, falseText, controlSel) {
+  $(controlSel).change(function() {
+    $(labelSel).text($(controlSel + ":checked").val() == 'true' ? trueText : falseText);
+  });
+
+  $(controlSel).change();
+}
+
 $(document).ready(function() {
   // ASIA Conditional things
-  showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "false", "#asymmetry");
-  showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#complete");
 });

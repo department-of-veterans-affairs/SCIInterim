@@ -11,21 +11,31 @@ class Asia < ActiveRecord::Base
   belongs_to :preservation_motor_level_right, class_name: Domain::LevelOfInjury
   belongs_to :impairment_scale, class_name: Domain::AsiaClassification
 
-  validate :neurological_sensory_level_left, :ensure_symmetry
-  validate :neurological_sensory_level_right, :ensure_symmetry
-  validate :neurological_motor_level_left, :ensure_symmetry
-  validate :neurological_motor_level_right, :ensure_symmetry
-  validate :preservation_sensory_level_left, :ensure_symmetry
-  validate :preservation_sensory_level_right, :ensure_symmetry
-  validate :preservation_motor_level_left, :ensure_symmetry
-  validate :preservation_motor_level_right, :ensure_symmetry
+  has_one :patient 
+  before_save :ensure_symmetry
+
+  # validate :neurological_sensory_level_left, :ensure_symmetry
+  # validate :neurological_sensory_level_right, :ensure_symmetry
+  # validate :neurological_motor_level_left, :ensure_symmetry
+  # validate :neurological_motor_level_right, :ensure_symmetry
+  # validate :preservation_sensory_level_left, :ensure_symmetry
+  # validate :preservation_sensory_level_right, :ensure_symmetry
+  # validate :preservation_motor_level_left, :ensure_symmetry
+  # validate :preservation_motor_level_right, :ensure_symmetry
+
+  # def ensure_symmetry
+    # if !has_motor_or_sensory_asymmetry
+    #   errors.add(:neurological_motor_level_right, "does not match left") unless neurological_motor_level_left == neurological_motor_level_right
+    #   errors.add(:neurological_sensory_level_right, "does not match left") unless neurological_sensory_level_left == neurological_sensory_level_right
+    #   errors.add(:preservation_motor_level_right, "does not match left") unless preservation_motor_level_left == preservation_motor_level_right
+    #   errors.add(:preservation_sensory_level_right, "does not match left") unless preservation_sensory_level_left == preservation_sensory_level_right
+    # end
+  # end
 
   def ensure_symmetry
     if !has_motor_or_sensory_asymmetry
-      errors.add(:neurological_motor_level_right, "does not match left") unless neurological_motor_level_left == neurological_motor_level_right
-      errors.add(:neurological_sensory_level_right, "does not match left") unless neurological_sensory_level_left == neurological_sensory_level_right
-      errors.add(:preservation_motor_level_right, "does not match left") unless preservation_motor_level_left == preservation_motor_level_right
-      errors.add(:preservation_sensory_level_right, "does not match left") unless preservation_sensory_level_left == preservation_sensory_level_right
+      self.neurological_motor_level_right = neurological_motor_level_left
+      self.neurological_sensory_level_right = neurological_sensory_level_left
     end
   end
 
@@ -47,5 +57,19 @@ class Asia < ActiveRecord::Base
     else
       "Left: #{neurological_sensory_level_left.try(:name)}, Right: #{neurological_sensory_level_right.try(:name)}"
     end      
+  end
+
+  #############################################################################
+  ## neurological_level_of_injury
+  ## Computes the neurological level of injury as a single value defined as:
+  ##   The most caudal segment of the spinal cord with normal sensory and motor
+  ##   function. When asymmetical findings are present, the single level of
+  ##   injury is the most rostral of the 4 findings.
+  #############################################################################
+  def neurological_level_of_injury
+    [
+      neurological_motor_level_left, neurological_motor_level_right,
+      neurological_sensory_level_left, neurological_sensory_level_right
+    ].sort.reverse
   end
 end

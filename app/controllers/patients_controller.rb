@@ -42,7 +42,7 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
-    @patient.assign_attributes(patient_params)
+    #@patient.assign_attributes(patient_params)
     if @patient.save
       flash[:success] = "You have successfully created a patient."
       respond_with(@patient, location: edit_patient_path(@patient))
@@ -53,13 +53,14 @@ class PatientsController < ApplicationController
   end
 
   def update
-    @patient.update_attributes(patient_params)
+    #@patient.update_attributes(patient_params)
     if @patient.update(patient_params)
       flash[:success] = "You have successfully updated this patient's data"
     else
       flash[:error] = "Something went wrong updating this patient's data. Try again."
     end
-    respond_with(@patient, location: edit_patient_path(@patient))
+    
+    respond_with(@patient, location: patient_path(@patient))
   end
 
   def destroy

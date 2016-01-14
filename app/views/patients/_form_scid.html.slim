@@ -40,6 +40,4 @@
             label: "SCI/D Etiology"
           .medium-4.columns.left
             = f.input :date_of_injury, as: :date_picker
-        = f.simple_fields_for :asia do |asia|
-          = render 'shared/asia_fields', :f => asia
     = f.submit class:"button large"

@@ -92,6 +92,7 @@ class AcuteRehabsController < ApplicationController
         :start_hub_id,
         :start_sf8,
         :start_swls,
+        :traditional_rehab,
         start_asia_attributes: nested_model_attributes(Asia),
         finish_asia_attributes: nested_model_attributes(Asia),
         transfers_attributes: nested_model_attributes(Transfer),

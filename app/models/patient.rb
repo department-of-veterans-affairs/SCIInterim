@@ -8,7 +8,6 @@ class Patient < ActiveRecord::Base
   has_many :acute_rehabs
 
   add_nested_model [:address, :caregiver_address], 'Address'
-
   add_nested_model :asia, 'Asia'
 
   belongs_to :assigned_vamc, class_name: Domain::VaMedicalCenter

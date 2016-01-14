@@ -10,4 +10,15 @@ $(document).ready(function() {
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 1, "#principleVa");
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 2, "#principleNonVa");
   showWhenValueEquals("[name='patient[va_status_id]']", 4, "#expiredDate");
+
+  toggleLabel("#isncsci_left_motor_lbl", "Left Motor", "Motor", 
+    "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
+
+  toggleLabel("#isncsci_left_sensory_lbl", "Left Sensory", "Sensory", 
+    "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "click");  
+
+  showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#asymmetrical");
+  showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#complete");
+  showWhenValueEquals("[name='acute_rehab[start_asia_attributes][has_motor_or_sensory_asymmetry]']", "false", "#asymmetry");
+  showWhenValueEquals("[name='acute_rehab[start_asia_attributes][is_complete]']", "true", "#complete");
 });
