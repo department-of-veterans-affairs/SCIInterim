@@ -1,8 +1,8 @@
 hr
-.nested-fields
+.nested-fields id = "#{fname}"
   h4 ASIA Assessment Score
   .row
-    .medium-12.columns id = "#{fname}_has_motor_or_sensory_asymmetry"
+    .medium-12.columns id = "has_motor_or_sensory_asymmetry"
       label Neurological Level of Injury
       br
       = f.input :has_motor_or_sensory_asymmetry,
@@ -28,7 +28,7 @@ hr
           = f.input :neurological_sensory_level_left_id,       
           collection: Domain::LevelOfInjury.cached_all,
           label: false
-    .medium-4.columns#asymmetrical.left
+    .medium-4.columns.left id = "#{fname}_asymmetrical"
       .row
         .medium-12.columns.mock_label
           | Right Motor
