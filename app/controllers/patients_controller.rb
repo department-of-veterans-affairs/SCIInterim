@@ -36,7 +36,10 @@ class PatientsController < ApplicationController
     @patient = Patient.new(
       gender: Domain::Gender.cached_all.first,
       principle_pcp_va_nonva: Domain::PrinciplePcpType.cached_all.first,
-      change_in_asia: "No"
+      change_in_asia: "No",
+      has_caregiver: Domain::CaregiverType.cached_all.first,
+      is_receiving_non_va_care: false,
+      is_receiving_hhha: false
     )
 
     @patient.build_address

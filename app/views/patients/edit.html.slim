@@ -1,6 +1,8 @@
-h3 New patient
-ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
+h3 Edit patient
+ul.tabs data-tab="" data-options="deep_linking: true; scroll_to_content: false"
   li.tab-title.active
+    a href="#history"  History
+  li.tab-title
     a href="#personal"  Personal Info
   li.tab-title
     a href="#contact"  Contact Info
@@ -20,7 +22,13 @@ ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
     a href="#caregiver"  Caregiver
 
 .tabs-content
-  #personal.content.active
+  #history.content.active
+    .row
+      .panel
+        .panel-body
+          = render 'form_history'
+
+  #personal.content
     .row
       .panel
         .panel-body
@@ -49,25 +57,25 @@ ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
       .panel
         .panel-body
           = render 'form_primary'
-          
+
   #scid.content
     .row
       .panel
         .panel-body
           = render 'form_scid'
-          
+
   #isncsci.content
     .row
       .panel
         .panel-body
           = render 'form_isncsci'
-          
+
   #psychosocial.content
     .row
       .panel
         .panel-body
           = render 'form_psychosocial'
-
+          
   #caregiver.content
     .row
       .panel
