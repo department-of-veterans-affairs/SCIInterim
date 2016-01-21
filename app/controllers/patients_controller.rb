@@ -10,17 +10,21 @@ class PatientsController < ApplicationController
     @query = params[:query]
 
     if (@query)
-      @patients = Patient.where(id: params[:query])
+      @patients = Patient.where(id: @query)
+
+      qstr = "LOWER(first_name) LIKE :query or LOWER(last_name) LIKE :query or ssn LIKE :query"
+
       if @patients.empty?
-        @patients = Patient.where("first_name LIKE :query or last_name LIKE :query or ssn LIKE :query", query: "%#{params[:query]}%")
+        @patients = Patient.where(qstr, query: "%#{@query.downcase}%")
       end
     else
       @patients = Patient.all
     end
+
     respond_to do |format|
-        format.html {respond_with(@patients)}
-        format.csv { send_data @patients.as_csv }
-        format.json { send_data @patients.to_json }
+      format.html
+      format.csv { send_data @patients.as_csv }
+      format.json { send_data @patients.to_json }
     end
   end
 
@@ -29,10 +33,19 @@ class PatientsController < ApplicationController
   end
 
   def new
-    @patient = Patient.new
+    @patient = Patient.new(
+      gender: Domain::Gender.cached_all.first,
+      principle_pcp_va_nonva: Domain::PrinciplePcpType.cached_all.first,
+      change_in_asia: "No"
+    )
+
     @patient.build_address
-    @patient.build_asia
+    @patient.build_asia(
+      has_motor_or_sensory_asymmetry: true,
+      is_complete: false
+    )
     @patient.build_caregiver_address
+
     respond_with(@patient)
   end
 
@@ -42,7 +55,7 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
-    #@patient.assign_attributes(patient_params)
+
     if @patient.save
       flash[:success] = "You have successfully created a patient."
       respond_with(@patient, location: edit_patient_path(@patient))

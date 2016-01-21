@@ -10,13 +10,22 @@ $(document).ready(function() {
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 1, "#principleVa");
   showWhenValueEquals("[name='patient[principle_pcp_va_nonva_id]']", 2, "#principleNonVa");
   showWhenValueEquals("[name='patient[va_status_id]']", 4, "#expiredDate");
+  showWhenValueEquals("[name='patient[change_in_asia]']", "Yes", "#incsci_new_asia")
 
   toggleLabel("#isncsci_left_motor_lbl", "Left Motor", "Motor", 
-    "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
+     "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
 
   toggleLabel("#isncsci_left_sensory_lbl", "Left Sensory", "Sensory", 
-    "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
+     "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
+
+  toggleLabel("#isncsci_zpp_left_motor_lbl", "Left Motor", "Motor", 
+     "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
+
+  toggleLabel("#isncsci_zpp_left_sensory_lbl", "Left Sensory", "Sensory", 
+     "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
 
   showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_asymmetrical");
   showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#complete");
+  showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#isncsci_zone_of_partial_preservation");
+  showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_zpp_asymmetrical");
 });

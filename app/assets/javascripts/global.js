@@ -44,8 +44,15 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
 // Toggles a label's text based on the truthiness of the a radio control.
 ///////////////////////////////////////////////////////////////////////////////
 function toggleLabel(labelSel, trueText, falseText, controlSel) {
+  var truthy = ["yes", "true", "t", "1"];
+
   $(controlSel).change(function() {
-    $(labelSel).text($(controlSel + ":checked").val() == 'true' ? trueText : falseText);
+    var controlValue = $(controlSel + ":checked").val();
+
+    if (controlValue) {
+      var inArray = jQuery.inArray(controlValue.toLowerCase(), truthy);
+      $(labelSel).text(inArray == 1 ? trueText : falseText);
+    }
   });
 
   $(controlSel).change();

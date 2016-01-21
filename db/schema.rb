@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110215304) do
+ActiveRecord::Schema.define(version: 20160120175729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -429,6 +429,12 @@ ActiveRecord::Schema.define(version: 20160110215304) do
     t.integer  "ethnic_id"
     t.text     "notes"
     t.integer  "scid_ms_eligibility_id"
+    t.date     "registration_date"
+    t.string   "non_va_facility_pcp_phone_number"
+    t.string   "non_va_facility_pcp_fax_number"
+    t.string   "non_va_facility_pcp_email"
+    t.string   "non_va_facility_pcp_city"
+    t.string   "non_va_facility_pcp_state"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree

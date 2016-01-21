@@ -3,6 +3,8 @@ require 'csv'
 class Patient < ActiveRecord::Base
   include AttributeExportable, ModelNestable
 
+  attr_accessor :change_in_asia
+
   has_many :annual_evaluations
   has_many :omrs
   has_many :acute_rehabs
@@ -36,13 +38,17 @@ class Patient < ActiveRecord::Base
   validates :scido_id, numericality: { only_integer: true, greater_than: 0, allow_blank: true}
   validates_format_of :ssn, :with => /\d{3}-\d{2}-\d{4}/, message: "Format as 111-22-3333"
   validate :dob_is_valid_date
-  validates_presence_of :ethnic_id, :race_id
+  validates_presence_of :ethnic_id, :race_id, :gender_id, :registration_date
   validates_presence_of :scid_ms_eligibility_id, :if => :scid_eligibility_ms?
   
-  before_validation :ms_eligibility_for_ms_only
+  before_validation :ms_eligibility_for_ms_only, :registration_date_today
 
   def ms_eligibility_for_ms_only
     self.scid_ms_eligibility_id = nil unless scid_eligibility_ms?
+  end
+
+  def registration_date_today
+    self.registration_date = Date.today if registration_date.nil?
   end
 
   def scid_eligibility_ms?
@@ -64,6 +70,7 @@ class Patient < ActiveRecord::Base
     CSV.generate do |csv|
       columns = %w(first_name last_name ssn) 
       csv << ["First Name", "Last Name", "SSN", "Facility"]
+      
       all.each do |item|
         csv << [item.first_name, item.last_name, item.ssn, Domain::VaMedicalCenter.find(item.assigned_vamc).name]
       end

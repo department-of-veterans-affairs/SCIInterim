@@ -1,25 +1,26 @@
+= flash_messages
+  .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+
 = wrapped_form_for(@patient) do |f|
-  = flash_messages
-    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
   .form-inputs
     .callout-blank
       h4 SCI Classification/ASIA Information
+
       .row
-        .medium-6.columns
-          label Neurological Level of Injury:
-          br
-        .medium-6.columns
-          label ASIA Impairment Scale:        
-      .row
-        hr
         .medium-12.columns
           /TODO: @awong make asia changed yes/no/new (need to verify options)
           /TODO: @emilyville make show hide for asia partial once exists
+
           label.control-label.radio Has there been any change in SCI Classification/ASIA?
-          = f.input :is_on_active_duty, 
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline',
-          label: false
-      = f.simple_fields_for :asia do |asia|
-        = render 'shared/asia_fields', :f => asia, fname: "isncsci"
-    = f.submit class:"button large"
+          = f.input :change_in_asia, 
+            as: :radio_buttons,
+            collection: %w(Yes No),
+            item_wrapper_class: 'radio-inline',
+            label: false
+
+      .row#incsci_new_asia
+        .medium-12.columns
+          = f.simple_fields_for :asia do |asia|
+            = render 'shared/asia_fields', :f => asia, fname: "isncsci"
+
+  = f.submit class:"button large"

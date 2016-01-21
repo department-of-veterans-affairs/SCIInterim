@@ -18,49 +18,57 @@ ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
     a href="#psychosocial"  Psychosocial
   li.tab-title
     a href="#caregiver"  Caregiver
+
 .tabs-content
   #personal.content.active
     .row
       .panel
         .panel-body
           = render 'form_personal'
+
   #contact.content
     .row
       .panel
         .panel-body
           = render 'form_contact'
+
   #travel.content
     .row
       .panel
         .panel-body
           = render 'form_travel'
+
   #status.content
     .row
       .panel
         .panel-body
           = render 'form_status'
+
   #primary.content
     .row
       .panel
         .panel-body
           = render 'form_primary'
+          
   #scid.content
     .row
       .panel
         .panel-body
           = render 'form_scid'
+          
   #isncsci.content
     .row
       .panel
         .panel-body
           = render 'form_isncsci'
-  #psychosocial.content
-    .row
-      .panel
-        .panel-body
-          = render 'form_psychosocial'
-  #caregiver.content
-    .row
-      .panel
-        .panel-body
-          = render 'form_caregiver'
+          
+/  #psychosocial.content
+/    .row
+/      .panel
+/        .panel-body
+/          = render 'form_psychosocial'
+/  #caregiver.content
+/    .row
+/      .panel
+/        .panel-body
+/          = render 'form_caregiver'
