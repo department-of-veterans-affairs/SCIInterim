@@ -1,0 +1,19 @@
+= wrapped_form_for([@patient, @annual_evaluation]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+      .row
+        .medium-12.columns
+          label.control-label.radio Has there been any change in SCI Classification/ASIA?
+          = f.input :change_in_asia, 
+            as: :radio_buttons,
+            collection: [['Yes', true], ['No', false]],
+            item_wrapper_class: 'radio-inline',
+            label: false
+
+      .row#ae_isncsci_info
+        .medium-12.columns
+          = f.simple_fields_for :asia do |asia|
+            = render 'shared/asia_fields', :f => asia, fname: "ae_isncsci"
+
+    = f.submit "Save Annual Evaluation", class: "button large"

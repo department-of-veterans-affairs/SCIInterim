@@ -17,5 +17,6 @@ FactoryGirl.define do
     kurtzke_edss { create(:kurtzke_edss) }
     offered_hub { Domain::SciHub.cached_all.sample }
     weight_lbs { rand(1..99) }
+    ae_received { [true, false].sample }
   end
 end

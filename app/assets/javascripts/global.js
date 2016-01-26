@@ -3,6 +3,7 @@
 
 function showWhenValueEquals(selector, toggleValue, toggleSelector, action) {
   action = typeof action !== 'undefined' ? action : 'change';
+  
   if ($(selector).prop('tagName') == 'SELECT') {
     showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, action);
   } else {

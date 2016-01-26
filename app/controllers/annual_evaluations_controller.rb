@@ -14,8 +14,16 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def new
-    @annual_evaluation = AnnualEvaluation.new
-    @annual_evaluation.build_asia
+    @annual_evaluation = AnnualEvaluation.new(
+      ae_received: false,
+      is_inpatient: false
+    )
+
+    @annual_evaluation.build_asia(
+      has_motor_or_sensory_asymmetry: true,
+      is_complete: false
+    )
+
     @annual_evaluation.build_fim
     @annual_evaluation.fim.build_measurements_start
     @annual_evaluation.fim.build_measurements_goal
@@ -31,6 +39,7 @@ class AnnualEvaluationsController < ApplicationController
   end
 
   def edit
+    @annual_evaluation.change_in_asia = false
   end
 
   def create
@@ -62,8 +71,10 @@ class AnnualEvaluationsController < ApplicationController
 
     def annual_evaluation_params
       params.require(:annual_evaluation).permit(
+        :ae_received,
         :bladder_drainage_method_id,
         :bmi,
+        :change_in_asia,
         :completed_hub_id,
         :eval_completed,
         :eval_offered,
@@ -76,9 +87,9 @@ class AnnualEvaluationsController < ApplicationController
           {"measurements_goal_attributes" => nested_model_attributes(FimMeasurement)},
           {"measurements_finish_attributes" => nested_model_attributes(FimMeasurement)},
           {"measurements_90day_attributes" => nested_model_attributes(FimMeasurement)},
-          {"measurements_1year_attributes" => nested_model_attributes(FimMeasurement)},
+          {"measurements_1year_attributes" => nested_model_attributes(FimMeasurement)}
           ]),
-        kurtzke_edss_attributes: nested_model_attributes(KurtzkeEdss),
+        kurtzke_edss_attributes: nested_model_attributes(KurtzkeEdss)
       )
     end
 end

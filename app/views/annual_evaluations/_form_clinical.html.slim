@@ -1,0 +1,22 @@
+= wrapped_form_for([@patient, @annual_evaluation]) do |f|
+  = f.error_notification
+  .form-inputs
+    .callout-blank
+      h4 Clinical
+      .row
+        .medium-4.columns
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :weight_lbs, label: "Weight", :placeholder => "000"
+        .medium-4.columns
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :height_inches, label: "Height", :placeholder => "00"        
+        .medium-4.columns
+          / TODO: Add field and calculations (this is just BMI 3 times)
+          = f.input :bmi, label: "Computed BMI", :placeholder => "?", disabled: true
+        .medium-4.columns.left
+          / TODO: @kathypham do we need to add an other option and field?
+          = f.association :bladder_drainage_method,
+          collection: Domain::BladderDrainageMethod.cached_all,
+          label: "Bladder Drainage Method",
+          prompt: "Select one"
+    = f.submit "Save Annual Evaluation", class: "button large"
