@@ -6,6 +6,7 @@ FactoryGirl.define do
     updated_at Time.now
 
     discharge_location { Domain::ResidenceType.all.sample }
+    finish_asia { create(:asia) }
     finish_chart_sf { create(:chart_sf) }
     finish_date { Faker::Date.between(20.years.ago, Date.today) }
     finish_sf8 { create(:sf8) }

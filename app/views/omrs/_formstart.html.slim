@@ -1,0 +1,23 @@
+= wrapped_form_for([@patient, @omr], html: { id: "omr_form_start"}) do |f|
+	.form-inputs
+    .callout-blank
+      h4 Start OMR
+      .row 
+        .medium-4.columns
+        	= f.input :start_date, as: :date_picker, label: "Date of Admission"
+        .medium-4.columns
+          = f.association :start_hub, label: "Name of Hub"
+          
+      .row
+        .medium-12.columns
+          = f.simple_fields_for :start_asia do |asia|
+            = render 'shared/asia_fields', :f => asia, fname: "asia_form_start"
+
+    .instrument       
+      h4 SWLS
+      = f.simple_fields_for :start_chart_sf do |chart_sf_builder|
+        = render 'shared/chart_sf_fields', :f => chart_sf_builder, fname: "omr_form_start"
+      = f.simple_fields_for :start_sf8 do |sf8_builder|
+        = render 'shared/sf8_fields', :f => sf8_builder, fname: "omr_form_start"
+
+    = f.submit class:"button large"

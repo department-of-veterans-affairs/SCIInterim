@@ -18,14 +18,22 @@ class OmrsController < ApplicationController
   def new
     @omr = Omr.new
 
-    @omr.build_finish_asia
+    @omr.build_start_asia(
+      has_motor_or_sensory_asymmetry: true,
+      is_complete: false
+    )
+
+    @omr.build_finish_asia(
+      has_motor_or_sensory_asymmetry: true,
+      is_complete: false
+    )
+
     @omr.build_finish_chart_sf
     @omr.build_finish_sf8
     @omr.build_followup_1yr_chart_sf
     @omr.build_followup_1yr_sf8
     @omr.build_followup_90day_chart_sf
     @omr.build_followup_90day_sf8
-    @omr.build_start_asia
     @omr.build_start_chart_sf
     @omr.build_start_sf8
     respond_with(@omr)
