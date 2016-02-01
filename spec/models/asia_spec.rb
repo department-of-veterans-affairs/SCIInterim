@@ -60,26 +60,31 @@ expect{  subject.save!  }.to raise_exception(/not present in table "domain_level
   it "Enforces symmetry" do
     # Ensure everything is symmetric.
     subject.neurological_motor_level_left = Domain::LevelOfInjury.first
-    subject.neurological_motor_level_right = Domain::LevelOfInjury.first
+    subject.neurological_motor_level_right = Domain::LevelOfInjury.last
     subject.neurological_sensory_level_left = Domain::LevelOfInjury.first
-    subject.neurological_sensory_level_right = Domain::LevelOfInjury.first
+    subject.neurological_sensory_level_right = Domain::LevelOfInjury.last
     subject.preservation_motor_level_left = Domain::LevelOfInjury.first
-    subject.preservation_motor_level_right = Domain::LevelOfInjury.first
+    subject.preservation_motor_level_right = Domain::LevelOfInjury.last
     subject.preservation_sensory_level_left = Domain::LevelOfInjury.first
-    subject.preservation_sensory_level_right = Domain::LevelOfInjury.first
+    subject.preservation_sensory_level_right = Domain::LevelOfInjury.last
     subject.has_motor_or_sensory_asymmetry = false
 
+    # Expect model to enforce symmetry, reflecting new form design
+    expect(subject).to be_valid
+    expect { subject.save! }.to_not raise_exception
+
+    # NOTE: specs are no longer valid
     # Ensure assymmetric values per pair
-    subject.neurological_motor_level_right = Domain::LevelOfInjury.last
-    expect{ subject.save! }.to raise_exception(/Neurological motor level right does not match left/)
+    # subject.neurological_motor_level_right = Domain::LevelOfInjury.last
+    # expect{ subject.save! }.to raise_exception(/Neurological motor level right does not match left/)
 
-    subject.neurological_sensory_level_right = Domain::LevelOfInjury.last
-    expect{ subject.save! }.to raise_exception(/Neurological sensory level right does not match left/)
+    # subject.neurological_sensory_level_right = Domain::LevelOfInjury.last
+    # expect{ subject.save! }.to raise_exception(/Neurological sensory level right does not match left/)
 
-    subject.preservation_motor_level_right = Domain::LevelOfInjury.last
-    expect{ subject.save! }.to raise_exception(/Preservation motor level right does not match left/)
+    # subject.preservation_motor_level_right = Domain::LevelOfInjury.last
+    # expect{ subject.save! }.to raise_exception(/Preservation motor level right does not match left/)
 
-    subject.preservation_sensory_level_right = Domain::LevelOfInjury.last
-    expect{ subject.save! }.to raise_exception(/Preservation sensory level right does not match left/)
+    # subject.preservation_sensory_level_right = Domain::LevelOfInjury.last
+    # expect{ subject.save! }.to raise_exception(/Preservation sensory level right does not match left/)
   end
 end
