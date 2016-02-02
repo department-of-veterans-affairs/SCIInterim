@@ -18,5 +18,6 @@ FactoryGirl.define do
     offered_hub { Domain::SciHub.cached_all.sample }
     weight_lbs { rand(1..99) }
     ae_received { [true, false].sample }
+    notes { Faker::Lorem.paragraphs.join(" ") }
   end
 end
