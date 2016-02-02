@@ -33,9 +33,14 @@ FactoryGirl.define do
     my_healthevet_messaging { [true, false].sample }
     non_va_care_hours_per_month { rand(1000) }
     non_va_facility_fax_number { Faker::PhoneNumber.phone_number }
+    non_va_facility_pcp_city { Faker::Address.city }
     non_va_facility_name { Faker::Company.name }
+    non_va_facility_pcp_email { Faker::Internet.email }
     non_va_facility_pcp_first_name { Faker::Name.first_name }
     non_va_facility_pcp_last_name { Faker::Name.last_name }
+    non_va_facility_pcp_fax_number { Faker::PhoneNumber.phone_number }
+    non_va_facility_pcp_phone_number { Faker::PhoneNumber.phone_number }
+    non_va_facility_pcp_state { Faker::Address.state }
     non_va_facility_phone_number { Faker::PhoneNumber.phone_number }
     notes { Faker::Lorem.paragraphs.join(" ") }
     omrs { rand(1..3).times.map { create(:omr) } }
@@ -45,6 +50,7 @@ FactoryGirl.define do
     preferred_sci_hub_physician_last_name { Faker::Name.last_name }
     principle_pcp_va_nonva { Domain::PrinciplePcpType.all.sample }
     race { Domain::Race.all.sample }
+    registration_date { rand(0..500).days.ago }
     residence_type { Domain::ResidenceType.all.sample }
     sci_arrival_date { Faker::Date.between(100.years.ago, Date.today) }
     sci_service_connected { [true, false].sample }

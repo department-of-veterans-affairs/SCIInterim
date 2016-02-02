@@ -10,10 +10,12 @@
           / TODO: make required
           = f.association :offered_hub, label: "Facility where AE was offered"
         .medium-4.columns
-          / TODO: @awong add field. it should have options, make required
-          / TODO: @emilyville make conditional with below
-          = f.association :completed_hub, label: "Was AE received?"
-      .row
+          = f.input :ae_received, 
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline',
+            label: "Was AE received?"
+          
+      .row.hide id="ae_evaluation_info"
         hr
         .medium-4.columns
           = f.input :eval_completed, label: "Date of AE Completion", as: :date_picker

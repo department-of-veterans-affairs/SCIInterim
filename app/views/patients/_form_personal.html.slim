@@ -1,9 +1,11 @@
+= flash_messages
+  .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+
 = wrapped_form_for(@patient) do |f|
-  = flash_messages
-    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
   .form-inputs
     .callout-blank
       h4 Patient Personal Information
+        
       .row
         .medium-4.columns
           = f.input :first_name
@@ -11,42 +13,49 @@
           = f.input :last_name
         .medium-4.columns.left
           = f.input :ssn, label: "SSN", :placeholder => "111-22-3333"
+
       .row
         .medium-4.columns
           = f.input :dob, as: :date_picker, label: "Date of Birth"
         .medium-4.columns
-          / TODO: @awong do we want to compute this or ask for it?
           = f.input :scido_id, label: "Age", disabled: true
         .medium-4.columns
           = f.input :scido_id, label: "CDW SID", disabled: true
+
       .row
         .medium-4.columns
           label.control-label.radio Gender
           = f.input_field :gender_id,
-          collection: Domain::Gender.cached_all,
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline'
+            collection: Domain::Gender.cached_all,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
         .medium-4.columns
           = f.association :race,
-          collection: Domain::Race.cached_all,
-          prompt: "Select one"
+            collection: Domain::Race.cached_all,
+            prompt: "Select one"
         .medium-4.columns
           = f.association :ethnic,
-          collection: Domain::Ethnic.cached_all,
-          prompt: "Select one",
-          label: "Ethnicity"
+            collection: Domain::Ethnic.cached_all,
+            prompt: "Select one",
+            label: "Ethnicity"
+      
       .row
         hr
         .medium-12.columns
           = f.input :notes
+
       .row
         hr
         .medium-4.columns
-          / TODO: @awong add
-          = f.input :scido_id, label: "Registration Date"
+          = f.input :registration_date, 
+            as: :date_picker,
+            label: "Registration Date"
         .medium-4.columns.left
-          / TODO: @awong add, this will be all VA facilities
-          = f.input :scido_id, label: "Registration Facility"
-    = f.submit class:"button large"
+          = f.input :va_facility_id, 
+            collection: Domain::VaMedicalCenter.cached_all,
+            prompt: "Select one",
+            label: "Registration Facility"
+      
+      = f.submit class:"button large"
 
 

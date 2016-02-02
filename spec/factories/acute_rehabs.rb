@@ -33,5 +33,6 @@ FactoryGirl.define do
     followup_1year_chart_sf { create(:chart_sf) }
     followup_1year_sf8 { create(:sf8) }
     start_hub { Domain::SciHub.cached_all.sample }
+    traditional_rehab { [true, false].sample }
   end
 end

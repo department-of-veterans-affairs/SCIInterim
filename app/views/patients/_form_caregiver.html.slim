@@ -1,49 +1,59 @@
+= flash_messages
+  .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+
 = wrapped_form_for(@patient) do |f|
-  = flash_messages
-    .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
   .form-inputs
     / #TODO: @emilyville make these labels consistent
     / #TODO: @emilyville all of caregiver should be conditional?
     .callout-blank
       h4 Residency/Caregiver
+
       .row
         .medium-4.columns.left
           = f.association :residence_type,
-          collection: Domain::ResidenceType.cached_all,
-          prompt: "Select one"
+            collection: Domain::ResidenceType.cached_all,
+            prompt: "Select one"
         .medium-12.columns
           label.control-label.radio Caregiver type
           = f.input_field :has_caregiver_id, label: "Caregiver type",
-          collection: Domain::CaregiverType.cached_all,
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline'
+            collection: Domain::CaregiverType.cached_all,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
         .medium-4.columns
           = f.input :caregiver_first_name
         .medium-4.columns.left
           = f.input :caregiver_last_name
+
       .row
         .medium-12.columns
           = f.simple_fields_for :caregiver_address do |caregiver_address|
             = render 'shared/address_fields', :f => caregiver_address
+
       hr
       h4 Bowel/Bladder Care
       .row
         .medium-12.columns
           label.control-label.radio Is the patient is receiving bowel/bladder non VA care?
           = f.input_field :is_receiving_non_va_care,
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline'
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
+
       / Conditional if prev is answered
       #bowelBladderDetails.hide
         .row
           .medium-6.columns
             label.control-label.radio Is the patient HHH/A?
             = f.input_field :is_receiving_hhha,
-            as: :radio_buttons,
-            item_wrapper_class: 'radio-inline'
+              as: :radio_buttons,
+              item_wrapper_class: 'radio-inline'
+
         .row
           .medium-8.columns
-            = f.input :last_fee_basis_evaluation_date, as: :date_picker, label: "Date of last bowel/bladder non VA care evaluation"
+            = f.input :last_fee_basis_evaluation_date, 
+              as: :date_picker, 
+              label: "Date of last bowel/bladder non VA care evaluation"
           .medium-4.columns
-            = f.input :non_va_care_hours_per_month, label: "Care hours per month"
-    = f.submit class:"button large"
+            = f.input :non_va_care_hours_per_month, 
+            label: "Care hours per month"
+
+  = f.submit class:"button large"

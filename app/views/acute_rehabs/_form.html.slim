@@ -13,39 +13,46 @@ ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
     a href="#ninety"  Follow Up 90 Days
   li.tab-title
     a href="#oneyear"  Follow Up One Year
+
 .tabs-content
   #administrative.content.active
     .row
       .panel
         .panel-body
           = render 'form_administrative'
+
   #start.content
     .row
       .panel
         .panel-body
-          = render 'form_start'
+        = render 'form_start'
+        
   #goal.content
     .row
       .panel
         .panel-body
           = render 'form_goal'
+
   #finish.content
     .row
       .panel
         .panel-body
           = render 'form_finish'
+
   #standard.content
     .row
       .panel
         .panel-body
           = render 'form_standard' 
+
   #ninety.content
     .row
       .panel
         .panel-body
           = render 'form_ninety' 
+
   #oneyear.content
     .row
       .panel
         .panel-body
-          = render 'form_oneyear' 
+          = render 'form_oneyear'

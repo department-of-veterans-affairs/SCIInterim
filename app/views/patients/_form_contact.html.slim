@@ -1,35 +1,41 @@
-= wrapped_form_for(@patient) do |f|
-  = flash_messages
+= flash_messages
     .data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog"
+
+= wrapped_form_for(@patient) do |f|
   .form-inputs
     .callout-blank
       h4 Patient Address
       = f.simple_fields_for :address do |address|
-        = render 'shared/address_fields', :f => address
-      .row
+        = render 'shared/address_fields', f: address
+    br
+    .row
         .medium-4.columns
           label.control-label.radio Does the patient use MyHealtheVet?
           = f.input_field :my_healthevet_messaging, 
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline',
-          label: false
-        .medium-8.columns          
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline',
+            label: false
+        .medium-4.columns          
           label.control-label.radio Is the patient service connected?
           = f.input :sci_service_connected,
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline',
-          label: false
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline',
+            label: false
         .medium-4.columns
-          / TODO: @awong this probably needs fixing since it went from being three choices to yes/no
           label.control-label.radio Did the patient serve in OEF/OIF or OND?
           = f.input :theater_of_service_id, 
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline',
+            label: false
+
+    br
+    .row
+      .medium-8.columns.left
+        label.control-label.radio Is the patient currently on Active Duty?
+        = f.input :is_on_active_duty, 
           as: :radio_buttons,
           item_wrapper_class: 'radio-inline',
           label: false
-        .medium-8.columns.left
-          label.control-label.radio Is the patient currently on Active Duty?
-          = f.input :is_on_active_duty, 
-          as: :radio_buttons,
-          item_wrapper_class: 'radio-inline',
-          label: false
-    = f.submit class:"button large"
+
+  br
+  = f.submit class:"button large"

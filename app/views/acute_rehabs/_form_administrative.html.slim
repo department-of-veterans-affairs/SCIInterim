@@ -1,50 +1,60 @@
 = wrapped_form_for([@patient, @acute_rehab]) do |f|
   = f.error_notification
+
   .form-inputs
-    .callout-blank
-        h4 Admission
-        .row
-            .medium-8.columns
-                = f.association :reason_for_admission,
-                collection: Domain::ReasonForAdmission.cached_all,
-                as: :radio_buttons,
-                item_wrapper_class: 'radio-inline'
-        .row#acuteRehabAdmissionOther.hide
-            .medium-4.columns
-                = f.input :reason_for_admission_other
-        .row
-            .medium-4.columns
-                = f.association :start_hub, label: "Name of Facility"
-            .medium-4.columns
-                = f.input :hospital_admission, as: :date_picker, :label => "Date of Hospital Admission"
-            .medium-4.columns
-                = f.input :acute_rehab_admission, as: :date_picker, :label => "Date of Rehab Admission"
-            .medium-4.columns.left
-                / TODO: @awong add field (checkbox)
-                label.control-label.radio Traditional Rehab Veteran?
-                = f.input_field :acute_rehab_admission, 
-                as: :radio_buttons,
-                item_wrapper_class: 'radio-inline',
-                label: false
+    .callout-blank        
+      h4 Admission
+
+      .row
+        .medium-8.columns
+          = f.association :reason_for_admission,
+            collection: Domain::ReasonForAdmission.cached_all,
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline'
+      .row#acuteRehabAdmissionOther.hide
+        .medium-4.columns
+          = f.input :reason_for_admission_other
+
+      .row
+        .medium-4.columns
+          = f.association :start_hub, 
+            label: "Name of Facility",
+            prompt: "Select One"
+        .medium-4.columns.left
+          = f.input :hospital_admission, as: :date_picker, :label => "Date of Hospital Admission"
+
+      .row
+        .medium-4.columns
+          / TODO: @awong add field (checkbox)
+          label.control-label.radio Traditional Rehab Veteran?
+          = f.input_field :traditional_rehab, 
+            as: :radio_buttons,
+            item_wrapper_class: 'radio-inline',
+            label: false
+        .medium-4.columns.left
+          = f.input :acute_rehab_admission, as: :date_picker, :label => "Date of Rehab Admission"
+
+    hr
     .callout
-        / TODO: @emilyville make match spec
-        h4 Transfers
-        .row
-            .medium-12.columns
-              = f.simple_fields_for :transfers do |transfer_builder|
-                  = render 'transfer', :f => transfer_builder
+      / TODO: @emilyville make match spec
+      h4 Transfers
+
+      .row
+        .medium-12.columns
+          = f.simple_fields_for :transfers do |transfer_builder|
+            = render 'transfer', :f => transfer_builder
 
     .callout-blank
-        h4 Discharge
-        .row
-            / TODO: @awong remove
-            / .medium-4.columns
-            /     = f.input :hospital_discharge, as: :date_picker, :label => "Date of Hospital Discharge"
-            / .medium-4.columns
-            /     = f.input :acute_rehab_discharge, as: :date_picker, :label => "Date of Rehab Discharge"
-            .medium-4.columns
-                = f.association :discharge_location,
-                collection: Domain::ResidenceType.cached_all,
-                :prompt => "Select one"
+      h4 Discharge
+      .row
+        / TODO: @awong remove
+        / .medium-4.columns
+        /   = f.input :hospital_discharge, as: :date_picker, :label => "Date of Hospital Discharge"
+        / .medium-4.columns
+        /   = f.input :acute_rehab_discharge, as: :date_picker, :label => "Date of Rehab Discharge"
+        .medium-4.columns
+          = f.association :discharge_location,
+            collection: Domain::ResidenceType.cached_all,
+            prompt: "Select one"
 
-    = f.submit class:"button large"
+  = f.submit class:"button large"

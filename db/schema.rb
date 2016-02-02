@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106184139) do
+ActiveRecord::Schema.define(version: 20160202015112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.string   "finish_fim"
     t.string   "reason_for_admission_other"
     t.date     "hospital_admission"
-    t.date     "acute_rehab_admission",      null: false
+    t.date     "acute_rehab_admission",                     null: false
     t.date     "hospital_discharge"
     t.date     "acute_rehab_discharge"
     t.boolean  "discharge_to_community"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.integer  "start_hub_id"
     t.integer  "start_asia_id"
     t.integer  "finish_asia_id"
+    t.boolean  "traditional_rehab",          default: true
   end
 
   add_index "acute_rehabs", ["finish_asia_id"], name: "index_acute_rehabs_on_finish_asia_id", using: :btree
@@ -69,7 +70,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
   create_table "annual_evaluations", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "eval_offered",               null: false
+    t.date     "eval_offered",                               null: false
     t.date     "eval_completed"
     t.boolean  "is_inpatient"
     t.string   "cyh"
@@ -82,14 +83,13 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.integer  "height_inches"
     t.integer  "weight_lbs"
     t.integer  "asia_id"
+    t.boolean  "ae_received",                default: false
   end
 
   add_index "annual_evaluations", ["asia_id"], name: "index_annual_evaluations_on_asia_id", using: :btree
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
 
   create_table "asias", force: :cascade do |t|
-    t.integer  "classification"
-    t.boolean  "is_complete"
     t.boolean  "has_motor_or_sensory_asymmetry"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.integer  "preservation_motor_level_left_id"
     t.integer  "preservation_motor_level_right_id"
     t.integer  "patient_id"
+    t.integer  "impairment_scale_id"
   end
 
   add_index "asias", ["patient_id"], name: "index_asias_on_patient_id", using: :btree
@@ -428,6 +429,12 @@ ActiveRecord::Schema.define(version: 20160106184139) do
     t.integer  "ethnic_id"
     t.text     "notes"
     t.integer  "scid_ms_eligibility_id"
+    t.date     "registration_date"
+    t.string   "non_va_facility_pcp_phone_number"
+    t.string   "non_va_facility_pcp_fax_number"
+    t.string   "non_va_facility_pcp_email"
+    t.string   "non_va_facility_pcp_city"
+    t.string   "non_va_facility_pcp_state"
   end
 
   add_index "patients", ["address_id"], name: "index_patients_on_address_id", unique: true, using: :btree
@@ -490,7 +497,7 @@ ActiveRecord::Schema.define(version: 20160106184139) do
   add_foreign_key "annual_evaluations", "fims"
   add_foreign_key "annual_evaluations", "kurtzke_edsses"
   add_foreign_key "annual_evaluations", "patients"
-  add_foreign_key "asias", "domain_asia_classifications", column: "classification"
+  add_foreign_key "asias", "domain_asia_classifications", column: "impairment_scale_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_left_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_motor_level_right_id"
   add_foreign_key "asias", "domain_level_of_injuries", column: "neurological_sensory_level_left_id"

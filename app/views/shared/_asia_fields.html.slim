@@ -1,64 +1,90 @@
-.nested-fields
+hr
+.nested-fields id = "#{fname}"
   h4 ASIA Assessment Score
+
   .row
     .medium-4.columns
-      label Neurological Level of Injury
-      / TODO: @awong add field for overall NLOI
-      = f.input :neurological_sensory_level_right_id,
-      label: false,
-      collection: Domain::LevelOfInjury.cached_all
-    .medium-4.columns.left
-      / TODO: @awong I think this is backwards. False should be asymmetrical
-      label Sensory and Motor Levels Symmetrical?
+      = f.input :impairment_scale_id,
+        collection: Domain::AsiaClassification.cached_all
+
+  .row
+    .medium-12.columns
       = f.input :has_motor_or_sensory_asymmetry,
-      as: :radio_buttons,
-      item_wrapper_class: 'radio-inline',
-      label: false
-  .instrument#asymmetry.hide
-    h4 If Asymmetrical, Fill in Information for Neurological Level of Injury
-    .row
-      .medium-4.columns
-        = f.input :neurological_sensory_level_right_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Sensory Right"
-        = f.input :neurological_sensory_level_left_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Sensory Left"
-      .medium-4.columns.left
-        = f.input :neurological_motor_level_right_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Motor Right"
-        = f.input :neurological_motor_level_left_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Motor Left"
+        as: :radio_buttons,
+        item_wrapper_class: 'radio-inline',
+        label: "Asymmetric Motor and Sensory Function?"
+
   .row
-    .medium-4.columns
-      label ASIA Impairment Scale
-      / TODO: @awong add field for ASIA impairment Scale
-      = f.input :neurological_sensory_level_right_id,
-      label: false,
-      collection: Domain::LevelOfInjury.cached_all
     .medium-4.columns.left
-      label Injury Complete or Incomplete
-      = f.input :is_complete, 
-      collection: [["Complete", true], ["Incomplete", false] ],
-      label: false,
-      as: :radio_buttons, 
-      item_wrapper_class: 'radio-inline'
-  .instrument#complete.hide
-    h4 If Complete, Fill in Information for Zone of Partial Preservation
-    .row
-      .medium-4.columns
-        = f.input :preservation_sensory_level_right_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Sensory Right"
-        = f.input :preservation_sensory_level_left_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Sensory Left"
-      .medium-4.columns.left
-        = f.input :preservation_motor_level_right_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Motor Right"
-        = f.input :preservation_motor_level_left_id,
-        collection: Domain::LevelOfInjury.cached_all,
-        label: "Motor Left"
+      .row
+        .medium-12.columns.mock_label id="#{fname}_left_motor_lbl"
+          | Left Motor
+      .row
+        .medium-12.columns
+          = f.input :neurological_motor_level_left_id,
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+      .row
+        .medium-12.columns.mock_label id="#{fname}_left_sensory_lbl"
+          | Left Sensory
+      .row
+        .medium-12.columns
+          = f.input :neurological_sensory_level_left_id,       
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+    .medium-4.columns.left id = "#{fname}_asymmetrical"
+      .row
+        .medium-12.columns.mock_label
+          | Right Motor
+      .row
+        .medium-12.columns
+          = f.input :neurological_motor_level_right_id,        
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+      .row
+        .medium-12.columns.mock_label
+          | Right Sensory 
+      .row
+        .medium-12.columns    
+          = f.input :neurological_sensory_level_right_id,        
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+
+  .row id="#{fname}_zone_of_partial_preservation"
+    label Zone of Partial Preservation
+    .medium-4.columns.left
+      .row
+        .medium-12.columns.mock_label id="#{fname}_zpp_left_motor_lbl"
+          | Left Motor
+      .row
+        .medium-12.columns
+          = f.input :preservation_motor_level_left_id,
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+      .row
+        .medium-12.columns.mock_label id="#{fname}_zpp_left_sensory_lbl"
+          | Left Sensory
+      .row
+        .medium-12.columns
+          = f.input :preservation_sensory_level_left_id,
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+    .medium-4.columns.left id = "#{fname}_zpp_asymmetrical"
+      .row
+        .medium-12.columns.mock_label 
+          | Right Motor
+      .row
+        .medium-12.columns
+          = f.input :preservation_motor_level_right_id,
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+      .row
+        .medium-12.columns.mock_label id="#{fname}_zpp_right_sensory_lbl"
+          | Right Sensory
+      .row
+        .medium-12.columns
+          = f.input :preservation_sensory_level_right_id,
+            collection: Domain::LevelOfInjury.cached_all,
+            label: false
+
+

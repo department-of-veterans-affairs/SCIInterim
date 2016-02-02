@@ -14,16 +14,29 @@ class AcuteRehabsController < ApplicationController
   end
 
   def new
-    @acute_rehab = AcuteRehab.new
-    @acute_rehab.build_start_asia
-    @acute_rehab.build_finish_asia
+    @acute_rehab = AcuteRehab.new(
+      reason_for_admission: Domain::ReasonForAdmission.all.first
+    )
+
+    @acute_rehab.build_start_asia(
+      has_motor_or_sensory_asymmetry: true 
+    )
+    
+    @acute_rehab.build_finish_asia(
+      has_motor_or_sensory_asymmetry: true  
+    )
+    
     @acute_rehab.build_start_sf8
     @acute_rehab.build_finish_sf8
     @acute_rehab.build_followup_1year_sf8
     @acute_rehab.build_followup_90day_sf8
     @acute_rehab.build_followup_1year_chart_sf
     @acute_rehab.build_followup_90day_chart_sf
-    3.times { @acute_rehab.transfers.build }
+
+    @acute_rehab.transfers.build
+    # mph: why 3 new transfers?
+    # 3.times { @acute_rehab.transfers.build }
+
     respond_with(@acute_rehab)
   end
 
@@ -38,8 +51,10 @@ class AcuteRehabsController < ApplicationController
 
   def create
     @acute_rehab = @patient.acute_rehabs.build
+
     # TODO(awong): Should this use assign_attributes?
     @acute_rehab.assign_attributes(acute_rehab_params)
+
     @patient.save
     respond_with(@acute_rehab, location: edit_patient_path(@patient))
   end
@@ -92,6 +107,7 @@ class AcuteRehabsController < ApplicationController
         :start_hub_id,
         :start_sf8,
         :start_swls,
+        :traditional_rehab,
         start_asia_attributes: nested_model_attributes(Asia),
         finish_asia_attributes: nested_model_attributes(Asia),
         transfers_attributes: nested_model_attributes(Transfer),

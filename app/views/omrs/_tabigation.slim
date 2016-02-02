@@ -8,23 +8,26 @@ ul.tabs data-tab="" data-options="deep_linking:true; scroll_to_content: false"
     a aria-controls="ninety-day" data-toggle="tab" href="#ninety-day" role="tab"  90 Day
   li.tab-title
     a aria-controls="one-year" data-toggle="tab" href="#one-year" role="tab"  1 year  
-/! Tab panes
+
 .tabs-content
   section#start.content.active    
     .row
       .panel
         .panel-body
           = render 'formstart'
+
   section#finish.content
     .row
       .panel
         .panel-body
           = render 'formfinish'
+          
   section#ninety-day.content
     .row
       .panel
         .panel-body
           = render 'form90day'
+
   section#one-year.content  
     .row
       .panel
