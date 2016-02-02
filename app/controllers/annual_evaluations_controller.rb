@@ -78,6 +78,7 @@ class AnnualEvaluationsController < ApplicationController
         :eval_completed,
         :eval_offered,
         :is_inpatient,
+        :notes,
         :offered_hub_id,
         :patient_id,
         asia_attributes: nested_model_attributes(Asia),

@@ -11,7 +11,12 @@ class Omr < ActiveRecord::Base
   belongs_to :start_hub, class_name: Domain::SciHub
 
   validates :start_date, presence: true
+  before_save :check_goals
 
+  def check_goals
+    self.goals_missed_reasons = "" if goals_met
+  end
+  
   def episode_date
     start_date
   end
