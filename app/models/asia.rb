@@ -70,6 +70,6 @@ class Asia < ActiveRecord::Base
     [
       neurological_motor_level_left, neurological_motor_level_right,
       neurological_sensory_level_left, neurological_sensory_level_right
-    ].sort.reverse
+    ].sort.first
   end
 end
