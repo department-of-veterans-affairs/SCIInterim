@@ -3,6 +3,11 @@ hr
   h4 ASIA Assessment Score
 
   .row
+    .medium-4.columns
+      = f.input :impairment_scale_id,
+        collection: Domain::AsiaClassification.cached_all
+
+  .row
     .medium-12.columns
       = f.input :has_motor_or_sensory_asymmetry,
         as: :radio_buttons,
@@ -45,15 +50,6 @@ hr
             collection: Domain::LevelOfInjury.cached_all,
             label: false
 
-  .row
-    .medium-4.columns.left
-      label Injury Complete or Incomplete?
-      = f.input :is_complete, 
-        collection: [["Complete", true], ["Incomplete", false] ],
-        label: false,
-        as: :radio_buttons, 
-        item_wrapper_class: 'radio-inline'
-
   .row id="#{fname}_zone_of_partial_preservation"
     label Zone of Partial Preservation
     .medium-4.columns.left
@@ -91,8 +87,4 @@ hr
             collection: Domain::LevelOfInjury.cached_all,
             label: false
 
-  .row
-    .medium-4.columns
-      = f.input :impairment_scale_id,
-        collection: Domain::AsiaClassification.cached_all
 

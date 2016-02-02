@@ -60,6 +60,13 @@ class Asia < ActiveRecord::Base
   end
 
   #############################################################################
+  ## is_complete
+  #############################################################################
+  def is_complete
+    impairment_scale.try(:name).try(:downcase) == "a"
+  end
+
+  #############################################################################
   ## neurological_level_of_injury
   ## Computes the neurological level of injury as a single value defined as:
   ##   The most caudal segment of the spinal cord with normal sensory and motor

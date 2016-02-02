@@ -41,6 +41,24 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// changeTFWhenOtherEquals
+// Changes a TF radio value based on another controls value
+///////////////////////////////////////////////////////////////////////////////
+function changeTFWhenOtherEquals(radio_selector, source_selector, value) {
+  var value = ""
+  $(source_selector).change(function() {
+    if ($(this).prop('tagName') == 'SELECT') {
+      value = $(this).find("option:selected").text();
+    }
+    else {
+      value = $(this).is(':checked')
+    }
+  });
+
+  alert(value);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // toggleCongrolLabel
 // Toggles a label's text based on the truthiness of the a radio control.
 ///////////////////////////////////////////////////////////////////////////////

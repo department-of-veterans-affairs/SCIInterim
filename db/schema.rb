@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125211323) do
+ActiveRecord::Schema.define(version: 20160202015112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20160125211323) do
   add_index "annual_evaluations", ["patient_id"], name: "index_annual_evaluations_on_patient_id", using: :btree
 
   create_table "asias", force: :cascade do |t|
-    t.boolean  "is_complete"
     t.boolean  "has_motor_or_sensory_asymmetry"
     t.datetime "created_at"
     t.datetime "updated_at"

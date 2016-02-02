@@ -20,8 +20,7 @@ class AnnualEvaluationsController < ApplicationController
     )
 
     @annual_evaluation.build_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false
+      has_motor_or_sensory_asymmetry: true
     )
 
     @annual_evaluation.build_fim

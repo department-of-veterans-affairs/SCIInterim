@@ -43,9 +43,9 @@ class PatientsController < ApplicationController
 
     @patient.build_address
     @patient.build_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false
+      has_motor_or_sensory_asymmetry: true
     )
+    
     @patient.build_caregiver_address
 
     respond_with(@patient)

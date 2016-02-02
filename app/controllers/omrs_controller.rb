@@ -19,13 +19,10 @@ class OmrsController < ApplicationController
     @omr = Omr.new
 
     @omr.build_start_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false
-    )
+      has_motor_or_sensory_asymmetry: true    )
 
     @omr.build_finish_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false
+      has_motor_or_sensory_asymmetry: true
     )
 
     @omr.build_finish_chart_sf

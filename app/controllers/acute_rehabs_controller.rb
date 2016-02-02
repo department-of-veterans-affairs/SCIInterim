@@ -19,13 +19,11 @@ class AcuteRehabsController < ApplicationController
     )
 
     @acute_rehab.build_start_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false    
+      has_motor_or_sensory_asymmetry: true 
     )
     
     @acute_rehab.build_finish_asia(
-      has_motor_or_sensory_asymmetry: true,
-      is_complete: false    
+      has_motor_or_sensory_asymmetry: true  
     )
     
     @acute_rehab.build_start_sf8

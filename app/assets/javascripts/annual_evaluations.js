@@ -41,9 +41,9 @@ $(document).ready(function() {
   toggleLabel("#ae_isncsci_zpp_left_sensory_lbl", "Left Sensory", "Sensory", 
     "#ae_isncsci [name='annual_evaluation[asia_attributes][has_motor_or_sensory_asymmetry]']");  
 
-  showWhenValueEquals("[name='annual_evaluation[change_in_asia]']", "true", "#ae_isncsci_info");
+  showWhenValueEquals("[name='annual_evaluation[change_in_asia]']", "Yes", "#ae_isncsci_info");
   showWhenValueEquals("[name='annual_evaluation[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#ae_isncsci_asymmetrical");
-  showWhenValueEquals("[name='annual_evaluation[asia_attributes][is_complete]']", "true", "#ae_isncsci_zone_of_partial_preservation");
+  showWhenValueEquals("[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 1, "#ae_isncsci_zone_of_partial_preservation");
   showWhenValueEquals("[name='annual_evaluation[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#ae_isncsci_zpp_asymmetrical");
 
   // Set up BMI auto-calculation.

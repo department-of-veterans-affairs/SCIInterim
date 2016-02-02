@@ -25,6 +25,6 @@ $(document).ready(function() {
      "#isncsci [name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']");  
 
   showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_asymmetrical");
-  showWhenValueEquals("[name='patient[asia_attributes][is_complete]']", "true", "#isncsci_zone_of_partial_preservation");
+  showWhenValueEquals("[name='patient[asia_attributes][impairment_scale_id]']", 1, "#isncsci_zone_of_partial_preservation");
   showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_zpp_asymmetrical");
 });

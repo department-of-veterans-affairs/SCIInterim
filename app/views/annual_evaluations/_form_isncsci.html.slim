@@ -4,12 +4,14 @@
     .callout-blank
       .row
         .medium-12.columns
+          - @annual_evaluation.change_in_asia ||= "No"
           label.control-label.radio Has there been any change in SCI Classification/ASIA?
           = f.input :change_in_asia, 
             as: :radio_buttons,
-            collection: [['Yes', true], ['No', false]],
+            collection: %w(Yes No),
             item_wrapper_class: 'radio-inline',
-            label: false
+            label: false,
+            checked: @annual_evaluation.change_in_asia
 
       .row#ae_isncsci_info
         .medium-12.columns
