@@ -34,5 +34,9 @@ FactoryGirl.define do
     followup_1year_sf8 { create(:sf8) }
     start_hub { Domain::SciHub.cached_all.sample }
     traditional_rehab { [true, false].sample }
+    notes { Faker::Lorem.paragraphs.join(" ") }
+    goals { Faker::Lorem.paragraphs.join(" ") }
+    goals_met { [true, false].sample }
+    goals_missed_reasons { goals_met ? "" : Faker::Lorem.paragraphs.join(" ") }
   end
 end

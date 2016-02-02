@@ -18,6 +18,12 @@ class AcuteRehab < ActiveRecord::Base
 
   validates :acute_rehab_admission, presence: true
 
+  before_save :check_goals
+
+  def check_goals
+    self.goals_missed_reasons = "" if goals_met
+  end
+
   def episode_date
     acute_rehab_admission
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202051927) do
+ActiveRecord::Schema.define(version: 20160202053353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 20160202051927) do
     t.integer  "start_asia_id"
     t.integer  "finish_asia_id"
     t.boolean  "traditional_rehab",          default: true
+    t.text     "notes",                      default: ""
+    t.text     "goals",                      default: ""
+    t.boolean  "goals_met"
+    t.text     "goals_missed_reasons",       default: ""
   end
 
   add_index "acute_rehabs", ["finish_asia_id"], name: "index_acute_rehabs_on_finish_asia_id", using: :btree
