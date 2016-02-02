@@ -31,4 +31,10 @@
             label: false,
             :as => :radio_buttons, 
             :item_wrapper_class => 'radio-inline'
+
+      .row
+        hr
+        .medium-12.columns
+          = f.input :notes
+
     = f.submit "Save Annual Evaluation", class: "button large"

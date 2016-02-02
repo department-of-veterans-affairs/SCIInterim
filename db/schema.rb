@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202015112) do
+ActiveRecord::Schema.define(version: 20160202051927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160202015112) do
     t.integer  "weight_lbs"
     t.integer  "asia_id"
     t.boolean  "ae_received",                default: false
+    t.text     "notes"
   end
 
   add_index "annual_evaluations", ["asia_id"], name: "index_annual_evaluations_on_asia_id", using: :btree
