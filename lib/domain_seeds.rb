@@ -231,8 +231,9 @@ module DomainSeeds
     4 => "Sheltered workshop",
     5 => "Student",
     6 => "Unemployed (may or may not be looking for work)",
-    7 => "Other, unclassified (includes volunteer, disability or medical leave)",
-    8 => "Unknown",
+    7 => "Retired",
+    8 => "Other, unclassified (includes volunteer, disability or medical leave)",
+    9 => "Unknown",
   }
   PRINCIPLE_PCP_VA_NONVA_MAP = {
     1 => "VA",
