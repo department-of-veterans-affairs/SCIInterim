@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202053353) do
+ActiveRecord::Schema.define(version: 20160202064533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,7 +355,7 @@ ActiveRecord::Schema.define(version: 20160202053353) do
   create_table "omrs", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "start_date",                 null: false
+    t.date     "start_date",                              null: false
     t.string   "start_swls"
     t.date     "finish_date"
     t.string   "finish_swls"
@@ -374,6 +374,11 @@ ActiveRecord::Schema.define(version: 20160202053353) do
     t.integer  "followup_90day_sf8_id"
     t.integer  "followup_1yr_sf8_id"
     t.integer  "start_hub_id"
+    t.text     "start_notes",                default: ""
+    t.text     "finish_notes",               default: ""
+    t.text     "goals",                      default: ""
+    t.boolean  "goals_met"
+    t.text     "goals_missed_reasons",       default: ""
   end
 
   add_index "omrs", ["patient_id"], name: "index_omrs_on_patient_id", using: :btree
