@@ -15,7 +15,8 @@ class AcuteRehabsController < ApplicationController
 
   def new
     @acute_rehab = AcuteRehab.new(
-      reason_for_admission: Domain::ReasonForAdmission.all.first
+      reason_for_admission: Domain::ReasonForAdmission.all.first,
+      goals_met: true
     )
 
     @acute_rehab.build_start_asia(
@@ -96,9 +97,13 @@ class AcuteRehabsController < ApplicationController
         :followup_90day_fim,
         :followup_90day_sf8,
         :followup_90day_swls,
+        :goals,
+        :goals_met,
+        :goals_missed_reasons,
         :goal_fim,
         :hospital_admission,
         :hospital_discharge,
+        :notes,
         :patient_id, # TODO(awong.dev): Required?
         :reason_for_admission_id,
         :reason_for_admission_other,

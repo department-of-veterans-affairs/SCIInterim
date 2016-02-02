@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
+  showWhenValueEquals("[name='acute_rehab[goals_met]']", false, "#goals_missed");
+
   showWhenValueEquals("[name='acute_rehab[reason_for_admission_id]']", 4, "#acuteRehabAdmissionOther");
 
   showWhenValueEquals("[name='acute_rehab[start_asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#form_start_asymmetrical");
