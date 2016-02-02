@@ -9,11 +9,28 @@
           = f.association :discharge_location, collection: Domain::ResidenceType.cached_all, 
             label_method: :name, value_method: :id, prompt: "Select one"
 
-		  .row
+      .row
+        .medium-12.columns
+          .row
+            .mediumn_12.columns
+            = f.input :goals_met,
+              as: :radio_buttons,
+              item_wrapper_class: 'radio-inline',
+              label: "Goals Met?"
+
+          .row#goals_missed.hide
+            .medium-12.columns
+              = f.input :goals_missed_reasons, label: "Reason Goals Were Missed?"
+
+      .row
+        hr
+        .medium-12.columns
+          = f.input :finish_notes, label: "Notes"
+
+      .row
         .medium-12.columns
           = f.simple_fields_for :finish_asia do |asia|
             = render 'shared/asia_fields', :f => asia, fname: "asia_form_finish"
-
 
     .instrument 
       h4 SWLS

@@ -9,6 +9,16 @@
           = f.association :start_hub, label: "Name of Hub"
           
       .row
+        hr
+        .medium-12.columns
+          = f.input :goals, label: "Goals"
+
+      .row
+        hr
+        .medium-12.columns
+          = f.input :start_notes, label: "Notes"
+
+      .row
         .medium-12.columns
           = f.simple_fields_for :start_asia do |asia|
             = render 'shared/asia_fields', :f => asia, fname: "asia_form_start"

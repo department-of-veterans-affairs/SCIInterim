@@ -16,7 +16,7 @@ class OmrsController < ApplicationController
   end
 
   def new
-    @omr = Omr.new
+    @omr = Omr.new(goals_met: true)
 
     @omr.build_start_asia(
       has_motor_or_sensory_asymmetry: true    )
@@ -79,10 +79,15 @@ class OmrsController < ApplicationController
         :discharge_location_id,
         :finish_date,
         :finish_swls,
+        :finish_notes,
         :followup_1yr_date,
         :followup_90day_date,
+        :goals,
+        :goals_met,
+        :goals_missed_reasons,
         :start_date,
         :start_hub_id,
+        :start_notes,
         :start_swls,
         finish_asia_attributes: nested_model_attributes(Asia),
         finish_chart_sf_attributes: nested_model_attributes(ChartSf),

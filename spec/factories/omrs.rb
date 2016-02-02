@@ -9,6 +9,7 @@ FactoryGirl.define do
     finish_asia { create(:asia) }
     finish_chart_sf { create(:chart_sf) }
     finish_date { Faker::Date.between(20.years.ago, Date.today) }
+    finish_notes { Faker::Lorem.paragraphs.join(" ") }
     finish_sf8 { create(:sf8) }
     finish_swls { rand(5..35) }
     followup_1yr_chart_sf { create(:chart_sf) }
@@ -17,6 +18,10 @@ FactoryGirl.define do
     followup_90day_chart_sf { create(:chart_sf) }
     followup_90day_date { Faker::Date.between(20.years.ago, Date.today) }
     followup_90day_sf8 { create(:sf8) }
+    goals { Faker::Lorem.paragraphs.join(" ") }
+    goals_met { [true, false].sample }
+    goals_missed_reasons { goals_met ? "" : Faker::Lorem.paragraphs.join(" ") }
+    start_notes { Faker::Lorem.paragraphs.join(" ") }
     start_asia { create(:asia) }
     start_chart_sf { create(:chart_sf) }
     start_date { Faker::Date.between(20.years.ago, Date.today) }
