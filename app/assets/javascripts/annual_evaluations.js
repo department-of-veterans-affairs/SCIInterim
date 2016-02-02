@@ -46,6 +46,33 @@ $(document).ready(function() {
   showWhenValueEquals("[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 1, "#ae_isncsci_zone_of_partial_preservation");
   showWhenValueEquals("[name='annual_evaluation[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#ae_isncsci_zpp_asymmetrical");
 
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][neurological_motor_level_left_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][neurological_sensory_level_left_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][neurological_motor_level_right_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][neurological_sensory_level_right_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][preservation_motor_level_left_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][preservation_sensory_level_left_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][preservation_motor_level_right_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][preservation_sensory_level_right_id]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, 1);
+  
+  changeOptionWhenValueEquals("[name='annual_evaluation[asia_attributes][has_motor_or_sensory_asymmetry]']", 
+    "[name='annual_evaluation[asia_attributes][impairment_scale_id]']", 5, false);
+  
   // Set up BMI auto-calculation.
   $("[name='annual_evaluation[height_inches]'").on('change', recalculateBmi);
   $("[name='annual_evaluation[weight_lbs]'").on('change', recalculateBmi);

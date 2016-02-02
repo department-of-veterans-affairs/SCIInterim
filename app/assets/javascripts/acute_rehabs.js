@@ -20,6 +20,33 @@ $(document).ready(function() {
   toggleLabel("#form_start_zpp_left_sensory_lbl", "Left Sensory", "Sensory", 
     "#form_start [name='acute_rehab[start_asia_attributes][has_motor_or_sensory_asymmetry]']");  
 
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][neurological_motor_level_left_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][neurological_sensory_level_left_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][neurological_motor_level_right_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][neurological_sensory_level_right_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][preservation_motor_level_left_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][preservation_sensory_level_left_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][preservation_motor_level_right_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][preservation_sensory_level_right_id]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[start_asia_attributes][has_motor_or_sensory_asymmetry]']", 
+    "[name='acute_rehab[start_asia_attributes][impairment_scale_id]']", 5, false);
+
   showWhenValueEquals("[name='acute_rehab[finish_asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#form_finish_asymmetrical");
   showWhenValueEquals("[name='acute_rehab[finish_asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#form_finish_zpp_asymmetrical");
   showWhenValueEquals("[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 1, "#form_finish_zone_of_partial_preservation");
@@ -35,4 +62,31 @@ $(document).ready(function() {
 
   toggleLabel("#form_finish_zpp_left_sensory_lbl", "Left Sensory", "Sensory", 
     "#form_finish [name='acute_rehab[finish_asia_attributes][has_motor_or_sensory_asymmetry]']");  
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][neurological_motor_level_left_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][neurological_sensory_level_left_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][neurological_motor_level_right_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][neurological_sensory_level_right_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+  
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][preservation_motor_level_left_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][preservation_sensory_level_left_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][preservation_motor_level_right_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][preservation_sensory_level_right_id]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='acute_rehab[finish_asia_attributes][has_motor_or_sensory_asymmetry]']", 
+    "[name='acute_rehab[finish_asia_attributes][impairment_scale_id]']", 5, false);
 });

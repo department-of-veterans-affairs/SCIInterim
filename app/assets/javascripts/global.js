@@ -41,21 +41,32 @@ function showWhenValueEqualsOptions(selector, toggleValue, toggleSelector, actio
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// changeTFWhenOtherEquals
+// changeOptionWhenValueEquals
 // Changes a TF radio value based on another controls value
 ///////////////////////////////////////////////////////////////////////////////
-function changeTFWhenOtherEquals(radio_selector, source_selector, value) {
-  var value = ""
-  $(source_selector).change(function() {
+function changeOptionWhenValueEquals(target, source, source_value, target_value) {
+  $(source).change(function() {
+    var newSrcValue = "";
+
     if ($(this).prop('tagName') == 'SELECT') {
-      value = $(this).find("option:selected").text();
+      newSrcValue = $(this).find("option:selected").val();
     }
     else {
-      value = $(this).is(':checked')
+      newSrcValue = $(this).is(':checked');
+    }
+
+    if (newSrcValue === source_value.toString()) {
+      if ($(target).prop('tagName') == 'SELECT') {
+        $(target).val(target_value.toString());
+      }
+      else {
+        $(target + "[value='" + target_value.toString() + "']").prop('checked', true);        
+      }
+
+      $(target).trigger('change');
     }
   });
-
-  alert(value);
+  $(source).trigger('change')
 }
 
 ///////////////////////////////////////////////////////////////////////////////

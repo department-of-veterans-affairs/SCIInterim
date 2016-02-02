@@ -33,9 +33,20 @@ class Asia < ActiveRecord::Base
   # end
 
   def ensure_symmetry
+    if is_unimpaired?
+      self.has_motor_or_sensory_asymmetry = false
+
+      wnl = Domain::LevelOfInjury.where(name: "WNL").first
+      self.neurological_motor_level_left = self.neurological_sensory_level_left = wnl
+      self.preservation_motor_level_left = self.preservation_sensory_level_left = wnl
+    end
+
     if !has_motor_or_sensory_asymmetry
       self.neurological_motor_level_right = neurological_motor_level_left
       self.neurological_sensory_level_right = neurological_sensory_level_left
+
+      self.preservation_motor_level_left = preservation_motor_level_left
+      self.preservation_sensory_level_right = preservation_sensory_level_left
     end
   end
 
@@ -62,8 +73,22 @@ class Asia < ActiveRecord::Base
   #############################################################################
   ## is_complete
   #############################################################################
-  def is_complete
+  def is_complete?
     impairment_scale.try(:name).try(:downcase) == "a"
+  end
+
+  #############################################################################
+  ## is_impaired
+  #############################################################################
+  def is_impaired?
+    impairment_scale.try(:name).try(:downcase) != "e"
+  end
+
+  #############################################################################
+  ## is_unimpaired
+  #############################################################################
+  def is_unimpaired?
+    !is_impaired?
   end
 
   #############################################################################

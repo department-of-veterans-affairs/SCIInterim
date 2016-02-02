@@ -27,4 +27,31 @@ $(document).ready(function() {
   showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_asymmetrical");
   showWhenValueEquals("[name='patient[asia_attributes][impairment_scale_id]']", 1, "#isncsci_zone_of_partial_preservation");
   showWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", "true", "#isncsci_zpp_asymmetrical");
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][neurological_motor_level_left_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][neurological_sensory_level_left_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][neurological_motor_level_right_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][neurological_sensory_level_right_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][preservation_motor_level_left_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][preservation_sensory_level_left_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][preservation_motor_level_right_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][preservation_sensory_level_right_id]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, 1);  
+
+  changeOptionWhenValueEquals("[name='patient[asia_attributes][has_motor_or_sensory_asymmetry]']", 
+    "[name='patient[asia_attributes][impairment_scale_id]']", 5, false);
 });

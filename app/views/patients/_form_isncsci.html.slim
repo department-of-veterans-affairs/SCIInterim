@@ -22,7 +22,7 @@
         .small-6.columns
           label.control-label Asymmetric? #{@patient.asia.has_motor_or_sensory_asymmetry ? 'Yes' : 'No'}
         .small-6.columns.left
-          label.control-label Complete? #{@patient.asia.is_complete ? 'Yes' : 'No'}
+          label.control-label Complete? #{@patient.asia.is_complete? ? 'Yes' : 'No'}
 
       <br>
       .row
@@ -57,7 +57,7 @@
             .small-4.columns
               label.control-label #{@patient.asia.neurological_sensory_level_left}
 
-      - if @patient.asia.is_complete
+      - if @patient.asia.is_complete?
         <br>
         .row
           .small-12.columns

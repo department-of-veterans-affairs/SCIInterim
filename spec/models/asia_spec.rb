@@ -16,45 +16,55 @@ describe Asia, type: :model do
   end
 
   it "Disallows invalid Levels of injury" do
+    old_impairment = subject.impairment_scale
+    subject.impairment_scale_id = 1
+
+    old_symmetry = subject.has_motor_or_sensory_asymmetry
+    subject.has_motor_or_sensory_asymmetry = true
+
     old_level = subject.neurological_sensory_level_left
+
     subject.neurological_sensory_level_left_id = -1
     expect{ subject.save! }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.neurological_sensory_level_left = old_level
 
     old_level = subject.neurological_sensory_level_right
     subject.neurological_sensory_level_right_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.neurological_sensory_level_right = old_level
 
     old_level = subject.neurological_motor_level_left
     subject.neurological_motor_level_left_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.neurological_motor_level_left = old_level
 
     old_level = subject.neurological_motor_level_right
     subject.neurological_motor_level_right_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.neurological_motor_level_right = old_level
 
     old_level = subject.preservation_sensory_level_left
     subject.preservation_sensory_level_left_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.preservation_sensory_level_left = old_level
 
     old_level = subject.preservation_sensory_level_right
     subject.preservation_sensory_level_right_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.preservation_sensory_level_right = old_level
 
     old_level = subject.preservation_motor_level_left
     subject.preservation_motor_level_left_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.preservation_motor_level_left = old_level
 
     old_level = subject.preservation_motor_level_right
     subject.preservation_motor_level_right_id = -1
-expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
+    expect{  subject.save!  }.to raise_exception(/not present in table "domain_level_of_injuries"/)
     subject.preservation_motor_level_right = old_level
+
+    subject.impairment_scale = old_impairment
+    subject.has_motor_or_sensory_asymmetry = old_symmetry
   end
 
   it "Enforces symmetry" do
