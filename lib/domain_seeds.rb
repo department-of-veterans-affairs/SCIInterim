@@ -21,7 +21,7 @@ module DomainSeeds
     4 => "D",
     5 => "E"
   }
-  
+
   BLADDER_DRAINAGE_METHOD_MAP = {
     1 => "BA - Bladder Augmentation",
     2 => "EC - Condom/External Catheter",
@@ -227,7 +227,7 @@ module DomainSeeds
   OCCUPATION_MAP = {
     1 => "Working (competitive labor market, includes military)",
     2 => "Homemaker",
-    3 => "On-th-job training",
+    3 => "On-the-job training",
     4 => "Sheltered workshop",
     5 => "Student",
     6 => "Unemployed (may or may not be looking for work)",
@@ -308,7 +308,7 @@ module DomainSeeds
     3 => "ALS",
     4 => "Other",
   }
-  
+
   SCID_ETIOLOGY_MAP = {
     1 => "Sports",
     2 => "Assault",
